@@ -89,6 +89,19 @@
   apply();
  }
 
+/* ---- бургер ---- */
+ var bg=document.getElementById('burger'), nv=document.querySelector('.nav');
+ if(bg&&nv){
+  var setm=function(on){
+   nv.classList.toggle('open',on); bg.classList.toggle('on',on);
+   bg.setAttribute('aria-expanded',on?'true':'false');
+   document.documentElement.style.overflow=on?'hidden':'';
+  };
+  bg.addEventListener('click',function(){setm(!nv.classList.contains('open'))});
+  nv.addEventListener('click',function(e){if(e.target.tagName==='A')setm(false)});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')setm(false)});
+ }
+
  /* ---- анкета ---- */
  var host=document.getElementById('sliders');
  if(host){
@@ -103,7 +116,7 @@
    var s=ins.slice().sort(function(a,b){return b.value-a.value});
    var rank=document.getElementById('rank');rank.innerHTML='';
    s.slice(0,3).forEach(function(i,n){
-    var el=document.createElement('span');el.textContent=(n+1)+'. '+i.dataset.k+' · '+i.value;rank.appendChild(el);
+    var el=document.createElement('span');el.textContent=i.dataset.k+' · '+i.value;rank.appendChild(el);
    });
    var low=s[s.length-1], spread=s[0].value-low.value;
    var v='Больше всего для вас значит '+s[0].dataset.k.toLowerCase()+', меньше всего — '+low.dataset.k.toLowerCase()+'. ';

@@ -36,6 +36,7 @@
    <a href="index.html#podbor">Подбор</a>
    <a class="now" href="tel:+74950000000">+7 495 000-00-00</a>
   </nav>
+   <button class="burger" id="burger" type="button" aria-label="Меню" aria-expanded="false"><span></span><span></span><span></span></button>
  </div>
 </header>
 
@@ -292,7 +293,7 @@
      <ul class="sel-list"><li>Хочу въехать сразу</li><li>Готов подождать до двух лет</li><li>Не тороплюсь</li><li>Зависит от объекта</li></ul></div>
    </div>
    <div class="result">
-    <p class="ttl" style="margin-bottom:14px">Что мы услышали</p>
+    <p class="ttl" style="margin-bottom:14px">Что для вас важно</p>
     <div class="rank" id="rank"></div>
     <p id="verdict" style="color:var(--ink-2)"></p>
     <div class="btns" style="margin-top:22px"><button class="btn" type="button" id="ask">Соберите мне подборку</button></div>
@@ -339,7 +340,8 @@
      <input type="text" placeholder="Как вас зовут" autocomplete="name">
      <input type="text" placeholder="Телефон или @телеграм">
      <textarea placeholder="Пара слов о задаче — если хотите начать с этого"></textarea>
-     <div><button class="btn" type="button">Отправить</button></div>
+     <label class="consent"><input type="checkbox"><span>Согласен на обработку персональных данных и прочитал <a href="politika.html">политику конфиденциальности</a>.</span></label>
+     <div class="send"><button class="btn" type="button">Отправить</button></div>
      <p class="note">Отвечаем в течение дня, человеком. Контакты никому не передаём и без предупреждения не звоним.</p>
     </form>
    </div>
@@ -365,8 +367,11 @@
    <div style="margin-top:7px"><a href="tel:+74950000000">+7 495 000-00-00</a> · <a href="https://t.me/nota_estate">@nota_estate</a> · <a href="mailto:hello@nota.estate">hello@nota.estate</a> · <a href="#top">Наверх</a></div>
   </div>
  </div>
+ <div class="wrap foot-legal">
+  <span>ИП Холодилова Елена Александровна · ИНН 000000000000 · ОГРНИП 000000000000000</span>
+  <span><a href="politika.html">Политика конфиденциальности</a> · <a href="politika.html#soglasie">Согласие на обработку данных</a></span>
+ </div>
 </footer>
 <script src="js/nota.js"></script>
-
 </body>
 </html>

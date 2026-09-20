@@ -311,3 +311,64 @@ h1+.lead,h1+.lede,h2+.lead,h2+.lede{margin-top:26px}
 .modal-in h3{font-size:clamp(21px,2.4vw,27px);font-weight:800;letter-spacing:-.03em;margin-top:14px}
 .mdl-sum{margin-top:18px;padding:16px 18px;background:var(--paper-2);border-left:2px solid var(--red);font-size:15px;line-height:1.55;color:var(--ink-2)}
 .modal form{margin-top:22px}
+
+/* ================= мобильная сборка ================= */
+.burger{display:none;position:relative;width:40px;height:34px;border:0;background:none;padding:0;cursor:pointer}
+.burger span{position:absolute;left:8px;right:8px;height:2px;background:var(--ink);transition:transform .26s,opacity .2s}
+.burger span:nth-child(1){top:11px}.burger span:nth-child(2){top:17px}.burger span:nth-child(3){top:23px}
+.burger.on span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.burger.on span:nth-child(2){opacity:0}
+.burger.on span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+@media(max-width:860px){
+ .burger{display:block}
+ .nav{position:fixed;inset:0;z-index:90;background:var(--paper);flex-direction:column;align-items:flex-start;justify-content:center;
+  gap:6px;padding:0 26px;font-size:24px;transform:translateY(-101%);visibility:hidden;pointer-events:none;
+  transition:transform .34s cubic-bezier(.3,.8,.3,1),visibility .34s}
+ .nav.open{transform:none;visibility:visible;pointer-events:auto}
+ .nav a{padding:11px 0;font-size:26px;font-weight:600;letter-spacing:-.03em}
+ .nav a.hide-m{display:block}
+ .nav a.now{margin-top:18px;font-size:20px;color:var(--muted)}
+ .top.solid{background:var(--paper)}
+ .burger{z-index:95}
+ /* герой целиком в один экран */
+ .hero{min-height:100svh;display:flex;align-items:flex-end}
+ .hero-img{background-position:76% bottom}
+ .hero-in{padding-top:96px;padding-bottom:26px}
+ .hero h1{margin-top:14px}
+ .hero .sub{margin-top:16px;font-size:15.5px;line-height:1.5}
+ .hero-foot{margin-top:26px;gap:18px;align-items:flex-start;flex-direction:column}
+ .hero-foot .btn{width:100%;justify-content:center;text-align:center;padding:15px 20px}
+ /* дробь собрана в одну группу */
+ .ratio{max-width:none;justify-content:flex-start;gap:16px}
+ .ratio .rn.r{margin-top:0;align-items:flex-start;text-align:left}
+ .ratio .rn.r em{order:2;margin:7px 0 0}
+ .ratio .rn.r b{order:1}
+ .ratio b{font-size:40px}
+ .ratio-cap{margin-top:12px;font-size:13.5px}
+ /* этапы: номер рядом с названием */
+ .fl{flex-direction:row;flex-wrap:wrap;align-items:baseline;gap:0 10px;padding:18px 22px 20px}
+ .fl i{order:1}.fl h3{order:2}.fl p{order:3;flex:1 1 100%;margin-top:4px}
+ .levels,.flow,.geo{margin-top:28px}
+ .lv{padding:20px 22px 24px}
+}
+/* контакты: форма первой, кнопка справа, согласие */
+.consent{display:flex;gap:11px;align-items:flex-start;margin-top:22px;font-size:13.5px;color:var(--muted);line-height:1.5;cursor:pointer}
+.consent input{width:17px;height:17px;flex:0 0 auto;margin-top:2px;accent-color:var(--red)}
+.consent a{color:var(--ink-2);text-decoration:underline;text-underline-offset:3px}
+.send{display:flex;justify-content:flex-end;margin-top:20px}
+@media(max-width:900px){
+ .c-grid>*:first-child{order:2}
+ .c-grid>*:last-child{order:1}
+ .c-grid{gap:34px}
+}
+.foot-legal{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 26px;padding-top:20px;margin-top:26px;
+ border-top:1px solid var(--line);font-size:12.5px;color:var(--muted)}
+.foot-legal a{color:var(--muted);text-decoration:underline;text-underline-offset:3px}
+.foot-legal a:hover{color:var(--ink)}
+
+/* документы */
+.doc{max-width:74ch}
+.doc h2{font-size:clamp(19px,2vw,24px);letter-spacing:-.02em;margin-top:38px}
+.doc h2:first-child{margin-top:0}
+.doc p{margin-top:12px;font-size:16px;line-height:1.62;color:var(--ink-2)}
+.doc a{color:var(--ink);text-decoration:underline;text-underline-offset:3px}
