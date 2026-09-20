@@ -62,8 +62,8 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
 .hero{padding:0;min-height:100vh;min-height:100svh;display:flex;align-items:flex-end;position:relative;overflow:hidden}
 .hero-img{position:absolute;inset:0;background:var(--paper-2) 62% 44%/cover no-repeat;background-image:url(../img/01-moskva-s-vody.jpg)}
 .hero-img::after{content:"";position:absolute;inset:0;background:
- linear-gradient(90deg,rgba(255,255,255,.93) 0%,rgba(255,255,255,.8) 34%,rgba(255,255,255,.3) 56%,rgba(255,255,255,0) 76%),
- linear-gradient(180deg,rgba(255,255,255,.55) 0%,rgba(255,255,255,.05) 24%,rgba(255,255,255,.25) 62%,rgba(255,255,255,.9) 92%,#fff 100%)}
+ linear-gradient(90deg,rgba(255,255,255,.94) 0%,rgba(255,255,255,.76) 32%,rgba(255,255,255,.18) 54%,rgba(255,255,255,0) 70%),
+ linear-gradient(180deg,rgba(255,255,255,.3) 0%,rgba(255,255,255,0) 26%,rgba(255,255,255,.18) 62%,rgba(255,255,255,.88) 92%,#fff 100%)}
 .hero-in{position:relative;width:100%;padding-bottom:clamp(38px,6vw,74px);padding-top:calc(130px + env(safe-area-inset-top,0px))}
 .hero-txt{max-width:min(58%,820px)}
 .hero h1{max-width:12ch;margin-top:22px}
@@ -138,7 +138,9 @@ tr:last-child td{border-bottom:none}
 .fig{font-weight:800;font-size:clamp(58px,9vw,120px);line-height:.84;letter-spacing:-.05em;color:var(--red)}
 .figcap{font-size:14px;color:var(--muted);max-width:22ch;padding-bottom:10px}
 .quote{font-size:19px;line-height:1.5;max-width:52ch;border-left:2px solid var(--red);padding-left:20px;margin-top:26px}
-.split{display:grid;grid-template-columns:1.05fr .95fr;gap:36px;align-items:start;margin-top:34px}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,2.4vw,34px);align-items:stretch;margin-top:34px}
+.split .ph{height:100%}
+.split .tablewrap{margin-top:0}
 @media(max-width:900px){.split{grid-template-columns:1fr;gap:24px}}
 .steps{margin-top:34px}
 .steps .step{display:flex;gap:24px;padding:24px 0;border-bottom:1px solid var(--line)}
@@ -270,3 +272,33 @@ h1+.lead,h1+.lede,h2+.lead,h2+.lede{margin-top:26px}
 @media(max-width:900px){.ank{grid-template-columns:1fr}.ank-r{border-left:none;border-top:1px solid var(--line)}}
 .ank .row label{flex:0 0 118px;font-size:15px}
 .ank .result{margin:0;border-top:1px solid var(--ink);padding:clamp(22px,2.6vw,34px);grid-column:1/-1}
+
+/* телефон в шапке */
+.nav a.now{font-weight:600;color:var(--ink);letter-spacing:-.02em}
+.foot-r{text-align:right;line-height:1.7}
+@media(max-width:860px){.foot-r{text-align:left}}
+/* ползунки без лишней линии */
+.ank .row{border-bottom:none;padding:9px 0}
+/* карта-полоса как переход */
+.bandlink{display:block;position:relative;text-decoration:none;border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden}
+.bandlink .bandimg{height:clamp(220px,28vw,380px);background:var(--paper-2) center 50%/cover no-repeat;transition:transform .5s cubic-bezier(.2,.7,.3,1)}
+.bandlink:hover .bandimg{transform:scale(1.02)}
+.bandlink .bandcap{position:absolute;left:0;right:0;bottom:0;padding:clamp(20px,2.6vw,36px) 26px;
+ background:linear-gradient(180deg,rgba(255,255,255,0) 0%,rgba(255,255,255,.86) 58%,rgba(255,255,255,.97) 100%)}
+.bandlink .bandcap .in{max-width:var(--maxw);margin:0 auto;display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.bandlink .bandcap b{display:block;font-weight:800;font-size:clamp(20px,2.4vw,30px);letter-spacing:-.03em;color:var(--ink)}
+.bandlink .bandcap span{display:block;font-size:14.5px;color:var(--muted);margin-top:6px;max-width:48ch}
+.bandlink .fakebtn{border:1px solid var(--ink);padding:14px 24px;font-size:15px;font-weight:500;color:var(--ink);white-space:nowrap;border-radius:2px;transition:.2s}
+.bandlink:hover .fakebtn{background:var(--ink);color:#fff}
+/* модалка */
+.modal{position:fixed;inset:0;z-index:200;display:flex;align-items:center;justify-content:center;padding:20px}
+.modal[hidden]{display:none}
+.modal-bg{position:absolute;inset:0;background:rgba(16,19,23,.55);backdrop-filter:blur(3px)}
+.modal-in{position:relative;background:var(--surface);border:1px solid var(--line);width:min(560px,100%);
+ max-height:88vh;overflow:auto;padding:clamp(26px,3.2vw,40px);box-shadow:0 30px 80px rgba(16,19,23,.24)}
+.modal-x{position:absolute;top:14px;right:14px;width:36px;height:36px;border:0;background:none;cursor:pointer;
+ font-size:26px;line-height:1;color:var(--muted);font-family:inherit}
+.modal-x:hover{color:var(--ink)}
+.modal-in h3{font-size:clamp(21px,2.4vw,27px);font-weight:800;letter-spacing:-.03em;margin-top:14px}
+.mdl-sum{margin-top:18px;padding:16px 18px;background:var(--paper-2);border-left:2px solid var(--red);font-size:15px;line-height:1.55;color:var(--ink-2)}
+.modal form{margin-top:22px}

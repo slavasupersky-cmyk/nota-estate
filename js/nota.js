@@ -114,5 +114,35 @@
   host.addEventListener('input',draw);
   document.addEventListener('selchange',draw);
   draw();
+
+  /* ---- окно «соберите подборку» ---- */
+  var mdl=document.getElementById('mdl'), ask=document.getElementById('ask');
+  function summary(){
+   var ins=Array.prototype.slice.call(host.querySelectorAll('input'));
+   var s2=ins.slice().sort(function(a,b){return b.value-a.value});
+   var top=s2.slice(0,3).filter(function(i){return i.value>=6}).map(function(i){return i.dataset.k.toLowerCase()});
+   var low=s2.slice(-2).filter(function(i){return i.value<=4}).map(function(i){return i.dataset.k.toLowerCase()});
+   var t=[];
+   var sc=val('scen'), bd=val('budget'), gr=val('gor'), sr=val('srok');
+   if(sc) t.push(sc.charAt(0).toUpperCase()+sc.slice(1)+'.');
+   if(bd) t.push(bd+'.');
+   if(gr) t.push(gr+'.');
+   if(sr) t.push(sr+'.');
+   var w='';
+   if(top.length) w='Важнее всего — '+top.join(', ')+'.';
+   else w='Веса расставлены ровно, без явного фаворита.';
+   if(low.length) w+=' Готовы уступить в том, что касается: '+low.join(', ')+'.';
+   return t.join(' ')+' '+w;
+  }
+  if(ask&&mdl){
+   var close=function(){mdl.hidden=true; document.body.style.overflow=''};
+   ask.addEventListener('click',function(){
+    document.getElementById('mdl-sum').textContent=summary();
+    mdl.hidden=false; document.body.style.overflow='hidden';
+    var f=mdl.querySelector('input'); if(f)setTimeout(function(){f.focus()},60);
+   });
+   mdl.addEventListener('click',function(e){ if(e.target.hasAttribute('data-close')) close(); });
+   document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&!mdl.hidden) close(); });
+  }
  }
 })();
