@@ -328,15 +328,19 @@ h1+.lead,h1+.lede,h2+.lead,h2+.lede{margin-top:26px}
  .nav a{padding:11px 0;font-size:26px;font-weight:600;letter-spacing:-.03em}
  .nav a.hide-m{display:block}
  .nav a.now{margin-top:18px;font-size:20px;color:var(--muted)}
- .top.solid{background:var(--paper)}
+ .top,.top.solid{background:var(--paper);backdrop-filter:none;-webkit-backdrop-filter:none}
  .burger{z-index:95}
- /* герой целиком в один экран */
- .hero{min-height:100svh;display:flex;align-items:flex-end}
- .hero-img{background-position:76% bottom}
- .hero-in{padding-top:96px;padding-bottom:26px}
+ /* шапка на мобиле не уезжает — бургер всегда под рукой */
+ .top.away{transform:none}
+ /* герой целиком в один экран, текст вверху, кнопка внизу */
+ .hero{min-height:100svh;display:flex;align-items:stretch}
+ .hero-in{display:flex;flex-direction:column;justify-content:space-between;flex:1}
+ .hero-img{background-position:88% bottom}
+ .hero-in{padding-top:92px;padding-bottom:24px}
  .hero h1{margin-top:14px}
  .hero .sub{margin-top:16px;font-size:15.5px;line-height:1.5}
- .hero-foot{margin-top:26px;gap:18px;align-items:flex-start;flex-direction:column}
+ .hero-foot{margin-top:auto;gap:16px;align-items:stretch;flex-direction:column}
+ .hero-txt{flex:0 0 auto}
  .hero-foot .btn{width:100%;justify-content:center;text-align:center;padding:15px 20px}
  /* дробь собрана в одну группу */
  .ratio{max-width:none;justify-content:flex-start;gap:16px}
@@ -353,7 +357,11 @@ h1+.lead,h1+.lede,h2+.lead,h2+.lede{margin-top:26px}
 }
 /* контакты: форма первой, кнопка справа, согласие */
 .consent{display:flex;gap:11px;align-items:flex-start;margin-top:22px;font-size:13.5px;color:var(--muted);line-height:1.5;cursor:pointer}
-.consent input{width:17px;height:17px;flex:0 0 auto;margin-top:2px;accent-color:var(--red)}
+.consent input{appearance:none;-webkit-appearance:none;width:18px;height:18px;flex:0 0 auto;margin:2px 0 0;
+ border:1px solid var(--hair);background:var(--paper);border-radius:0;cursor:pointer;position:relative}
+.consent input:checked{background:var(--ink);border-color:var(--ink)}
+.consent input:checked::after{content:"";position:absolute;left:5px;top:1px;width:5px;height:10px;
+ border:solid #fff;border-width:0 2px 2px 0;transform:rotate(43deg)}
 .consent a{color:var(--ink-2);text-decoration:underline;text-underline-offset:3px}
 .send{display:flex;justify-content:flex-end;margin-top:20px}
 @media(max-width:900px){
