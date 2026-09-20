@@ -69,7 +69,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
 .hero h1{max-width:12ch;margin-top:22px}
 .hero .sub{margin-top:26px;max-width:48ch;font-size:clamp(16px,1.5vw,19px);color:var(--ink-2)}
 .hero-foot{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:26px;
- margin-top:clamp(36px,5.4vw,72px);padding-top:24px;border-top:1px solid rgba(16,19,23,.2)}
+ margin-top:clamp(74px,11vw,164px);padding-top:0}
 .facts{display:flex;flex-wrap:wrap;gap:0;align-items:baseline}
 .fact{font-size:clamp(13.5px,1.25vw,16px);font-weight:500;color:var(--ink);padding:0 clamp(14px,2.2vw,26px)}
 .fact:first-child{padding-left:0}
@@ -251,8 +251,11 @@ h1+.lead,h1+.lede,h2+.lead,h2+.lede{margin-top:26px}
 /* --- красная диагональ: числовая пара --- */
 .legend .lg-note{color:var(--muted)}
 /* --- дробь 288/18 --- */
-.ratio{display:inline-flex;align-items:flex-start;gap:clamp(8px,1vw,14px)}
-.ratio .rn{display:flex;flex-direction:column;align-items:center}
+.ratio{display:flex;align-items:center;justify-content:space-between;gap:clamp(10px,1.4vw,18px);width:100%;max-width:340px}
+.ratio .rn{display:flex;flex-direction:column}
+.ratio .rn.l{align-items:flex-start;text-align:left}
+.ratio .rn.r{align-items:flex-end;text-align:right;margin-top:clamp(14px,1.8vw,26px)}
+.ratio .rn.r em{margin-top:0;margin-bottom:7px}
 .ratio b{display:block;font-weight:800;font-size:clamp(40px,4.6vw,64px);line-height:.92;letter-spacing:-.045em;color:var(--ink);font-variant-numeric:lining-nums}
 .ratio em{display:block;margin-top:7px;font-style:normal;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
 .ratio .sl{display:block;flex:0 0 auto;width:2px;height:clamp(46px,5.2vw,70px);background:var(--red);transform:rotate(18deg);transform-origin:50% 50%}
@@ -278,6 +281,9 @@ h1+.lead,h1+.lede,h2+.lead,h2+.lede{margin-top:26px}
 
 /* телефон в шапке */
 .nav a.now{font-weight:600;color:var(--ink);letter-spacing:-.02em}
+.lines .ln-static{display:flex;align-items:baseline;justify-content:space-between;gap:20px;padding:15px 0;border-top:1px solid var(--line);
+ font-size:16px;font-weight:400;letter-spacing:-.01em;text-transform:none;color:var(--ink-2);text-align:right}
+.lines .ln-static>span{flex:0 0 auto;font-size:12px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);text-align:left}
 .foot-r{text-align:right;line-height:1.7}
 @media(max-width:860px){.foot-r{text-align:left}}
 /* ползунки без лишней линии */
@@ -288,7 +294,7 @@ h1+.lead,h1+.lede,h2+.lead,h2+.lede{margin-top:26px}
 .bandlink:hover .bandimg{transform:scale(1.02)}
 .bandlink .bandcap{position:absolute;left:0;right:0;bottom:0;padding:clamp(20px,2.6vw,36px) 26px;
  background:linear-gradient(180deg,rgba(255,255,255,0) 0%,rgba(255,255,255,.86) 58%,rgba(255,255,255,.97) 100%)}
-.bandlink .bandcap .in{max-width:var(--maxw);margin:0 auto;display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.bandlink .bandcap .in{max-width:calc(var(--maxw) - 52px);margin:0 auto;display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap}
 .bandlink .bandcap b{display:block;font-weight:800;font-size:clamp(20px,2.4vw,30px);letter-spacing:-.03em;color:var(--ink)}
 .bandlink .bandcap span{display:block;font-size:14.5px;color:var(--muted);margin-top:6px;max-width:48ch}
 .bandlink .fakebtn{border:1px solid var(--ink);padding:14px 24px;font-size:15px;font-weight:500;color:var(--ink);white-space:nowrap;border-radius:2px;transition:.2s}
