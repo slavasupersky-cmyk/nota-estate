@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NOTA · Школы · правила поступления</title>
+<link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsPSLQl9C90LDQuiBOT1RBIj4KICA8dGl0bGU+Tk9UQSDigJQg0L7RgtC80LXRgtC60LA8L3RpdGxlPgogIDxnIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJidXR0Ij4KICAgIDxwYXRoIGQ9Ik0gMTQ5LjgzIDQ4LjAzIEEgNzIuMCA3Mi4wIDAgMSAxIDEyMC4wOSAzMC44NiIgc3Ryb2tlPSIjMEEwQTBBIiBzdHJva2Utd2lkdGg9IjEwLjYiLz4KICAgIDxwYXRoIGQ9Ik0gMTAwLjAgMTAwLjAgTCAxNDYuODAgMTguOTQiIHN0cm9rZT0iI0NFMjAyOSIgc3Ryb2tlLXdpZHRoPSIxMC42Ii8+CiAgPC9nPgo8L3N2Zz4=">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--sheet:#FFFFFF;--ink:#000;--ink-60:#4A4A46;--ink-35:#8C8C87;
+ --rule:#D6D6D1;--rule-strong:#000;--red:#CE2029;--sheet-2:#F4F4F1}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;background:#fff}
+body{margin:0;background:#fff;color:var(--ink);font-family:Inter,"Helvetica Neue",Arial,sans-serif;font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}
+.sheet{max-width:1060px;margin:0 auto;padding:56px 56px 40px}
+section{padding:48px 0;border-top:1px solid var(--rule)}
+section:first-of-type{border-top:0;padding-top:0}
+.meta{display:flex;justify-content:space-between;align-items:baseline;gap:16px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-60);margin-bottom:36px}
+.meta b{font-weight:600;color:var(--ink)}
+.num{font-variant-numeric:tabular-nums;color:var(--ink-35);margin-left:auto}
+h1,h2,h3,.fig{font-family:"Inter Tight","Helvetica Neue",Arial,sans-serif;font-weight:700;letter-spacing:-.025em;margin:0}
+h1{font-size:clamp(40px,7vw,82px);line-height:.95}
+h2{font-size:clamp(26px,3.6vw,40px);line-height:1.04;max-width:19ch}
+h3{font-size:19px;line-height:1.2;letter-spacing:-.015em}
+p{margin:0 0 14px;max-width:62ch}
+.lead{font-size:clamp(17px,1.6vw,20px);line-height:1.45;max-width:46ch}
+.small{font-size:13.5px;line-height:1.5;color:var(--ink-60);max-width:72ch}
+.note{font-size:15px;line-height:1.5;max-width:58ch}
+.note b{font-weight:600}
+.hero{display:grid;grid-template-columns:1.25fr .75fr;gap:48px;align-items:start}
+.mark{border:1px solid var(--rule);aspect-ratio:4/3;display:grid;place-items:center}
+.mark img{width:52%;height:auto;display:block}
+.toc{display:grid;grid-template-columns:repeat(3,1fr);gap:0 40px;margin-top:52px}
+.toc a{display:flex;gap:16px;padding:13px 0;border-bottom:1px solid var(--rule);text-decoration:none;color:var(--ink);font-size:15px}
+.toc a:hover{color:var(--red)}
+.toc i{font-style:normal;color:var(--ink-35);font-variant-numeric:tabular-nums}
+.corner{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--rule)}
+.corner>div{padding:40px}
+.corner>div+div{border-left:1px solid var(--rule)}
+.fig{font-size:clamp(62px,10vw,120px);line-height:.82;color:var(--red);letter-spacing:-.05em}
+.fig-cap{font-size:17px;margin-top:18px;max-width:26ch;font-weight:500}
+.src{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-35);margin-top:34px}
+.tbl{width:100%;border-collapse:collapse;font-size:14.5px;margin-top:8px}
+.tbl th{text-align:left;font-weight:600;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);padding:0 14px 10px 0;border-bottom:1.5px solid var(--rule-strong);vertical-align:bottom}
+.tbl td{padding:14px 14px 14px 0;border-bottom:1px solid var(--rule);vertical-align:top}
+.tbl tr:last-child td{border-bottom:0}
+.tbl .r{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.tbl th.r:last-child,.tbl td.r:last-child{padding-right:0}
+.tbl .nm{font-weight:600}
+.dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--red);margin-left:9px;vertical-align:middle}
+.deny{border-top:1.5px solid var(--rule-strong);margin-top:10px}
+.deny div{display:grid;grid-template-columns:190px 116px 1fr;gap:24px;padding:15px 0;border-bottom:1px solid var(--rule);font-size:14.5px;align-items:baseline}
+.deny b{font-weight:600}
+.deny em{font-style:normal;font-weight:600;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-60)}
+.deny p{margin:0;color:var(--ink-60);max-width:none}
+.cal{border-top:1.5px solid var(--rule-strong);margin-top:10px}
+.cal div{display:grid;grid-template-columns:200px 1fr;gap:24px;padding:14px 0;border-bottom:1px solid var(--rule);font-size:14.5px;align-items:baseline}
+.cal b{font-family:"Inter Tight",sans-serif;font-weight:700;font-size:17px;letter-spacing:-.02em}
+.cal p{margin:0;color:var(--ink-60);max-width:none}
+.ask{background:var(--sheet-2);padding:30px 34px;margin-top:34px;border-left:2px solid var(--red)}
+.ask p{margin:0;max-width:60ch}
+.sign{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;border-top:1.5px solid var(--rule-strong);padding-top:16px;margin-top:48px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-60)}
+@media (max-width:1080px) and (min-width:861px){.toc{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:860px){
+ .sheet{padding:26px 18px 30px}section{padding:36px 0}
+ .meta{flex-wrap:wrap;gap:4px 14px;margin-bottom:26px}
+ .hero{grid-template-columns:1fr;gap:24px}.mark{aspect-ratio:16/9}.mark img{width:34%}
+ .toc{grid-template-columns:1fr;margin-top:38px}
+ .corner{grid-template-columns:1fr}.corner>div+div{border-left:0;border-top:1px solid var(--rule)}.corner>div{padding:24px}
+ .deny div,.cal div{grid-template-columns:1fr auto;gap:4px 14px}
+ .deny p,.cal p{grid-column:1/-1;margin-top:4px}
+ .ask{padding:22px 20px;margin-top:26px}
+ .tbl{font-size:13px}.tbl th{font-size:10px}
+ .scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 -18px;padding:0 18px}
+ .scroll .tbl{min-width:660px}
+ .scroll::after{content:"Таблица прокручивается вбок";display:block;position:sticky;left:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-35);padding-top:12px}
+ h2{max-width:none}.sign{gap:8px 18px;margin-top:34px}}
+
+/* ---------- тёмная тема ---------- */
+@media (prefers-color-scheme: dark){
+  :root{
+    --sheet:#15181C; --ink:#E9ECEF; --ink-60:#939BA4; --ink-35:#6A727B;
+    --rule:#242A30; --rule-strong:#E9ECEF; --red:#FF5A4C; --sheet-2:#1A1E23;
+  }
+  html,body{background:#0D0F12}
+  .sheet{background:#0D0F12}
+  /* планировки, карта и знак — чёрно-белые, инвертируем с сохранением красного */
+  img[src^="data:image/png"]{filter:invert(1) brightness(.92)}
+  .mapwrap,.mark{background:#0D0F12}
+  button.f,button.c,button.b.gh{background:#15181C;color:var(--ink);border-color:#2C333A}
+  button.f[aria-pressed="true"],button.c[aria-pressed="true"]{background:var(--ink);color:#0D0F12;border-color:var(--ink)}
+  button.c[aria-pressed="true"].hot{background:var(--red);border-color:var(--red);color:#0D0F12}
+  button.b{background:var(--ink);color:#0D0F12;border-color:var(--ink)}
+}
+</style></head><body><div class="sheet">
+
+<section id="s1">
+  <div class="meta"><span><b>NOTA</b> &nbsp;·&nbsp; Школы · правила поступления</span><span class="num">Сентябрь 2026</span></div>
+  <div class="hero">
+    <div>
+      <h1>Двое детей, четыре года разницы, две разные задачи.</h1>
+      <p class="lead" style="margin-top:26px">Марк в седьмом классе, Алиса в третьем. На следующий год они поступают в восьмой и четвёртый. Для Марка открыт конкурс в сильные школы, для Алисы — только школа рядом с домом.</p>
+      <p class="small" style="margin-top:18px">Разбор под объекты подборки: семь локаций, семь государственных школ рядом и три частные. Данные на 14 сентября 2026 года.</p>
+    </div>
+    <div class="mark"><picture><source srcset="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsPSLQl9C90LDQuiBOT1RBIiB4bWxuczpjMnBhPSJodHRwOi8vYzJwYS5vcmcvbWFuaWZlc3QiPjxtZXRhZGF0YT48YzJwYTptYW5pZmVzdD5BQUFXZ21wMWJXSUFBQUFlYW5WdFpHTXljR0VBRVFBUWdBQUFxZ0E0bTNFRFl6SndZUUFBQUJaY2FuVnRZZ0FBQUVkcWRXMWtZekp0WVFBUkFCQ0FBQUNxQURpYmNRTjFjbTQ2WXpKd1lUbzNaakZrTUdOaVpTMWlZak16TFRRNFpXSXRZVGMyWWkwMlpUa3dPR1V4T1RZeE5UUUFBQUFEbDJwMWJXSUFBQUFwYW5WdFpHTXlZWE1BRVFBUWdBQUFxZ0E0bTNFRFl6SndZUzVoYzNObGNuUnBiMjV6QUFBQUFMeHFkVzFpQUFBQVJHcDFiV1JqWW05eUFCRUFFSUFBQUtvQU9KdHhFMk15Y0dFdWFXNW5jbVZrYVdWdWRDNTJNd0FBQUFBWVl6SnphUHhWdzFqaUs5aXFseExMbTh2TmxoY0FBQUJ3WTJKdmNxTnBaR002Wm05eWJXRjBiV2x0WVdkbEwzTjJaeXQ0Yld4cWFXNXpkR0Z1WTJWSlJIZ3NlRzF3T21scFpEb3haamsyTUdJek15MDRaV1psTFRSaFlXSXRZalk1TXkweU5USm1ZV1V5T0RNMk16WnNjbVZzWVhScGIyNXphR2x3YUhCaGNtVnVkRTltQUFBQjRtcDFiV0lBQUFCQmFuVnRaR05pYjNJQUVRQVFnQUFBcWdBNG0zRVRZekp3WVM1aFkzUnBiMjV6TG5ZeUFBQUFBQmhqTW5Ob0lONUUwOUswd0VqenlycnV1d1B4bGdBQUFabGpZbTl5b21kaFkzUnBiMjV6Z3FKbVlXTjBhVzl1YTJNeWNHRXViM0JsYm1Wa2FuQmhjbUZ0WlhSbGNuT2hhMmx1WjNKbFpHbGxiblJ6Z2FKamRYSnNlQzF6Wld4bUkycDFiV0ptUFdNeWNHRXVZWE56WlhKMGFXOXVjeTlqTW5CaExtbHVaM0psWkdsbGJuUXVkak5rYUdGemFGZ2dhQVE3NTZkSXVGb2NUM3BqOVd5anJmQlk0dFluVld6VWhNUWhiUlVmY1hxa1ptRmpkR2x2Ym5nZFkyOXRMbUZ1ZEdoeWIzQnBZeTVqYkdGMVpHVXVjSEp2ZG1sa1pXUnFjR0Z5WVcxbGRHVnljNkY0SDJOdmJTNWhiblJvY205d2FXTXViM0pwWjJsdUxXTnZibVpwWkdWdVkyVm5kVzVyYm05M2JtdGtaWE5qY21sd2RHbHZibmhtUTJ4aGRXUmxJSEJ5YjNacFpHVmtJSFJvYVhNZ1ptbHNaU0JoZENCMGFHVWdjbVZ4ZFdWemRDQnZaaUJoSUhWelpYSWdZVzVrSUcxaGVTQm9ZWFpsSUdOeVpXRjBaV1FnYjNJZ2JXOWthV1pwWldRZ2RHaGxJR1pwYkdVZ1kyOXVkR1Z1ZEhNdWJYTnZablIzWVhKbFFXZGxiblNoWkc1aGJXVm1RMnhoZFdSbGNtRnNiRUZqZEdsdmJuTkpibU5zZFdSbFpQVUFBQURJYW5WdFlnQUFBRUJxZFcxa1kySnZjZ0FSQUJDQUFBQ3FBRGliY1JOak1uQmhMbWhoYzJndVpHRjBZUUFBQUFBWVl6SnphQzM0R2Z4cWJXYXMvSEJzNEhCZXNqRUFBQUNBWTJKdmNxVmpZV3huWm5Ob1lUSTFObU53WVdSTkFBQUFBQUFBQUFBQUFBQUFBR1JvWVhOb1dDQkR6dHFydUwzQkhsdThGTnVYUjNGVVBvQXQ3ejJSalRuM0Z1SzFuc2dnWFdSdVlXMWxibXAxYldKbUlHMWhibWxtWlhOMGFtVjRZMngxYzJsdmJuT0JvbVZ6ZEdGeWRCaThabXhsYm1kMGFCa2VCQUFBQWo1cWRXMWlBQUFBSjJwMWJXUmpNbU5zQUJFQUVJQUFBS29BT0p0eEEyTXljR0V1WTJ4aGFXMHVkaklBQUFBQ0QyTmliM0tsWTJGc1oyWnphR0V5TlRacGMybG5ibUYwZFhKbGVFMXpaV3htSTJwMWJXSm1QUzlqTW5CaEwzVnlianBqTW5CaE9qZG1NV1F3WTJKbExXSmlNek10TkRobFlpMWhOelppTFRabE9UQTRaVEU1TmpFMU5DOWpNbkJoTG5OcFoyNWhkSFZ5WldwcGJuTjBZVzVqWlVsRWVDeDRiWEE2YVdsa09qUmtOakk1TWpVekxUWmhNekl0TkdZM05DMDVOell3TFdOaE1qZ3pZVFV5TkRKaE4zSmpjbVZoZEdWa1gyRnpjMlZ5ZEdsdmJuT0RvbU4xY214NExYTmxiR1lqYW5WdFltWTlZekp3WVM1aGMzTmxjblJwYjI1ekwyTXljR0V1YVc1bmNtVmthV1Z1ZEM1Mk0yUm9ZWE5vV0NCb0JEdm5wMGk0V2h4UGVtUDFiS090OEZqaTFpZFZiTlNFeENGdEZSOXhlcUpqZFhKc2VDcHpaV3htSTJwMWJXSm1QV015Y0dFdVlYTnpaWEowYVc5dWN5OWpNbkJoTG1GamRHbHZibk11ZGpKa2FHRnphRmdnV0IySVlzTXV3MGU2eVA5R2c5U3RoQmNJWUxYRGoxUW51NW4xSmRoSlY2eWlZM1Z5YkhncGMyVnNaaU5xZFcxaVpqMWpNbkJoTG1GemMyVnlkR2x2Ym5Ndll6SndZUzVvWVhOb0xtUmhkR0ZrYUdGemFGZ2c3NVRPcU54OXhndW1wb1lDRXRSQWQrOW0ySlpycDZVOVBSZ3pxcm1OYU9CMFkyeGhhVzFmWjJWdVpYSmhkRzl5WDJsdVptK2paRzVoYldWdlFXNTBhSEp2Y0dsaklFWnBiR1Z6WjNabGNuTnBiMjVsTVM0d0xqQnJjM0JsWTFabGNuTnBiMjVsTWk0MExqQUFBQkE0YW5WdFlnQUFBQ2hxZFcxa1l6Smpjd0FSQUJDQUFBQ3FBRGliY1FOak1uQmhMbk5wWjI1aGRIVnlaUUFBQUJBSVkySnZjdEtFV1FJU29nRW1HQ0ZaQWdvd2dnSUdNSUlCamFBREFnRUNBaFJBNWFBSzdzSTUwTDY0Zy9vR1FnVTlaMVVUQURBS0JnZ3Foa2pPUFFRREF6QkpNUmN3RlFZRFZRUUtFdzVCYm5Sb2NtOXdhV01zSUZCQ1F6RXVNQ3dHQTFVRUF4TWxRVzUwYUhKdmNHbGpJRU52Ym5SbGJuUWdRM0psWkdWdWRHbGhiSE1nVW05dmRDQkRRVEFlRncweU5qQTRNRGN4T0RRek5UWmFGdzB5T0RBNE1EWXhPVFF6TlRaYU1FUXhGekFWQmdOVkJBb1REa0Z1ZEdoeWIzQnBZeXdnVUVKRE1Ta3dKd1lEVlFRREV5QkJiblJvY205d2FXTWdRMnhoZFdSbElFTnZiblJsYm5RZ1UybG5ibWx1WnpCWk1CTUdCeXFHU000OUFnRUdDQ3FHU000OUF3RUhBMElBQkpoNkNtdkxVQmdGRk5VMHZVS2xPVnRFNmRqZDE3TDVTdXdYMExlbUZpc0JNM2RrZC8zY3lqeEZBM1FvNVM0NmZYMC9paFkwVlo3bWZiOUtGNzAzdDVPaldEQldNQTRHQTFVZER3RUIvd1FFQXdJSGdEQVZCZ05WSFNVRURqQU1CZ29yQmdFRUFZUG9YZ0lCTUF3R0ExVWRFd0VCL3dRQ01BQXdId1lEVlIwakJCZ3dGb0FVemxIaUJJRk9aRnNqK09QRXo1bytuTUhYWE1Jd0NnWUlLb1pJemowRUF3TURad0F3WkFJd01YTWRGSjRCZXRMTFZZN09SdUU5bm9xYmJBWk9abi9hQXJYeVR3RkFaZktyUHp4RjJ2UG9KTmYxK1VDZGcxWEdBakJ3WDF6ZDlXR3FZa3FtTDVTRnF3MVF5U2pyMXpKZnBKTTkrMXJkRHdTUExNT1BPakt1aVhqb1UvcFVVZUc5UndtaFkzQmhaRmtObmdBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFQWllRQWRMaVJVdERZSUxTUG51azM0YlpsTS9URDBieVV1RytHbUYwejVDdjhndm5kWVZXb25DT28zNTh6RG44OS9sdGJtZ01RQnNXMmMwdkdMTzJFalVLOG89PC9jMnBhOm1hbmlmZXN0PjwvbWV0YWRhdGE+CiAgPHRpdGxlPk5PVEEg4oCUINC+0YLQvNC10YLQutCwPC90aXRsZT4KICA8ZyBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0iYnV0dCI+CiAgICA8cGF0aCBkPSJNIDE0OS44MyA0OC4wMyBBIDcyLjAgNzIuMCAwIDEgMSAxMjAuMDkgMzAuODYiIHN0cm9rZT0iI0U5RUNFRiIgc3Ryb2tlLXdpZHRoPSIxMC42Ii8+CiAgICA8cGF0aCBkPSJNIDEwMC4wIDEwMC4wIEwgMTQ2LjgwIDE4Ljk0IiBzdHJva2U9IiNGRjVBNEMiIHN0cm9rZS13aWR0aD0iMTAuNiIvPgogIDwvZz4KPC9zdmc+" media="(prefers-color-scheme: dark)"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsPSLQl9C90LDQuiBOT1RBIj4KICA8dGl0bGU+Tk9UQSDigJQg0L7RgtC80LXRgtC60LA8L3RpdGxlPgogIDxnIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJidXR0Ij4KICAgIDxwYXRoIGQ9Ik0gMTQ5LjgzIDQ4LjAzIEEgNzIuMCA3Mi4wIDAgMSAxIDEyMC4wOSAzMC44NiIgc3Ryb2tlPSIjMEEwQTBBIiBzdHJva2Utd2lkdGg9IjEwLjYiLz4KICAgIDxwYXRoIGQ9Ik0gMTAwLjAgMTAwLjAgTCAxNDYuODAgMTguOTQiIHN0cm9rZT0iI0NFMjAyOSIgc3Ryb2tlLXdpZHRoPSIxMC42Ii8+CiAgPC9nPgo8L3N2Zz4=" alt="Знак NOTA" width="200" height="200"></picture></div>
+  </div>
+  <nav class="toc">
+    <a href="#s2"><i>01</i> Красный угол</a>
+    <a href="#s3"><i>02</i> Два типа приёма</a>
+    <a href="#s4"><i>03</i> Государственные</a>
+    <a href="#s5"><i>04</i> Частные и цены</a>
+    <a href="#s6"><i>05</i> Календарь</a>
+    <a href="#s7"><i>06</i> Что это меняет</a>
+    <a href="#s8"><i>07</i> Оговорки</a>
+  </nav>
+</section>
+
+<section id="s2">
+  <div class="meta"><span><b>NOTA</b> &nbsp;·&nbsp; Красный угол</span><span class="num">01 / 07</span></div>
+  <div class="corner">
+    <div>
+      <div class="fig">20,0</div>
+      <div class="fig-cap">миллиона рублей — довести обоих детей до выпуска в частной школе.</div>
+      <div class="src">Ломоносовская · 185 000 ₽/мес · 12 ученико-лет</div>
+    </div>
+    <div>
+      <h2>Алиса стоит вдвое дороже Марка.</h2>
+      <p class="note" style="margin-top:20px">Марку до выпуска четыре года, Алисе восемь — вместе двенадцать ученико-лет. По ставке Ломоносовской это 20 млн, по Хорошколе около 15,6. Две трети суммы приходятся на Алису просто потому, что ей учиться вдвое дольше.</p>
+      <p class="note">Двадцать миллионов — это половина бюджета квартиры. Поэтому вопрос «попадут ли дети в сильную государственную школу» весит не меньше, чем выбор лота. И решается он в марте, а не при подборе.</p>
+    </div>
+  </div>
+</section>
+
+<section id="s3">
+  <div class="meta"><span><b>NOTA</b> &nbsp;·&nbsp; Два типа приёма</span><span class="num">02 / 07</span></div>
+  <h2>Марк идёт по конкурсу, Алиса по адресу.</h2>
+  <p class="small" style="margin:18px 0 8px">Это не два равных пути, а две разные ситуации внутри одной семьи. Марк в восьмой класс может поступать куда угодно по городу. Алиса в четвёртый — почти никуда, кроме школы по прописке: конкурсный набор в начальную школу сильные школы не ведут.</p>
+  <div class="deny" style="margin-top:30px">
+    <div><b>Марк · 8 класс</b><em>конкурс</em><p>Прописка не имеет значения. Регистрация на испытания, очные экзамены, зачисление по результату. Дипломанты профильных олимпиад в ряде школ проходят без экзаменов. И 1580, и 179 ведут набор именно в восьмой класс.</p></div>
+    <div><b>Алиса · 4 класс</b><em>только территория</em><p>В начальную школу конкурсного набора нет. Работает прописка на закреплённой территории и наличие свободных мест. Лицей 1580 берёт с пятого класса — Алисе туда можно будет пробовать через год. Школа 179 учит с шестого — через три года.</p></div>
+    <div><b>Как переводят</b><em>механика</em><p>Первыми зачисляют детей с регистрацией на закреплённой территории и льготников, остальных — при наличии свободных мест. Заявление через mos.ru, можно сразу в несколько школ. Порядок жёсткий: сначала согласие новой школы, потом отчисление из старой. Смена адреса внутри Москвы сама по себе перевода не требует.</p></div>
+    <div><b>Серая зона</b><em>свободные места</em><p>Нижняя граница «мест нет» законом не задана — наполняемость класса школа определяет сама. Поэтому отказ субъективен: отказав одному, школа может принять другого, поставив дополнительную парту. Отличников и призёров олимпиад берут и при заполненном классе.</p></div>
+  </div>
+</section>
+
+<section id="s4">
+  <div class="meta"><span><b>NOTA</b> &nbsp;·&nbsp; Государственные</span><span class="num">03 / 07</span></div>
+  <h2>Для Марка есть выбор, для Алисы — нет.</h2>
+  <div class="scroll">
+  <table class="tbl">
+    <thead><tr><th>Школа</th><th>Район</th><th>Тип приёма</th><th>Что сдавать</th></tr></thead>
+    <tbody>
+      <tr><td class="nm">Лицей 1580, Бауманская<span class="dot"></span></td><td>Нагорный</td><td>Конкурс, 5–11 классы</td><td>Математика и русский; с восьмого класса добавляется физика. Дипломанты профильных олимпиад, включая «Шаг в будущее» МГТУ, — без экзаменов. В восьмой класс конкурс меньше пяти человек на место, в 2024 зачислили 101</td></tr>
+      <tr><td class="nm">Школа 179</td><td>Тверской, Б. Дмитровка</td><td>Конкурс, набор в 7, 8, 9 классы</td><td>Математический профиль — письменная математика и устные туры. Биолого-математический в девятом — математика письменно плюс две отдельные беседы по биологии. Два тура, всё очно, электроника запрещена</td></tr>
+      <tr><td class="nm">Школа 1518</td><td>Останкинский</td><td>Добор в 2–9 классы</td><td>Внутренние испытания школы</td></tr>
+      <tr><td class="nm">Курчатовская школа</td><td>Щукино</td><td>Территория плюс профильные классы</td><td>Отбор по направлениям Курчатовского проекта. Порядок адресно не сверен</td></tr>
+      <tr><td class="nm">Школа 218</td><td>Тимирязевский</td><td>Территория, добор при местах</td><td>—</td></tr>
+      <tr><td class="nm">Марьина Роща им. Орлова</td><td>Марьина Роща</td><td>Территория, добор при местах</td><td>—</td></tr>
+      <tr><td class="nm">Школа 1409</td><td>Хорошевский</td><td>Территория, добор при местах</td><td>—</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="ask" style="border-left-color:var(--rule)">
+    <p class="note"><b>На заметку:</b> обе конкурсные школы открыты для Марка в восьмой класс, и обе закрыты для Алисы. 179 учит с шестого класса, 1580 — с пятого. Ближайшая возможность для Алисы — экзамен в 1580 через год, в пятый класс. До тех пор её школа определяется адресом квартиры, и это единственная строка разбора, где локация решает напрямую.</p>
+  </div>
+</section>
+
+<section id="s5">
+  <div class="meta"><span><b>NOTA</b> &nbsp;·&nbsp; Частные и цены</span><span class="num">04 / 07</span></div>
+  <h2>Цену на своём сайте даёт одна из трёх.</h2>
+  <div class="scroll">
+  <table class="tbl">
+    <thead><tr><th>Школа</th><th>Адрес для 7–9 классов</th><th class="r">Цена</th><th>Поступление</th></tr></thead>
+    <tbody>
+      <tr><td class="nm">Ломоносовская</td><td>Аминьевское шоссе, Очаково-Матвеевское</td><td class="r">185 000 ₽ / мес<br><span style="color:var(--ink-35)">1,67 млн в год</span></td><td>Оплата за девять месяцев, вступительного взноса нет. Полный день 8:30–18:00, домашнее задание делают в школе</td></tr>
+      <tr><td class="nm">Хорошкола</td><td>Народного Ополчения, Хорошёво-Мневники</td><td class="r">144 000 ₽ / мес<br><span style="color:var(--ink-35)">не от школы</span></td><td>Многоступенчатая диагностика: заявка, онлайн-интервью с приёмной комиссией, «образовательное знакомство» — тестирование. Документы: заявление, личная карта, медкарта 026у с Диаскинтестом. Есть стипендиальная программа</td></tr>
+      <tr><td class="nm">Интеграция XXI век</td><td>Маршала Катукова, 16к3, Строгино</td><td class="r">не публикуют</td><td>Индивидуальный показ школы, входное тестирование, документы, договор. Углублённый английский и обязательный второй иностранный; в старших классах выбор между ФГОС и A-level</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="small" style="margin-top:26px"><b>Подводный камень.</b> Ломоносовская получает городскую субсидию только на детей с московской регистрацией. Без прописки цена вырастает на величину субсидии — сумму надо выяснять до расчётов, она может сдвинуть годовой бюджет заметно.</p>
+  <p class="small">Свою цену публикует только Ломоносовская. Хорошкола даёт форму запроса, Интеграция не даёт ничего. Указанные по Хорошколе 144 тысячи взяты у стороннего агрегатора и до подтверждения школой считаются ориентиром, а не ценой.</p>
+</section>
+
+<section id="s6">
+  <div class="meta"><span><b>NOTA</b> &nbsp;·&nbsp; Календарь</span><span class="num">05 / 07</span></div>
+  <h2>Для Марка всё решается за шесть недель.</h2>
+  <div class="cal" style="margin-top:30px">
+    <div><b>12 февраля</b><p>Школа 179 открывает регистрацию на вступительные испытания. Ссылки публикуются в новостях на сайте школы, отдельно на каждую параллель</p></div>
+    <div><b>Февраль</b><p>Параллельно — выяснить наличие мест в четвёртом классе школ рядом с каждым рассматриваемым лотом. Это не публикуется, только звонком в администрацию</p></div>
+    <div><b>3 марта</b><p>Не ранее этой даты начинаются испытания в 179. Два тура, второй проходит в мае и носит практический характер</p></div>
+    <div><b>Март</b><p>Открывается регистрация на экзамены в Лицей 1580</p></div>
+    <div><b>30 марта — 5 апреля</b><p>Единый поток вступительных экзаменов в 1580 для всех параллелей с пятой по одиннадцатую</p></div>
+    <div><b>Июнь</b><p>1580 публикует списки зачисленных</p></div>
+  </div>
+  <p class="small" style="margin-top:26px">Если сделка и переезд планируются на весну, эти даты идут раньше ключей. Для Марка это безразлично — на конкурсном приёме прописка не нужна. Для Алисы критично: её зачисление зависит от адреса, а адреса к февралю ещё не будет. Значит либо переезд до февраля, либо год в прежней школе с дорогой через город.</p>
+</section>
+
+<section id="s7">
+  <div class="meta"><span><b>NOTA</b> &nbsp;·&nbsp; Что это меняет</span><span class="num">06 / 07</span></div>
+  <div class="ask">
+    <p class="note"><b>Первое.</b> Если Марк проходит конкурс в 1580 или 179, это снимает четыре ученико-года из двенадцати — около семи миллионов. Репетитор к марту окупается многократно и стоит дешевле любой переплаты за локацию.</p>
+    <p class="note" style="margin-top:14px"><b>Второе.</b> Основная сумма — Алиса, и она же единственная привязана к адресу. Восемь лет её школы определяются тем, что окажется в пешей доступности от квартиры. Причём в девять лет её ещё нужно водить: строка «школа рядом» здесь про мамино время, а не про рейтинг.</p>
+    <p class="note" style="margin-top:14px"><b>Третье.</b> Все три частные школы стоят на западе — Очаково, Мневники, Строгино. Если семья идёт платным путём, это разворачивает географию: запад подборки, где ИНДИВО и Феймос, становится сильнее севера. Если бесплатным — решает начальная школа рядом с домом, а по ней Щукино и Савёловский впереди Кунцева.</p>
+  </div>
+</section>
+
+<section id="s8">
+  <div class="meta"><span><b>NOTA</b> &nbsp;·&nbsp; Оговорки</span><span class="num">07 / 07</span></div>
+  <p class="small">Цены и даты сняты 14 сентября 2026 года и подвижны. Перед разговором с клиентом проверяются звонком в школу.</p>
+  <p class="small">Наличие мест в конкретной параллели — главный фактор при территориальном приёме, и он не публикуется. Выясняется только звонком в администрацию.</p>
+  <p class="small">Для Алисы отдельно не проверялись начальные школы рядом с каждым лотом — это следующий шаг. По Курчатовской школе порядок приёма адресно не сверен. По школам 218, 1518, Марьина Роща и 1409 указан общий порядок, а не внутренние регламенты.</p>
+  <p class="small">Расчёт 20 млн: двенадцать ученико-лет — четыре у Марка, восемь у Алисы — по ставке Ломоносовской, без питания, поездок и дополнительных программ. Реальная сумма будет выше. Индексацию платы не учитывал.</p>
+  <div class="sign">
+    <span>Разбор · Ярослав Суперский</span>
+    <span>Сверено 14.09.2026 · редакция 2</span>
+    <span>Источники — сайты школ, ДОНМ, mos.ru</span>
+  </div>
+</section>
+
+</div></body></html>
