@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8">
+<meta name="color-scheme" content="only light">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NOTA · Бриф · подбор квартиры</title>
+<link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsPSLQl9C90LDQuiBOT1RBIj4KICA8dGl0bGU+Tk9UQSDigJQg0L7RgtC80LXRgtC60LA8L3RpdGxlPgogIDxnIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJidXR0Ij4KICAgIDxwYXRoIGQ9Ik0gMTQ5LjgzIDQ4LjAzIEEgNzIuMCA3Mi4wIDAgMSAxIDEyMC4wOSAzMC44NiIgc3Ryb2tlPSIjMEEwQTBBIiBzdHJva2Utd2lkdGg9IjEwLjYiLz4KICAgIDxwYXRoIGQ9Ik0gMTAwLjAgMTAwLjAgTCAxNDYuODAgMTguOTQiIHN0cm9rZT0iI0NFMjAyOSIgc3Ryb2tlLXdpZHRoPSIxMC42Ii8+CiAgPC9nPgo8L3N2Zz4=">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{color-scheme:only light;--ink:#000;--ink-60:#4A4A46;--ink-35:#8C8C87;
+ --rule:#D6D6D1;--red:#CE2029;--soft:#F4F4F1}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;background:#fff;color-scheme:only light}
+body{margin:0;background:#fff;color:var(--ink);font-family:Inter,"Helvetica Neue",Arial,sans-serif;
+ font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
+.sheet{max-width:900px;margin:0 auto;padding:44px 40px 40px}
+h1,h2,h3{font-family:"Inter Tight","Helvetica Neue",Arial,sans-serif;font-weight:700;letter-spacing:-.025em;margin:0}
+h1{font-size:clamp(32px,5.4vw,56px);line-height:1.02}
+h2{font-size:clamp(21px,2.7vw,28px);line-height:1.1}
+h3{font-size:17px;line-height:1.2}
+p{margin:0 0 13px;max-width:60ch}
+.lead{font-size:clamp(16px,1.6vw,19px);line-height:1.5;color:var(--ink-60);max-width:46ch}
+.small{font-size:14px;line-height:1.55;color:var(--ink-60)}
+.hint{font-size:12.5px;color:var(--ink-35);margin:12px 0 0}
+.eyebrow{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-60);
+ display:flex;justify-content:space-between;gap:14px;margin-bottom:30px}
+.eyebrow b{font-weight:600;color:var(--ink)}
+.top{display:grid;grid-template-columns:1fr auto;gap:36px;align-items:start;
+ padding-bottom:32px;border-bottom:1.5px solid var(--ink)}
+.top img{width:78px;height:78px;display:block}
+section{padding:34px 0;border-top:1px solid var(--rule)}
+.blocknum{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-35);margin-bottom:10px}
+.q{margin-top:22px}
+.q > .t{font-size:16px;font-weight:600;margin-bottom:9px}
+.q > .s{font-size:13px;color:var(--ink-35);margin:-4px 0 9px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+button.c{font:inherit;font-size:14.5px;padding:9px 15px;border:1px solid var(--rule);background:#fff;
+ color:var(--ink);border-radius:2px;cursor:pointer;text-align:left}
+button.c:hover{border-color:var(--ink-35)}
+button.c[aria-pressed="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
+button.c[aria-pressed="true"].hot{background:var(--red);border-color:var(--red)}
+button.c:disabled{opacity:.35;cursor:not-allowed}
+button.c:focus-visible{outline:2px solid var(--red);outline-offset:2px}
+
+.res{border:1.5px solid var(--ink);margin-top:14px}
+.res .hd{padding:26px 28px;border-bottom:1px solid var(--rule)}
+.res .big{font-family:"Inter Tight",sans-serif;font-weight:700;font-size:clamp(40px,7vw,72px);
+ line-height:.9;letter-spacing:-.04em;color:var(--red)}
+.res .cap{font-size:16px;margin-top:12px;max-width:34ch}
+.res .bd{padding:22px 28px}
+.flt{margin:0;display:grid;grid-template-columns:190px 1fr;gap:0}
+.flt dt{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-35);
+ padding:12px 0;border-top:1px solid var(--rule)}
+.flt dd{margin:0;padding:12px 0;border-top:1px solid var(--rule);font-size:15px}
+.flt dt:first-of-type,.flt dt:first-of-type+dd{border-top:0}
+.hits{margin-top:2px}
+.hits > div{display:grid;grid-template-columns:1fr 150px 130px;gap:18px;padding:13px 28px;
+ border-top:1px solid var(--rule);font-size:15px;align-items:baseline}
+.hits b{font-weight:600}
+.hits em{font-style:normal;font-size:13.5px;color:var(--ink-35)}
+.hits .p{font-variant-numeric:tabular-nums;text-align:right;font-size:14.5px;color:var(--ink-60)}
+.relax{border:1.5px solid var(--red);margin-top:18px}
+.relax .h{padding:20px 26px 6px;font-family:"Inter Tight",sans-serif;font-weight:700;font-size:20px;letter-spacing:-.02em}
+.relax .s{padding:0 26px 16px;font-size:14px;color:var(--ink-60)}
+.relax > .row{display:grid;grid-template-columns:1fr 132px;gap:18px;padding:14px 26px;
+ border-top:1px solid var(--rule);font-size:15.5px;align-items:baseline}
+.relax .gain{text-align:right;font-family:"Inter Tight",sans-serif;font-weight:700;font-size:19px;
+ letter-spacing:-.02em;font-variant-numeric:tabular-nums;color:var(--red);white-space:nowrap}
+.relax .gain em{font-style:normal;font-size:12px;letter-spacing:.1em;text-transform:uppercase;
+ color:var(--ink-35);display:block;font-weight:500;font-family:Inter,sans-serif}
+.relax b{font-weight:600}
+@media (max-width:760px){.relax > .row{grid-template-columns:1fr auto;gap:6px 14px;padding:14px 20px}
+ .relax .h,.relax .s{padding-left:20px;padding-right:20px}}
+.gaps{border-top:1.5px solid var(--ink);margin-top:14px}
+.gaps > div{display:grid;grid-template-columns:30px 1fr;gap:14px;padding:12px 0;
+ border-bottom:1px solid var(--rule);font-size:15px}
+.gaps i{font-style:normal;color:var(--ink-35);font-variant-numeric:tabular-nums}
+.act{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+button.b{font:inherit;font-size:14.5px;padding:11px 20px;border:1px solid var(--ink);
+ background:var(--ink);color:#fff;border-radius:2px;cursor:pointer}
+button.b.gh{background:#fff;color:var(--ink)}
+.sign{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;border-top:1.5px solid var(--ink);
+ padding-top:16px;margin-top:40px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-60)}
+@media (prefers-color-scheme: dark){
+  html,body,.sheet,.res,button.c,button.b.gh{background:#fff !important;color:#000 !important}
+  h1,h2,h3,.q>.t,b{color:#000 !important}
+  p,.small,.flt dd,.hits,.gaps>div{color:#4A4A46 !important}
+  button.c[aria-pressed="true"]{background:#000 !important;color:#fff !important}
+  button.c[aria-pressed="true"].hot{background:#CE2029 !important;color:#fff !important}
+  button.b{background:#000 !important;color:#fff !important}
+  .res .big{color:#CE2029 !important}
+  img{filter:none !important}
+}
+@media (max-width:760px){
+  .sheet{padding:22px 16px 30px}
+  body{font-size:16px}
+  .top{grid-template-columns:1fr;gap:20px}.top img{width:60px;height:60px}
+  button.c{font-size:13.5px;padding:8px 12px}
+  .res .hd,.res .bd{padding:20px}
+  .flt{grid-template-columns:1fr}
+  .flt dd{padding-top:0;border-top:0}.flt dt{padding-bottom:3px}
+  .hits > div{grid-template-columns:1fr auto;gap:4px 14px;padding:13px 20px}
+  .hits em{grid-column:1/-1}
+}
+</style></head><body><div class="sheet">
+
+<div class="eyebrow"><span><b>NOTA</b> &nbsp;·&nbsp; Бриф на подбор</span><span>Сентябрь 2026</span></div>
+
+<div class="top">
+  <div>
+    <h1>Сначала критерии, потом квартиры.</h1>
+    <p class="lead" style="margin-top:20px">Чем больше смотришь вариантов без критериев, тем сильнее путаешься. Восемь блоков, десять минут — и вместо списка квартир получается фильтр, который отсекает лишнее сам.</p>
+    <p class="hint">Отвечайте как есть. Пропущенный вопрос — тоже ответ: внизу будет видно, что осталось решить.</p>
+  </div>
+  <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsPSLQl9C90LDQuiBOT1RBIj4KICA8dGl0bGU+Tk9UQSDigJQg0L7RgtC80LXRgtC60LA8L3RpdGxlPgogIDxnIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJidXR0Ij4KICAgIDxwYXRoIGQ9Ik0gMTQ5LjgzIDQ4LjAzIEEgNzIuMCA3Mi4wIDAgMSAxIDEyMC4wOSAzMC44NiIgc3Ryb2tlPSIjMEEwQTBBIiBzdHJva2Utd2lkdGg9IjEwLjYiLz4KICAgIDxwYXRoIGQ9Ik0gMTAwLjAgMTAwLjAgTCAxNDYuODAgMTguOTQiIHN0cm9rZT0iI0NFMjAyOSIgc3Ryb2tlLXdpZHRoPSIxMC42Ii8+CiAgPC9nPgo8L3N2Zz4=" alt="Знак NOTA">
+</div>
+
+<section id="b01"><div class="blocknum">Блок 01</div><h2>Зачем</h2><p class="small" style="margin-top:10px;max-width:56ch">Первый вопрос отсекает больше половины рынка. Если переезд не решён, всё остальное считается иначе.</p><div class="q"><div class="t">Переезд с детьми в Москву</div><div class="chips" data-k="goal" data-m="one"><button class="c" type="button" aria-pressed="false" data-v="move">Решено, переезжаем</button><button class="c" type="button" aria-pressed="false" data-v="think">Думаем, склоняемся</button><button class="c" type="button" aria-pressed="false" data-v="inv">Скорее инвестиция и приезды</button></div></div><div class="q"><div class="t">Когда</div><div class="chips" data-k="when" data-m="one"><button class="c" type="button" aria-pressed="false" data-v="w1">В течение года</button><button class="c" type="button" aria-pressed="false" data-v="w2">Через 1–2 года</button><button class="c" type="button" aria-pressed="false" data-v="w3">Пока без срока</button></div></div><div class="q"><div class="t">Агентство в Пензе</div><div class="s">Если остаётся — важно направление выезда из Москвы</div><div class="chips" data-k="penza" data-m="one"><button class="c" type="button" aria-pressed="false" data-v="stay">Остаётся, ездить регулярно</button><button class="c" type="button" aria-pressed="false" data-v="rare">Остаётся, но редко</button><button class="c" type="button" aria-pressed="false" data-v="close">Не остаётся</button></div></div></section><section id="b02"><div class="blocknum">Блок 02</div><h2>Горизонт</h2><p class="small" style="margin-top:10px;max-width:56ch">Через пять лет Марк заканчивает школу, Алиса переходит в среднюю. Под «сейчас» и под «плюс пять» подходят разные дома.</p><div class="q"><div class="t">Смотрим под</div><div class="chips" data-k="hor" data-m="one"><button class="c" type="button" aria-pressed="false" data-v="now">Сейчас, ближайшие годы</button><button class="c" type="button" aria-pressed="false" data-v="five">Плюс пять лет</button><button class="c" type="button" aria-pressed="false" data-v="long">Навсегда</button></div></div><div class="q"><div class="t">Продавать или сдавать потом</div><div class="chips" data-k="exit" data-m="one"><button class="c" type="button" aria-pressed="false" data-v="yes">Да, скорее всего</button><button class="c" type="button" aria-pressed="false" data-v="may">Возможно</button><button class="c" type="button" aria-pressed="false" data-v="no">Нет, это наш дом</button></div></div></section><section id="b03"><div class="blocknum">Блок 03</div><h2>Кто живёт</h2><div class="q"><div class="t">Кроме вас и двоих детей</div><div class="s">Можно выбрать несколько</div><div class="chips" data-k="who" data-m="many"><button class="c" type="button" aria-pressed="false" data-v="adult2">Второй взрослый</button><button class="c" type="button" aria-pressed="false" data-v="gran">Старшее поколение</button><button class="c" type="button" aria-pressed="false" data-v="help">Помощница</button><button class="c" type="button" aria-pressed="false" data-v="pet">Животное</button><button class="c" type="button" aria-pressed="false" data-v="nob">Больше никого</button></div></div><div class="q"><div class="t">Изолированных комнат нужно</div><div class="chips" data-k="rooms" data-m="one"><button class="c" type="button" aria-pressed="false" data-v="r2">Две — детям общая</button><button class="c" type="button" aria-pressed="false" data-v="r3">Три</button><button class="c" type="button" aria-pressed="false" data-v="r4">Четыре и больше</button></div></div><div class="q"><div class="t">Гости из Пензы с ночёвкой</div><div class="chips" data-k="guest" data-m="one"><button class="c" type="button" aria-pressed="false" data-v="g1">Часто, нужно место</button><button class="c" type="button" aria-pressed="false" data-v="g2">Изредка, хватит дивана</button><button class="c" type="button" aria-pressed="false" data-v="g3">Почти не бывает</button></div></div></section><section id="b04"><div class="blocknum">Блок 04</div><h2>Среда вокруг дома</h2><p class="small" style="margin-top:10px;max-width:56ch">Не отдельно стоящая стекляшка, вокруг которой ничего. Двор, школа, секции.</p><div class="q"><div class="t">Школа</div><div class="s">Для Алисы в девять лет это разные жизни</div><div class="chips" data-k="school" data-m="one"><button class="c" type="button" aria-pressed="false" data-v="walk">Обязательно пешком</button><button class="c" type="button" aria-pressed="false" data-v="drive">Готова возить 10–15 минут</button><button class="c" type="button" aria-pressed="false" data-v="any">Не критично</button></div></div><div class="q"><div class="t">Что важнее</div><div class="chips" data-k="yard" data-m="one"><button class="c" type="button" aria-pressed="false" data-v="y1">Закрытый двор, дети гуляют сами</button><button class="c" type="button" aria-pressed="false" data-v="y2">Простор квартиры</button></div></div><div class="q"><div class="t">Формат дома</div><div class="chips" data-k="type" data-m="one"><button class="c" type="button" aria-pressed="false" data-v="cl">Квартал со своей средой</button><button class="c" type="button" aria-pressed="false" data-v="st">Отдельный дом-башня</button><button class="c" type="button" aria-pressed="false" data-v="nm">Без разницы</button></div></div><div class="q"><div class="t">Секции детей</div><div class="s">Можно выбрать несколько</div><div class="chips" data-k="sect" data-m="many"><button class="c" type="button" aria-pressed="false" data-v="sport">Спорт</button><button class="c" type="button" aria-pressed="false" data-v="music">Музыка или искусство</button><button class="c" type="button" aria-pressed="false" data-v="lang">Языки</button><button class="c" type="button" aria-pressed="false" data-v="none2">Нет и не планируем</button></div></div></section><section id="b05"><div class="blocknum">Блок 05</div><h2>Что внутри</h2><div class="q"><div class="t">Комфортный метраж</div><div class="chips" data-k="size" data-m="one"><button class="c" type="button" aria-pressed="false" data-v="s55">55–65 м²</button><button class="c" type="button" aria-pressed="false" data-v="s70">65–80 м²</button><button class="c" type="button" aria-pressed="false" data-v="s90">80–100 м²</button><button class="c" type="button" aria-pressed="false" data-v="s100">Больше 100 м²</button></div></div><div class="q"><div class="t">При равной цене выбираем</div><div class="chips" data-k="tradeoff" data-m="one"><button class="c" type="button" aria-pressed="false" data-v="more">Больше метров</button><button class="c" type="button" aria-pressed="false" data-v="area">Лучше район</button></div></div><div class="q"><div class="t">Кухня</div><div class="chips" data-k="kit" data-m="one"><button class="c" type="button" aria-pressed="false" data-v="kg">Кухня-гостиная</button><button class="c" type="button" aria-pressed="false" data-v="ks">Отдельная кухня</button><button class="c" type="button" aria-pressed="false" data-v="kn">Не принципиально</button></div></div></section><section id="b06"><div class="blocknum">Блок 06</div><h2>Готовность</h2><p class="small" style="margin-top:10px;max-width:56ch">Считаем так: цена голой стены плюс смета ремонта против надбавки за готовую квартиру.</p><div class="q"><div class="t">Заехать нужно</div><div class="chips" data-k="ready" data-m="one"><button class="c" type="button" aria-pressed="false" data-v="soon">В этом году</button><button class="c" type="button" aria-pressed="false" data-v="wait">Готова ждать сдачи</button><button class="c" type="button" aria-pressed="false" data-v="any2">Как получится</button></div></div><div class="q"><div class="t">Ремонт</div><div class="chips" data-k="repair" data-m="one"><button class="c" type="button" aria-pressed="false" data-v="self">Делаю под себя</button><button class="c" type="button" aria-pressed="false" data-v="box">Заеду с чемоданом</button><button class="c" type="button" aria-pressed="false" data-v="calc">Посчитаем оба варианта</button></div></div></section><section id="b07"><div class="blocknum">Блок 07</div><h2>Деньги</h2><div class="q"><div class="t">Потолок под ключ</div><div class="s">С ремонтом и мебелью, а не цена покупки</div><div class="chips" data-k="budget" data-m="one"><button class="c" type="button" aria-pressed="false" data-v="b30">До 30 млн</button><button class="c" type="button" aria-pressed="false" data-v="b40">30–40 млн</button><button class="c" type="button" aria-pressed="false" data-v="b55">40–55 млн</button><button class="c" type="button" aria-pressed="false" data-v="b70">Больше 55 млн</button></div></div><div class="q"><div class="t">Способ покупки</div><div class="s">Ипотека не работает с апартаментами</div><div class="chips" data-k="pay" data-m="one"><button class="c" type="button" aria-pressed="false" data-v="mort">Ипотека</button><button class="c" type="button" aria-pressed="false" data-v="full">Полная оплата</button><button class="c" type="button" aria-pressed="false" data-v="sell">С продажей недвижимости</button></div></div></section><section id="b08"><div class="blocknum">Блок 08</div><h2>Три главных</h2><p class="small" style="margin-top:10px;max-width:56ch">Ровно три. Если важно всё — значит ещё не выбрали.</p><div class="q"><div class="t">Выберите три критерия</div><div class="chips" data-k="prio" data-m="prio"><button class="c hot" type="button" aria-pressed="false" data-v="p1">Школа пешком</button><button class="c hot" type="button" aria-pressed="false" data-v="p2">Закрытый двор</button><button class="c hot" type="button" aria-pressed="false" data-v="p3">Метраж</button><button class="c hot" type="button" aria-pressed="false" data-v="p4">Своя среда вокруг</button><button class="c hot" type="button" aria-pressed="false" data-v="p5">Заехать сейчас</button><button class="c hot" type="button" aria-pressed="false" data-v="p6">Вид и этаж</button><button class="c hot" type="button" aria-pressed="false" data-v="p7">Транспорт до центра</button><button class="c hot" type="button" aria-pressed="false" data-v="p8">Экология и зелень</button><button class="c hot" type="button" aria-pressed="false" data-v="p9">Перспектива цены</button><button class="c hot" type="button" aria-pressed="false" data-v="p10">Цена сегодня</button></div></div></section>
+
+<section>
+  <div class="blocknum">Итог</div>
+  <h2>Что получилось.</h2>
+  <div class="res">
+    <div class="hd">
+      <div class="big" id="cnt">288</div>
+      <div class="cap" id="cap">домов в базе. Ответьте на блоки — список сузится.</div>
+    </div>
+    <div class="bd"><dl class="flt" id="flt"></dl></div>
+    <div class="hits" id="hits"></div>
+  </div>
+  <div class="relax" id="relax" style="display:none"></div>
+  <h3 style="margin-top:34px">Осталось решить</h3>
+  <div class="gaps" id="gaps"></div>
+  <div class="act">
+    <button class="b" id="copy">Скопировать бриф</button>
+    <button class="b gh" id="reset">Очистить</button>
+  </div>
+  <div id="fallback" style="display:none;margin-top:16px">
+    <p class="hint" style="margin-bottom:8px">Браузер не дал скопировать автоматически — выделите текст и скопируйте вручную.</p>
+    <textarea readonly style="width:100%;min-height:220px;font:14px/1.5 Inter,Arial,sans-serif;
+      padding:14px;border:1px solid var(--rule);border-radius:2px;background:#fff;color:#000"></textarea>
+  </div>
+  <p class="hint">Расчёт по базе из 288 домов бизнес-класса и выше. Цены — минимальные по дому, реальная квартира нужного метража выйдет дороже на 10–15 %. Итоговый список уточняется по наличию у застройщика.</p>
+  <div class="sign">
+    <span>Бриф · NOTA</span>
+    <span>Заполняется до показов</span>
+    <span>Отмечаем немногое</span>
+  </div>
+</section>
+
+</div>
+<script>
+const DB=[["Селигер Сити","MR Group",1,1,"САО","Западное Дегунино",497000,1,"строится 2026"],["Символ","Донстрой",1,1,"ЮВАО","Лефортово",502000,1,"строится 2 кв. 2029"],["баланс (balance)","Главстрой",1,1,"ЮВАО","Рязанский",341000,1,"строится 1 кв. 2027"],["Voxhall (Воксхолл)","Группа Эталон",1,1,"ЦАО","Замоскворечье",592000,1,"строится I кв. 2026"],["Veer","MR Group",1,1,"ЗАО","Можайский",429600,0,"старт продаж 3 кв. 2028 (1 оч.), 3"],["Метрополия","MR Group",1,1,"ЮВАО","Южнопортовый",460000,2,"сдан, есть остатки"],["Level Мичуринский","Level Group",1,1,"ЗАО","Очаково-Матвеевское",405600,1,"строится 3 кв. 2027"],["Матвеевский парк кл?","ПИК",1,1,"ЗАО","Очаково-Матвеевское",413900,1,"строится 2 кв. 2028"],["Level Павелецкая Сити","Level Group / MR Group",1,1,"ЮАО","Даниловский",537900,1,"строится 4 кв. 2027"],["Скай Гарден (Sky Garden)","ГК ФСК",1,1,"СЗАО","Покровское-Стрешнево",350200,1,"строится 3 кв. 2025 (к.1), 2 кв. 2"],["Полар","ПИК",1,1,"СВАО","Северное Медведково",361000,1,"строится II кв. 2027"],["SET","MR Group",1,1,"ЗАО","Можайский",467900,1,"строится 3 кв. 2028"],["Лосиноостровский парк","ПИК",1,1,"ВАО","Метрогородок",350000,1,"строится 2028"],["Дмитровское небоГруппа ЛСР","",1,1,"САО","Западное Дегунино",412000,1,"строится II кв. 2027"],["iLove","ГК КОРТРОС",1,1,"СВАО","Останкинский",422000,2,"сдан, есть остатки"],["Северный порт. Береговые кварталыLEGENDA Intelligent Development","",1,1,"САО","Левобережный",462000,1,"строится IV кв. 2030"],["Наметкин Тауэр","ГК Основа",1,0,"ЮЗАО","Черёмушки",322000,1,"строится 2 кв. 2026"],["Мираполис","ГК Основа",1,0,"СВАО","Ярославский",328000,1,"строится IV кв. 2027"],["MYPRIORITY Мнёвники","ГК Гранель",1,1,"СЗАО","Хорошёво-Мнёвники",479200,1,"строится 4 кв. 2028 (к.1), 4 кв. 2"],["НазареООО","Мангазея",1,1,"ВАО","Богородское",481000,1,"строится 2 кв. 2028"],["Обручева 30Группа ЛСР","",1,1,"ЮЗАО","Коньково",450900,1,"строится 4 кв. 2026"],["МОМЕНТС","Forma (ПИК)",1,1,"СЗАО","Покровское-Стрешнево",539000,1,"строится 1 кв. 2027"],["Фестиваль парк-2Центр-Инвест","",1,1,"САО","Левобережный",380000,2,"сдан, есть остатки"],["Ситизен (CityZen)","MR Group",1,1,"СЗАО","Покровское-Стрешнево",410900,0,"старт продаж 3 кв. 2027"],["Плеханова, 11","ПИК",1,1,"ВАО","Перово",400000,1,"строится 3 кв. 2026"],["Инджой (INJOY)","Талан",1,1,"САО","Войковский",486000,1,"строится 2027"],["Солос (Solos)","Dar Development",1,1,"ВАО","Сокольники",401800,1,"строится 1 кв. 2029"],["Страна.ОзернаяСтрана Девелопмент","",1,1,"ЗАО","Очаково-Матвеевское",541600,2,"сдан, есть остатки"],["TopHILLS","Ingrad",1,1,"ЮАО","Нагорный",441200,2,"сдан, есть остатки"],["Нарвин","ПИК",1,1,"САО","Головинский",402000,1,"строится 2028"],["AFI TowerAFI Development","",1,1,"СВАО","Свиблово",0,2,"сдан, есть остатки"],["Аквилон BESIDE 2.0","Группа Аквилон",1,1,"ЮВАО","Нижегородский",369900,1,"строится 2 кв. 2027"],["ТАТЕ (Tate)","ГК КОРТРОС",1,1,"СВАО","Марьина Роща",576000,1,"строится II кв. 2027"],["УЛЬТИМА Сити (Ultima City)","ГК КОРТРОС",1,1,"ЮВАО","Печатники",361400,1,"строится 3 кв. 2028"],["Voice (Войс)3S Group","",1,1,"ЮВАО","Текстильщики",326300,1,"строится 4 кв. 2027"],["U2 (ЮТУ)","ГК ТОЧНО",1,1,"СЗАО","Южное Тушино",422700,1,"строится 1 кв. 2028"],["Crystal Трилогия","Концерн КРОСТ",1,1,"СЗАО","Хорошёво-Мнёвники",441300,1,"строится 3 кв. 2025"],["INDY Towers","Группа Аквилон",1,1,"САО","Хорошёвский",470000,1,"строится 2026-2029"],["Twelve (Твелв)","TEKTA GROUP",1,1,"ЮАО","Нагорный",441600,2,"сдан, есть остатки"],["Дубровка от Гранель (MYPRIORITY Dubrovka)","ГК Гранель",1,1,"ЮВАО","Южнопортовый",410300,1,"строится 3 кв. 2028"],["Ракурс","DAR (Дар Девелопмент)",1,1,"СЗАО","Щукино",457400,1,"строится 2 кв. 2026 (к.1), 1 кв. 2"],["Инсайдер (Insider)РКС Девелопмент","",1,0,"ЮАО","Даниловский",433000,1,"строится 3 кв. 2026"],["А22Консоль","",1,1,"ЮАО","Даниловский",451700,1,"строится 4 кв. 2028"],["Нижегородская от Гранель (MYPRIORITY Нижегородская)","ГК Гранель",1,1,"ЮВАО","Нижегородский",410900,1,"строится 3 кв. 2028"],["МАРКГруппа ЛСР","",1,1,"ЮАО","Даниловский",564000,1,"строится 2 кв. 2028"],["Индиво","Forma (ПИК)",1,1,"ЗАО","Кунцево",537100,0,"старт продаж 4 кв. 2027"],["Лайм","ЭЗКС",1,1,"СВАО","Алексеевский",0,2,"сдан, есть остатки"],["ИнтеллигентМосреалстрой (УЭЗ)","",1,1,"ЦАО","Басманный",452000,1,"строится I кв. 2026"],["КОД Сокольники","СЗ Сокольники (Новая эра)",1,1,"ВАО","Сокольники",521800,1,"строится 4 кв. 2029"],["Rotterdam","ГК ФСК",1,1,"ЮАО","Нагатино-Садовники",437000,2,"сдан, есть остатки"],["ТАТУМ (Обручева 27)","Forma",1,1,"ЮЗАО","Обручевский",499400,0,"старт продаж 1 кв. 2029"],["СТОУН Сокольники (STONE Sokolniki)","Stone",1,1,"ВАО","Сокольники",516000,1,"строится 4 кв. 2027"],["Level Стрешнево","Level Group",1,1,"СЗАО","Покровское-Стрешнево",273800,2,"сдан, есть остатки"],["Апсайд Тауэрс (Upside Towers)","UPSIDE DEVELOPMENT",1,1,"СВАО","Бутырский",501000,1,"строится II кв. 2027"],["Квартал МОНС","Брусника",1,1,"СВАО","Бутырский",356000,1,"строится III кв. 2027"],["2-й Иртышский","ПИК",1,1,"ВАО","Гольяново",279500,1,"строится 3 кв. 2028"],["АкцентыPlus Development","",1,1,"САО","Восточное Дегунино",403000,1,"строится 2027"],["WOWСтрана Девелопмент","",1,1,"ЮАО","Даниловский",474600,2,"сдан, есть остатки"],["СВЕТDominanta","",1,1,"САО","Западное Дегунино",526000,1,"строится I кв. 2028"],["ШелепихаУЭЗ","",1,1,"ЦАО","Пресненский",410000,1,"строится 2026"],["Октябрьская 98 (Mirror)","ГК Самолёт",1,0,"СВАО","Марьина Роща",413000,2,"сдан, есть остатки"],["УНО. Соколиная гора (UNO)","ГК Основа",1,1,"ВАО","Соколиная Гора",435000,1,"строится 2 кв. 2027"],["NEXUS by Akvilon","Группа Аквилон",1,1,"ЗАО","Кунцево",474500,0,"старт продаж 3 кв. 2029"],["СТОУН Грэйн (STONE Grain)","Stone",1,1,"ЮЗАО","Обручевский",538200,1,"строится 4 кв. 2028"],["Сезар Сити (SEZAR CITY)","Sezar Group",1,1,"САО","Хорошёвский",510000,1,"строится 2027"],["Дом МалевичКрост Недвижимость","",1,1,"СВАО","Отрадное",370000,2,"сдан, есть остатки"],["ИнноваторМосреалстрой","",1,1,"ЗАО","Раменки",477800,2,"сдан, есть остатки"],["ЭВОПАРК Сокольники (EVOPARK)","ГК Основа",1,0,"ВАО","Преображенское",351000,1,"строится 2 кв. 2026"],["Эмоушен","ГК Основа",1,0,"СЗАО","Хорошёво-Мнёвники",395000,1,"строится 2 кв. 2027"],["СТОУН Райз (STONE Rise) кл?STONE","",1,1,"ЦАО","Таганский",520000,1,"строится IV кв. 2028"],["Level Войковская","Level Group",1,1,"САО","Войковский",463000,1,"строится III кв. 2028"],["Среда на ЛобачевскогоСреда","",1,1,"ЗАО","Очаково-Матвеевское",511200,0,"старт продаж 2 кв. 2027"],["Квартал Серебряный Бор","St Michael",1,1,"СЗАО","Хорошёво-Мнёвники",595100,0,"старт продаж 2 кв. 2027"],["DIUS (Диус)","ГК Север",1,0,"САО","Аэропорт",447000,1,"строится IV кв. 2027"],["Stories на МосфильмовскойOctober Group","",1,1,"ЗАО","Раменки",520400,1,"строится 1 кв. 2026"],["Строгино 360","ПИК",1,1,"СЗАО","Строгино",379000,1,"строится 4 кв. 2028 (к.1.1), 2 кв."],["ОМ БотаническийОМ Девелопмент","",1,1,"СВАО","Свиблово",0,0,"анонс"],["Павелецкая от Гранель (MYPRIORITY Paveletskaya)","ГК Гранель",1,1,"ЦАО","Замоскворечье",653000,1,"строится III кв. 2028"],["ЭВОПАРК Измайлово (EVOPARK)","ГК Основа",1,0,"ВАО","Перово",329400,1,"строится 3 кв. 2026"],["Симоновский вал","ГК ФСК",1,1,"ЮВАО","Южнопортовый",455300,0,"старт продаж 2 кв. 2030"],["Дом на Часовой (DD:OO:MM)","DAR",1,1,"САО","Аэропорт",599000,1,"строится II кв. 2028"],["ChampineTouch Development","",1,1,"ЮВАО","Южнопортовый",443600,2,"сдан, есть остатки"],["Sokolinn Park","Группа Эталон",1,1,"ВАО","Богородское",415900,1,"строится 2 кв. 2028"],["Scala (Скала)STENOY","",1,1,"ЦАО","Красносельский",0,0,"анонс"],["Костомаровский, 15Центр-Инвест","",1,0,"ЦАО","Таганский",0,0,"анонс"],["Mariinn Park","Группа Эталон",1,1,"СВАО","Марьина Роща",0,1,"строится IV кв. 2027"],["Заречье ПаркГруппа Самолет","",1,1,"","Сколковорп Заречье, Одинцовский г.о., ул. Заречная",325387,1,"строится 4 кв. 2027"],["Зиккурат ПреображенскийZiggurat Development","",1,1,"ВАО","Преображенское",0,0,"старт продаж 3 кв. 2028"],["Level Barvikha Residence","Level Group (СЗ МастерСтрой)",1,1,"","Рублёвкад. Барвиха, Рублёво-Успенское шоссе, 8 км от МКАД",0,2,"сдан, есть остатки"],["Клубный дом Точка отсчетаЕ-Девелопмент","",1,1,"","РублёвкаЖуковка-1, Рублёво-Успенское шоссе, ~9 км от МКАД",533000,2,"сдан, есть остатки"],["HeadLiner","ГК КОРТРОС",1,1,"ЦАО","Пресненский",425000,2,"сдан, есть остатки"],["L67","FORMA",1,1,"САО","Левобережный",0,0,"анонс"],["LIFE-Варшавская","ГК Пионер",1,1,"ЮАО","Москворечье-Сабурово",472900,1,"строится 4 кв. 2026"],["Level Свободы","Level Group",1,1,"СЗАО","Северное Тушино",0,0,"анонс"],["Riga HillsСЗ ЖК Яркий. Рига","",1,1,"","Рублёвкад. Бузланово, Новорижское шоссе, ~9 км от МКАД, г.о. Красногорск",0,1,"строится 4 кв. 2026"],["Shagal (Шагал) кл?","Группа Эталон",1,1,"ЮАО","Даниловский",555000,1,"строится 4 кв. 2026 - 2028"],["Skolkovo ONEIKON Development","",1,1,"","Сколковорп Заречье, Одинцовский г.о., ул. Торговая, ~2 км от МКАД",364000,2,"сдан, есть остатки"],["Азарово ₽?","",1,0,"","РублёвкаРублёво-Успенское шоссе, 20 км от МКАД, Одинцовский г.о.",43000000,2,"сдан, есть остатки"],["Алтуфьевское 53","ПИК",1,1,"СВАО","Алтуфьевский",367000,1,"строится IV кв. 2028"],["Барклая 6","ПИК",1,1,"ЗАО","Филёвский парк",417100,1,"строится 4 кв. 2025"],["Бусиновский парк","ПИК",1,1,"САО","Западное Дегунино",343000,1,"строится 2026-2027"],["ВЭРИ (Very) на Ботанической","ГК Основа",1,1,"СВАО","Марфино",447000,1,"строится IV кв. 2027"],["Верейская 41","ГК Самолёт",1,1,"ЗАО","Можайский",347100,1,"строится 3 кв. 2025"],["Вереск","ГК Самолёт",1,0,"СЗАО","Хорошёво-Мнёвники",352400,2,"сдан, есть остатки"],["Гранд ФилиGranard","",1,1,"ЗАО","Филёвский парк",707500,1,"строится 2 кв. 2029"],["Гранель Притяжение Сити","ГК Гранель",1,1,"","СколковоОдинцовский г.о., ~7 мин до Сколково",281200,1,"строится 3-4 кв. 2028"],["Графика на воде (Квартал на воде) кл?","ГК Самолёт",1,1,"ЮВАО","Печатники",314300,1,"строится 4 кв. 2028"],["Дом на Зорге","А101",1,1,"САО","Сокол",472000,2,"сдан, есть остатки"],["Ели Estate","",1,0,"","РублёвкаНоворижское шоссе, г.о. Истра",0,1,"в продаже"],["Живописная, 27","Struktura Development",1,1,"СЗАО","Щукино",0,0,"анонс"],["ЗИЛАРТГруппа ЛСР","",1,1,"ЮАО","Даниловский",596000,1,"строится 4 кв. 2027"],["Ильинские дачи ₽?","",1,0,"","РублёвкаИльинское шоссе, 10 км от МКАД, Одинцовский/Красногорский г.о.",160000000,2,"сдан, есть остатки"],["Интонация","ГК Мангазея",1,1,"СЗАО","Щукино",507800,2,"сдан, есть остатки"],["Касаткина, 11","FORMA",1,1,"СВАО","Алексеевский",0,0,"анонс"],["Кронштадтский 9","ПИК",1,1,"САО","Головинский",415000,1,"строится 2027-2028"],["Кутузовский квартал","ПИК+",1,1,"ЗАО","Кунцево",441400,0,"старт продаж 2 кв. 2026"],["Ландшафт ₽?","",1,0,"","РублёвкаРублёво-Успенское шоссе, 9 км от МКАД, Одинцовский г.о.",1460000000,2,"сдан, есть остатки"],["Ленинградка 58Группа ЛСР","",1,1,"САО","Головинский",386000,2,"сдан, есть остатки"],["Мангазея на Речном","ГК Мангазея",1,1,"САО","Левобережный",503000,1,"строится III кв. 2027"],["Молодогвардейская 54 (М54)","Главстрой Москва",1,1,"ЗАО","Кунцево",0,0,"анонс"],["На Кутузовском проспекте, 36","Главстрой Москва",1,1,"ЗАО","Дорогомилово",0,0,"анонс"],["Нагатино Ай-Лэнд","Группа Эталон",1,1,"ЮАО","Даниловский",425100,1,"строится 2 кв. 2027"],["Новое Павлово","",1,0,"","РублёвкаНоворижское шоссе, ~14 км от МКАД, г.о. Истра",0,1,"в продаже"],["Резиденции СколковоАбсолют Недвижимость","",1,1,"","Сколковорп Заречье, Одинцовский г.о., Сколковское шоссе, ~2 км от МКАД",319000,1,"строится 2 кв. 2027 (корп. 2.1-2.2"],["Резиденции архитекторов","AFI Development",1,1,"ЦАО","Басманный",441000,2,"сдан, есть остатки"],["Ривер ПаркМССЗ / AEON","",1,1,"ЮАО","Нагатинский Затон",328000,1,"строится 2026"],["Руставели, 14","ПИК",1,1,"СВАО","Бутырский",461000,1,"строится I кв. 2029"],["СИТИМИКС кл?","Apsis Globe",1,0,"ЗАО","Тропарёво-Никулино",484100,1,"строится 3 кв. 2026"],["СберСити в Рублёво-АрхангельскомАО СЗ СберСити (Рублёво-Архангельское)","",1,1,"","Рублёвкамкр Рублёво-Архангельское, Ильинское шоссе, ~2 км от МКАД (административно Москва, ЗАО, Кунцево)",680000,1,"строится 2026-2028 (часть корпусов"],["Стеллар Сити кл?","ГК Ташир",1,1,"ЗАО","Можайский",305000,1,"строится 4 кв. 2026"],["У Поклонной горы","ГК Самолёт",1,1,"ЗАО","Дорогомилово",0,0,"анонс"],["Успенские Дачи ₽?","",1,0,"","РублёвкаРублёво-Успенское шоссе, 20 км от МКАД, Одинцовский г.о.",90000000,2,"сдан, есть остатки"],["ФизтехСити","ГК Основа",1,0,"СВАО","Северный",0,2,"сдан, есть остатки"],["Остров кл?","Донстрой",2,1,"СЗАО","Хорошёво-Мнёвники",581000,1,"строится 2 кв. 2029"],["Сидней Сити (Sydney City) кл?","ГК ФСК",2,1,"СЗАО","Хорошёво-Мнёвники",461000,1,"строится 3 кв. 2027"],["Адмирал кл?Галс Девелопмент","",2,1,"ЮВАО","Печатники",505000,1,"строится 3 кв. 2028"],["Событие кл?","Донстрой",2,1,"ЗАО","Раменки",519300,1,"строится 4 кв. 2029"],["Амбер Сити (AMBER CITY) кл?","ГК ФСК",2,1,"САО","Хорошёвский",491000,1,"строится 2028-2029"],["Republic (Репаблик) кл?","FORMA",2,1,"ЦАО","Пресненский",747000,1,"строится IV кв. 2027"],["MOD кл?","MR Group",2,1,"СВАО","Марьина Роща",587000,2,"сдан, есть остатки"],["Береговой 2 кл?","Главстрой",2,1,"ЗАО","Филёвский парк",533600,1,"строится 2 кв. 2028"],["ПОРТЛЕНД (Portland) кл?","Forma",2,1,"ЮВАО","Печатники",437000,1,"строится 1 кв. 2028"],["JOIS кл?","MR Group",2,1,"СЗАО","Хорошёво-Мнёвники",492200,1,"строится 4 кв. 2027"],["СОУЛ (SOUL) кл?","FORMA",2,1,"САО","Аэропорт",519000,1,"строится I кв. 2029"],["Тейт (Tate)","ГК КОРТРОС",2,1,"СВАО","Марьина Роща",513700,1,"строится 2027"],["Начало","Донстрой",2,1,"ЦАО","Пресненский",925200,1,"строится 2030"],["АУРА (","Мангазея на Тульской) кл?ООО Мангазея",2,1,"ЮАО","Даниловский",609000,1,"строится 2028"],["ПЕЙВ (PAVE) кл?","Forma",2,1,"ЮАО","Даниловский",532800,1,"строится 4 кв. 2028"],["Мира","MR Group",2,1,"СВАО","Алексеевский",636900,1,"строится 2027"],["Крылатская 33СЗ Сияние","",2,1,"ЗАО","Крылатское",580000,1,"строится 2027"],["Мастерс (Masters)","Capital Group",2,1,"САО","Хорошёвский",582100,1,"строится , новый старт 20262029"],["Сезар Силика кл?","Sezar Group",2,1,"СЗАО","Хорошёво-Мнёвники",452700,0,"старт продаж 1 кв. 2030"],["Хайдаут (Hideout)Dominanta","",2,1,"ЗАО","Раменки",690000,1,"строится 2 кв. 2028"],["THE LOT by Akvilon кл?","Группа Аквилон",2,1,"ЮАО","Даниловский",586500,1,"строится 3 кв. 2029"],["Дом 56Галс-Девелопмент","",2,1,"ЦАО","Басманный",647500,1,"строится 2026"],["Виктори Парк Резиденсез (Victory Park Residences)ANT Development","",2,1,"ЗАО","Дорогомилово",1611900,2,"сдан, есть остатки"],["Сколково ПаркЗаречье-девелопмент","",2,1,"","Сколковорп Заречье, Одинцовский г.о., ул. Весенняя, ~2 км от МКАД",0,2,"сдан, есть остатки"],["Высотка на Жукова (Демьяна Бедного, 24) кл?","Концерн КРОСТ",2,1,"СЗАО","Хорошёво-Мнёвники",734000,1,"строится 3 кв. 2029"],["Level Академическая кл?","Level Group",2,1,"ЮЗАО","Академический",533600,2,"сдан, есть остатки"],["Лайф Тайм (Life Time)","Sminex",2,1,"ЦАО","Пресненский",1090400,1,"строится 2026"],["Дом 7 ДаниловскийCOLDY","",2,1,"ЮАО","Даниловский",957000,1,"строится 2027"],["Дом ФранкаТрансстройинвест","",2,1,"ЦАО","Мещанский",1581900,1,"строится 2026"],["Дом ГоризонтовTouch","",2,1,"ЗАО","Крылатское",673500,1,"строится 2027"],["СоюзГруппа Родина","",2,1,"СВАО","Ростокино",605200,1,"строится , есть сданные2026"],["Sydney Prime","ГК ФСК",2,1,"СЗАО","Хорошёво-Мнёвники",1000000,1,"строится 3 кв. 2027"],["Маслово Forest ClubГалс-Девелопмент (СЗ Галс-Маслово)","",2,0,"","Рублёвкад. Маслово / Николина Гора, Ильинское шоссе, 28 км от МКАД",95232000,2,"сдан, есть остатки"],["Барвиха Хиллс","",2,0,"","Рублёвкад. Барвиха, Рублёво-Успенское шоссе, 8 км от МКАД",30000000,2,"сдан, есть остатки"],["Веспер Кутузовский (","Vesper Кутузовский)Vesper",2,1,"ЗАО","Дорогомилово",1403000,1,"строится 2028"],["Famous кл?","MR Group",2,1,"ЗАО","Филёвский парк",747000,2,"сдан, есть остатки"],["Ahead (Эхэд)Vos&#x27;hod","",2,0,"ЗАО","Филёвский Парк",667000,1,"строится 2026"],["Wellton Spa Residence","Концерн КРОСТ",2,0,"СЗАО","Хорошёво-Мнёвники",900000,2,"сдан, есть остатки"],["Форум (Forum)","MR Group",2,1,"ЦАО","Мещанский",1910000,1,"строится 2026"],["26 Парквью","MR Group",2,1,"САО","Тимирязевский",770000,1,"строится 2029"],["Barvikha River HouseСЗ ЛСР. Объект-М (Группа ЛСР)","",2,0,"","Рублёвкад. Барвиха, Рублёво-Успенское шоссе, ~8 км от МКАД",0,0,"анонс"],["Level Причальный кл?","Level Group",2,1,"СЗАО","Хорошёво-Мнёвники",656800,2,"сдан, есть остатки"],["ParkVille ЖуковкаVillagio Estate","",2,0,"","Рублёвкад. Жуковка, Рублёво-Успенское шоссе, 9-10 км от МКАД",586600000,2,"сдан, есть остатки"],["RED7 кл?","ГК Основа",2,0,"ЦАО","Красносельский",0,2,"сдан, есть остатки"],["АЛИА кл?Asterus","",2,1,"СЗАО","Покровское-Стрешнево",501700,1,"строится 2 кв. 2028"],["Айс Тауэрс (ICE Towers)Град Девелопмент","",2,1,"ЗАО","Проспект Вернадского",0,1,"строится "],["АртельStenoy","",2,1,"ВАО","Преображенское",610500,1,"строится 2027"],["Аурус Резиденции","ГК Страна Девелопмент",2,1,"ЦАО","Пресненский",0,0,"старт продаж 2029"],["Глоракс Премиум БелорусскаяGloraX","",2,0,"САО","Беговой",0,1,"строится "],["Горки-8","",2,0,"","РублёвкаГорки-8, Рублёво-Успенское шоссе, 15 км от МКАД",320000000,2,"сдан, есть остатки"],["Деко Резиденс","",2,0,"ЮАО","Даниловский",0,1,"строится "],["Демидов 26Оникс-Девелопмент","",2,1,"ЦАО","Басманный",0,1,"строится 2028"],["Дом А","Брусника",2,1,"ЮАО","Даниловский",560100,1,"строится 2027"],["Дом Дау","ГК Сумма элементов",2,1,"ЦАО","Пресненский",922500,1,"строится 2027"],["Достижение","Sminex",2,1,"СВАО","Марфино",640400,2,"сдан, есть остатки"],["ОНЕ (ONE)","MR Group",2,1,"ЦАО","Пресненский",0,1,"строится 2030"],["Павлово","",2,0,"","РублёвкаНоворижское шоссе, 14 км от МКАД, г.о. Истра",0,2,"сдан, есть остатки"],["Поклонная 7 кл?Спецстрой-1","",2,0,"ЗАО","Дорогомилово",465300,1,"строится 2 кв. 2026"],["Прайм Парк (Prime Park)Optima Development","",2,1,"САО","Хорошёвский",710000,1,"строится , есть сданные2027"],["Примавера (Primavera)СЗ Стадион Спартак","",2,1,"СЗАО","Покровское-Стрешнево",644500,1,"строится , есть сданные2028"],["Речной","",2,0,"","РублёвкаРублёво-Успенское шоссе, 7 км от МКАД, Одинцовский г.о.",0,2,"сдан, есть остатки"],["Ривер Парк Кутузовский (River Park Towers)Аеон Девелопмент","",2,1,"ЗАО","Дорогомилово",800000,1,"строится 2027"],["Родина ПаркГруппа Родина","",2,1,"ЗАО","Можайский",651600,1,"строится , есть сданные2028"],["Серебряный Бор (квартал)ST Michael","",2,1,"СЗАО","Хорошёво-Мнёвники",727700,1,"строится 2027"],["Сикрет Гарден","ГК КОРТРОС",2,1,"ЮЗАО","Обручевский",537000,1,"строится 2029"],["Сити Бэй (City Bay) кл? ₽?","MR Group",2,1,"СЗАО","Покровское-Стрешнево",344800,1,"строится 2 кв. 2027"],["Феномен города кл?BMS Development","",2,1,"ЗАО","Фили-Давыдково",0,0,"анонс"],["Хай Лайф (High Life)","ГК Пионер",2,1,"ЮАО","Даниловский",656000,1,"строится , есть сданные2027"],["Бадаевский кл?","Capital Group",3,1,"ЗАО","Дорогомилово",1406000,1,"строится 2027"],["Дрим Рива (Dream Riva) кл? ₽?Regions Development","",3,1,"ЮАО","Нагатинский Затон",565600,1,"строится 4 кв. 2027"],["Новые Академики кл? ₽?","Главстрой Москва",3,1,"ЮЗАО","Котловка",419800,1,"строится 4 кв. 2027"],["Преображенская площадь кл? ₽?Regions Development","",3,1,"ВАО","Преображенское",422400,1,"строится 2 кв. 2027"],["Five Towers кл? ₽?СЗ 5 Донской","",3,1,"ЮАО","Донской",558000,1,"строится 3 кв. 2026"],["Большая Татарская 35","Донстрой",3,1,"ЦАО","Замоскворечье",1400000,1,"строится I кв. 2028"],["Chkalov кл? ₽?Ikon Development","",3,1,"ЦАО","Басманный",669000,2,"сдан, есть остатки"],["МонбланГалс-Девелопмент","",3,1,"ЦАО","Замоскворечье",1000000,1,"строится I кв. 2028"],["Муза (MUSE) кл?","ГК Мангазея",3,1,"САО","Аэропорт",857700,1,"строится 2029"],["Кутузов Сити кл? ₽?PLATO Development","",3,1,"ЗАО","Можайский",639500,1,"строится 3 кв. 2027"],["Тишинский бульвар кл?","Sminex",3,1,"ЦАО","Пресненский",1240800,1,"строится 2027-2028"],["Д&#x27;оро Миле (D&#x27;oro Mille) кл?Элита-Эко /","ГК Имена",3,0,"ЗАО","Дорогомилово",1050000,1,"строится 2026"],["Turgenev (Клубный дом Тургенев)Неострой","",3,1,"ЦАО","Красносельский",1900000,2,"сдан, есть остатки"],["Барвиха КлабМиэль-Недвижимость","",3,0,"","Рублёвкад. Барвиха, Рублёво-Успенское шоссе, 8 км от МКАД",68000000,2,"сдан, есть остатки"],["Фантом (Phantom) кл?Sense Development","",3,1,"ЦАО","Мещанский",1650000,1,"строится 2027"],["CULT (Клубный дом Культ)GRAVION","",3,0,"ЦАО","Якиманка",950000,2,"сдан, есть остатки"],["Березки River VillageГалс-Девелопмент","",3,0,"","Рублёвкад. Солослово, Рублёво-Успенское шоссе, 17 км от МКАД",180000000,2,"сдан, есть остатки"],["Красный ОктябрьГУТА-Девелопмент","",3,1,"ЦАО","Якиманка",0,1,"строится III кв. 2026"],["Annabel&#x27;s (1913)PALLADIO Group","",3,1,"ЦАО","Хамовники",0,0,"анонс"],["LA BELLE MAISONGBK GROUP","",3,1,"ЦАО","Якиманка",0,1,"строится III кв. 2028"],["Renaissance ParkVillagio Estate","",3,0,"","РублёвкаНоворижское шоссе, 19 км от МКАД",0,2,"сдан, есть остатки"],["Vesper Kutuzovsky (ODA Gallery)Vesper","",3,1,"ЗАО","Дорогомилово",1300000,1,"строится I кв. 2028"],["Городская усадьба в Орлово-Давыдовском","Sminex",3,1,"ЦАО","Мещанский",0,2,"сдан, есть остатки"],["Жуковка XXIVillagio Estate","",3,0,"","Рублёвкад. Жуковка, Рублёво-Успенское шоссе, 8-10 км от МКАД",738400000,2,"сдан, есть остатки"],["Казачий","MR Group",3,1,"ЦАО","Якиманка",0,1,"строится III кв. 2029"],["КамергерEngeo Development","",3,1,"ЦАО","Тверской",0,1,"строится III кв. 2026"],["Кинг энд Санс (King &amp; Sons) кл?October Group","",3,1,"ЗАО","Раменки",1100000,1,"строится 2027"],["Коллекция Лужники (Luzhniki Collection) кл?Абсолют Премиум","",3,1,"ЦАО","Хамовники",1412100,1,"строится 2027"],["Кузнецкий Мост 12KR Properties","",3,1,"ЦАО","Тверской",0,1,"строится IV кв. 2026"],["Левшинский 19 (Your MAJESTY)СЗ Смоленский бульвар","",3,1,"ЦАО","Хамовники",0,1,"строится II кв. 2028"],["Никольская Слобода","",3,0,"","РублёвкаНоворижское шоссе, 15 км от МКАД",250000000,2,"сдан, есть остатки"],["Раздоры-2Villagio Estate / Villagio Realty","",3,0,"","Рублёвкад. Раздоры, Рублёво-Успенское шоссе, 5 км от МКАД",575000000,2,"сдан, есть остатки"],["Река (клубный дом) кл?","Донстрой",3,1,"ЗАО","Раменки",842000,1,"строится , есть сданные2029"],["Саввинская 27","Level Group",3,1,"ЦАО","Хамовники",1900000,2,"сдан, есть остатки"],["Садовническая 69","ГК Балчуг Девелопмент",3,1,"ЦАО","Замоскворечье",1400000,1,"строится II кв. 2028"],["Сады МайендорфVillagio Estate","",3,0,"","Рублёвкад. Барвиха, Рублёво-Успенское шоссе, 9 км от МКАД",716200000,2,"сдан, есть остатки"],["Слава (Slava) кл?","MR Group",3,1,"САО","Беговой",838900,1,"строится 2027"],["Спрингс (Springs) кл? ₽?UNIQ Development","",3,1,"ЗАО","Фили-Давыдково",672600,1,"строится 2027"],["Тессинский VElement Development","",3,1,"ЦАО","Таганский",1400000,1,"строится III кв. 2029"],["Фрунзенский","Sminex",3,1,"ЦАО","Хамовники",2000000,1,"строится III кв. 2027"],["Шифт (SHIFT) кл?","ГК Пионер",3,1,"ЮАО","Донской",835300,1,"строится 2028"],["ЭнигмияUpside Development","",3,1,"ЦАО","Тверской",1200000,1,"строится IV кв. 2028"],["Эра (Era) кл? ₽?ТЕКТА ГРУПП","",3,1,"ЮАО","Даниловский",545200,1,"строится , есть сданные2026-2029"],["Большой Козихинский 22Dominanta / COLDY","",3,1,"ЦАО","Пресненский",0,0,"старт продаж "],["Дом спорта","Capital Group",3,1,"ЦАО","Пресненский",0,1,"строится I кв. 2029"],["Космо 4/22 кл?Галс-Девелопмент","",3,0,"ЦАО","Замоскворечье",1415600,2,"сдан, есть остатки"],["УзорыCapital Alliance (СЗ Вражский)","",3,1,"ЦАО","Хамовники",0,1,"строится  (котлован)IV кв. 2028"],["Vesper ПогодинскаяVesper","",3,1,"ЦАО","Хамовники",0,1,"строится  (котлован)IV кв. 2028"],["Хамовники 12COLDY","",3,1,"ЦАО","Хамовники",2600000,2,"сдан, есть остатки"],["DUOHutton Development","",3,1,"ЦАО","Якиманка",2100000,1,"строится II кв. 2026"],["Барвиха XXIVillagio Estate","",3,0,"","Рублёвкад. Барвиха, Рублёво-Успенское шоссе, 5-7 км от МКАД",457500000,2,"сдан, есть остатки"],["LUCE (Люче)","MR Group",3,1,"ЦАО","Арбат",0,1,"строится III кв. 2026"],["Палашёвский 11","Sminex",3,1,"ЦАО","Тверской",3000000,1,"строится I кв. 2030"],["Фон Дессин (Fon Dessin)","Sminex",3,1,"ЦАО","Басманный",2300000,1,"строится II кв. 2026"],["Armani/Casa Moscow ResidencesVos&#x27;hod","",3,1,"ЦАО","Якиманка",2750000,2,"сдан, есть остатки"],["Обыденский №1","Sminex",3,1,"ЦАО","Хамовники",2800000,2,"сдан, есть остатки"],["EDENSense Development","",3,1,"ЦАО","Арбат",0,0,"старт продаж III кв. 2029"],["Stella di Mosca","",3,1,"ЦАО","Пресненский",0,2,"сдан, есть остатки"],["Малая Ордынка 14ГУТА-Девелопмент","",3,1,"ЦАО","Замоскворечье",0,0,"анонс"],["Большая Никитская 16R4S Group","",3,1,"ЦАО","Пресненский",0,0,"старт продаж III кв. 2026"],["CLOS 17","MR Group",3,1,"ЦАО","Арбат",2300000,1,"строится III кв. 2026"],["Quartier d&#x27;Or (Картьер д&#x27;Ор) кл?RARITECO","",3,1,"ЦАО","Замоскворечье",1600000,1,"строится 2026"],["Veil (Роден)","MR Group",3,1,"ЦАО","Басманный",0,0,"анонс"],["Берниковская набережная 12","",3,1,"ЦАО","Таганский",0,0,"анонс"],["Большая Ордынка 25","",3,1,"ЦАО","Замоскворечье",0,0,"анонс"],["Большая Пироговская 51","",3,1,"ЦАО","Хамовники",0,0,"анонс"],["Воздвиженка 7/6","",3,1,"ЦАО","Арбат",0,0,"анонс"],["ДОМ XXII","Донстрой",3,1,"ЦАО","Хамовники",0,1,"строится IV кв. 2026"],["Земледельческий 15","",3,1,"ЦАО","Хамовники",0,0,"анонс"],["Ильинка 3/8","Sminex",3,1,"ЦАО","Тверской",2200000,2,"сдан, есть остатки"],["Ильинское поле","",3,0,"","РублёвкаИльинское шоссе, 10 км от МКАД",2000000000,1,"в продаже"],["Капранова 3","",3,1,"ЦАО","Пресненский",0,0,"анонс"],["Лаврушинский","Sminex",3,1,"ЦАО","Якиманка",2300000,2,"сдан, есть остатки"],["Левенсон (Levenson)","Vesper",3,1,"ЦАО","Пресненский",2700000,1,"строится III кв. 2027"],["Льва Толстого 14","",3,1,"ЦАО","Хамовники",0,0,"анонс"],["Лё Дом (Le Dome)Группа ЛСР","",3,1,"ЦАО","Хамовники",0,1,"строится III кв. 2026"],["Малая Дмитровка 5/9","",3,1,"ЦАО","Тверской",0,0,"анонс"],["Малая Никитская 29-31","",3,1,"ЦАО","Пресненский",0,0,"анонс"],["Малая Полянка 3","",3,1,"ЦАО","Якиманка",0,0,"анонс"],["Никитский 6СЗ Третий Рим","",3,1,"ЦАО","Арбат",2800000,1,"строится IV кв. 2026"],["Николь (Nicole) кл?","MR Group",3,1,"ЦАО","Тверской",2325000,1,"строится 2027-2028"],["Олсуфьевский 10","",3,1,"ЦАО","Хамовники",0,0,"анонс"],["Пыжевский","TEKTA GROUP",3,1,"ЦАО","Замоскворечье",2300000,1,"строится II кв. 2029"],["Рождественка 8","Sminex",3,1,"ЦАО","Мещанский",4200000,1,"строится IV кв. 2029"],["Русские СезоныСЗ ЭКРАН","",3,1,"ЦАО","Замоскворечье",4100000,2,"сдан, есть остатки"],["Усачева 22Regions Development","",3,1,"ЦАО","Хамовники",0,0,"анонс"],["ХилковROSE GROUP","",3,1,"ЦАО","Хамовники",0,0,"анонс"]];
+const SCHOOL={"Щукино": ["Курчатовская школа", "1", 1], "Тропарёво-Никулино": ["Школы 1329 и 1543", "1", 1], "Тверской": ["Школы 179 и 1501", "1", 1], "Нагорный": ["Лицей 1580", "1", 1], "Хорошёво-Мнёвники": ["Школа 1517", "2", 1], "Тимирязевский": ["Школа 218", "2", 1], "Останкинский": ["Школа 1518", "2", 1], "Марьина Роща": ["Марьина Роща им. Орлова", "2", 1], "Мещанский": ["Школа 2107", "2", 1], "Хорошёвский": ["Школа 1409", "2", 1], "Аэропорт": ["Школы 152 и 1575", "2", 1], "Москворечье-Сабурово": ["Предуниверситарий МИФИ", "2", 1], "Алексеевский": ["Школа-интернат №1", "2", 1], "Бутырский": ["Школа 1518, 8 мин", "2", 0], "Беговой": ["Школы 1409 и 218, 10 мин", "2", 0], "Сокол": ["Школы 152 и 1575, 8 мин", "2", 0], "Войковский": ["Школы 1576 и 1575, 10 мин", "2", 0], "Донской": ["Лицей 1580, 12 мин", "1", 0], "Покровское-Стрешнево": ["Курчатовская, 12 мин", "1", 0], "Обручевский": ["Школы 1543 и 1329, 12 мин", "1", 0], "Савёловский": ["Школа 218, 10 мин", "2", 0]};
+const S={prio:new Set(),who:new Set(),sect:new Set()};
+
+document.querySelectorAll('.chips').forEach(box=>{
+  const k=box.dataset.k, mode=box.dataset.m;
+  box.querySelectorAll('button').forEach(b=>b.onclick=()=>{
+    if(mode==='one'){
+      box.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed','false'));
+      b.setAttribute('aria-pressed','true'); S[k]=b.dataset.v;
+    } else {
+      const on=b.getAttribute('aria-pressed')==='true';
+      if(!on && mode==='prio' && S.prio.size>=3) return;
+      b.setAttribute('aria-pressed',String(!on));
+      on?S[k].delete(b.dataset.v):S[k].add(b.dataset.v);
+      if(mode==='prio') box.querySelectorAll('button').forEach(x=>{
+        x.disabled = S.prio.size>=3 && x.getAttribute('aria-pressed')!=='true';});
+    }
+    draw();
+  });
+});
+
+const SIZE={s55:60,s70:72,s90:90,s100:110};
+const BUD={b30:30,b40:40,b55:55,b70:75};
+const ORD_BUD=['b30','b40','b55','b70'], ORD_SIZE=['s100','s90','s70','s55'];
+const label=(k,v)=>{const b=document.querySelector(`.chips[data-k="${k}"] button[data-v="${v}"]`);return b?b.textContent:v};
+
+// единая функция отбора: принимает состояние, возвращает дома и список применённых условий
+function select(st){
+  const m=SIZE[st.size]||70;
+  const budTotal=BUD[st.budget]||null;
+  const repairRate=(st.repair==='box')?0:0.12;
+  const forFlat=budTotal?budTotal-m*repairRate:null;
+  const onlyFlats=(st.pay==='mort')||(st.school==='walk');
+  const needReady=st.ready==='soon';
+  const needSchool=st.school==='walk'?'walk':(st.school==='drive'?'any':null);
+  let rows=DB.map(r=>({n:r[0],d:r[1],cls:r[2],flat:r[3],okr:r[4],ray:r[5],p:r[6],st:r[7],stx:r[8]}));
+  const why=[];
+  if(onlyFlats){rows=rows.filter(r=>r.flat);why.push('только квартиры, без апартаментов');}
+  if(needSchool){rows=rows.filter(r=>{const sc=SCHOOL[r.ray];return sc?(needSchool==='walk'?sc[2]===1:true):false;});
+    why.push(needSchool==='walk'?'школа 1–2 группы пешком':'школа 1–2 группы рядом');}
+  if(needReady){rows=rows.filter(r=>r.st===2);why.push('дом сдан');}
+  if(forFlat){rows=rows.filter(r=>r.p>0&&r.p*m*1.12/1e6<=forFlat);why.push(`до ${forFlat.toFixed(0)} млн за квартиру`);}
+  rows.sort((a,b)=>(a.p||9e9)-(b.p||9e9));
+  return {rows,why,m,budTotal,forFlat,repair:m*repairRate};
+}
+const N=st=>select(st).rows.length;
+
+// что уступить: считаю прирост по каждому ослаблению и по парам
+function mutations(base){
+  const M=[];
+  if(base.school==='walk'){
+    M.push({t:'возить до школы <b>10–15 минут</b>',k:'school',v:'drive'});
+    M.push({t:'снять требование по школе',k:'school',v:'any'});
+  } else if(base.school==='drive') M.push({t:'снять требование по школе',k:'school',v:'any'});
+  if(base.ready==='soon') M.push({t:'рассмотреть <b>строящиеся дома</b>',k:'ready',v:'any2'});
+  if(base.budget){
+    const i=ORD_BUD.indexOf(base.budget);
+    if(i>=0&&i<ORD_BUD.length-1) M.push({t:`поднять бюджет до <b>${label('budget',ORD_BUD[i+1]).toLowerCase()}</b>`,k:'budget',v:ORD_BUD[i+1]});
+    if(i>=0&&i<ORD_BUD.length-2) M.push({t:`поднять бюджет до <b>${label('budget',ORD_BUD[i+2]).toLowerCase()}</b>`,k:'budget',v:ORD_BUD[i+2]});
+  }
+  if(base.size){
+    const i=ORD_SIZE.indexOf(base.size);
+    if(i>=0&&i<ORD_SIZE.length-1) M.push({t:`взять метраж <b>${label('size',ORD_SIZE[i+1])}</b>`,k:'size',v:ORD_SIZE[i+1]});
+    if(i>=0&&i<ORD_SIZE.length-2) M.push({t:`взять метраж <b>${label('size',ORD_SIZE[i+2])}</b>`,k:'size',v:ORD_SIZE[i+2]});
+  }
+  if(base.repair!=='box'&&base.budget) M.push({t:'искать <b>с готовым ремонтом</b>',k:'repair',v:'box'});
+  if(base.pay==='mort'&&base.school!=='walk') M.push({t:'покупать <b>без ипотеки</b>',k:'pay',v:'full',note:'В апартаментах нет постоянной регистрации'});
+  return M;
+}
+const cap=s=>s.charAt(0).toUpperCase()+s.slice(1);
+function relaxOptions(base){
+  const cur=N(base), M=mutations(base), out=[];
+  M.forEach(m=>{const n=N({...base,[m.k]:m.v});
+    if(n>cur) out.push({txt:cap(m.t),n,gain:n-cur,note:m.note,keys:[m.k]});});
+  if(out.length<3){
+    for(let i=0;i<M.length;i++) for(let j=i+1;j<M.length;j++){
+      if(M[i].k===M[j].k) continue;
+      const n=N({...base,[M[i].k]:M[i].v,[M[j].k]:M[j].v});
+      if(n>cur && !out.some(o=>o.n>=n && o.keys.length<=2))
+        out.push({txt:cap(M[i].t)+' <span style="color:var(--ink-35)">и</span> '+M[j].t,n,gain:n-cur,keys:[M[i].k,M[j].k]});
+    }
+  }
+  const seen=new Set();
+  const list=out.filter(o=>{if(seen.has(o.txt))return false;seen.add(o.txt);return true;})
+                .sort((a,b)=>b.gain-a.gain||a.keys.length-b.keys.length).slice(0,5);
+  // условие «невиновно», только если НИ ОДНА его мутация не помогает
+  // и оно не участвует ни в одной показанной подсказке
+  const best={};
+  M.forEach(m=>{const n=N({...base,[m.k]:m.v}); best[m.k]=Math.max(best[m.k]||0,n);});
+  const used=new Set(list.flatMap(o=>o.keys));
+  const NAME={school:'школу',ready:'готовность дома',budget:'бюджет',size:'метраж',repair:'ремонт',pay:'способ оплаты'};
+  const innocent=Object.keys(best).filter(k=>best[k]<=cur&&!used.has(k)).map(k=>NAME[k]).filter(Boolean);
+  return {list,innocent};
+}
+
+function draw(){
+  const R=select(S), rows=R.rows, m=R.m;
+  document.getElementById('cnt').textContent=rows.length;
+  const answered=Object.keys(S).filter(k=>!['prio','who','sect'].includes(k)&&S[k]).length;
+  document.getElementById('cap').textContent = answered===0
+    ? 'домов в базе. Ответьте на блоки — список сузится.'
+    : (rows.length?'домов проходят по вашим критериям.':'подходящих домов. Ниже — что можно уступить, чтобы они появились.');
+
+  const F=document.getElementById('flt'); F.innerHTML='';
+  const add=(t,v)=>F.insertAdjacentHTML('beforeend',`<dt>${t}</dt><dd>${v}</dd>`);
+  const dash='<span style="color:var(--ink-35)">не выбрано</span>';
+  add('Задача',S.goal?label('goal',S.goal):dash);
+  add('Горизонт',S.hor?label('hor',S.hor):dash);
+  add('Комнат',S.rooms?label('rooms',S.rooms):dash);
+  add('Метраж',S.size?`${label('size',S.size)} · в расчёте ${m} м²`:dash);
+  add('Бюджет под ключ',R.budTotal?`${R.budTotal} млн${R.forFlat!==R.budTotal?` · на квартиру ${R.forFlat.toFixed(0)}, на ремонт ${R.repair.toFixed(0)}`:''}`:dash);
+  add('Фильтр по базе',R.why.length?R.why.join(' · '):'<span style="color:var(--ink-35)">пока не задан</span>');
+  const pr=[...S.prio].map(v=>label('prio',v));
+  add('Три главных',pr.length?`<b style="color:var(--red)">${pr.join(' · ')}</b>`:dash);
+
+  const H=document.getElementById('hits');
+  H.innerHTML=(answered>=3&&rows.length&&rows.length<=40)
+    ? rows.slice(0,12).map(r=>{const sc=SCHOOL[r.ray];
+        return `<div><div><b>${r.n}</b><em> · ${r.d}</em><br><em>${r.ray} · ${sc?sc[0]+' · гр. '+sc[1]:'—'}</em></div>
+        <div><em>${r.stx}</em></div><div class="p">${r.p?'от '+(r.p*m*1.12/1e6).toFixed(1)+' млн':'цена —'}</div></div>`;}).join('')
+      +(rows.length>12?`<div><em>и ещё ${rows.length-12} — покажем на встрече</em><div></div><div></div></div>`:'')
+    : '';
+
+  // блок «что уступить»
+  const RX=document.getElementById('relax');
+  const RES=(answered>=2&&rows.length<5)?relaxOptions(S):{list:[],innocent:[]};
+  const opts=RES.list;
+  if(opts.length){
+    RX.style.display='block';
+    RX.innerHTML=`<div class="h">${rows.length?'Вариантов мало. Что можно уступить':'Ни одного варианта. Что уступить'}</div>
+      <div class="s">Каждая строка показывает, сколько домов добавится, если поменять один ответ. Остальные условия остаются как есть.</div>`
+      + opts.map(o=>`<div class="row"><div>${o.txt}${o.note?`<br><em style="font-style:normal;font-size:13px;color:var(--ink-35)">${o.note}</em>`:''}</div>
+         <div class="gain">+${o.gain}<em>станет ${o.n}</em></div></div>`).join('')
+      + (RES.innocent.length?`<div class="row" style="border-top:1.5px solid var(--ink)"><div style="color:var(--ink-60);font-size:14.5px">
+         <b>${cap(RES.innocent.join(', '))}</b> здесь ни при чём — на число вариантов это не влияет.</div><div></div></div>`:'');
+  } else if(rows.length===0&&answered>=2){
+    RX.style.display='block';
+    RX.innerHTML=`<div class="h">Ни одного варианта</div>
+      <div class="s">Ослабление отдельных условий не помогает — значит дело в сочетании бюджета и метража. Нужно менять либо сумму, либо район поиска.</div>`;
+  } else RX.style.display='none';
+
+  const G=document.getElementById('gaps'); const g=[];
+  if(!S.goal) g.push('Переезд решён или пока обдумывается — от этого зависит всё остальное');
+  if(!S.school) g.push('Школа пешком или готовы возить — главный фильтр по районам');
+  if(!S.budget) g.push('Потолок под ключ, с ремонтом и мебелью');
+  if(!S.size) g.push('Комфортный метраж');
+  if(!S.rooms) g.push('Сколько изолированных комнат нужно');
+  if(!S.ready) g.push('Заезжать в этом году или можно ждать сдачи');
+  if(!S.pay) g.push('Ипотека или полная оплата — от этого зависит, попадут ли в выборку апартаменты');
+  if(S.prio.size<3) g.push(`Три главных критерия — выбрано ${S.prio.size} из 3`);
+  if(S.who.has('gran')) g.push('Старшее поколение в доме — нужна ли поликлиника рядом и лифт без ступеней');
+  if(S.penza==='stay') g.push('Каким транспортом ездить в Пензу — от этого зависит удобное направление');
+  if(S.sect.size&&!S.sect.has('none2')) g.push('Адреса секций детей — их дорога считается наравне со школой');
+  if(!g.length) g.push('Всё основное закрыто. Следующий шаг — подборка по фильтру выше');
+  G.innerHTML=g.map((t,i)=>`<div><i>${String(i+1).padStart(2,'0')}</i><span>${t}</span></div>`).join('');
+}
+
+function briefText(){
+  const dts=[...document.querySelectorAll('#flt dt')].map(x=>x.textContent);
+  const dds=[...document.querySelectorAll('#flt dd')].map(x=>x.textContent);
+  const hits=[...document.querySelectorAll('#hits > div')].map(d=>'— '+d.textContent.replace(/\s+/g,' ').trim());
+  const gaps=[...document.querySelectorAll('#gaps span')].map(s=>'— '+s.textContent);
+  const rx=[...document.querySelectorAll('#relax .row')].map(d=>'— '+d.textContent.replace(/\s+/g,' ').trim());
+  return 'БРИФ NOTA\n\nПодходит домов: '+document.getElementById('cnt').textContent+'\n\n'
+   + dts.map((t,i)=>t+': '+dds[i]).join('\n')
+   + (hits.length?'\n\nПОДХОДЯТ\n'+hits.join('\n'):'')
+   + (rx.length?'\n\nЧТО УСТУПИТЬ\n'+rx.join('\n'):'')
+   + '\n\nОСТАЛОСЬ РЕШИТЬ\n' + gaps.join('\n');
+}
+function flash(msg){
+  const b=document.getElementById('copy'); const t=b.dataset.t||b.textContent;
+  b.dataset.t=t; b.textContent=msg; setTimeout(()=>b.textContent=t,1800);
+}
+document.getElementById('copy').onclick=async()=>{
+  const txt=briefText();
+  // 1. современный способ — работает только по https
+  try{ await navigator.clipboard.writeText(txt); flash('Скопировано'); return; }catch(e){}
+  // 2. запасной — старый execCommand, работает и при открытии файлом
+  try{
+    const ta=document.createElement('textarea');
+    ta.value=txt; ta.setAttribute('readonly','');
+    ta.style.cssText='position:fixed;top:0;left:0;opacity:0';
+    document.body.appendChild(ta); ta.select(); ta.setSelectionRange(0,txt.length);
+    const ok=document.execCommand('copy'); document.body.removeChild(ta);
+    if(ok){ flash('Скопировано'); return; }
+  }catch(e){}
+  // 3. если и это запрещено — показываю текст, чтобы выделить руками
+  const box=document.getElementById('fallback');
+  box.style.display='block'; box.querySelector('textarea').value=txt;
+  box.querySelector('textarea').focus(); box.querySelector('textarea').select();
+  flash('Выделите и скопируйте');
+};
+document.getElementById('reset').onclick=()=>location.reload();
+draw();
+</script></body></html>

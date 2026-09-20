@@ -1,0 +1,376 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NOTA · Бриф · сценарий жизни</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#000;--ink-60:#4A4A46;--ink-35:#8C8C87;--rule:#D6D6D1;
+ --rule-strong:#000;--red:#CE2029;--sheet-2:#F4F4F1}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;background:#fff}
+body{margin:0;background:#fff;color:var(--ink);font-family:Inter,"Helvetica Neue",Arial,sans-serif;
+ font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}
+.sheet{max-width:1060px;margin:0 auto;padding:56px 56px 40px}
+section{padding:44px 0;border-top:1px solid var(--rule)}
+section:first-of-type{border-top:0;padding-top:0}
+.meta{display:flex;justify-content:space-between;align-items:baseline;gap:16px;font-size:11px;
+ letter-spacing:.14em;text-transform:uppercase;color:var(--ink-60);margin-bottom:30px}
+.meta b{font-weight:600;color:var(--ink)}
+.num{font-variant-numeric:tabular-nums;color:var(--ink-35);margin-left:auto}
+h1,h2,h3{font-family:"Inter Tight","Helvetica Neue",Arial,sans-serif;font-weight:700;letter-spacing:-.025em;margin:0}
+h1{font-size:clamp(36px,6.4vw,72px);line-height:.98}
+h2{font-size:clamp(24px,3.2vw,34px);line-height:1.06;max-width:22ch}
+h3{font-size:17px;line-height:1.2}
+p{margin:0 0 14px;max-width:62ch}
+.lead{font-size:clamp(16px,1.5vw,19px);line-height:1.45;max-width:48ch}
+.small{font-size:13.5px;line-height:1.5;color:var(--ink-60);max-width:72ch}
+.hint{font-size:12.5px;color:var(--ink-35);margin:14px 0 0}
+
+.grp{margin-top:26px}
+.grp>.cap{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-35);margin-bottom:12px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+button.c{font:inherit;font-size:14px;padding:9px 15px;border:1px solid var(--rule);background:#fff;
+ color:var(--ink);border-radius:2px;cursor:pointer;text-align:left}
+button.c:hover{border-color:var(--ink-35)}
+button.c[aria-pressed="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
+button.c[aria-pressed="true"].hot{background:var(--red);border-color:var(--red)}
+button.c:focus-visible{outline:2px solid var(--red);outline-offset:2px}
+button.c:disabled{opacity:.35;cursor:not-allowed}
+button.c .f{display:block;font-size:11px;letter-spacing:.1em;text-transform:uppercase;opacity:.55;margin-top:3px}
+
+.ab{border-top:1.5px solid var(--rule-strong);margin-top:22px}
+.ab .row{display:grid;grid-template-columns:230px 1fr;gap:26px;padding:18px 0;border-bottom:1px solid var(--rule);align-items:start}
+.ab .q{font-weight:600;font-size:14.5px}
+.ab .opts{display:flex;flex-wrap:wrap;gap:8px}
+
+.out{border:1px solid var(--rule);margin-top:10px}
+.out .hd{display:flex;justify-content:space-between;align-items:baseline;gap:14px;padding:22px 28px;border-bottom:1px solid var(--rule)}
+.out .bd{padding:26px 28px}
+.out dl{margin:0;display:grid;grid-template-columns:180px 1fr;gap:0}
+.out dt{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-35);
+ padding:13px 0;border-top:1px solid var(--rule)}
+.out dd{margin:0;padding:13px 0;border-top:1px solid var(--rule);font-size:14.5px}
+.out dl>dt:first-of-type,.out dl>dt:first-of-type+dd{border-top:0}
+.out dd .em{color:var(--red);font-weight:600}
+.out dd .no{color:var(--ink-35)}
+.bigq{font-family:"Inter Tight",sans-serif;font-weight:700;font-size:clamp(19px,2.4vw,26px);
+ letter-spacing:-.02em;line-height:1.15;max-width:24ch;margin:0}
+.open{border-top:1.5px solid var(--rule-strong);margin-top:10px}
+.open div{display:grid;grid-template-columns:28px 1fr;gap:16px;padding:13px 0;border-bottom:1px solid var(--rule);font-size:14.5px}
+.open i{font-style:normal;color:var(--ink-35);font-variant-numeric:tabular-nums}
+.act{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+button.b{font:inherit;font-size:14px;padding:11px 20px;border:1px solid var(--ink);background:var(--ink);
+ color:#fff;border-radius:2px;cursor:pointer}
+button.b.gh{background:#fff;color:var(--ink)}
+.sign{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;border-top:1.5px solid var(--rule-strong);
+ padding-top:16px;margin-top:44px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-60)}
+@media (max-width:860px){
+ .sheet{padding:26px 18px 30px}
+ section{padding:32px 0}
+ .meta{flex-wrap:wrap;gap:4px 14px;margin-bottom:24px}
+ .ab .row{grid-template-columns:1fr;gap:10px}
+ .out .hd,.out .bd{padding:20px}
+ .out dl{grid-template-columns:1fr}
+ .out dd{padding-top:0;border-top:0}
+ .out dt{padding-bottom:4px}
+ h2{max-width:none}
+ button.c{font-size:13px;padding:8px 12px}
+}
+
+/* ---------- тёмная тема ---------- */
+@media (prefers-color-scheme: dark){
+  :root{
+    --sheet:#15181C; --ink:#E9ECEF; --ink-60:#939BA4; --ink-35:#6A727B;
+    --rule:#242A30; --rule-strong:#E9ECEF; --red:#FF5A4C; --sheet-2:#1A1E23;
+  }
+  html,body{background:#0D0F12}
+  .sheet{background:#0D0F12}
+  /* планировки, карта и знак — чёрно-белые, инвертируем с сохранением красного */
+  img{filter:invert(1) hue-rotate(180deg) brightness(.92)}
+  .mapwrap,.mark{background:#0D0F12}
+  button.f,button.c,button.b.gh{background:#15181C;color:var(--ink);border-color:#2C333A}
+  button.f[aria-pressed="true"],button.c[aria-pressed="true"]{background:var(--ink);color:#0D0F12;border-color:var(--ink)}
+  button.c[aria-pressed="true"].hot{background:var(--red);border-color:var(--red);color:#0D0F12}
+  button.b{background:var(--ink);color:#0D0F12;border-color:var(--ink)}
+}
+</style>
+</head>
+<body><div class="sheet">
+
+<section>
+  <div class="meta"><span><b>NOTA</b> &nbsp;·&nbsp; Бриф · сценарий жизни</span><span class="num">Версия 1</span></div>
+  <h1>Сначала жизнь, потом квартира.</h1>
+  <p class="lead" style="margin-top:24px">Мы не спрашиваем «сколько комнат и какой бюджет». Мы выясняем, из чего состоит неделя — и подбираем адрес, который эту неделю не ломает.</p>
+  <p class="hint">Отвечайте как есть. Пустые поля тоже ответ — они покажут, что ещё предстоит выяснить.</p>
+</section>
+
+<section>
+  <div class="meta"><span><b>NOTA</b> &nbsp;·&nbsp; Задача</span><span class="num">01 / 05</span></div>
+  <h2>Для кого и зачем эта квартира.</h2>
+  <div class="grp"><div class="cap">Сценарий покупки</div><div class="chips" id="q-goal"></div></div>
+  <div class="grp"><div class="cap">Что происходит с нынешним жильём</div><div class="chips" id="q-now"></div></div>
+  <div class="grp"><div class="cap">Горизонт владения</div><div class="chips" id="q-hor"></div></div>
+</section>
+
+<section>
+  <div class="meta"><span><b>NOTA</b> &nbsp;·&nbsp; Кто живёт</span><span class="num">02 / 05</span></div>
+  <h2>Состав определяет число дверей.</h2>
+  <div class="grp"><div class="cap">Взрослые</div><div class="chips" id="q-adults"></div></div>
+  <div class="grp"><div class="cap">Дети — отметьте каждого по возрасту</div><div class="chips" id="q-kids"></div></div>
+  <div class="grp"><div class="cap">Кто ещё бывает в доме</div><div class="chips" id="q-else"></div></div>
+</section>
+
+<section>
+  <div class="meta"><span><b>NOTA</b> &nbsp;·&nbsp; Точки притяжения</span><span class="num">03 / 05</span></div>
+  <h2>Куда вы ездите и как часто.</h2>
+  <p class="small" style="margin-top:16px">Ежедневное задаёт радиус, еженедельное — направление, сезонное — вектор выезда. Ошибка в ежедневном стоит двухсот часов в год, ошибка в сезонном — двух часов каждую пятницу.</p>
+  <div class="grp"><div class="cap">Каждый день</div><div class="chips" id="q-daily"></div></div>
+  <div class="grp"><div class="cap">Каждую неделю</div><div class="chips" id="q-weekly"></div></div>
+  <div class="grp"><div class="cap">Сезонно и по выходным</div><div class="chips" id="q-season"></div></div>
+</section>
+
+<section>
+  <div class="meta"><span><b>NOTA</b> &nbsp;·&nbsp; Компромиссы</span><span class="num">04 / 05</span></div>
+  <h2>Что вы скорее сделаете.</h2>
+  <p class="small" style="margin-top:16px">Здесь нет правильных ответов. Каждая пара — реальный выбор, который придётся сделать на сделке.</p>
+  <div class="ab" id="q-ab"></div>
+</section>
+
+<section>
+  <div class="meta"><span><b>NOTA</b> &nbsp;·&nbsp; Приоритеты</span><span class="num">05 / 05</span></div>
+  <h2>Три строки, ради которых можно уступить остальные.</h2>
+  <p class="small" style="margin-top:16px">Не больше трёх. Если важно всё — не важно ничего.</p>
+  <div class="grp"><div class="chips" id="q-prio"></div></div>
+  <p class="hint" id="prio-left"></p>
+</section>
+
+<section>
+  <div class="meta"><span><b>NOTA</b> &nbsp;·&nbsp; Профиль</span><span class="num">Итог</span></div>
+  <div class="out">
+    <div class="hd">
+      <p class="bigq" id="verdict">Профиль пока пустой.</p>
+    </div>
+    <div class="bd">
+      <dl id="profile"></dl>
+    </div>
+  </div>
+  <h3 style="margin-top:36px">Что осталось выяснить</h3>
+  <div class="open" id="gaps"></div>
+  <div class="act">
+    <button class="b" id="copy">Скопировать бриф</button>
+    <button class="b gh" id="reset">Очистить</button>
+  </div>
+  <div class="sign">
+    <span>Бриф · NOTA</span>
+    <span>Заполняется до показа объектов</span>
+    <span>Отмечаем немногое</span>
+  </div>
+</section>
+
+</div>
+<script>
+const D={
+ goal:[['self','Себе — первая покупка'],['upg','Себе — взамен нынешней'],['fam','Семье с детьми'],
+   ['kid','Ребёнку на будущее'],['par','Родителям'],['inv','Под сдачу или вложение']],
+ now:[['sell','Продаём, деньги в сделке'],['keep','Оставляем себе'],['rent','Оставляем и сдаём'],['none','Своего нет']],
+ hor:[['h3','До 3 лет'],['h5','5–7 лет'],['h10','10 лет и больше'],['hx','Насовсем']],
+ adults:[['a1','Один взрослый'],['a2','Двое взрослых'],['a3','Трое и больше']],
+ kids:[['k03','Ребёнок 0–3','ясли и сад'],['k46','Ребёнок 4–6','сад, подготовка'],
+   ['k710','Ребёнок 7–10','начальная школа'],['k1114','Ребёнок 11–14','средняя школа'],
+   ['k1517','Ребёнок 15–17','старшая, поступление'],['k18','Ребёнок 18+','вуз']],
+ els:[['gran','Старшее поколение'],['help','Няня или помощница'],['guest','Часто гости с ночёвкой'],['dog','Собака'],['nob','Никого больше']],
+ daily:[['work','Офис'],['school','Школа детей'],['kind','Сад'],['uni','Вуз'],
+   ['run','Утренний бег'],['gym','Зал или бассейн'],['cafe','Кофе или работа из кафе']],
+ weekly:[['par2','Родители'],['friends','Друзья в городе'],['club','Секции и кружки детей'],
+   ['music','Музыкальная или художественная школа'],['church','Приход'],['med','Врач или клиника'],
+   ['market','Свой рынок или магазин'],['thea','Театр, филармония, выставки']],
+ season:[['dacha','Дача'],['ski','Горные лыжи'],['sail','Яхт-клуб, регата'],['golf','Гольф'],
+   ['horse','Конный'],['air','Аэропорт часто'],['biz','Объекты по бизнесу'],['out','Друзья за городом']],
+ prio:[['p-school','Школа в пешей доступности'],['p-eco','Воздух и зелень'],['p-metro','Транспорт и метро'],
+   ['p-view','Вид из окна'],['p-space','Метраж общей зоны'],['p-rooms','Отдельная комната каждому'],
+   ['p-price','Перспектива цены'],['p-quiet','Тишина'],['p-center','Близость к центру'],
+   ['p-ready','Готовность въехать сразу']],
+ ab:[
+  {id:'ab1',q:'Любимый район, но хуже дом — или лучше дом в незнакомом районе',
+   a:'Остаюсь в своём районе',b:'Меняю район ради дома'},
+  {id:'ab2',q:'Перевести детей в новую школу — или возить в прежнюю',
+   a:'Перевожу в новую',b:'Вожу в прежнюю'},
+  {id:'ab3',q:'Готовый дом сейчас — или лучший проект через два года',
+   a:'Въезжаю сейчас',b:'Жду лучшего'},
+  {id:'ab4',q:'Больше метров дальше от центра — или меньше, но ближе',
+   a:'Больше метров',b:'Ближе к центру'},
+  {id:'ab5',q:'Доплатить за воздух и парк — или сэкономить и жить у магистрали',
+   a:'Доплачиваю за воздух',b:'Экономлю'},
+  {id:'ab6',q:'Своя комната каждому — или общая зона, где помещаются все',
+   a:'Комната каждому',b:'Большая гостиная'},
+  {id:'ab7',q:'Ремонт под себя — или заехать с чемоданом',
+   a:'Делаю под себя',b:'Заехать сразу'}
+ ]
+};
+const S={goal:null,now:null,hor:null,adults:null,kids:new Set(),els:new Set(),
+ daily:new Set(),weekly:new Set(),season:new Set(),prio:new Set(),ab:{}};
+
+function chips(host,items,mode,key,hot){
+ const el=document.getElementById(host); el.innerHTML='';
+ items.forEach(([id,label,sub])=>{
+  const b=document.createElement('button');
+  b.className='c'+(hot?' hot':''); b.type='button'; b.setAttribute('aria-pressed','false');
+  b.innerHTML=label+(sub?`<span class="f">${sub}</span>`:'');
+  b.onclick=()=>{
+   if(mode==='one'){
+    el.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed','false'));
+    b.setAttribute('aria-pressed','true'); S[key]=id;
+   }else{
+    const on=b.getAttribute('aria-pressed')==='true';
+    if(!on && key==='prio' && S.prio.size>=3) return;
+    b.setAttribute('aria-pressed',!on); on?S[key].delete(id):S[key].add(id);
+    if(key==='prio') syncPrio();
+   }
+   render();
+  };
+  el.appendChild(b);
+ });
+}
+function syncPrio(){
+ const left=3-S.prio.size;
+ document.getElementById('prio-left').textContent =
+  left>0?`Осталось выбрать: ${left}`:'Выбрано три. Чтобы поменять — снимите одну.';
+ document.querySelectorAll('#q-prio button').forEach(b=>{
+  b.disabled = S.prio.size>=3 && b.getAttribute('aria-pressed')!=='true';});
+}
+chips('q-goal',D.goal,'one','goal'); chips('q-now',D.now,'one','now');
+chips('q-hor',D.hor,'one','hor'); chips('q-adults',D.adults,'one','adults');
+chips('q-kids',D.kids,'many','kids'); chips('q-else',D.els,'many','els');
+chips('q-daily',D.daily,'many','daily'); chips('q-weekly',D.weekly,'many','weekly');
+chips('q-season',D.season,'many','season'); chips('q-prio',D.prio,'many','prio',true);
+
+const abHost=document.getElementById('q-ab');
+D.ab.forEach(o=>{
+ const row=document.createElement('div'); row.className='row';
+ row.innerHTML=`<div class="q">${o.q}</div><div class="opts"></div>`;
+ const opts=row.querySelector('.opts');
+ [['a',o.a],['b',o.b],['x','Пока не знаю']].forEach(([v,t])=>{
+  const b=document.createElement('button'); b.className='c'; b.type='button';
+  b.textContent=t; b.setAttribute('aria-pressed','false');
+  b.onclick=()=>{opts.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed','false'));
+   b.setAttribute('aria-pressed','true'); S.ab[o.id]=v; render();};
+  opts.appendChild(b);
+ });
+ abHost.appendChild(row);
+});
+
+const lab=(arr,id)=>{const f=arr.find(x=>x[0]===id);return f?f[1]:null};
+const labs=(arr,set)=>[...set].map(id=>lab(arr,id)).filter(Boolean);
+
+function eduLayer(){
+ const m=[];
+ if(S.kids.has('k03')||S.kids.has('k46')) m.push('детские сады');
+ if(S.kids.has('k710')) m.push('начальные школы — водят за руку');
+ if(S.kids.has('k1114')) m.push('средние школы, конкурсный набор в 7–9 классы');
+ if(S.kids.has('k1517')) m.push('старшие школы и профильные классы');
+ if(S.kids.has('k18')) m.push('вузы — МГУ, Вышка, Бауманка, МГИМО');
+ return m;
+}
+function rooms(){
+ const a=S.adults==='a1'?1:S.adults==='a2'?2:S.adults==='a3'?3:0;
+ const k=S.kids.size;
+ if(!a&&!k) return null;
+ const sleep=(a>=2?1:a)+k+(S.els.has('gran')?1:0);
+ return {sleep,note:k>=2?'двое детей — общую комнату считаем временной':null};
+}
+function render(){
+ syncPrio();
+ const P=document.getElementById('profile'); P.innerHTML='';
+ const add=(t,v,cls)=>{P.insertAdjacentHTML('beforeend',
+   `<dt>${t}</dt><dd class="${cls||''}">${v}</dd>`)};
+
+ add('Задача', lab(D.goal,S.goal)||'<span class="no">не выбрана</span>');
+ add('Горизонт', lab(D.hor,S.hor)||'<span class="no">не выбран</span>');
+
+ const r=rooms();
+ add('Спальных мест', r?`${r.sleep}${r.note?' · '+r.note:''}`:'<span class="no">состав не задан</span>');
+
+ const ed=eduLayer();
+ add('Образовательный слой', ed.length?ed.join(' · '):'<span class="no">не требуется</span>');
+
+ const pts=[...labs(D.daily,S.daily),...labs(D.weekly,S.weekly),...labs(D.season,S.season)];
+ add('Точек притяжения', pts.length?`${pts.length} — ${pts.join(', ')}`:'<span class="no">не отмечены</span>');
+
+ const pr=labs(D.prio,S.prio);
+ add('Три главных', pr.length?`<span class="em">${pr.join(' · ')}</span>`:'<span class="no">не выбраны</span>');
+
+ const hard=[],soft=[];
+ const A=S.ab;
+ if(A.ab1==='a') hard.push('район не меняем'); if(A.ab1==='b') soft.push('район открыт');
+ if(A.ab2==='b') hard.push('школу не меняем — прежняя остаётся точкой каждый день');
+ if(A.ab2==='a') soft.push('школа может смениться');
+ if(A.ab3==='a') hard.push('только готовый дом'); if(A.ab3==='b') soft.push('готовы ждать сдачи');
+ if(A.ab4==='b') hard.push('ближе к центру важнее метража');
+ if(A.ab5==='a') hard.push('воздух в приоритете над экономией');
+ if(A.ab6==='a') hard.push('изолированная комната каждому');
+ if(A.ab6==='b') soft.push('комнаты можно объединить ради гостиной');
+ if(A.ab7==='b') hard.push('заезд с чемоданом — отделка под ключ');
+ add('Жёсткое', hard.length?hard.join(' · '):'<span class="no">пока ничего</span>');
+ add('Гибкое', soft.length?soft.join(' · '):'<span class="no">пока ничего</span>');
+
+ const layers=[];
+ if(ed.length) layers.push('образование');
+ if(S.daily.has('run')||S.weekly.has('club')) layers.push('парки и спорт');
+ if(S.season.size) layers.push('выездные направления');
+ if(S.prio.has('p-eco')) layers.push('экология районов');
+ if(S.prio.has('p-metro')||S.daily.has('work')) layers.push('транспорт');
+ if(S.weekly.has('thea')||S.prio.has('p-center')) layers.push('центр и культура');
+ add('Слои карты', layers.length?layers.join(' · '):'<span class="no">не определены</span>');
+
+ // вердикт
+ const V=document.getElementById('verdict');
+ const filled=[S.goal,S.hor,S.adults].filter(Boolean).length + (S.prio.size?1:0) + (Object.keys(S.ab).length?1:0);
+ if(filled<3){V.textContent='Профиль пока пустой.'}
+ else if(hard.length>=4){V.textContent='Жёстких условий много — вариантов будет мало, зато они будут точными.'}
+ else if(S.prio.has('p-school')&&ed.length){V.textContent='Адрес выбирает школа. Всё остальное подстраивается.'}
+ else if(S.goal==='inv'){V.textContent='Решает ликвидность, а не сценарий жизни. Веса считаем иначе.'}
+ else if(S.goal==='kid'){V.textContent='Квартира должна уметь стать чужой — считаем и вуз, и перепродажу.'}
+ else if(S.goal==='par'){V.textContent='Решают поликлиника, ровный двор и лифт, а не вид и планировка.'}
+ else if(S.prio.has('p-eco')){V.textContent='Воздух в приоритете — значит север подборки уходит, запад остаётся.'}
+ else {V.textContent='Профиль складывается. Уточняем частоты и адреса точек.'}
+
+ // пробелы
+ const G=document.getElementById('gaps'); const g=[];
+ if(!S.goal) g.push('Для кого покупается квартира — без этого веса не расставить');
+ if(!S.hor) g.push('Горизонт владения: от него зависит, сколько весит вид и ликвидность');
+ if(!S.adults) g.push('Сколько взрослых — один взрослый меняет всю логику логистики');
+ if(S.kids.size&&!S.prio.has('p-school')&&!S.daily.has('school')&&!S.daily.has('kind'))
+   g.push('Дети есть, а образовательная точка не отмечена — уточнить, где учатся сейчас');
+ if(S.season.has('dacha')) g.push('Направление дачи — чтобы не ездить каждую пятницу через центр');
+ if(S.weekly.has('par2')) g.push('Адрес родителей и кто к кому ездит');
+ if(S.els.has('help')) g.push('Откуда добирается помощница — об этом не спрашивают почти никогда');
+ if(S.els.has('dog')) g.push('Где выгул: нужен парк без перехода дороги');
+ if(S.season.has('air')) g.push('Какой аэропорт — Шереметьево север, Домодедово юг, Внуково запад');
+ if(S.kids.has('k18')) g.push('Какой вуз рассматривается и должна ли квартира стать отдельной для ребёнка');
+ if(S.prio.size<3) g.push('Не выбраны три приоритета — без них сравнение объектов превращается в спор о вкусах');
+ if(Object.keys(S.ab).length<D.ab.length) g.push('Не все компромиссы пройдены — именно они отсекают половину рынка');
+ if(!g.length) g.push('Всё основное закрыто. Следующий шаг — адреса точек притяжения и расчёт часов в месяц');
+ G.innerHTML=g.map((t,i)=>`<div><i>${String(i+1).padStart(2,'0')}</i><span>${t}</span></div>`).join('');
+}
+
+document.getElementById('copy').onclick=()=>{
+ const rows=[...document.querySelectorAll('#profile dt')].map((dt,i)=>
+  dt.textContent+': '+document.querySelectorAll('#profile dd')[i].textContent);
+ const gaps=[...document.querySelectorAll('#gaps span')].map(s=>'— '+s.textContent);
+ const txt='БРИФ NOTA\n\n'+document.getElementById('verdict').textContent+'\n\n'+
+  rows.join('\n')+'\n\nОСТАЛОСЬ ВЫЯСНИТЬ\n'+gaps.join('\n');
+ navigator.clipboard.writeText(txt).then(()=>{
+  const b=document.getElementById('copy'); const t=b.textContent;
+  b.textContent='Скопировано'; setTimeout(()=>b.textContent=t,1600);
+ }).catch(()=>{});
+};
+document.getElementById('reset').onclick=()=>location.reload();
+render();
+</script>
+</body>
+</html>

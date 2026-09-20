@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8">
+<meta name="color-scheme" content="only light">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NOTA · Девять домов со школой рядом</title>
+<link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsPSLQl9C90LDQuiBOT1RBIj4KICA8dGl0bGU+Tk9UQSDigJQg0L7RgtC80LXRgtC60LA8L3RpdGxlPgogIDxnIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJidXR0Ij4KICAgIDxwYXRoIGQ9Ik0gMTQ5LjgzIDQ4LjAzIEEgNzIuMCA3Mi4wIDAgMSAxIDEyMC4wOSAzMC44NiIgc3Ryb2tlPSIjMEEwQTBBIiBzdHJva2Utd2lkdGg9IjEwLjYiLz4KICAgIDxwYXRoIGQ9Ik0gMTAwLjAgMTAwLjAgTCAxNDYuODAgMTguOTQiIHN0cm9rZT0iI0NFMjAyOSIgc3Ryb2tlLXdpZHRoPSIxMC42Ii8+CiAgPC9nPgo8L3N2Zz4=">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{color-scheme:only light;--ink:#000;--ink-60:#4A4A46;--ink-35:#8C8C87;
+ --rule:#D6D6D1;--red:#CE2029;--soft:#F4F4F1}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;background:#fff;color-scheme:only light}
+body{margin:0;background:#fff;color:var(--ink);font-family:Inter,"Helvetica Neue",Arial,sans-serif;
+ font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
+.sheet{max-width:900px;margin:0 auto;padding:48px 44px 40px}
+h1,h2,h3{font-family:"Inter Tight","Helvetica Neue",Arial,sans-serif;font-weight:700;letter-spacing:-.025em;margin:0}
+h1{font-size:clamp(32px,5.6vw,58px);line-height:1.02}
+h2{font-size:clamp(23px,3vw,32px);line-height:1.08}
+h3{font-size:21px;line-height:1.15}
+p{margin:0 0 14px;max-width:60ch}
+.lead{font-size:clamp(17px,1.7vw,20px);line-height:1.5;color:var(--ink-60);max-width:46ch}
+.small{font-size:14px;line-height:1.55;color:var(--ink-60)}
+.eyebrow{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-60);
+ display:flex;justify-content:space-between;gap:14px;margin-bottom:34px}
+.eyebrow b{font-weight:600;color:var(--ink)}
+.top{display:grid;grid-template-columns:1fr auto;gap:40px;align-items:start;
+ padding-bottom:36px;border-bottom:1.5px solid var(--ink)}
+.top img{width:86px;height:86px;display:block}
+.base{background:var(--soft);padding:22px 26px;margin-top:30px}
+.base p{margin:0;max-width:58ch}
+.base b{font-weight:600}
+
+.card{border:1px solid var(--rule);margin-top:22px;padding:30px}
+.card .head{display:flex;justify-content:space-between;align-items:baseline;gap:18px;flex-wrap:wrap}
+.card .mark{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--red);font-weight:600;white-space:nowrap}
+.card .mark i{display:inline-block;width:15px;height:2px;background:var(--red);transform:rotate(-60deg);vertical-align:3px;margin-right:9px}
+.card .price{font-family:"Inter Tight",sans-serif;font-weight:700;font-size:25px;letter-spacing:-.03em;font-variant-numeric:tabular-nums;margin-top:5px}
+.card .meta{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-35);margin-top:6px}
+.why{margin:22px 0 0;padding:0;list-style:none}
+.why li{padding:11px 0;border-top:1px solid var(--rule);font-size:15.5px;line-height:1.5}
+.why li:first-child{border-top:0;padding-top:0}
+.why b{font-weight:600}
+.cost{background:var(--soft);padding:15px 18px;margin-top:18px;font-size:15px;line-height:1.5}
+.cost b{font-weight:600}
+
+.look{border-top:1.5px solid var(--ink);margin-top:14px}
+.look > div{display:grid;grid-template-columns:230px 128px 1fr;gap:24px;padding:16px 0;
+ border-bottom:1px solid var(--rule);font-size:15.5px;align-items:baseline}
+.look b{font-weight:600}
+.look em{font-style:normal;font-variant-numeric:tabular-nums;color:var(--ink-35);font-size:14.5px;white-space:nowrap}
+.look p{margin:0;color:var(--ink-60);max-width:none}
+
+.next{border:1px solid var(--rule);margin-top:20px}
+.next > div{display:grid;grid-template-columns:38px 1fr;gap:20px;padding:20px 26px;border-top:1px solid var(--rule)}
+.next > div:first-child{border-top:0}
+.next i{font-style:normal;font-family:"Inter Tight",sans-serif;font-weight:700;font-size:19px;color:var(--ink-35)}
+.next p{margin:0}
+.sign{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;border-top:1.5px solid var(--ink);
+ padding-top:16px;margin-top:44px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-60)}
+
+@media (prefers-color-scheme: dark){
+  html,body,.sheet,.card,.next{background:#fff !important;color:#000 !important}
+  h1,h2,h3,.card .price,.why b,.look b,b{color:#000 !important}
+  p,.small,.why li,.look p,.cost,.next p{color:#4A4A46 !important}
+  .cost,.base{background:#F4F4F1 !important}
+  .eyebrow,.card .meta,.sign,.look em,.next i{color:#8C8C87 !important}
+  .card .mark{color:#CE2029 !important}
+  img{filter:none !important}
+}
+@media (max-width:760px){
+  .sheet{padding:24px 18px 30px}
+  body{font-size:16px}
+  .top{grid-template-columns:1fr;gap:22px}
+  .top img{width:64px;height:64px}
+  .card{padding:22px 18px}
+  .look > div{grid-template-columns:1fr auto;gap:5px 14px}
+  .look p{grid-column:1/-1;margin-top:3px}
+  .next > div{grid-template-columns:28px 1fr;gap:14px;padding:18px 20px}
+}
+</style></head><body><div class="sheet">
+
+<div class="eyebrow"><span><b>NOTA</b> &nbsp;·&nbsp; Дополнение к подбору</span><span>Сентябрь 2026</span></div>
+
+<div class="top">
+  <div>
+    <h1>Девять домов, где школа рядом.</h1>
+    <p class="lead" style="margin-top:20px">Симфония 34 понравилась. Мы проверили, есть ли в тех же деньгах что-то со школой сильнее — и нашли девять вариантов. Три отметили.</p>
+  </div>
+  <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsPSLQl9C90LDQuiBOT1RBIj4KICA8dGl0bGU+Tk9UQSDigJQg0L7RgtC80LXRgtC60LA8L3RpdGxlPgogIDxnIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJidXR0Ij4KICAgIDxwYXRoIGQ9Ik0gMTQ5LjgzIDQ4LjAzIEEgNzIuMCA3Mi4wIDAgMSAxIDEyMC4wOSAzMC44NiIgc3Ryb2tlPSIjMEEwQTBBIiBzdHJva2Utd2lkdGg9IjEwLjYiLz4KICAgIDxwYXRoIGQ9Ik0gMTAwLjAgMTAwLjAgTCAxNDYuODAgMTguOTQiIHN0cm9rZT0iI0NFMjAyOSIgc3Ryb2tlLXdpZHRoPSIxMC42Ii8+CiAgPC9nPgo8L3N2Zz4=" alt="Знак NOTA">
+</div>
+
+<div class="base">
+  <p>Отбор шёл по нашей базе из 288 домов бизнес-класса Москвы. Условий было четыре: <b>только квартиры, без апартаментов</b>, <b>школа первой или второй группы городского рейтинга рядом</b>, <b>бюджет до 35 млн за 65–70 метров</b> и <b>дом сдан или сдаётся в ближайшие месяцы</b>. Из 288 прошли 29, в список вошли девять.</p>
+  <p style="margin-top:12px"><b>Почему без апартаментов.</b> В них нельзя оформить постоянную регистрацию, а без неё ребёнка не запишут в школу по месту жительства — а для младшей это единственный путь. Плюс выше налог и коммунальные платежи. По этой причине из списка вышли четыре дома, включая самые дешёвые.</p>
+</div>
+
+<h2 style="margin-top:52px">Три отметки</h2>
+<p class="small" style="margin:14px 0 2px">У каждой своя причина: за школу, за цену и за воздух. Все три дома сданы. Какая причина ваша — решаете вы.</p>
+<div class="card">
+  <div class="head">
+    <div><h3>TopHILLS</h3><div class="price">от 30,4 млн за 69 м²</div><div class="meta">Ingrad · Нагорный, Электролитный проезд<br>441 200 ₽/м² · квартиры · дом сдан</div></div>
+    <div class="mark"><i></i>Отмечено за школу</div>
+  </div>
+  <ul class="why"><li><b>Лицей 1580 — школа из топ-20 Москвы</b> — в пешей доступности. Обычно такие школы требуют возить ребёнка через полгорода.</li><li><b>Подходит обоим детям сразу.</b> Младшая идёт по прописке, старший может поступать в восьмой класс по конкурсу — набор туда открыт.</li><li><b>Дом сдан.</b> Ключи сразу, дальше только ремонт.</li><li><b>На десять процентов дешевле Симфонии</b> при более сильной школе в районе.</li></ul>
+  <div class="cost"><b>Чего стоит:</b> юг, до центра дальше, чем из Савёловского. Район тише и проще по среде — кафе и лофтов, как у Дмитровской, здесь нет.</div>
+</div><div class="card">
+  <div class="head">
+    <div><h3>iLove</h3><div class="price">от 29,1 млн за 69 м²</div><div class="meta">ГК Кортрос · Останкинский, Сельскохозяйственная<br>422 000 ₽/м² · квартиры · дом сдан</div></div>
+    <div class="mark"><i></i>Отмечено за цену</div>
+  </div>
+  <ul class="why"><li><b>Самый выгодный метр среди готовых домов</b> с сильной школой — на четырнадцать процентов ниже Симфонии.</li><li><b>Школа 1518 второй группы</b> — пешком от дома.</li><li><b>Ботанический сад и ВДНХ рядом</b> — зелени в шаговой доступности больше, чем у любого другого варианта списка.</li><li><b>Дом сдан.</b></li></ul>
+  <div class="cost"><b>Чего стоит:</b> школ первой группы в районе нет — ближайшие топ-20 в пятнадцати-двадцати минутах. До центра около получаса.</div>
+</div><div class="card">
+  <div class="head">
+    <div><h3>Интонация</h3><div class="price">от 35,0 млн за 69 м²</div><div class="meta">ГК Мангазея · Щукино, Живописная<br>507 800 ₽/м² · квартиры · дом сдан</div></div>
+    <div class="mark"><i></i>Отмечено за воздух</div>
+  </div>
+  <ul class="why"><li><b>Курчатовская школа — топ-20 Москвы</b> — в самом районе, а не в двенадцати минутах на машине, как от Моментс.</li><li><b>Экология пять из десяти</b> против восьми у Савёловского. Покровское-Стрешнево рядом.</li><li><b>Щукино — обжитой район,</b> а не стройплощадка: поликлиники, магазины и секции уже работают.</li><li><b>Дом сдан.</b></li></ul>
+  <div class="cost"><b>Чего стоит:</b> самый дорогой метр из трёх отмеченных, дорога до центра около сорока минут.</div>
+</div>
+
+<h2 style="margin-top:52px">Ещё шесть — присмотреться</h2>
+<p class="small" style="margin:14px 0 4px">Хорошие дома, которым до отметки не хватило одного: либо не подтверждена готовность, либо школа не пешком, либо уступают отмеченным в своей же категории.</p>
+<div class="look"><div><b>Twelve</b><em>от 30,5 млн</em><p>TEKTA · Нагорный, дом сдан. Сосед TopHILLS: тот же лицей 1580 пешком, та же цена. Смотреть их вместе — выиграет тот, где лучше конкретный лот.</p></div><div><b>Ракурс</b><em>от 31,6 млн</em><p>DAR · Щукино. Та же Курчатовская школа, что у Интонации, но дешевле на три с половиной миллиона. Первый корпус должен был сдаться летом — уточняем фактическую готовность.</p></div><div><b>Дом на Зорге</b><em>от 32,6 млн</em><p>А101 · Сокол, дом сдан. Школы 152 и 1575 второй группы в восьми минутах, в доме есть кладовые под хранение. Минус — семьдесят метров до путей МЦК.</p></div><div><b>Скай Гарден</b><em>от 24,2 млн</em><p>ГК ФСК · Покровское-Стрешнево. Самый доступный метр в списке. Курчатовская школа в двенадцати минутах на машине, не пешком.</p></div><div><b>Квартал МОНС</b><em>от 24,6 млн</em><p>Брусника · Бутырский. Низкая цена и школа 1518 в восьми минутах, но сдача только осенью 2027 и экология района — десять из десяти, худшая оценка.</p></div><div><b>LIFE-Варшавская</b><em>от 32,6 млн</em><p>ГК Пионер · Москворечье-Сабурово. Предуниверситарий МИФИ второй группы пешком — сильный вариант для старшего. Сдача в конце 2026.</p></div></div>
+
+<h2 style="margin-top:52px">Что дальше</h2>
+<div class="next"><div><i>01</i><p>Поехать на два дома в Нагорном — TopHILLS и Twelve — и пройти пешком до лицея 1580. Это главная проверка списка: если дорога до школы действительно пешая, остальной выбор упрощается.</p></div><div><i>02</i><p>Запросить конкретные лоты 65–70 метров в трёх отмеченных домах — с этажом, планировкой и отделкой. Цены в списке это минимум по дому, реальная евротрёшка выйдет на десять-пятнадцать процентов дороже.</p></div><div><i>03</i><p>Позвонить в школы и спросить про свободные места в четвёртом классе на следующий год. Это нигде не публикуется, а решает больше, чем рейтинг.</p></div><div><i>04</i><p>Сравнить с Симфонией честно: там школа второй группы в десяти минутах пешком и готовый дом. Если после поездки Нагорный не понравится, Симфония остаётся сильным вариантом.</p></div></div>
+
+<p class="small" style="margin-top:34px">Цены указаны как минимальные по дому на сентябрь 2026 года и подлежат уточнению у застройщика. Рейтинг школ — департамент образования Москвы по итогам 2025/2026 учебного года. Наличие свободных мест в конкретной параллели нигде не публикуется и проверяется звонком.</p>
+
+<div class="sign">
+  <span>Подбор · NOTA</span>
+  <span>Сверено 18.09.2026 · редакция 2</span>
+  <span>Отмечаем немногое</span>
+</div>
+
+</div></body></html>
