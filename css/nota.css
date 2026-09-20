@@ -163,8 +163,8 @@ body.dark .ph{background:repeating-linear-gradient(135deg,#171B20 0 10px,#1B2026
 /* --- логотип: единый SVG-лок --- */
 nav .wrap{height:104px}
 .brand{margin-right:auto;display:block;line-height:0}
-.brand svg.lock{display:block;height:76px;width:284px;color:var(--ink)}
-footer svg.lock{display:block;height:60px;width:224px;color:var(--ink)}
+.brand svg.lock{display:block;height:58px;width:312px;color:var(--ink)}
+footer svg.lock{display:block;height:46px;width:248px;color:var(--ink)}
 .lock text{font-family:"Onest","Helvetica Neue",Arial,system-ui,sans-serif}
 .lock .wm{font-weight:500;font-size:52px;letter-spacing:11px;fill:currentColor}
 .lock .wm tspan{font-size:42px}
@@ -174,7 +174,7 @@ footer .wrap{align-items:center}
 .foot-links{text-align:right;line-height:1.7}
 @media(max-width:860px){
  nav .wrap{height:80px}
- .brand svg.lock{height:56px;width:209px}
+ .brand svg.lock{height:42px;width:226px}
  .foot-links{text-align:left}
 }
 
@@ -182,17 +182,17 @@ body.dark .lock path[stroke="#CE2029"]{stroke:#FF5A4C}
 
 /* --- герой во весь экран --- */
 .hero{position:relative;min-height:calc(100vh - 104px);min-height:calc(100svh - 104px);display:flex;align-items:center;padding:0;border-top:none;overflow:hidden;background:var(--surface)}
-.hero-img{position:absolute;inset:0;background:var(--paper) center/cover no-repeat;background-image:url(../img/03-novyy-dom.jpg);transform:translateZ(0)}
+.hero-img{position:absolute;inset:0;background:var(--paper) 60% 45%/cover no-repeat;background-image:url(../img/01-moskva-s-vody.jpg);transform:translateZ(0)}
 .hero-img::after{content:"";position:absolute;inset:0;background:
- linear-gradient(90deg,rgba(255,255,255,.94) 0%,rgba(255,255,255,.86) 34%,rgba(255,255,255,.45) 55%,rgba(255,255,255,.05) 78%),
- linear-gradient(180deg,rgba(255,255,255,.35) 0%,rgba(255,255,255,0) 30%,rgba(255,255,255,0) 70%,rgba(255,255,255,.7) 100%)}
+ linear-gradient(90deg,rgba(255,255,255,.72) 0%,rgba(255,255,255,.5) 40%,rgba(255,255,255,.08) 62%,rgba(255,255,255,0) 75%),
+ linear-gradient(180deg,rgba(255,255,255,0) 0%,rgba(255,255,255,0) 80%,rgba(255,255,255,.55) 100%)}
 .hero-in{position:relative;width:100%;padding-top:48px;padding-bottom:56px}
 .hero-in .lead{max-width:50ch}
 .hero .fig{font-size:clamp(60px,9vw,118px)}
 @media(max-width:900px){.hero{min-height:auto;align-items:flex-end}.hero-img::after{background:linear-gradient(180deg,rgba(255,255,255,.6) 0%,rgba(255,255,255,.35) 25%,rgba(255,255,255,.9) 52%,#fff 78%)}.hero-in{padding-top:58vw}}
 .strip-sec{padding:0 0 64px;border-top:none}
 /* --- фотополоса --- */
-.band{height:clamp(200px,28vw,360px);background:var(--paper) center 45%/cover no-repeat;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.band{height:clamp(200px,28vw,360px);background:var(--paper) center 50%/cover no-repeat;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 /* --- тёмный раздел на просвет --- */
 .darksec{position:relative;overflow:hidden;background:#101317;color:#E9ECEF;border-top:none;padding:88px 0}
 .dark-img{position:absolute;inset:0;background:center/cover no-repeat;opacity:.28}
