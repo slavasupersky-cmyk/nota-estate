@@ -58,22 +58,24 @@
  /* ---- фильтры базы ---- */
  var chipsBox=document.getElementById('chips');
  if(chipsBox){
+  var KEY={cls:'c',bin:'b',form:'f'};
   var groups={};
   document.querySelectorAll('[data-group]').forEach(function(b){(groups[b.dataset.group]=groups[b.dataset.group]||[]).push(b)});
   var rows=Array.prototype.slice.call(document.querySelectorAll('#base tr[data-c]'));
-  var state={cls:'all',bin:'all'};
+  var state={};
+  Object.keys(groups).forEach(function(g){state[g]='all'});
+  function ok(el){
+   return Object.keys(state).every(function(g){
+    return state[g]==='all' || el.dataset[KEY[g]]===state[g];
+   });
+  }
   function apply(){
    var n=0;
-   rows.forEach(function(r){
-    var on=(state.cls==='all'||r.dataset.c===state.cls)&&(state.bin==='all'||r.dataset.b===state.bin);
-    r.style.display=on?'':'none'; if(on)n++;
-   });
+   rows.forEach(function(r){var on=ok(r);r.style.display=on?'':'none';if(on)n++});
    var c=document.getElementById('cnt');
    if(c)c.textContent='Показано '+n+' из '+rows.length+' строк среза. Полная база — 288 домов.';
-   var dots=document.querySelectorAll('#mapdots [data-c]');
-   dots.forEach(function(d){
-    var on=(state.cls==='all'||d.dataset.c===state.cls)&&(state.bin==='all'||d.dataset.b===state.bin);
-    d.style.opacity=on?'1':'.12';
+   document.querySelectorAll('#mapdots [data-c]').forEach(function(d){
+    var on=ok(d); d.style.opacity=on?'1':'.10';
    });
   }
   Object.keys(groups).forEach(function(g){
