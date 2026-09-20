@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<title>Карта — NOTA</title>
+<title>Карта и база — NOTA</title>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light only">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;800&display=swap" rel="stylesheet">
@@ -13,28 +14,34 @@
 <meta property="og:title" content="NOTA — отмечаем немногое">
 <meta property="og:image" content="img/01-moskva-s-vody.jpg">
 </head>
-<body>
-<nav><div class="wrap">
- <a class="brand" href="index.html">
-  <svg class="lock" viewBox="0 16 560 104" role="img" aria-label="NOTA — NB: NOT AGENCY.">
-   <path d="M 103.64 43.63 A 46 46 0 1 1 80.35 30.18" fill="none" stroke="currentColor" stroke-width="8.4"/>
-   <path d="M 70 75 L 100.4 22.4" fill="none" stroke="#CE2029" stroke-width="8.4"/>
-   <text class="wm" x="150" y="80" textLength="172" lengthAdjust="spacing">NOT<tspan>A</tspan></text>
-   <text class="tl" x="150" y="108" textLength="172" lengthAdjust="spacing">NB: NOT AGENCY.</text>
-  </svg>
- </a>
- <div class="navlinks">
-  <a class="link" href="index.html#metod">Метод</a>
-  <a class="link" href="karta.html">Карта</a>
-  <a class="link" href="razbory.html">Разборы</a>
-  <a class="link" href="nota-index.html">Индекс</a>
-  <a class="link" href="index.html#anketa">Анкета</a>
-  <a class="link" href="index.html#kontakt">Контакт</a>
+<body class="inner">
+<header class="top solid" id="top-bar">
+ <div class="top-in">
+  <a class="brand" href="index.html" aria-label="NOTA — на главную">
+   <svg class="mark" viewBox="12 5 96 103" fill="none" aria-hidden="true">
+    <path d="M 92.18 30.00 A 44 44 0 1 1 69.90 17.13" stroke="currentColor" stroke-width="8"/>
+    <path d="M 60 60 L 89.04 9.70" stroke="#CE2029" stroke-width="8"/>
+   </svg>
+   <span class="rule"></span>
+   <span class="lk">
+    <span class="wm">NOT<i>A</i></span>
+    <span class="brandtag">NB: NOT AGENCY.</span>
+   </span>
+  </a>
+  <nav class="nav">
+   <a href="index.html#metod">Метод</a>
+   <a href="karta.html">Карта</a>
+   <a href="razbory.html">Разборы</a>
+   <a href="nota-index.html">Индекс</a>
+   <a class="hide-m" href="index.html#anketa">Анкета</a>
+   <a class="now" href="index.html#kontakt">Контакт</a>
+  </nav>
  </div>
-</div></nav>
+</header>
 
+<main>
 <section class="first"><div class="wrap">
- <p class="label">Карта</p>
+ <p class="ttl">Карта</p>
  <h1 style="font-size:clamp(28px,4.4vw,46px)">Вся Москва, которую стоит смотреть.<br>На одном экране.</h1>
  <p class="lead">Здесь все 288 домов, которые мы посмотрели: от бизнес-класса и выше, старая Москва плюс Сколково и Рублёвка. Что продаётся сейчас и что обещают на 2026–2027. Нажмите на класс или на итог — карта и таблица перестроятся вместе.</p>
 
@@ -102,7 +109,7 @@
 </div></section>
 
 <section><div class="wrap">
- <p class="label">Таблица</p>
+ <p class="ttl">Таблица</p>
  <h2>Двадцать домов для примера</h2>
  <div class="tablewrap" style="margin-top:24px"><table id="base">
   <tr><th>Дом</th><th>Застройщик</th><th>Класс</th><th>Квартир</th><th>М/м на кв.</th><th>Стадия</th><th>Что решили</th></tr>
@@ -137,7 +144,7 @@
    <div class="num">ОТДЕЛЬНЫЙ СПИСОК</div>
    <h3>Пентхаусы: все пятьдесят</h3>
    <p style="color:var(--muted)">Верхние этажи мы собрали отдельно: дом, класс, площадь, есть ли терраса, на какой стадии. Такого списка в открытом виде нет ни у кого, поэтому он живёт своей страницей.</p>
-   <div class="btns" style="margin-top:8px"><a class="btn ghost" href="#">Посмотреть список</a></div>
+   <div class="btns" style="margin-top:8px"><a class="btn btn-l" href="#">Посмотреть список</a></div>
    <div class="num" style="margin-top:34px">ЧЕСТНО О ДАННЫХ</div>
    <h3>Чего мы пока не знаем</h3>
    <p style="color:var(--muted)">Сколько квартир — известно про 164 дома из 288. Сколько машиномест — про 129. Где данных нет, мы так и пишем: «нет данных». Не додумываем.</p>
@@ -145,18 +152,23 @@
  </div>
 </div></section>
 
-<footer><div class="wrap">
- <div><svg class="lock" viewBox="0 16 560 104" role="img" aria-label="NOTA — not a choice. The choice.">
-   <path d="M 103.64 43.63 A 46 46 0 1 1 80.35 30.18" fill="none" stroke="currentColor" stroke-width="8.4"/>
-   <path d="M 70 75 L 100.4 22.4" fill="none" stroke="#CE2029" stroke-width="8.4"/>
-   <text class="wm" x="150" y="80" textLength="172" lengthAdjust="spacing">NOT<tspan>A</tspan></text>
-   <text class="tl" x="150" y="107" textLength="172" lengthAdjust="spacing" style="font-size:11px">NOT A CHOICE. THE CHOICE.</text>
-  </svg></div>
- <div class="foot-links">
-  <a href="karta.html">Карта</a> · <a href="razbory.html">Разборы</a> · <a href="nota-index.html">Индекс</a><br>
-  <span style="opacity:.8">@nota_estate · hello@nota.estate</span>
+</main>
+<footer>
+ <div class="wrap foot">
+  <a class="brand" href="index.html">
+   <svg class="mark" viewBox="12 5 96 103" fill="none" aria-hidden="true">
+    <path d="M 90.57 28.35 A 44 44 0 1 1 72.13 17.70" stroke="currentColor" stroke-width="6.3"/>
+    <path d="M 60 60 L 89.04 9.70" stroke="#CE2029" stroke-width="6.3"/>
+   </svg>
+   <span class="rule"></span>
+   <span class="lk">
+    <span class="wm">NOT<i>A</i></span>
+    <span class="brandtag">NOT A CHOICE. THE CHOICE.</span>
+   </span>
+  </a>
+  <div><a href="karta.html">Карта</a> · <a href="razbory.html">Разборы</a> · <a href="nota-index.html">Индекс</a> · <a href="https://t.me/nota_estate">Telegram</a> · <a href="#top">Наверх</a></div>
  </div>
-</div></footer>
+</footer>
 <script src="js/nota.js"></script>
 
 </body>

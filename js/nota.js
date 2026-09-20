@@ -1,4 +1,20 @@
 (function(){
+ /* ---- шапка: прозрачная над героем, плотная при скролле ---- */
+ var bar=document.getElementById('top-bar'), hero=document.querySelector('.hero');
+ if(bar&&hero){
+  var last=window.scrollY, tick=false;
+  var apply=function(){
+   var y=window.scrollY;
+   bar.classList.toggle('solid', y>40);
+   if(window.innerWidth<=860){
+    if(y>last&&y>200) bar.classList.add('away');
+    else if(y<last-4||y<90) bar.classList.remove('away');
+   } else bar.classList.remove('away');
+   last=y; tick=false;
+  };
+  apply();
+  window.addEventListener('scroll',function(){ if(!tick){tick=true;requestAnimationFrame(apply)} },{passive:true});
+ }
  /* ---- свои выпадающие списки ---- */
  var sels=Array.prototype.slice.call(document.querySelectorAll('.sel'));
  function closeAll(except){
