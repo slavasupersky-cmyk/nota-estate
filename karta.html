@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<title>Карта — NOTA</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/nota.css">
+<link rel="icon" type="image/svg+xml" href="icons/favicon.svg">
+<meta name="description" content="NOTA — новые дома Москвы от бизнес-класса и выше. 288 домов, три проверки, отметку получают немногие.">
+<meta property="og:title" content="NOTA — отмечаем немногое">
+<meta property="og:image" content="img/00-hero-interior.jpg">
+</head>
+<body>
+<nav><div class="wrap">
+ <a class="brand" href="index.html">
+  <svg class="lock" viewBox="0 0 560 150" role="img" aria-label="NOTA — NB: NOT AGENCY.">
+   <path d="M 103.64 43.63 A 46 46 0 1 1 80.35 30.18" fill="none" stroke="currentColor" stroke-width="8.4"/>
+   <path d="M 70 75 L 100.4 22.4" fill="none" stroke="#CE2029" stroke-width="8.4"/>
+   <text class="wm" x="150" y="80" textLength="172" lengthAdjust="spacing">NOT<tspan>A</tspan></text>
+   <text class="tl" x="150" y="108" textLength="172" lengthAdjust="spacing">NB: NOT AGENCY.</text>
+  </svg>
+ </a>
+ <div class="navlinks">
+  <a class="link" href="index.html#metod">Метод</a>
+  <a class="link" href="karta.html">Карта</a>
+  <a class="link" href="razbory.html">Разборы</a>
+  <a class="link" href="nota-index.html">Индекс</a>
+  <a class="link" href="index.html#anketa">Анкета</a>
+  <a class="link" href="index.html#kontakt">Контакт</a>
+ </div>
+</div></nav>
+
+<section class="first"><div class="wrap">
+ <p class="label">Карта</p>
+ <h1 style="font-size:clamp(28px,4.4vw,46px)">Вся Москва, которую стоит смотреть.<br>На одном экране.</h1>
+ <p class="lead">Здесь все 288 домов, которые мы посмотрели: от бизнес-класса и выше, старая Москва плюс Сколково и Рублёвка. Что продаётся сейчас и что обещают на 2026–2027. Нажмите на класс или на итог — карта и таблица перестроятся вместе.</p>
+
+ <div class="chips" id="chips" style="margin-top:34px">
+  <button class="chip" aria-pressed="true" data-group="cls" data-k="all">Все классы</button>
+  <button class="chip" aria-pressed="false" data-group="cls" data-k="Бизнес">Бизнес · 133</button>
+  <button class="chip" aria-pressed="false" data-group="cls" data-k="Премиум">Премиум · 68</button>
+  <button class="chip" aria-pressed="false" data-group="cls" data-k="Элит">Элит · 43</button>
+  <button class="chip" aria-pressed="false" data-group="cls" data-k="Делюкс">Делюкс · 44</button>
+ </div>
+ <div class="chips">
+  <button class="chip" aria-pressed="true" data-group="bin" data-k="all">Любой итог</button>
+  <button class="chip" aria-pressed="false" data-group="bin" data-k="mark">С отметкой · 18</button>
+  <button class="chip" aria-pressed="false" data-group="bin" data-k="look">Присмотреться</button>
+  <button class="chip" aria-pressed="false" data-group="bin" data-k="no">Без отметки</button>
+ </div>
+
+ <div class="map">
+  <svg viewBox="0 0 900 520" role="img" aria-label="Схема Москвы с домами базы">
+   <ellipse cx="470" cy="260" rx="360" ry="230" fill="none" stroke="#DFE3E7" stroke-width="1.5"/>
+   <ellipse cx="470" cy="260" rx="215" ry="140" fill="none" stroke="#DFE3E7" stroke-width="1.5"/>
+   <ellipse cx="470" cy="258" rx="105" ry="70" fill="none" stroke="#C7CDD3" stroke-width="1.5"/>
+   <path d="M120 300 C 260 250, 330 340, 430 300 C 520 265, 600 330, 720 280 C 790 252, 820 246, 860 250" fill="none" stroke="#E6EAEE" stroke-width="7" stroke-linecap="round"/>
+   <text x="470" y="46" text-anchor="middle" font-size="12" fill="#6A727B" letter-spacing="1.5">МКАД</text>
+   <text x="470" y="132" text-anchor="middle" font-size="12" fill="#6A727B" letter-spacing="1.5">ТРЕТЬЕ КОЛЬЦО</text>
+   <text x="470" y="198" text-anchor="middle" font-size="12" fill="#6A727B" letter-spacing="1.5">САДОВОЕ</text>
+   <text x="110" y="470" font-size="12" fill="#6A727B" letter-spacing="1.5">РУБЛЁВКА · СКОЛКОВО</text>
+   <g id="mapdots">
+    <circle data-c="Делюкс" data-b="mark" cx="455" cy="252" r="7" fill="#CE2029"/>
+    <circle data-c="Делюкс" data-b="no" cx="492" cy="268" r="6" fill="#101317"/>
+    <circle data-c="Делюкс" data-b="mark" cx="437" cy="279" r="6" fill="#101317" stroke="#CE2029" stroke-width="2.5"/>
+    <circle data-c="Делюкс" data-b="no" cx="513" cy="240" r="6" fill="#101317"/>
+    <circle data-c="Элит" data-b="mark" cx="470" cy="298" r="6" fill="#4A5158" stroke="#CE2029" stroke-width="2.5"/>
+    <circle data-c="Элит" data-b="no" cx="420" cy="232" r="6" fill="#4A5158"/>
+    <circle data-c="Элит" data-b="look" cx="530" cy="290" r="6" fill="#4A5158"/>
+    <circle data-c="Элит" data-b="no" cx="545" cy="224" r="6" fill="#4A5158"/>
+    <circle data-c="Премиум" data-b="mark" cx="392" cy="205" r="6" fill="#8D959D" stroke="#CE2029" stroke-width="2.5"/>
+    <circle data-c="Премиум" data-b="no" cx="600" cy="300" r="6" fill="#8D959D"/>
+    <circle data-c="Премиум" data-b="look" cx="352" cy="318" r="6" fill="#8D959D"/>
+    <circle data-c="Премиум" data-b="no" cx="620" cy="214" r="6" fill="#8D959D"/>
+    <circle data-c="Премиум" data-b="no" cx="300" cy="262" r="6" fill="#8D959D"/>
+    <circle data-c="Бизнес" data-b="mark" cx="250" cy="196" r="6" fill="#C3C9CF" stroke="#CE2029" stroke-width="2.5"/>
+    <circle data-c="Бизнес" data-b="no" cx="700" cy="348" r="6" fill="#C3C9CF"/>
+    <circle data-c="Бизнес" data-b="no" cx="738" cy="226" r="6" fill="#C3C9CF"/>
+    <circle data-c="Бизнес" data-b="look" cx="640" cy="404" r="6" fill="#C3C9CF"/>
+    <circle data-c="Бизнес" data-b="no" cx="214" cy="360" r="6" fill="#C3C9CF"/>
+    <circle data-c="Бизнес" data-b="mark" cx="330" cy="150" r="6" fill="#C3C9CF" stroke="#CE2029" stroke-width="2.5"/>
+    <circle data-c="Бизнес" data-b="no" cx="560" cy="420" r="6" fill="#C3C9CF"/>
+    <circle data-c="Бизнес" data-b="no" cx="790" cy="300" r="6" fill="#C3C9CF"/>
+    <circle data-c="Бизнес" data-b="look" cx="150" cy="420" r="6" fill="#C3C9CF"/>
+    <circle data-c="Бизнес" data-b="no" cx="196" cy="440" r="6" fill="#C3C9CF"/>
+    <circle data-c="Премиум" data-b="no" cx="255" cy="430" r="6" fill="#8D959D"/>
+   </g>
+  </svg>
+  <div class="legend">
+   <span><i style="background:#C3C9CF"></i>Бизнес</span>
+   <span><i style="background:#8D959D"></i>Премиум</span>
+   <span><i style="background:#4A5158"></i>Элит</span>
+   <span><i style="background:#101317"></i>Делюкс</span>
+   <span><i style="background:#fff;box-shadow:0 0 0 2px #CE2029 inset"></i>С отметкой</span>
+   <span><i style="background:#CE2029"></i>Красный угол месяца</span>
+  </div>
+ </div>
+ <p class="hint">Пока это схема. В рабочей версии под точками будут настоящие границы районов и точный адрес каждого дома — и всё это можно будет выгрузить.</p>
+</div></section>
+
+<section><div class="wrap">
+ <p class="label">Таблица</p>
+ <h2>Двадцать домов для примера</h2>
+ <div class="tablewrap" style="margin-top:24px"><table id="base">
+  <tr><th>Дом</th><th>Застройщик</th><th>Класс</th><th>Квартир</th><th>М/м на кв.</th><th>Стадия</th><th>Что решили</th></tr>
+  <tr data-c="Делюкс" data-b="mark"><td>Большая Никитская 16</td><td>R4S Group</td><td>Делюкс</td><td>4</td><td>2,50</td><td>строится</td><td><span class="tag mark">Красный угол</span></td></tr>
+  <tr data-c="Делюкс" data-b="mark"><td>Малая Ордынка 14</td><td>—</td><td>Делюкс</td><td>18</td><td>2,10</td><td>строится</td><td><span class="tag mark">Отметка</span></td></tr>
+  <tr data-c="Делюкс" data-b="mark"><td>Stella di Mosca</td><td>—</td><td>Делюкс</td><td>26</td><td>2,20</td><td>сдан с остатками</td><td><span class="tag mark">Отметка</span></td></tr>
+  <tr data-c="Делюкс" data-b="no"><td>Дом, о котором пока только слухи</td><td>—</td><td>Делюкс</td><td>нет данных</td><td>нет данных</td><td>анонс</td><td><span class="tag no">Без отметки</span></td></tr>
+  <tr data-c="Элит" data-b="mark"><td>Красный Октябрь</td><td>ГУТА</td><td>Элит</td><td>29</td><td>1,10</td><td>строится</td><td><span class="tag mark">Красный угол</span></td></tr>
+  <tr data-c="Элит" data-b="look"><td>Дом в Хамовниках</td><td>—</td><td>Элит</td><td>96</td><td>нет данных</td><td>строится</td><td><span class="tag look">Присмотреться</span></td></tr>
+  <tr data-c="Элит" data-b="no"><td>Дом, где машину ставить некуда</td><td>—</td><td>Элит</td><td>84</td><td>0,48</td><td>строится</td><td><span class="tag no">Без отметки</span></td></tr>
+  <tr data-c="Элит" data-b="no"><td>«Элитный» за пределами ЦАО</td><td>—</td><td>Элит</td><td>140</td><td>0,70</td><td>старт продаж</td><td><span class="tag no">Без отметки</span></td></tr>
+  <tr data-c="Премиум" data-b="mark"><td>Форум</td><td>MR Group</td><td>Премиум</td><td>46</td><td>1,67</td><td>строится</td><td><span class="tag mark">Красный угол</span></td></tr>
+  <tr data-c="Премиум" data-b="mark"><td>Дом Франка</td><td>Sminex</td><td>Премиум</td><td>112</td><td>1,58</td><td>строится</td><td><span class="tag mark">Отметка</span></td></tr>
+  <tr data-c="Премиум" data-b="mark"><td>Дом 7 Даниловский</td><td>—</td><td>Премиум</td><td>228</td><td>1,55</td><td>строится</td><td><span class="tag mark">Отметка</span></td></tr>
+  <tr data-c="Премиум" data-b="look"><td>Лайф Тайм</td><td>—</td><td>Премиум</td><td>410</td><td>нет данных</td><td>строится</td><td><span class="tag look">Присмотреться</span></td></tr>
+  <tr data-c="Премиум" data-b="no"><td>«Премиум» за Третьим кольцом</td><td>—</td><td>Премиум</td><td>640</td><td>0,48</td><td>строится</td><td><span class="tag no">Без отметки</span></td></tr>
+  <tr data-c="Бизнес" data-b="mark"><td>Scala</td><td>STENOY</td><td>Бизнес</td><td>160</td><td>0,94</td><td>строится</td><td><span class="tag mark">Красный угол</span></td></tr>
+  <tr data-c="Бизнес" data-b="mark"><td>DIUS</td><td>Sminex</td><td>Бизнес</td><td>226</td><td>0,88</td><td>строится</td><td><span class="tag mark">Отметка</span></td></tr>
+  <tr data-c="Бизнес" data-b="mark"><td>Level Стрешнево</td><td>Level Group</td><td>Бизнес</td><td>747</td><td>1,30</td><td>сдан с остатками</td><td><span class="tag mark">Отметка</span></td></tr>
+  <tr data-c="Бизнес" data-b="mark"><td>Квартал МОНС</td><td>—</td><td>Бизнес</td><td>318</td><td>0,92</td><td>строится</td><td><span class="tag mark">Отметка</span></td></tr>
+  <tr data-c="Бизнес" data-b="look"><td>Костомаровский 15</td><td>—</td><td>Бизнес</td><td>206</td><td>нет данных</td><td>строится</td><td><span class="tag look">Присмотреться</span></td></tr>
+  <tr data-c="Бизнес" data-b="no"><td>Дом на 1 400 квартир</td><td>—</td><td>Бизнес</td><td>1 412</td><td>0,31</td><td>строится</td><td><span class="tag no">Без отметки</span></td></tr>
+  <tr data-c="Бизнес" data-b="no"><td>Дом, который молчит о себе</td><td>—</td><td>Бизнес</td><td>нет данных</td><td>нет данных</td><td>анонс</td><td><span class="tag no">Без отметки</span></td></tr>
+ </table></div>
+ <p class="hint" id="cnt"></p>
+</div></section>
+
+<section><div class="wrap">
+ <div class="split">
+  <div class="ph has" data-ar="4x5"><img src="img/07-terrasa.jpg" alt="крыши центра, вид с террасы" loading="lazy"></div>
+  <div>
+   <div class="num">ОТДЕЛЬНЫЙ СПИСОК</div>
+   <h3>Пентхаусы: все пятьдесят</h3>
+   <p style="color:var(--muted)">Верхние этажи мы собрали отдельно: дом, класс, площадь, есть ли терраса, на какой стадии. Такого списка в открытом виде нет ни у кого, поэтому он живёт своей страницей.</p>
+   <div class="btns" style="margin-top:8px"><a class="btn ghost" href="#">Посмотреть список</a></div>
+   <div class="num" style="margin-top:34px">ЧЕСТНО О ДАННЫХ</div>
+   <h3>Чего мы пока не знаем</h3>
+   <p style="color:var(--muted)">Сколько квартир — известно про 164 дома из 288. Сколько машиномест — про 129. Где данных нет, мы так и пишем: «нет данных». Не додумываем.</p>
+  </div>
+ </div>
+</div></section>
+
+<footer><div class="wrap">
+ <div><svg class="lock" viewBox="0 0 560 150" role="img" aria-label="NOTA — not a choice. The choice.">
+   <path d="M 103.64 43.63 A 46 46 0 1 1 80.35 30.18" fill="none" stroke="currentColor" stroke-width="8.4"/>
+   <path d="M 70 75 L 100.4 22.4" fill="none" stroke="#CE2029" stroke-width="8.4"/>
+   <text class="wm" x="150" y="80" textLength="172" lengthAdjust="spacing">NOT<tspan>A</tspan></text>
+   <text class="tl" x="150" y="107" textLength="172" lengthAdjust="spacing" style="font-size:11px">NOT A CHOICE. THE CHOICE.</text>
+  </svg></div>
+ <div class="foot-links">
+  <a href="karta.html">Карта</a> · <a href="razbory.html">Разборы</a> · <a href="nota-index.html">Индекс</a><br>
+  <span style="opacity:.8">@nota_estate · hello@nota.estate</span>
+ </div>
+</div></footer>
+<script src="js/nota.js"></script>
+
+</body>
+</html>
