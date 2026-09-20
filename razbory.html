@@ -29,13 +29,13 @@
    </span>
   </a>
   <nav class="nav">
-   <a href="index.html#metod">Метод</a>
-   <a href="karta.html">Карта объектов</a>
-   <a href="razbory.html">Разборы</a>
-   <a class="hide-m" href="nota-index.html">Индекс</a>
-   <a href="index.html#podbor">Подбор</a>
-   <a class="now" href="tel:+74950000000">+7 495 000-00-00</a>
-  </nav>
+      <a href="index.html#podbor" data-m="podbor">Подбор</a>
+      <a href="index.html#metod" data-m="metod">Метод</a>
+      <a href="karta.html" data-m="karta">Карта объектов</a>
+      <a href="razbory.html" data-m="razbory">Разборы</a>
+      <a href="nota-index.html" data-m="index">Индекс</a>
+      <a class="now" href="tel:+74950000000">+7 495 000-00-00</a>
+     </nav>
    <button class="burger" id="burger" type="button" aria-label="Меню" aria-expanded="false"><span></span><span></span><span></span></button>
  </div>
 </header>
@@ -44,34 +44,47 @@
 <section class="first"><div class="wrap">
  <p class="ttl">Разборы</p>
  <h1 style="font-size:clamp(28px,4.4vw,46px)">Где другие ставят прилагательное,<br>мы ставим число</h1>
- <p class="lead">Каждый разбор начинается со слов «На заметку:» и заканчивается датой, когда мы всё перепроверили, и списком, откуда взяли цифры. Районы, дома, отказы — всё по одной мерке.</p>
- <div class="phwrap"><div class="ph has" data-ar="21x9"><img src="img/08-patriarshie.jpg" alt="Москва-река, набережная в тумане" loading="lazy"></div></div>
+ <p class="lead">Каждый разбор начинается со слов «На заметку:» и заканчивается датой, когда мы всё перепроверили, и списком источников. Дома и районы — по одной мерке.</p>
+ <div class="chipgrp" style="margin-top:26px"><div class="chips">
+  <a class="chip" href="#doma">Дома</a>
+  <a class="chip" href="#rayony">Районы</a>
+  <a class="chip" href="#otkazy">Без отметки</a>
+ </div></div>
 </div></section>
 
 <section><div class="wrap">
- <p class="ttl">Районы</p>
- <div class="arts">
+ <div class="two">
+  <div><p class="ttl" id="doma">Дома</p><h2 style="margin-top:20px">Разбор дома</h2></div>
+  <div><p class="lede">Что мы проверили в конкретном доме и что из этого следует для того, кто там будет жить: адрес, паркинг, число соседей, цена относительно класса.</p></div>
+ </div>
+ <div class="arts" style="margin-top:34px">
+  <a class="art" href="#"><div class="ph has" data-ar="16x9"><img src="img/10-ostozhenka.jpg" alt="Красный Октябрь" loading="lazy"></div><div class="k">Элит · сверка 17 сентября</div><h3>Красный Октябрь</h3><p>Двадцать девять квартир на Якиманке. Единственный элитный дом в городе с тремя ответами из трёх.</p></a>
+  <a class="art" href="#"><div class="ph has" data-ar="16x9"><img src="img/06-fasad.jpg" alt="Форум" loading="lazy"></div><div class="k">Премиум · сверка 12 сентября</div><h3>Форум</h3><p>Сорок шесть квартир и 1,67 машиноместа на каждую — редкий случай, когда паркинга больше нормы.</p></a>
+  <a class="art" href="#"><div class="ph has" data-ar="16x9"><img src="img/03-novyy-dom.jpg" alt="Scala" loading="lazy"></div><div class="k">Бизнес · сверка 9 сентября</div><h3>Scala</h3><p>Сто шестьдесят квартир там, где в классе обычно строят восемьсот. Что это даёт жильцу и чем за это платят.</p></a>
+ </div>
+ <div class="btns"><a class="btn btn-l" href="karta.html">Все дома на карте</a></div>
+</div></section>
+
+<section><div class="wrap">
+ <div class="two">
+  <div><p class="ttl" id="rayony">Районы</p><h2 style="margin-top:20px">Разбор района</h2></div>
+  <div><p class="lede">Из чего складывается цена метра внутри одного района, где проходят границы между «тихим центром» и всем остальным, и что это значит для вашего сценария.</p></div>
+ </div>
+ <div class="arts" style="margin-top:34px">
   <a class="art" href="razbor-hamovniki.html"><div class="ph has" data-ar="16x9"><img src="img/04-naberezhnaya.jpg" alt="Хамовники" loading="lazy"></div><div class="k">Готово · 38 источников</div><h3>Хамовники</h3><p>Семь разных Хамовников внутри одного района — и почему цена метра здесь расходится в одиннадцать раз.</p></a>
-  <a class="art" href="#"><div class="ph has" data-ar="16x9"><img src="img/09-zamoskvorechye.jpg" alt="Замоскворечье" loading="lazy"></div><div class="k">Пишем</div><h3>Замоскворечье и Якиманка</h3><p>Где заканчивается «тихий центр» и что происходит с ценой, когда переходишь Садовое.</p></a>
-  <a class="art" href="#"><div class="ph has" data-ar="16x9"><img src="img/10-ostozhenka.jpg" alt="Остоженка" loading="lazy"></div><div class="k">Пишем</div><h3>Остоженка и Арбат</h3><p>Почему самая известная улица центра росла хуже всех соседей — и что это значит, если вы собираетесь там покупать.</p></a>
+  <a class="art" href="#"><div class="ph has" data-ar="16x9"><img src="img/09-zamoskvorechye.jpg" alt="Замоскворечье" loading="lazy"></div><div class="k">В работе</div><h3>Замоскворечье и Якиманка</h3><p>Где заканчивается тихий центр и что происходит с ценой при переходе Садового.</p></a>
+  <a class="art" href="#"><div class="ph has" data-ar="16x9"><img src="img/12-sadovye-kvartaly.jpg" alt="Остоженка" loading="lazy"></div><div class="k">В работе</div><h3>Остоженка и Арбат</h3><p>Почему самая известная улица центра росла медленнее соседей — и что это значит, если вы покупаете здесь.</p></a>
  </div>
+ <div class="btns"><a class="btn btn-l" href="karta.html">Все районы на карте</a></div>
 </div></section>
 
-<section><div class="wrap">
- <p class="ttl">Дома</p>
- <div class="arts">
-  <a class="art" href="#"><div class="k">Разбор дома</div><h3>Красный Октябрь</h3><p>Двадцать девять квартир на Якиманке. Единственный элитный дом в городе, который ответил «да» на все три наших вопроса.</p></a>
-  <a class="art" href="#"><div class="k">Разбор дома</div><h3>Форум</h3><p>Сорок шесть квартир и по 1,67 машиноместа на каждую. Редкий случай, когда паркинга больше нормы.</p></a>
-  <a class="art" href="#"><div class="k">Разбор дома</div><h3>Scala</h3><p>Сто шестьдесят квартир там, где обычно строят восемьсот. Что это даёт жильцу — и чем за это платят.</p></a>
+<section class="method"><div class="wrap">
+ <div class="two">
+  <div><p class="ttl" id="otkazy">Без отметки</p><h2 style="margin-top:20px">Разборы, которые<br>заканчиваются отказом</h2></div>
+  <div><p class="lede">Их мы публикуем наравне с остальными: три причины и цифра по каждой. Отказ бережёт вам недели просмотров — поэтому он такая же часть работы, как отметка.</p></div>
  </div>
-</div></section>
-
-<section><div class="wrap">
- <p class="ttl">Без отметки</p>
- <h2>Разборы, которые заканчиваются словом «нет»</h2>
- <p class="lead">Их мы тоже публикуем: три причины и по цифре на каждую. На рынке такой рубрики нет ни у кого — и понятно почему.</p>
  <div class="grid g3" style="margin-top:28px">
-  <div class="rl"><h3>«Премиум» за Третьим кольцом</h3><p style="margin:0;color:var(--muted)">Адрес не тот. Из 68 премиальных домов внутри кольца стоят восемнадцать.</p></div>
+  <div class="rl"><h3>«Премиум» за Третьим кольцом</h3><p style="margin:0;color:var(--muted)">Адрес не соответствует заявленному классу: из 68 премиальных домов внутри кольца стоят восемнадцать.</p></div>
   <div class="rl"><h3>Одна машина на три квартиры</h3><p style="margin:0;color:var(--muted)">1 412 квартир и 0,31 машиноместа на каждую. Двор станет стоянкой — это не прогноз, это арифметика.</p></div>
   <div class="rl"><h3>Цена от соседнего класса</h3><p style="margin:0;color:var(--muted)">Тринадцать домов просят как за класс выше. Разбираем, за что именно и есть ли за что.</p></div>
  </div>
@@ -80,14 +93,13 @@
 <section><div class="wrap">
  <div class="grid g2">
   <div><div class="num">КАЖДУЮ НЕДЕЛЮ</div><h3>«На заметку:» — наш канал</h3>
-   <p style="color:var(--muted)">Разбор дома, красный угол месяца, отказы и цифры, которых нет в рекламе. Без «успейте» и «последних лотов».</p>
+   <p style="color:var(--muted)">Разбор дома, дом месяца, отказы и цифры, которых нет в рекламе. Без «успейте» и «последних лотов».</p>
    <div class="btns" style="margin-top:8px"><a class="btn" href="#">Читать в Telegram</a></div></div>
   <div><div class="num">КАЖДЫЙ МЕСЯЦ</div><h3>Индекс</h3>
-   <p style="color:var(--muted)">Что не сходится в классах: у кого класс спорный, у кого цена от другого класса и где машину поставить некуда.</p>
+   <p style="color:var(--muted)">Что не сходится в классах: у кого класс спорный, у кого цена от другого класса и где машиномест не хватает.</p>
    <div class="btns" style="margin-top:8px"><a class="btn btn-l" href="nota-index.html">Открыть выпуск</a></div></div>
  </div>
 </div></section>
-
 </main>
 <footer>
  <div class="wrap foot">

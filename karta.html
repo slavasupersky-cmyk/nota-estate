@@ -29,13 +29,13 @@
    </span>
   </a>
   <nav class="nav">
-   <a href="index.html#metod">Метод</a>
-   <a href="karta.html">Карта объектов</a>
-   <a href="razbory.html">Разборы</a>
-   <a class="hide-m" href="nota-index.html">Индекс</a>
-   <a href="index.html#podbor">Подбор</a>
-   <a class="now" href="tel:+74950000000">+7 495 000-00-00</a>
-  </nav>
+      <a href="index.html#podbor" data-m="podbor">Подбор</a>
+      <a href="index.html#metod" data-m="metod">Метод</a>
+      <a href="karta.html" data-m="karta">Карта объектов</a>
+      <a href="razbory.html" data-m="razbory">Разборы</a>
+      <a href="nota-index.html" data-m="index">Индекс</a>
+      <a class="now" href="tel:+74950000000">+7 495 000-00-00</a>
+     </nav>
    <button class="burger" id="burger" type="button" aria-label="Меню" aria-expanded="false"><span></span><span></span><span></span></button>
  </div>
 </header>
@@ -46,24 +46,25 @@
  <h1 style="font-size:clamp(28px,4.4vw,46px)">Вся Москва, которую стоит смотреть.<br>На одном экране.</h1>
  <p class="lead">Здесь все 288 домов, которые мы посмотрели: от бизнес-класса и выше, старая Москва плюс Сколково и Рублёвка. Что продаётся сейчас и что обещают на 2026–2027. Нажмите на класс или на итог — карта и таблица перестроятся вместе.</p>
 
- <div class="chips" id="chips" style="margin-top:34px">
+ <div class="chipgrp" id="chips" style="margin-top:34px"><span class="lb">Класс дома</span><div class="chips">
   <button class="chip" aria-pressed="true" data-group="cls" data-k="all">Все классы</button>
   <button class="chip" aria-pressed="false" data-group="cls" data-k="Бизнес">Бизнес · 133</button>
   <button class="chip" aria-pressed="false" data-group="cls" data-k="Премиум">Премиум · 68</button>
   <button class="chip" aria-pressed="false" data-group="cls" data-k="Элит">Элит · 43</button>
   <button class="chip" aria-pressed="false" data-group="cls" data-k="Делюкс">Делюкс · 44</button>
- </div>
- <div class="chips">
+ </div></div>
+ <div class="chipgrp"><span class="lb">Наш итог по методу</span><div class="chips">
   <button class="chip" aria-pressed="true" data-group="bin" data-k="all">Любой итог</button>
   <button class="chip" aria-pressed="false" data-group="bin" data-k="mark">С отметкой · 18</button>
   <button class="chip" aria-pressed="false" data-group="bin" data-k="look">Присмотреться</button>
   <button class="chip" aria-pressed="false" data-group="bin" data-k="no">Без отметки</button>
- </div>
- <div class="chips">
+ </div></div>
+ <div class="chipgrp"><span class="lb">Формат дома</span><div class="chips">
   <button class="chip" aria-pressed="true" data-group="form" data-k="all">Любой формат</button>
   <button class="chip" aria-pressed="false" data-group="form" data-k="pent">Пентхаусы · 21</button>
   <button class="chip" aria-pressed="false" data-group="form" data-k="club">Клубные дома · 34</button>
- </div>
+ </div></div>
+ <p class="hint" style="margin-top:18px">Фильтры действуют сразу на карту и на таблицу ниже — <a href="#base-h">перейти к списку</a>.</p>
 
  <div class="map">
   <svg viewBox="0 0 900 560" role="img" aria-label="Карта Москвы: дома базы NOTA">
@@ -286,8 +287,9 @@
 </div></section>
 
 <section><div class="wrap">
- <p class="ttl">Таблица</p>
+ <p class="ttl" id="base-h">Список домов</p>
  <h2>Двадцать домов для примера</h2>
+ <p class="hint" id="cnt" style="margin-top:14px"></p>
  <div class="tablewrap" style="margin-top:24px"><table id="base">
   <tr><th>Дом</th><th>Застройщик</th><th>Класс</th><th>Квартир</th><th>М/м на кв.</th><th>Стадия</th><th>Что решили</th></tr>
   <tr data-f="club" data-c="Делюкс" data-b="mark"><td>Большая Никитская 16</td><td>R4S Group</td><td>Делюкс</td><td>4</td><td>2,50</td><td>строится</td><td><span class="tag mark">Отметка</span></td></tr>
@@ -311,7 +313,6 @@
   <tr data-c="Бизнес" data-b="no"><td>Дом на 1 400 квартир</td><td>—</td><td>Бизнес</td><td>1 412</td><td>0,31</td><td>строится</td><td><span class="tag no">Без отметки</span></td></tr>
   <tr data-c="Бизнес" data-b="no"><td>Дом, который молчит о себе</td><td>—</td><td>Бизнес</td><td>нет данных</td><td>нет данных</td><td>анонс</td><td><span class="tag no">Без отметки</span></td></tr>
  </table></div>
- <p class="hint" id="cnt"></p>
 </div></section>
 
 <section><div class="wrap">
@@ -322,9 +323,6 @@
    <h3>Пентхаусы: все пятьдесят</h3>
    <p style="color:var(--muted)">Верхние этажи мы собрали отдельно: дом, класс, площадь, есть ли терраса, на какой стадии. Такого списка в открытом виде нет ни у кого, поэтому он живёт своей страницей.</p>
    <div class="btns" style="margin-top:8px"><a class="btn btn-l" href="#">Посмотреть список</a></div>
-   <div class="num" style="margin-top:34px">ЧЕСТНО О ДАННЫХ</div>
-   <h3>Чего мы пока не знаем</h3>
-   <p style="color:var(--muted)">Сколько квартир — известно про 164 дома из 288. Сколько машиномест — про 129. Где данных нет, мы так и пишем: «нет данных». Не додумываем.</p>
   </div>
  </div>
 </div></section>

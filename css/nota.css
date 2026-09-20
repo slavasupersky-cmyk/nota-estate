@@ -37,7 +37,7 @@ body.dark .top.solid{background:rgba(13,15,18,.93)}
 .brand .lk{display:flex;flex-direction:column;gap:5px}
 .brand .wm{font-weight:600;font-size:32px;line-height:1;letter-spacing:.2em;color:var(--ink);transition:font-size .3s}
 .brand .wm i{font-style:normal;font-size:.52em;letter-spacing:.1em;vertical-align:baseline}
-.brand .brandtag{font-weight:600;font-size:9.5px;line-height:1;letter-spacing:.24em;color:var(--muted);white-space:nowrap}
+.brand .brandtag{font-weight:600;font-size:9.5px;line-height:1;letter-spacing:.1em;color:var(--muted);white-space:nowrap}
 .top.solid .brand .mark{width:44px;height:44px}
 .top.solid .brand .rule{height:32px}
 .top.solid .brand .wm{font-size:26px}
@@ -45,6 +45,7 @@ body.dark .top.solid{background:rgba(13,15,18,.93)}
 .nav a{text-decoration:none;transition:color .2s}
 .nav a:hover{color:var(--red)}
 .nav .now{color:var(--ink);font-weight:500}
+.nav a.cur{color:var(--ink);font-weight:500;box-shadow:inset 0 -2px 0 var(--red)}
 @media(max-width:1000px){.nav{gap:18px;font-size:13.5px}.brand .brandtag{display:none}.brand .wm{font-size:24px}.brand .mark{width:42px;height:42px}.brand .rule{height:28px}}
 @media(max-width:720px){.nav .hide-m{display:none}}
 /* buttons */
@@ -317,10 +318,10 @@ h1+.lead,h1+.lede,h2+.lead,h2+.lede{margin-top:26px}
 /* ================= мобильная сборка ================= */
 .burger{display:none;position:relative;width:40px;height:34px;border:0;background:none;padding:0;cursor:pointer}
 .burger span{position:absolute;left:8px;right:8px;height:2px;background:var(--ink);transition:transform .26s,opacity .2s}
-.burger span:nth-child(1){top:11px}.burger span:nth-child(2){top:17px}.burger span:nth-child(3){top:23px}
-.burger.on span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.burger span:nth-child(1){top:7px}.burger span:nth-child(2){top:16px}.burger span:nth-child(3){top:25px}
+.burger.on span:nth-child(1){transform:translateY(9px) rotate(45deg)}
 .burger.on span:nth-child(2){opacity:0}
-.burger.on span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+.burger.on span:nth-child(3){transform:translateY(-9px) rotate(-45deg)}
 @media(max-width:860px){
  .burger{display:block}
  .nav{position:fixed;inset:0;z-index:90;background:var(--paper);flex-direction:column;align-items:flex-start;justify-content:center;
@@ -345,7 +346,8 @@ h1+.lead,h1+.lede,h2+.lead,h2+.lede{margin-top:26px}
  .hero-txt{flex:0 0 auto}
  .hero-foot .btn{width:100%;justify-content:center;text-align:center;padding:15px 20px}
  /* дробь: та же пляска, что на десктопе, только мельче */
- .ratio{max-width:300px}
+ .ratio{max-width:250px}
+ .ratio-wrap{max-width:none}
  .ratio b{font-size:40px}
  .ratio .rn.r{margin-top:16px}
  .ratio-cap{display:none}
@@ -354,9 +356,6 @@ h1+.lead,h1+.lede,h2+.lead,h2+.lede{margin-top:26px}
  .fl{flex-direction:row;flex-wrap:wrap;align-items:baseline;gap:0 12px;padding:18px 22px 20px}
  .fl i{order:1;font-size:17px;font-weight:800;letter-spacing:-.02em}
  .fl h3{order:2}.fl p{order:3;flex:1 1 100%;margin-top:4px}
- /* картинки спокойные, цвет — по касанию */
- .ph img,.bandimg,.art .ph img{filter:grayscale(1) contrast(.98);transition:filter .35s}
- .ph:active img,.art:active .ph img,.bandlink:active .bandimg{filter:none}
  /* футер: без дублей */
  .foot-r{display:none}
  .seg-m{display:block}
@@ -381,6 +380,21 @@ h1+.lead,h1+.lede,h2+.lead,h2+.lede{margin-top:26px}
  border-top:1px solid var(--line);font-size:12.5px;color:var(--muted)}
 .foot-legal a{color:var(--muted);text-decoration:underline;text-underline-offset:3px}
 .foot-legal a:hover{color:var(--ink)}
+
+a.chip{text-decoration:none}
+
+/* картинки: серые до внимания */
+.ph img,.bandimg{filter:grayscale(1) contrast(.98);transition:filter .4s}
+.ph:hover img,.art:hover .ph img,.bandlink:hover .bandimg,.ph:active img,.art:active .ph img,.bandlink:active .bandimg{filter:none}
+
+/* крупная цифра и подпись — по верху */
+.big{align-items:flex-start}
+.figcap{padding-bottom:0;padding-top:clamp(6px,1vw,12px)}
+
+/* группы фильтров */
+.chipgrp{margin-top:22px}
+.chipgrp>.lb{display:block;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.chipgrp .chips{margin-top:0}
 
 /* документы */
 .doc{max-width:74ch}

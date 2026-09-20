@@ -89,7 +89,15 @@
   apply();
  }
 
-/* ---- бургер ---- */
+/* ---- активный пункт меню ---- */
+ (function(){
+  var f=(location.pathname.split('/').pop()||'index.html');
+  var map={'karta.html':'karta','razbory.html':'razbory','razbor-hamovniki.html':'razbory','nota-index.html':'index'};
+  var k=map[f]; if(!k)return;
+  document.querySelectorAll('.nav a[data-m="'+k+'"]').forEach(function(a){a.classList.add('cur')});
+ })();
+
+ /* ---- бургер ---- */
  var bg=document.getElementById('burger'), nv=document.querySelector('.nav');
  if(bg&&nv){
   var setm=function(on){
