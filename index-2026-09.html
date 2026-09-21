@@ -248,6 +248,27 @@ footer.site a:hover{color:var(--ink)}
 .foot-legal{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 26px;padding-top:20px;margin-top:26px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted)}
 .foot-legal a{color:var(--muted);text-decoration:underline;text-underline-offset:3px}
 
+
+/* журнальный формат (как в выпуске 01) */
+.jr-cover{position:relative;min-height:88vh;min-height:88svh;display:flex;align-items:flex-end;overflow:hidden;background:#0D0F12;color:#fff}
+.jr-cover-img{position:absolute;inset:0;background-size:cover;background-position:center;filter:grayscale(1) contrast(1.05) brightness(.6)}
+.jr-cover:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,15,18,.35) 0%,rgba(13,15,18,0) 35%,rgba(13,15,18,.92) 100%)}
+.jr-cover-in{position:relative;z-index:1;padding-top:140px;padding-bottom:clamp(40px,6vw,80px);width:100%}
+.jr-cover .ix-back{color:rgba(255,255,255,.66);margin-bottom:22px}
+.jr-cover h1{font-size:clamp(40px,7.4vw,104px);line-height:.96;letter-spacing:-.045em;max-width:13ch;margin:18px 0 0;color:#fff}
+.jr-dek{color:rgba(255,255,255,.84);margin-top:24px;max-width:54ch;font-size:clamp(16px,1.5vw,19px);line-height:1.55}
+.jr-issue{display:flex;flex-wrap:wrap;gap:8px 22px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.72);font-weight:600;margin:0}
+.jr-issue b{color:var(--red);font-weight:600}
+.jr-ed{display:grid;grid-template-columns:minmax(0,.36fr) minmax(0,.64fr);gap:clamp(26px,5vw,84px);padding-block:clamp(56px,7vw,110px) 20px}
+@media(max-width:900px){.jr-ed{grid-template-columns:1fr}}
+.jr-ed-t{font-size:clamp(18px,1.8vw,22px);line-height:1.6;letter-spacing:-.012em}
+.jr-ed-t p{margin:0}.jr-ed-t p+p{margin-top:1.05em}
+.jr-ed-t p:first-child:first-letter{float:left;font-size:4.1em;line-height:.8;font-weight:800;margin:.06em .1em 0 0;color:var(--red)}
+.jr-sign{margin-top:30px;display:flex;align-items:center;gap:14px;font-size:14.5px;color:var(--muted)}
+.jr-sign:before{content:"";width:34px;height:2px;background:var(--red);transform:rotate(-60deg)}
+.jr-sign b{color:var(--ink);font-weight:600}
+.jr-quote{font-size:clamp(28px,4.2vw,56px);line-height:1.08;letter-spacing:-.035em;font-weight:600;max-width:20ch;margin:clamp(40px,6vw,90px) auto;text-align:center}
+.jr-quote:before{content:"";display:block;width:46px;height:3px;background:var(--red);transform:rotate(-60deg);margin:0 auto 34px}
 </style>
 </head>
 <body>
@@ -265,11 +286,11 @@ footer.site a:hover{color:var(--ink)}
    </span>
   </a>
   <nav class="nav">
-      <a href="index.html#podbor" data-m="podbor">Подбор</a>
+      <a href="podbor.html" data-m="podbor">Подбор</a>
       <a href="index.html#metod" data-m="metod">Метод</a>
       <a href="karta.html" data-m="karta">Карта объектов</a>
       <a href="razbory.html" data-m="razbory">Разборы</a>
-      <a href="nota-index.html" data-m="index">Индекс</a>
+      <a href="nota-index.html" data-m="index" class="cur">Индекс</a>
       <a class="now" href="tel:+74950000000">+7 495 000-00-00</a>
      </nav>
    <button class="burger" id="burger" type="button" aria-label="Меню" aria-expanded="false"><span></span><span></span><span></span></button>
@@ -277,22 +298,31 @@ footer.site a:hover{color:var(--ink)}
 </header>
 
 
+<section class="jr-cover">
+ <div class="jr-cover-img" style="background-image:url(img/ix-2026-09-shkola.jpg)" role="img" aria-label="Кампус современной московской школы"></div>
+ <div class="wrap jr-cover-in">
+  <p class="ix-back"><a href="nota-index.html">← Все выпуски индекса</a> · <a href="index-2026-08.html">Предыдущий: классы и паркинг</a></p>
+  <p class="jr-issue"><b>NOTA Index</b><span>Выпуск 02</span><span>Сентябрь 2026</span><span>287 школ</span></p>
+  <h1>Школы Москвы под&nbsp;отметку</h1>
+  <p class="jr-dek">Девяносто пять школ, которые стоит знать, когда выбираешь, где жить: что это за школа на самом деле, в каком она здании и какие новые дома стоят с ней в одном районе.</p>
+ </div>
+</section>
+
 <div class="wrap">
-  <div class="hero">
-    <p class="ix-back"><a href="nota-index.html">← Все выпуски индекса</a> · <a href="index-2026-08.html">Предыдущий: классы и паркинг</a></p>
-    <div class="eyebrow">Индекс · выпуск 02 · сентябрь 2026</div>
-    <h1>Школы Москвы под отметку</h1>
-    <p class="dek">Девяносто пять школ, которые стоит знать, когда выбираешь, где жить. Что за школа на самом деле, кто строил здание и какие ЖК стоят в том же районе.</p>
+ <div class="jr-ed">
+  <div><div class="eyebrow">От редактора</div></div>
+  <div>
+   <div class="jr-ed-t">
+    <p>Школа привязывает семью к адресу на одиннадцать лет. Поэтому для многих родителей выбор квартиры на самом деле начинается с выбора школы — просто об этом редко говорят вслух.</p>
+    <p>Мы прошли 287 московских школ по официальным рейтингам и оставили <span class="rednum">95</span>: сорок шесть с отметкой и сорок девять — на заметку. Дальше они разложены по округам: открываете свой — и видите, что в нём есть.</p>
+    <p>Самым неожиданным оказались не рейтинги, а география. В ЦАО пятнадцать школ из отобранных, в ЗАО — тринадцать, а на Зеленоград приходится две и на Троицкий округ одна. Четыре школы стоят в Хамовниках, три — в Гагаринском районе. Если нужна школа из первой полусотни, выбор жилья сжимается примерно до пятнадцати районов. Это стоит знать до того, как выбран дом.</p>
+    <p>Про каждую школу с отметкой мы написали по-человечески: как устроен день, что там кроме уроков, как туда поступают и к чему готовиться — включая отсев, шестидневку или конкурс тридцать человек на место. Отдельно — здания: четырнадцать школ стоят в архитектуре, о которой пишут профильные издания, от конструктивизма Мотылёва на Усачёва до кампуса «Летово» на двадцать гектаров. А под каждой школой — новые дома из нашей базы в том же районе. Сначала школа, потом дом рядом с ней, а не наоборот.</p>
+   </div>
+   <p class="jr-sign"><span><b>Елена</b>, редактор индекса NOTA</span></p>
   </div>
-
-  <div class="lead">
-    <p><b>На заметку:</b> школа привязывает семью к адресу на одиннадцать лет — дольше, чем ипотека держит на объекте. Мы прошли 287 московских школ по официальным рейтингам и оставили <span class="rednum">95</span>: сорок шесть с отметкой и сорок девять — на заметку. Дальше они разложены по округам: открываете свой — видите, что там есть.</p>
-    <p>Самое неприятное открытие — не рейтинги, а география. В ЦАО пятнадцать школ из отобранных, в ЗАО тринадцать, а на Зеленоград приходится две и на Троицкий округ одна. Четыре школы стоят в Хамовниках, три — в Гагаринском районе. Если родителям нужна школа из первой полусотни, выбор жилья сжимается примерно до пятнадцати районов — и это надо знать до того, как выбран дом, а не после.</p>
-    <p>Про каждую школу с отметкой написано человеческим языком: как устроен день, что там кроме уроков, как туда попадают и чего ждать — включая неудобное, вроде отсева, шестидневки или конкурса в тридцать человек на место. Отдельная колонка — здание: четырнадцать школ живут в архитектуре, о которой пишут профильные издания, от конструктивизма Мотылёва на Усачёва до кампуса «Летово» на двадцать гектаров.</p>
-    <p>И под каждой школой — жилые комплексы из нашей базы, стоящие в том же районе. Это связка, ради которой всё и собиралось: сначала выбирается школа, потом дом в шаговой доступности от неё, а не наоборот. Привязка пока по району, а не по радиусу в метрах — координаты школ мы доставим следующим шагом.</p>
-  </div>
+ </div>
+ <p class="jr-quote">Сначала выбирается школа, потом дом рядом с ней, а&nbsp;не&nbsp;наоборот</p>
 </div>
-
 <div class="wrap">
   <div class="line-strip">
     <div><div class="n">287</div><div class="l">школ прошли через фильтр</div></div>
@@ -445,7 +475,8 @@ footer.site a:hover{color:var(--ink)}
    </span>
   </a>
   <div class="foot-r">
-   <div><a href="tel:+74950000000">+7 495 000-00-00</a> · <a href="https://t.me/nota_estate">@nota_estate</a></div>
+   <div><a href="tel:+74950000000">+7 495 000-00-00</a> · <a href="https://t.me/nota_estate">@nota_estate</a> · <a href="mailto:hello@nota.estate">hello@nota.estate</a></div>
+   <div class="foot-nav"><a href="podbor.html">Подбор</a> · <a href="karta.html">Карта объектов</a> · <a href="doma/">Дома</a> · <a href="razbory.html">Разборы</a> · <a href="nota-index.html">Индекс</a></div>
   </div>
  </div>
  <div class="wrap foot-legal">

@@ -1,0 +1,12 @@
+{
+ "_comment": "Контакты и реквизиты — одно место на весь сайт. После правки: python3 tools/build.py",
+ "phone": "+7 495 000-00-00",
+ "phone_href": "+74950000000",
+ "tg": "nota_estate",
+ "ig": "nota.estate",
+ "email": "hello@nota.estate",
+ "office": "Москва, Николоямская, 40с1 — между Таганской и Курской",
+ "ip_name": "—",
+ "inn": "—",
+ "ogrnip": "—"
+}

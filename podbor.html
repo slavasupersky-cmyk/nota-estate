@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<title>Подбор квартиры в новом доме — NOTA</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light only">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/nota.css">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<meta name="description" content="Подбор квартиры в новых домах Москвы от бизнес-класса и выше: анкета из семи критериев, пять домов под ваши веса и отдельный список тех, что не подошли, — с причиной.">
+<meta property="og:title" content="Подбор — NOTA">
+<meta property="og:image" content="img/01-moskva-s-vody.jpg">
+</head>
+<body class="inner">
+<header class="top solid" id="top-bar">
+ <div class="top-in">
+  <a class="brand" href="index.html" aria-label="NOTA — на главную">
+   <svg class="mark" viewBox="12 5 96 103" fill="none" aria-hidden="true">
+    <path d="M 92.18 30.00 A 44 44 0 1 1 69.90 17.13" stroke="currentColor" stroke-width="8"/>
+    <path d="M 60 60 L 89.04 9.70" stroke="#CE2029" stroke-width="8"/>
+   </svg>
+   <span class="rule"></span>
+   <span class="lk">
+    <span class="wm">NOT<i>A</i></span>
+    <span class="brandtag">NB: NOT A CHOICE. THE CHOICE.</span>
+   </span>
+  </a>
+  <nav class="nav">
+      <a href="podbor.html" data-m="podbor" class="cur">Подбор</a>
+      <a href="index.html#metod" data-m="metod">Метод</a>
+      <a href="karta.html" data-m="karta">Карта объектов</a>
+      <a href="razbory.html" data-m="razbory">Разборы</a>
+      <a href="nota-index.html" data-m="index">Индекс</a>
+      <a class="now" href="tel:+74950000000">+7 495 000-00-00</a>
+     </nav>
+   <button class="burger" id="burger" type="button" aria-label="Меню" aria-expanded="false"><span></span><span></span><span></span></button>
+ </div>
+</header>
+
+<main>
+<section class="first tight-b"><div class="wrap">
+ <p class="ttl">Подбор</p>
+ <h1 style="font-size:clamp(28px,4.4vw,46px)">Расскажите,<br>как вы хотите жить</h1>
+ <p class="lead">Подбор начинается не с показов, а с разговора: кто будет жить в квартире, зачем она, на какой срок и что важнее — вид или тишина. Анкета ниже — короткая версия этого разговора. Точные ответы не нужны: расставьте веса так, как чувствуете.</p>
+</div></section>
+
+<section id="anketa" style="padding-top:0">
+ <div class="wrap">
+  <div class="ank">
+   <div class="ank-l">
+    <p class="ttl" style="margin-bottom:16px">Что для вас весит больше</p>
+    <div id="sliders"></div>
+   </div>
+   <div class="ank-r">
+    <p class="ttl" style="margin-bottom:2px">Про задачу</p>
+    <div class="sel" data-name="scen"><button type="button" class="sel-btn">Это будет основной дом</button>
+     <ul class="sel-list"><li>Это будет основной дом</li><li>Вторая квартира, для города</li><li>Детям, на вырост</li><li>Родителям, поближе</li><li>Сдавать</li><li>Ещё не решили</li></ul></div>
+    <div class="sel" data-name="budget"><button type="button" class="sel-btn">Бюджет до 30 млн</button>
+     <ul class="sel-list"><li>Бюджет до 30 млн</li><li>30–60 млн</li><li>60–100 млн</li><li>100–150 млн</li><li>От 150 млн</li><li>Пока не считали</li></ul></div>
+    <div class="sel" data-name="gor"><button type="button" class="sel-btn">Владеть три года</button>
+     <ul class="sel-list"><li>Владеть три года</li><li>Лет пять-семь</li><li>Надолго, может, навсегда</li><li>Как получится</li></ul></div>
+    <div class="sel" data-name="srok"><button type="button" class="sel-btn">Хочу въехать сразу</button>
+     <ul class="sel-list"><li>Хочу въехать сразу</li><li>Готов подождать до двух лет</li><li>Не тороплюсь</li><li>Зависит от объекта</li></ul></div>
+   </div>
+   <div class="result">
+    <p class="ttl" style="margin-bottom:14px">Что для вас важно</p>
+    <div class="rank" id="rank"></div>
+    <p id="verdict" style="color:var(--ink-2)"></p>
+    <div class="btns" style="margin-top:22px"><button class="btn" type="button" id="ask">Соберите мне подборку</button></div>
+   </div>
+  </div>
+  <p class="hint">После отправки анкета придёт к нам, а вам — подборка: пять домов под ваши веса и отдельный список тех, что не подошли, с причиной по каждому.</p>
+ </div>
+</section>
+
+<section class="method">
+ <div class="wrap">
+  <div class="two">
+   <div>
+    <p class="ttl">Как это устроено</p>
+    <h2 style="margin-top:20px">Одна работа —<br>от первого разговора<br>до ключей</h2>
+   </div>
+   <div>
+    <p class="lede">Выбирать услугу из списка не нужно. Мы ведём вас до квартиры, в которой всё сходится, и не передаём между подрядчиками: кто начал разговор, тот и отдаёт ключи.</p>
+   </div>
+  </div>
+  <div class="flow">
+   <div class="fl"><i>01</i><h3>Разговор</h3><p>Час, который экономит месяц просмотров: кто будет жить, в каком сценарии, на какой срок и что для вас принципиально.</p></div>
+   <div class="fl"><i>02</i><h3>Подборка</h3><p>Пять домов, прошедших и наши проверки, и ваши критерии. Отдельно — те, что не прошли, с причиной по каждому.</p></div>
+   <div class="fl"><i>03</i><h3>Просмотр</h3><p>Смотрим дом целиком, а не только квартиру: вход, лобби, двор, вид из окна, паркинг, подъезд с улицы.</p></div>
+   <div class="fl"><i>04</i><h3>Условия</h3><p>Договариваемся не только о цене, но и о договоре: рассрочка, сроки, отделка, что будет при задержке стройки.</p></div>
+   <div class="fl"><i>05</i><h3>Ключи</h3><p>Договор, регистрация, приёмка с замерами — до момента, когда ключи у вас в руках.</p></div>
+  </div>
+ </div>
+</section>
+
+<section>
+ <div class="wrap">
+  <div class="two">
+   <div>
+    <p class="ttl">Что вы получите</p>
+    <h2 style="margin-top:20px">Подборка,<br>которую можно проверить</h2>
+   </div>
+   <div class="claims">
+    <div class="claim"><h3>Пять домов под ваши веса</h3><p>По каждому — ответы на три наших вопроса, сильные стороны под ваш сценарий и то, что стоит проверить своими глазами.</p></div>
+    <div class="claim"><h3>Список тех, что не подошли</h3><p>С причиной и цифрой. Это экономит недели: вы заранее знаете, куда ехать не нужно и почему.</p></div>
+    <div class="claim"><h3>План просмотра</h3><p>Что спросить у застройщика, какие документы запросить и на что смотреть в доме, чтобы решение не зависело от рендера.</p></div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<div class="modal" id="mdl" hidden>
+ <div class="modal-bg" data-close></div>
+ <div class="modal-in" role="dialog" aria-modal="true" aria-labelledby="mdl-h">
+  <button class="modal-x" type="button" data-close aria-label="Закрыть">×</button>
+  <p class="ttl">Подборка</p>
+  <h3 id="mdl-h">Куда прислать разбор</h3>
+  <p style="margin-top:14px;color:var(--ink-2);font-size:15px">Соберём пять домов под ваши веса и по каждому напишем, что в нём сильное и на что смотреть на просмотре. Обычно в тот же день.</p>
+  <p class="mdl-sum" id="mdl-sum"></p>
+  <form novalidate>
+   <input type="text" placeholder="Как вас зовут" autocomplete="name">
+   <input type="text" placeholder="Телефон или @телеграм">
+   <textarea placeholder="Если есть что добавить — допишите здесь"></textarea>
+   <div><button class="btn" type="button">Отправить</button></div>
+   <p class="note">Контакты никому не передаём и без предупреждения не звоним.</p>
+  </form>
+ </div>
+</div>
+
+<section class="contact" id="kontakt">
+ <div class="wrap">
+  <p class="ttl">Первый разговор</p>
+  <h2 style="margin-top:20px;max-width:22ch">Напишите — ответит человек, сегодня</h2>
+  <div class="c-grid" style="margin-top:clamp(30px,4vw,54px)">
+   <div>
+    <p class="lede">Расскажите в двух словах, что ищете. Если у нас есть, что предложить, — пришлём разбор с цифрами. Если нет — так и скажем и не будем уговаривать. Разговор ни к чему не обязывает и ничего не стоит.</p>
+    <div class="lines">
+     <a href="https://t.me/nota_estate"><span>Telegram</span> @nota_estate</a>
+     <a href="https://instagram.com/nota.estate"><span>Instagram</span> @nota.estate</a>
+     <a href="mailto:hello@nota.estate"><span>Почта</span> hello@nota.estate</a>
+     <span class="ln-static"><span>Офис</span> Москва, Николоямская, 40с1 — между Таганской и Курской</span>
+     <a href="tel:+74950000000"><span>Телефон</span> +7 495 000-00-00</a>
+    </div>
+   </div>
+   <div>
+    <form novalidate>
+     <input type="text" placeholder="Как вас зовут" autocomplete="name">
+     <input type="text" placeholder="Телефон или @телеграм">
+     <textarea placeholder="Пара слов о задаче — если хотите начать с этого"></textarea>
+     <label class="consent"><input type="checkbox"><span>Согласен на обработку персональных данных и прочитал <a href="politika.html">политику конфиденциальности</a>.</span></label>
+     <div class="send"><button class="btn" type="button">Отправить</button></div>
+     <p class="note">Отвечаем в течение дня, человеком. Контакты никому не передаём и без предупреждения не звоним.</p>
+    </form>
+   </div>
+  </div>
+ </div>
+</section>
+</main>
+<footer>
+ <div class="wrap foot">
+  <a class="brand" href="index.html">
+   <svg class="mark" viewBox="12 5 96 103" fill="none" aria-hidden="true">
+    <path d="M 90.57 28.35 A 44 44 0 1 1 72.13 17.70" stroke="currentColor" stroke-width="6.3"/>
+    <path d="M 60 60 L 89.04 9.70" stroke="#CE2029" stroke-width="6.3"/>
+   </svg>
+   <span class="rule"></span>
+   <span class="lk">
+    <span class="wm">NOT<i>A</i></span>
+    <span class="brandtag">NOT A CHOICE. THE CHOICE.</span>
+   </span>
+  </a>
+  <div class="foot-r">
+   <div><a href="tel:+74950000000">+7 495 000-00-00</a> · <a href="https://t.me/nota_estate">@nota_estate</a> · <a href="mailto:hello@nota.estate">hello@nota.estate</a></div>
+   <div class="foot-nav"><a href="podbor.html">Подбор</a> · <a href="karta.html">Карта объектов</a> · <a href="doma/">Дома</a> · <a href="razbory.html">Разборы</a> · <a href="nota-index.html">Индекс</a></div>
+  </div>
+ </div>
+ <div class="wrap foot-legal">
+  <span>ИП — · ИНН — · ОГРНИП —</span>
+  <span><a href="politika.html">Политика конфиденциальности</a> · <a href="politika.html#soglasie">Согласие на обработку данных</a></span>
+ </div>
+</footer>
+<script src="js/nota.js"></script>
+</body>
+</html>

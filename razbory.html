@@ -29,10 +29,10 @@
    </span>
   </a>
   <nav class="nav">
-      <a href="index.html#podbor" data-m="podbor">Подбор</a>
+      <a href="podbor.html" data-m="podbor">Подбор</a>
       <a href="index.html#metod" data-m="metod">Метод</a>
       <a href="karta.html" data-m="karta">Карта объектов</a>
-      <a href="razbory.html" data-m="razbory">Разборы</a>
+      <a href="razbory.html" data-m="razbory" class="cur">Разборы</a>
       <a href="nota-index.html" data-m="index">Индекс</a>
       <a class="now" href="tel:+74950000000">+7 495 000-00-00</a>
      </nav>
@@ -44,7 +44,7 @@
 <section class="first tight-b"><div class="wrap">
  <p class="ttl">Разборы</p>
  <h1 style="font-size:clamp(28px,4.4vw,46px)">Где другие ставят прилагательное,<br>мы ставим число</h1>
- <p class="lead">Каждый разбор начинается со слов «На заметку:» и заканчивается датой, когда мы всё перепроверили, и списком источников. Дома и районы — по одной мерке.</p>
+ <p class="lead">Каждый разбор начинается со слов «На заметку:», а заканчивается датой сверки и списком источников. Дома и районы — по одной мерке.</p>
  <div class="chipgrp" style="margin-top:26px"><div class="chips">
   <a class="chip" href="#doma">Дома</a>
   <a class="chip" href="#rayony">Районы</a>
@@ -55,14 +55,14 @@
 <section class="tight"><div class="wrap">
  <div class="two">
   <div><p class="ttl" id="doma">Дома</p><h2 style="margin-top:20px">Разбор дома</h2></div>
-  <div><p class="lede">Что мы проверили в конкретном доме и что из этого следует для того, кто там будет жить: адрес, паркинг, число соседей, цена относительно класса.</p></div>
+  <div><p class="lede">Что мы проверили в конкретном доме и что это значит для того, кто будет в нём жить: адрес, паркинг, число соседей, цена относительно класса.</p></div>
  </div>
  <div class="arts" style="margin-top:34px">
-  <a class="art" href="#"><div class="ph has" data-ar="16x9"><img src="img/10-ostozhenka.jpg" alt="Красный Октябрь" loading="lazy"></div><div class="k">Элит · сверка 17 сентября</div><h3>Красный Октябрь</h3><p>Двадцать девять квартир на Якиманке. Единственный элитный дом в городе с тремя ответами из трёх.</p></a>
-  <a class="art" href="#"><div class="ph has" data-ar="16x9"><img src="img/06-fasad.jpg" alt="Форум" loading="lazy"></div><div class="k">Премиум · сверка 12 сентября</div><h3>Форум</h3><p>Сорок шесть квартир и 1,67 машиноместа на каждую — редкий случай, когда паркинга больше нормы.</p></a>
-  <a class="art" href="#"><div class="ph has" data-ar="16x9"><img src="img/03-novyy-dom.jpg" alt="Scala" loading="lazy"></div><div class="k">Бизнес · сверка 9 сентября</div><h3>Scala</h3><p>Сто шестьдесят квартир там, где в классе обычно строят восемьсот. Что это даёт жильцу и чем за это платят.</p></a>
+  <a class="art" href="doma/krasnyy-oktyabr/"><div class="ph has" data-ar="16x9"><img src="img/10-ostozhenka.jpg" alt="Улица в центре Москвы" loading="lazy"></div><div class="k">Элит · присмотреться</div><h3>Красный Октябрь</h3><p>Двадцать девять квартир на Берсеневской набережной. Адрес и число соседей — «да», паркинг застройщик пока не раскрыл.</p></a>
+  <a class="art" href="doma/forum/"><div class="ph has" data-ar="16x9"><img src="img/06-fasad.jpg" alt="Фасад нового дома" loading="lazy"></div><div class="k">Премиум · отметка</div><h3>Форум</h3><p>Сорок шесть квартир и 1,67 машиноместа на каждую — редкий случай, когда паркинга больше нормы.</p></a>
+  <a class="art" href="doma/scala/"><div class="ph has" data-ar="16x9"><img src="img/03-novyy-dom.jpg" alt="Новый дом в Москве" loading="lazy"></div><div class="k">Бизнес · присмотреться</div><h3>Scala</h3><p>Сто шестьдесят квартир там, где в классе обычно строят больше восьмисот. Что это даёт жильцу — и что пока неизвестно.</p></a>
  </div>
- <div class="btns"><a class="btn btn-l" href="karta.html">Все дома на карте</a></div>
+ <div class="btns"><a class="btn btn-l" href="doma/">Все карточки домов</a> <a class="btn btn-l" href="karta.html">Все дома на карте</a></div>
 </div></section>
 
 <section class="tight"><div class="wrap">
@@ -84,7 +84,7 @@
   <div><p class="lede">Их мы публикуем наравне с остальными: три причины и цифра по каждой. Отказ бережёт вам недели просмотров — поэтому он такая же часть работы, как отметка.</p></div>
  </div>
  <div class="grid g3" style="margin-top:28px">
-  <div class="rl"><h3>«Премиум» за Третьим кольцом</h3><p style="margin:0;color:var(--muted)">Адрес не соответствует заявленному классу: из 68 премиальных домов внутри кольца стоят восемнадцать.</p></div>
+  <div class="rl"><h3>«Премиум» за Третьим кольцом</h3><p style="margin:0;color:var(--muted)">Адрес не соответствует заявленному классу: из 68 домов премиум-класса внутри кольца стоят восемнадцать.</p></div>
   <div class="rl"><h3>Одна машина на три квартиры</h3><p style="margin:0;color:var(--muted)">1 412 квартир и 0,31 машиноместа на каждую. Двор станет стоянкой — это не прогноз, это арифметика.</p></div>
   <div class="rl"><h3>Цена от соседнего класса</h3><p style="margin:0;color:var(--muted)">Тринадцать домов просят как за класс выше. Разбираем, за что именно и есть ли за что.</p></div>
  </div>
@@ -115,7 +115,8 @@
    </span>
   </a>
   <div class="foot-r">
-   <div><a href="tel:+74950000000">+7 495 000-00-00</a> · <a href="https://t.me/nota_estate">@nota_estate</a></div>
+   <div><a href="tel:+74950000000">+7 495 000-00-00</a> · <a href="https://t.me/nota_estate">@nota_estate</a> · <a href="mailto:hello@nota.estate">hello@nota.estate</a></div>
+   <div class="foot-nav"><a href="podbor.html">Подбор</a> · <a href="karta.html">Карта объектов</a> · <a href="doma/">Дома</a> · <a href="razbory.html">Разборы</a> · <a href="nota-index.html">Индекс</a></div>
   </div>
  </div>
  <div class="wrap foot-legal">
