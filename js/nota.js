@@ -93,7 +93,7 @@
  (function(){
   var f=(location.pathname.split('/').pop()||'index.html');
   var map={'karta.html':'karta','razbory.html':'razbory','razbor-hamovniki.html':'razbory','nota-index.html':'index'};
-  var k=map[f]; if(!k)return;
+  var k=map[f]||(/^index-\d/.test(f)?'index':null); if(!k)return;
   document.querySelectorAll('.nav a[data-m="'+k+'"]').forEach(function(a){a.classList.add('cur')});
  })();
 
