@@ -579,3 +579,25 @@ body.inner section.pscreen{padding-top:calc(74px + clamp(18px,2.4vw,34px));paddi
 .pscreen .hint{margin-top:14px}
 @media(max-width:1100px){.pscreen .ank{grid-template-columns:minmax(0,1.4fr) minmax(0,1fr)}.pscreen .ank .result{grid-column:1/-1;border-left:none;border-top:1px solid var(--ink)}}
 @media(max-width:900px){.pscreen .ank{grid-template-columns:1fr}body.inner section.pscreen{min-height:0}}
+
+/* ==== единая шапка внутренних страниц: мини-заголовок, h1, текст (21.09) ==== */
+body.inner section.first.tight-b{padding-top:calc(74px + clamp(26px,3.2vw,48px));padding-bottom:clamp(6px,1vw,14px)}
+section.first.tight-b h1{font-size:clamp(30px,3.8vw,48px);line-height:1.04;letter-spacing:-.035em;margin-top:14px;max-width:32ch}
+section.first.tight-b .lead{margin-top:16px;max-width:66ch}
+section.first.tight-b .chipgrp{margin-top:18px!important}
+section.first.tight-b + section,section.tight.first-content{padding-top:clamp(18px,2.2vw,30px)}
+/* заголовок раздела внутри страницы — компактнее */
+section.tight .two h2{font-size:clamp(24px,2.6vw,34px)}
+section.tight .two:has(h2){align-items:end}
+@media(min-width:901px){section.tight .two>*+*{padding-top:0}}
+section.tight .arts{margin-top:22px!important}
+/* анкета компактная (подбор) */
+.ank.compact{margin-top:0}
+.ank.compact .ank-l,.ank.compact .ank-r{padding:clamp(16px,1.8vw,24px)}
+.ank.compact .row{padding:5px 0}
+.ank.compact .result{padding:clamp(16px,1.8vw,24px)}
+.ank.compact .result .btns{margin-top:14px!important}
+/* карта под шапкой */
+.kscreen .kmap-r .map svg{max-height:calc(100vh - 74px - 360px);max-height:calc(100svh - 74px - 360px);min-height:280px}
+.kscreen .kmap-l .chipgrp:first-child{margin-top:0}
+.h-dev{display:block;font-size:.42em;font-weight:500;letter-spacing:-.01em;color:var(--muted);margin-top:8px}

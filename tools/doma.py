@@ -115,8 +115,8 @@ def card(slug, cfg, r):
     body = f'''<section class="first tight-b"><div class="wrap">
  <p class="crumbs"><a href="{R}doma/">Дома</a> <span>/</span> {e(title)}</p>
  <p class="ttl">{CLASS_RU[cls]} · {e(district_label(r["district"]))}</p>
- <h1 style="font-size:clamp(34px,5.4vw,64px)">{e(title)}</h1>
- <p class="lead">{e(r["address"])} · {e(dev)} · {e(stage)}</p>
+ <h1>{e(title)} <span class="h-dev">{e(dev)}</span></h1>
+ <p class="lead">{e(r["address"])} · {e(stage)}</p>
  <div class="h-verdict"><span class="tag {vk}">{vt}</span><span>{verdict_txt}</span></div>
  <div class="h-stats">
 {stat_html}
@@ -157,7 +157,7 @@ def card(slug, cfg, r):
  <p class="hint">Данные базы NOTA на {DATE}. Если застройщик раскроет новые цифры, итог пересчитаем.</p>
 </div></section>
 '''
-    return HEAD.format(title=f'{title} — {CLASS_RU[cls].lower()}, {r["district"]}. Разбор дома — NOTA', desc=e(desc), R=R, ld=ld_html) + body + TAIL.format(R=R), (title, CLASS_RU[cls], r['district'], vk, vt, u, ratio)
+    return HEAD.format(title=f'{title} ({dev}) — {CLASS_RU[cls].lower()}, {r["district"]}. Разбор дома — NOTA', desc=e(desc), R=R, ld=ld_html) + body + TAIL.format(R=R), (title, CLASS_RU[cls], r['district'], vk, vt, u, ratio, dev)
 
 def build(root):
     rows = load(root)
@@ -172,19 +172,19 @@ def build(root):
         listing.append((slug,) + meta)
     order = {'mark': 0, 'look': 1, 'no': 2}
     listing.sort(key=lambda x: (order[x[4]], x[1]))
-    trs = '\n'.join(f'    <tr><td><a href="{s}/">{e(t)}</a></td><td><span class="tag {vk}">{vt}</span></td><td>{c}</td><td>{e(d)}</td><td>{fmt(u) if u else "—"}</td><td>{fmt(ra,2) if ra else "—"}</td></tr>'
-                    for s, t, c, d, vk, vt, u, ra in listing)
+    trs = '\n'.join(f'    <tr><td><a href="{s}/">{e(t)}</a></td><td>{e(dv)}</td><td><span class="tag {vk}">{vt}</span></td><td>{c}</td><td>{e(d)}</td><td>{fmt(u) if u else "—"}</td><td>{fmt(ra,2) if ra else "—"}</td></tr>'
+                    for s, t, c, d, vk, vt, u, ra, dv in listing)
     R = '../'
     idx = HEAD.format(title='Дома: разборы новых домов Москвы — NOTA', R=R, ld='',
                       desc='Карточки новых домов Москвы от бизнес-класса и выше: три проверки NOTA — адрес, паркинг, число квартир — и наш итог по каждому дому.') + f'''<section class="first tight-b"><div class="wrap">
  <p class="ttl">Дома</p>
- <h1 style="font-size:clamp(28px,4.4vw,46px)">Карточки домов</h1>
+ <h1>Карточки домов</h1>
  <p class="lead">По каждому дому — три вопроса, ответы на них и что проверить на просмотре. Сначала те, что получили отметку, потом те, к которым стоит присмотреться, и в конце — без отметки, с причиной.</p>
 </div></section>
 <section style="padding-top:0"><div class="wrap">
  <div class="tablewrap">
   <table>
-   <tr><th>Дом</th><th>Наш итог</th><th>Класс</th><th>Район</th><th>Квартир</th><th>М/м на кв.</th></tr>
+   <tr><th>Дом</th><th>Застройщик</th><th>Наш итог</th><th>Класс</th><th>Район</th><th>Квартир</th><th>М/м на кв.</th></tr>
 {trs}
   </table>
  </div>
