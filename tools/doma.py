@@ -136,7 +136,7 @@ def card(slug, cfg, r):
 {rows_html}
   </table>
  </div>
- <p class="hint">Цену за метр в проверку не включаем — только сверяем с классом. Как устроена проверка — в <a href="{R}index.html#metod">методе</a>.</p>
+ <p class="hint">Цену за метр в проверку не включаем — только сверяем с классом. Как устроена проверка — в <a href="{R}metod.html">методе</a>.</p>
 </div></section>
 
 <section class="tight"><div class="wrap two">

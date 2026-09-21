@@ -12,11 +12,12 @@ site = {k: v for k, v in json.loads((T / 'site.json').read_text()).items() if no
 HEADER = (T / 'partials/header.html').read_text()
 FOOTER = (T / 'partials/footer.html').read_text()
 
-SITE_PAGES = ['index.html', 'podbor.html', 'karta.html', 'razbory.html', 'razbor-hamovniki.html',
+SITE_PAGES = ['index.html', 'podbor.html', 'metod.html', 'karta.html', 'razbory.html', 'razbor-hamovniki.html',
               'nota-index.html', 'index-2026-08.html', 'index-2026-09.html', 'politika.html']
 
 def section_of(rel):
     if rel == 'podbor.html': return 'podbor'
+    if rel == 'metod.html': return 'metod'
     if rel == 'karta.html' or rel.startswith('doma/'): return 'karta'
     if rel.startswith('razbor'): return 'razbory'
     if rel == 'nota-index.html' or re.match(r'index-\d', rel): return 'index'
@@ -26,7 +27,7 @@ def fill(tpl, rel, extra=None):
     depth = rel.count('/')
     d = dict(site, R='../' * depth)
     cur = section_of(rel)
-    for k in ('podbor', 'karta', 'razbory', 'index'):
+    for k in ('podbor', 'metod', 'karta', 'razbory', 'index'):
         d['CUR_' + k] = ' class="cur"' if k == cur else ''
     d.update(extra or {})
     return re.sub(r'\{(\w+)\}', lambda m: d.get(m.group(1), m.group(0)), tpl)

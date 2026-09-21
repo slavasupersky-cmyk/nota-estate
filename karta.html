@@ -30,7 +30,7 @@
   </a>
   <nav class="nav">
       <a href="podbor.html" data-m="podbor">Подбор</a>
-      <a href="index.html#metod" data-m="metod">Метод</a>
+      <a href="metod.html" data-m="metod">Метод</a>
       <a href="karta.html" data-m="karta" class="cur">Карта объектов</a>
       <a href="razbory.html" data-m="razbory">Разборы</a>
       <a href="nota-index.html" data-m="index">Индекс</a>
@@ -41,12 +41,12 @@
 </header>
 
 <main>
-<section class="first"><div class="wrap">
- <p class="ttl">Карта</p>
- <h1 style="font-size:clamp(28px,4.4vw,46px)">Вся Москва, которую стоит смотреть.<br>На одном экране.</h1>
- <p class="lead">Здесь все 288 домов, которые мы посмотрели: от бизнес-класса и выше, старая Москва плюс Сколково и Рублёвка. Что продаётся сейчас и что обещают на 2026–2027. Нажмите на класс или на итог — карта и таблица перестроятся вместе.</p>
-
- <div class="chipgrp" id="chips" style="margin-top:34px"><span class="lb">Класс дома</span><div class="chips">
+<section class="first kscreen"><div class="wrap kmap">
+ <div class="kmap-l">
+  <p class="ttl">Карта объектов</p>
+  <h1>288 домов<br>на одной карте</h1>
+  <p class="lead">Новые дома от бизнес-класса и выше: старая Москва, Сколково и Рублёвка. Выберите класс, итог или формат — карта и список перестроятся.</p>
+ <div class="chipgrp" id="chips"><span class="lb">Класс дома</span><div class="chips">
   <button class="chip" aria-pressed="true" data-group="cls" data-k="all">Все классы</button>
   <button class="chip" aria-pressed="false" data-group="cls" data-k="Бизнес">Бизнес · 133</button>
   <button class="chip" aria-pressed="false" data-group="cls" data-k="Премиум">Премиум · 68</button>
@@ -64,8 +64,9 @@
   <button class="chip" aria-pressed="false" data-group="form" data-k="pent">Пентхаусы · 21</button>
   <button class="chip" aria-pressed="false" data-group="form" data-k="club">Клубные дома · 34</button>
  </div></div>
- <p class="hint" style="margin-top:18px">Фильтры действуют сразу на карту и на таблицу ниже — <a href="#base-h">перейти к списку</a>.</p>
-
+  <p class="hint"><a href="#base-h">Список домов</a> · <a href="doma/">Карточки домов</a></p>
+ </div>
+ <div class="kmap-r">
  <div class="map">
   <svg viewBox="0 0 900 560" role="img" aria-label="Карта Москвы: дома базы NOTA">
   <rect width="900" height="560" fill="#FFFFFF"/>
@@ -283,7 +284,7 @@
    <span class="lg-note">Размер точки — класс: чем крупнее, тем выше.</span>
   </div>
  </div>
- <p class="hint">Границы районов настоящие, точки расставлены по районам. В рабочей версии у каждой точки будет адрес, карточка дома и выгрузка среза.</p>
+ </div>
 </div></section>
 
 <section><div class="wrap">
@@ -341,7 +342,7 @@
   </a>
   <div class="foot-r">
    <div><a href="tel:+74950000000">+7 495 000-00-00</a> · <a href="https://t.me/nota_estate">@nota_estate</a> · <a href="mailto:hello@nota.estate">hello@nota.estate</a></div>
-   <div class="foot-nav"><a href="podbor.html">Подбор</a> · <a href="karta.html">Карта объектов</a> · <a href="doma/">Дома</a> · <a href="razbory.html">Разборы</a> · <a href="nota-index.html">Индекс</a></div>
+   <div class="foot-nav"><a href="podbor.html">Подбор</a> · <a href="metod.html">Метод</a> · <a href="karta.html">Карта объектов</a> · <a href="doma/">Дома</a> · <a href="razbory.html">Разборы</a> · <a href="nota-index.html">Индекс</a></div>
   </div>
  </div>
  <div class="wrap foot-legal">
