@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><meta name="color-scheme" content="light">
+<title>Карты: превью</title>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/maplibre-gl@4.7.1/dist/maplibre-gl.css">
+<style>
+:root{--paper:#F2F3F4;--ink:#101317;--muted:#6A727B;--line:#DFE3E7;--red:#CE2029}
+html,body{background:var(--paper);color:var(--ink);margin:0}
+body{font:400 15px/1.45 Onest,system-ui,sans-serif;padding:24px 16px 48px;max-width:1320px;margin:0 auto}
+h1{font-weight:800;font-size:28px;margin:0 0 6px;letter-spacing:-.01em}
+.lead{color:var(--muted);margin:0 0 20px}
+.g{display:grid;grid-template-columns:repeat(auto-fill,minmax(380px,1fr));gap:16px}
+.c{background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden;display:flex;flex-direction:column}
+.h{padding:12px 14px 4px;font-weight:600;font-size:16px;display:flex;gap:8px;align-items:baseline}
+.h i{font-style:normal;color:var(--red);font-weight:800}
+.t{padding:0 14px 12px;color:var(--muted);font-size:13px}
+.m{height:340px;position:relative;border-top:1px solid var(--line)}
+.pin{width:22px;height:22px;border-radius:50%;background:var(--ink);color:#fff;font:600 11px/22px Onest,system-ui;text-align:center;border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.35);box-sizing:content-box}
+.ctl{display:flex;gap:8px;margin:0 0 16px;flex-wrap:wrap}
+.ctl button{font:500 13px Onest,system-ui;border:1px solid var(--line);background:#fff;border-radius:8px;padding:6px 10px;cursor:pointer}
+@media (max-width:420px){.g{grid-template-columns:1fr}}
+</style></head><body>
+<h1>Какая карта под прогулку</h1>
+<p class="lead">Один и тот же кусок Хамовников, те же 26 домов. Карты можно двигать и приближать — кнопками ниже все сдвигаются вместе.</p>
+<div class="ctl"><button data-z="15">Весь маршрут</button><button data-z="17" data-c="55.7292,37.5715">Садовые · Трубецкая крупно</button><button data-z="17" data-c="55.7350,37.5680">Саввинская крупно</button></div>
+<div class="g">
+<div class="c"><div class="h"><i>A</i>2ГИС</div><div class="t">Ближе всех к Яндексу по подробности: номера домов, заведения, остановки. Без ключа.</div><div class="m" id="m2"></div></div>
+<div class="c"><div class="h"><i>B</i>Яндекс</div><div class="t">Эталон. Плюс можно нарисовать пеший маршрут по улицам прямо на карте. Нужен бесплатный ключ (сейчас работает и без него, но это не гарантировано).</div><div class="m" id="my"></div></div>
+<div class="c"><div class="h"><i>C</i>NOTA-стиль</div><div class="t">Своя палитра, как на сайте и в Индексе. Спокойная, но заведений меньше, чем в 2ГИС и Яндексе. Без ключа.</div><div class="m" id="mn"></div></div>
+<div class="c"><div class="h"><i>D</i>Liberty</div><div class="t">Цветная векторная карта OpenStreetMap, подписи по-русски. Без ключа.</div><div class="m" id="ml"></div></div>
+<div class="c"><div class="h"><i>E</i>OSM стандарт</div><div class="t">Грузится только с сайта (Pages), из файла — «Access blocked».</div><div class="m" id="mo"></div></div>
+<div class="c"><div class="h"><i>—</i>Сейчас: Esri</div><div class="t">То, что стоит в файле сейчас.</div><div class="m" id="me"></div></div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU"></script>
+<script>
+const HS=[[1, "Клубный квартал «Фрунзенская набережная»", 55.72459, 37.58465], [2, "Luzhniki Collection", 55.71439, 37.57216], [3, "Knightsbridge Private Park", 55.72257, 37.57036], [4, "Садовые кварталы", 55.72636, 37.57263], [5, "Дом на Трубецкой", 55.72722, 37.57604], [6, "Fusion Park", 55.73043, 37.57407], [7, "Magnum", 55.72841, 37.57234], [8, "Barrin House", 55.72967, 37.57048], [9, "Пироговская, 14", 55.72845, 37.56728], [10, "Дом XXII", 55.7298, 37.55962], [11, "Vesper Погодинская", 55.72914, 37.56014], [12, "Savvinskaya 27", 55.73067, 37.55794], [13, "Московский шёлк", 55.73303, 37.56454], [14, "Саввинская 17", 55.73457, 37.56577], [15, "Savvin River Residence", 55.73551, 37.56733], [16, "Grand Deluxe на Плющихе", 55.73497, 37.57101], [17, "Жизнь на Плющихе", 55.73558, 37.57223], [18, "Дом Brodsky", 55.73753, 37.57129], [19, "Хамовники 12", 55.73784, 37.57251], [20, "Узоры", 55.7393, 37.57366], [21, "Bunin", 55.74114, 37.57729], [22, "High Garden", 55.73937, 37.58249], [23, "Дом на Бурденко", 55.73843, 37.58151], [24, "White Khamovniki", 55.73279, 37.57952], [25, "Литератор", 55.73523, 37.58339], [26, "Roza Rossa", 55.73707, 37.58372]];
+let C=[55.7318,37.5712],Z=15;
+const maps=[];
+const pinEl=n=>{const e=document.createElement('div');e.className='pin';e.textContent=n;return e};
+function lf(id,url,opt){const m=L.map(id,{zoomControl:true,attributionControl:false,scrollWheelZoom:false}).setView(C,Z);L.tileLayer(url,Object.assign({maxZoom:19},opt||{})).addTo(m);
+ HS.forEach(h=>L.marker([h[2],h[3]],{title:h[1],icon:L.divIcon({className:'',html:'<div class="pin">'+h[0]+'</div>',iconSize:[26,26],iconAnchor:[13,13]})}).addTo(m));
+ maps.push((c,z)=>m.setView(c,z));}
+lf('m2','https://tile{s}.maps.2gis.com/tiles?x={x}&y={y}&z={z}&v=1',{subdomains:'0123'});
+lf('mo','https://tile.openstreetmap.org/{z}/{x}/{y}.png');
+lf('me','https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}');
+if(window.ymaps) ymaps.ready(()=>{const ym=new ymaps.Map('my',{center:C,zoom:Z,controls:['zoomControl']});ym.behaviors.disable('scrollZoom');
+ HS.forEach(h=>ym.geoObjects.add(new ymaps.Placemark([h[2],h[3]],{iconContent:h[0],hintContent:h[1]},{preset:'islands#blackCircleIcon'})));
+ maps.push((c,z)=>ym.setCenter(c,z));});
+const ru=['coalesce',['get','name:ru'],['get','name']];
+function gl(id,style){const m=new maplibregl.Map({container:id,style,center:[C[1],C[0]],zoom:Z-1,attributionControl:false,scrollZoom:false});m.addControl(new maplibregl.NavigationControl({showCompass:false}));
+ HS.forEach(h=>new maplibregl.Marker({element:pinEl(h[0])}).setLngLat([h[3],h[2]]).addTo(m));maps.push((c,z)=>m.jumpTo({center:[c[1],c[0]],zoom:z-1}));}
+fetch('https://tiles.openfreemap.org/styles/positron').then(r=>r.json()).then(st=>{
+ const set=(id,k,v)=>{const l=st.layers.find(x=>x.id===id);if(l)l.paint[k]=v};
+ set('background','background-color','#E7EAED');set('landuse_residential','fill-color','#E4E7EA');
+ set('park','fill-color','#D9E2D6');set('landcover_wood','fill-color','#D9E2D6');set('water','fill-color','#C9D3DC');set('building','fill-color','#D6DBE0');
+ ['highway_minor','highway_path','highway_major_inner','highway_motorway_inner','highway_major_subtle','highway_motorway_subtle'].forEach(i=>set(i,'line-color','#FFFFFF'));
+ set('highway_major_casing','line-color','#C3CAD1');set('highway_motorway_casing','line-color','#C3CAD1');set('railway','line-color','#A9B0B8');set('railway_transit','line-color','#A9B0B8');
+ st.layers.forEach(l=>{if(l.type==='symbol'&&l.layout&&l.layout['text-field']&&!/shield/.test(l.id)){l.layout['text-field']=ru;l.paint['text-color']='#3A4048';l.paint['text-halo-color']='#FFFFFF';l.paint['text-halo-width']=1.2}});
+ st.layers.push({id:'hn',type:'symbol',source:'openmaptiles','source-layer':'housenumber',minzoom:16,layout:{'text-field':['get','housenumber'],'text-size':10,'text-font':['Noto Sans Regular']},paint:{'text-color':'#7A828B'}});
+ st.layers.push({id:'poi',type:'symbol',source:'openmaptiles','source-layer':'poi',minzoom:15,filter:['<=',['get','rank'],20],layout:{'text-field':ru,'text-size':10,'text-font':['Noto Sans Regular'],'text-max-width':8},paint:{'text-color':'#6A727B','text-halo-color':'#fff','text-halo-width':1}});
+ gl('mn',st);});
+fetch('https://tiles.openfreemap.org/styles/liberty').then(r=>r.json()).then(st=>{st.layers.forEach(l=>{if(l.type==='symbol'&&l.layout&&l.layout['text-field']&&!/shield|housenumber/.test(l.id))l.layout['text-field']=ru});gl('ml',st);});
+document.querySelectorAll('.ctl button').forEach(b=>b.onclick=()=>{const c=b.dataset.c?b.dataset.c.split(',').map(Number):[55.7318,37.5712];maps.forEach(f=>f(c,+b.dataset.z));});
+</script></body></html>
