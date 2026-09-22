@@ -17,6 +17,7 @@ SITE_PAGES = ['index.html', 'podbor.html', 'metod.html', 'karta.html', 'razbory.
               'nota-index.html', 'index-2026-08.html', 'index-2026-09.html', 'politika.html']
 
 def section_of(rel):
+    if rel == 'index.html': return 'home'
     if rel == 'podbor.html': return 'podbor'
     if rel == 'metod.html': return 'metod'
     if rel == 'karta.html' or rel.startswith('doma/'): return 'karta'
@@ -28,7 +29,7 @@ def fill(tpl, rel, extra=None):
     depth = rel.count('/')
     d = dict(site, R='../' * depth)
     cur = section_of(rel)
-    for k in ('podbor', 'metod', 'karta', 'razbory', 'index'):
+    for k in ('home', 'podbor', 'metod', 'karta', 'razbory', 'index'):
         d['CUR_' + k] = ' class="cur"' if k == cur else ''
     d.update(extra or {})
     return re.sub(r'\{(\w+)\}', lambda m: d.get(m.group(1), m.group(0)), tpl)
@@ -50,8 +51,10 @@ def apply_shell(path):
 
 if __name__ == '__main__':
     sys.path.insert(0, str(T))
-    import doma
+    import doma, karta, images
+    images.build(ROOT)
     doma.build(ROOT)
+    karta.build(ROOT)
     pages = [ROOT / p for p in SITE_PAGES if (ROOT / p).exists()]
     pages += sorted((ROOT / 'doma').glob('**/index.html'))
     pages += sorted((ROOT / 'razbory').glob('**/index.html'))

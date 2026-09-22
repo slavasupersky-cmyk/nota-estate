@@ -170,32 +170,94 @@
  }
 })();
 
-/* ---- калькулятор «Сколько стоит въехать» ---- */
+/* ---- калькулятор «Сколько стоит ожидание» ---- */
 (function(){
  var box=document.getElementById('calc'); if(!box) return;
  var g=function(id){return document.getElementById(id)};
- var ids=['c-area','c-new','c-rem','c-wait','c-rent','c-old','c-rem2','c-torg'];
- function num(v,d){return v.toLocaleString('ru-RU',{minimumFractionDigits:d||0,maximumFractionDigits:d||0})}
+ var ids=['c-area','c-rent','c-wait'];
+ var remBtns=Array.prototype.slice.call(document.querySelectorAll('#c-rem .chip'));
+ function num(v){return v.toLocaleString('ru-RU')}
  function mln(r){return (r/1e6).toLocaleString('ru-RU',{minimumFractionDigits:1,maximumFractionDigits:1})+' млн ₽'}
  function mon(m){var n=Math.round(m),a=n%10,b=n%100;var w=(a==1&&b!=11)?'месяц':(a>=2&&a<=4&&(b<12||b>14))?'месяца':'месяцев';return n+' '+w}
  function draw(){
-  var v={};ids.forEach(function(i){var el=g(i);v[i]=parseFloat(el.value);var o=el.nextElementSibling;o.textContent=num(v[i],i=='c-torg'?1:0)+' '+o.dataset.u});
-  var A=v['c-area'];
-  var priceNew=A*v['c-new']*1e3, rem=A*v['c-rem']*1e3;
-  var remMonths=v['c-rem']>0?6:0, waitAll=v['c-wait']+remMonths;
-  var rent=v['c-rent']*1e3*waitAll;
-  var totalNew=priceNew+rem+rent;
-  var priceOld=A*v['c-old']*1e3, torg=priceOld*v['c-torg']/100, rem2=A*v['c-rem2']*1e3, m2=v['c-rem2']>0?(v['c-rem2']>40?4:2):0, rent2=v['c-rent']*1e3*m2, totalOld=priceOld-torg+rem2+rent2;
-  g('o-new').textContent=mln(totalNew);
-  g('o-new-d').textContent='Квартира '+mln(priceNew)+' + ремонт '+mln(rem)+' + аренда '+mln(rent)+'. Въезд через '+mon(waitAll)+'.';
-  g('o-old').textContent=mln(totalOld);
-  g('o-old-d').textContent='Квартира '+mln(priceOld)+' − торг '+mln(torg)+(rem2?' + ремонт '+mln(rem2)+' + аренда '+mln(rent2)+'. Въезд через '+mon(m2)+'.':'. Въезд — после сделки.');
-  var d=totalNew-totalOld, t;
-  if(Math.abs(d)<5e5) t='Въезд обходится почти одинаково. Решают ставка ипотеки, дом и срок.';
-  else if(d>0) t='Готовая квартира дешевле на <em>'+mln(d)+'</em> и даёт въехать на '+mon(Math.max(0,waitAll-m2))+' раньше. У новостройки остаются новый дом, паркинг по проекту и льготная ставка.';
-  else t='Новостройка дешевле на <em>'+mln(-d)+'</em>, даже с ремонтом и арендой. Цена — ожидание: '+mon(waitAll)+' до въезда.';
-  g('o-v').innerHTML=t;
+  var v={};ids.forEach(function(i){var el=g(i);v[i]=parseFloat(el.value);var o=el.nextElementSibling;o.textContent=num(v[i])+' '+o.dataset.u});
+  var on=remBtns.filter(function(b){return b.getAttribute('aria-pressed')==='true'})[0]||remBtns[1];
+  var per=+on.dataset.v, rm=+on.dataset.m;
+  var rem=v['c-area']*per*1e3, months=v['c-wait']+rm, rent=v['c-rent']*1e3*months;
+  g('o-rem').textContent=mln(rem);
+  g('o-rem-d').textContent=num(v['c-area'])+' м² × '+per+' тыс ₽ за метр. Примерно '+mon(rm)+' работ.';
+  g('o-rent').textContent=mln(rent);
+  g('o-rent-d').textContent=mon(v['c-wait'])+' стройки и '+mon(rm)+' ремонта — всего '+mon(months)+' на съёмной квартире.';
+  g('o-v').innerHTML='Сверх цены квартиры: <em>'+mln(rem+rent)+'</em> и '+mon(months)+' до переезда. Эту сумму стоит держать в голове, когда сравниваете новостройку с готовой квартирой.';
  }
  ids.forEach(function(i){g(i).addEventListener('input',draw)});
+ remBtns.forEach(function(b){b.addEventListener('click',function(){remBtns.forEach(function(x){x.setAttribute('aria-pressed','false')});b.setAttribute('aria-pressed','true');draw();})});
  draw();
+})();
+
+/* ---- карта объектов: фильтры, карточка дома, список ---- */
+(function(){
+ var map=document.getElementById('kmap'); if(!map) return;
+ var data=JSON.parse(document.getElementById('kdata').textContent);
+ var dots=[].slice.call(map.querySelectorAll('.kd')), items=[].slice.call(document.querySelectorAll('.hs'));
+ var chips=[].slice.call(document.querySelectorAll('.kmap-l .chip')), cnt=document.getElementById('kcnt'), kt=document.getElementById('kt');
+ var st={c:'all',y:'all',f:'all'};
+ var SZ={biz:[45,70,100],prem:[60,90,130],elit:[90,140,200],dlx:[120,180,250]};
+ function ok(el){return (st.c=='all'||el.dataset.c==st.c)&&(st.y=='all'||el.dataset.y==st.y)&&(st.f=='all'||(' '+el.dataset.f+' ').indexOf(' '+st.f+' ')>-1)}
+ function apply(){var n=0;dots.forEach(function(d){d.classList.toggle('off',!ok(d))});items.forEach(function(it){var on=ok(it);it.hidden=!on;if(on)n++});cnt.textContent='Показано '+n+' из '+items.length;if(kt&&!kt.hidden){var i=+kt.dataset.i;if(!ok(dots[i]))hideT()}}
+ chips.forEach(function(b){b.addEventListener('click',function(){var g=b.dataset.g;chips.filter(function(x){return x.dataset.g==g}).forEach(function(x){x.setAttribute('aria-pressed','false')});b.setAttribute('aria-pressed','true');st[g]=b.dataset.k;apply()})});
+ document.querySelectorAll('[data-reset]').forEach(function(b){b.addEventListener('click',function(){st={c:'all',y:'all',f:'all'};chips.forEach(function(x){x.setAttribute('aria-pressed',x.dataset.k=='all'?'true':'false')});apply()})});
+ function mln(v){return v.toLocaleString('ru-RU',{minimumFractionDigits:1,maximumFractionDigits:1})}
+ function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+ function side(it){
+  var sd=it.querySelector('.hs-side'); if(sd.dataset.done) return; var r=data[+it.dataset.i], h='';
+  h+='<div class="hs-ex"><p class="k">Примеры стоимости</p>';
+  if(r.p){h+='<ul>'+SZ[r.k].map(function(s){return '<li><b>'+s+' м²</b><span>≈ '+mln(r.p*s/1000)+' млн ₽</span></li>'}).join('')+'</ul><p class="hint">Расчёт от цены «от», а не предложение: этаж, вид и отделка двигают цену.</p>'}
+  else h+='<p>Цену застройщик не публикует — узнаем для вас.</p>';
+  h+='</div><div class="hs-real"><p class="k">Что в продаже сейчас</p>';
+  h+= r.x ? '<p>В продаже '+esc(r.x[0]||'—')+' лотов, самый доступный — '+esc(r.x[1]||'—')+' м² за '+esc(r.x[2]||'—')+' млн ₽. Сверка '+esc(r.x[3]||'')+'.</p>' : '<p>Застройщики меняют прайс и набор лотов каждую неделю. Пришлём, что в продаже сейчас: минимальный лот, планировки и условия оплаты.</p>';
+  h+='</div><div class="btns"><button class="btn hs-cta" type="button" data-house="'+esc(r.n)+'">Хочу актуальное предложение</button>'+(r.dm?' <a class="btn btn-l" href="doma/'+r.dm+'/">Подробный разбор</a>':'')+'</div>';
+  sd.innerHTML=h; sd.dataset.done=1;
+ }
+ function openItem(it,scroll){
+  items.forEach(function(x){if(x!==it&&x.classList.contains('open')){x.classList.remove('open');x.querySelector('.hs-body').hidden=true;x.querySelector('.hs-row').setAttribute('aria-expanded','false')}});
+  side(it); it.classList.add('open'); it.querySelector('.hs-body').hidden=false; it.querySelector('.hs-row').setAttribute('aria-expanded','true');
+  dots.forEach(function(d){d.classList.toggle('sel',d.dataset.i==it.dataset.i)});
+  if(scroll) it.scrollIntoView({behavior:'smooth',block:'start'});
+ }
+ items.forEach(function(it){it.querySelector('.hs-row').addEventListener('click',function(){
+  if(it.classList.contains('open')){it.classList.remove('open');it.querySelector('.hs-body').hidden=true;this.setAttribute('aria-expanded','false');dots[+it.dataset.i].classList.remove('sel')} else openItem(it,false)})});
+ function showT(d,pinned){
+  var r=data[+d.dataset.i], box=map.getBoundingClientRect(), p=d.getBoundingClientRect();
+  kt.innerHTML=(pinned?'<button class="kt-x" type="button" aria-label="Закрыть">×</button>':'')+(r.img?'<div class="kt-img" style="background-image:url(img/doma/'+r.s+'.jpg)"></div>':'')+
+   '<div class="kt-b"><b>'+esc(r.n)+'</b><span class="m">'+esc(r.d)+'</span><span class="m">'+esc(r.c)+' · '+esc(r.ds)+'</span><span class="kt-pr">'+(r.p?'от '+r.p.toLocaleString('ru-RU')+' тыс ₽ за м²':'цена по запросу')+'</span><span class="m">Ключи: '+esc(r.w)+'</span>'+
+   (pinned?'<button class="btn" type="button" data-open="'+d.dataset.i+'">Открыть карточку</button>':'')+'</div>';
+  kt.dataset.i=d.dataset.i; kt.hidden=false;
+  var x=p.left-box.left+p.width/2+14, y=p.top-box.top-10, w=kt.offsetWidth, hgt=kt.offsetHeight;
+  if(x+w>box.width) x=p.left-box.left-w-14; if(y+hgt>box.height) y=box.height-hgt-6; if(y<6) y=6;
+  kt.style.left=Math.max(6,x)+'px'; kt.style.top=y+'px'; kt.dataset.pin=pinned?1:'';
+ }
+ function hideT(){kt.hidden=true;kt.dataset.pin=''}
+ dots.forEach(function(d){
+  d.addEventListener('mouseenter',function(){if(!kt.dataset.pin) showT(d,false)});
+  d.addEventListener('mouseleave',function(){if(!kt.dataset.pin) hideT()});
+  d.addEventListener('click',function(ev){ev.stopPropagation();showT(d,true);dots.forEach(function(x){x.classList.toggle('sel',x===d)})});
+ });
+ kt.addEventListener('click',function(ev){
+  if(ev.target.classList.contains('kt-x')){hideT();return}
+  var o=ev.target.getAttribute('data-open'); if(o!==null){var it=items.filter(function(x){return x.dataset.i==o})[0]; hideT(); if(it){it.hidden=false; openItem(it,true)}}
+ });
+ map.addEventListener('click',function(ev){
+  if(ev.target.tagName==='circle'||kt.contains(ev.target)) return;
+  var best=null,bd=18*18; dots.forEach(function(d){if(d.classList.contains('off'))return;var q=d.getBoundingClientRect(),dx=q.left+q.width/2-ev.clientX,dy=q.top+q.height/2-ev.clientY,dd=dx*dx+dy*dy;if(dd<bd){bd=dd;best=d}});
+  if(best){showT(best,true);dots.forEach(function(x){x.classList.toggle('sel',x===best)})} else hideT();
+ });
+ /* заявка по дому */
+ var md=document.getElementById('kmdl');
+ document.addEventListener('click',function(ev){var b=ev.target.closest&&ev.target.closest('.hs-cta'); if(!b||!md) return;
+  document.getElementById('kmdl-h').textContent=b.dataset.house; md.hidden=false; document.body.style.overflow='hidden'});
+ if(md){md.addEventListener('click',function(ev){if(ev.target.hasAttribute('data-close')){md.hidden=true;document.body.style.overflow=''}});
+  document.addEventListener('keydown',function(ev){if(ev.key==='Escape'&&!md.hidden){md.hidden=true;document.body.style.overflow=''}})}
+ if(location.hash.indexOf('#h-')===0){var it0=document.getElementById(location.hash.slice(1)); if(it0) openItem(it0,true)}
+ apply();
 })();
