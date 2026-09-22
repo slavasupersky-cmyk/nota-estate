@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<title>Сценарии — NOTA</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light only">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/nota.css">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<meta name="description" content="Тринадцать сценариев покупки: студент, семья с детьми, переезд родителей, инвестиция и аренда. Что спрашивают, что мы предлагаем и от чего отказываемся — на домах из базы 288 новых домов Москвы.">
+<meta property="og:title" content="Сценарии — NOTA">
+<meta property="og:image" content="img/01-moskva-s-vody.jpg">
+<style>
+.cs{border-top:1.5px solid var(--hair);padding:clamp(28px,3.4vw,46px) 0}
+.cs:first-of-type{border-top:0}
+.cs-top{display:flex;gap:clamp(16px,2.4vw,30px);align-items:flex-start}
+.cs-n{font-weight:800;font-size:clamp(30px,4vw,54px);line-height:.9;letter-spacing:-.05em;color:var(--red);flex:0 0 auto}
+.cs-top h2{font-size:clamp(23px,2.9vw,38px);margin-top:9px;max-width:22ch}
+.cs-grid{display:grid;grid-template-columns:minmax(0,.34fr) minmax(0,.66fr);gap:clamp(24px,4vw,60px);margin-top:clamp(20px,2.4vw,34px)}
+.cs-brief ul{margin:14px 0 0;padding:0;list-style:none;border-top:1px solid var(--line)}
+.cs-brief li{font-size:14.5px;line-height:1.5;color:var(--ink-2);padding:11px 0;border-bottom:1px solid var(--line)}
+.cs-read{font-size:clamp(15.5px,1.4vw,17.5px);line-height:1.55;color:var(--ink);max-width:62ch}
+.cs-read b,.cs-no b,.cs-end b{font-weight:600}
+.ofs{margin-top:26px;border-top:1.5px solid var(--hair)}
+.of{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.9fr) 118px;gap:18px;align-items:baseline;padding:13px 0;border-bottom:1px solid var(--line)}
+.of-n b{display:block;font-weight:600;font-size:16px;letter-spacing:-.02em}
+.of-n span{display:block;font-size:11px;letter-spacing:.11em;text-transform:uppercase;color:var(--muted);margin-top:4px}
+.of-p{font-size:14px;color:var(--ink-2)}
+.of-m{font-weight:600;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;text-align:right;color:var(--muted)}
+.of-yes .of-m{color:var(--red)}
+.of-mid .of-m{color:var(--ink)}
+.of-no .of-n b{color:var(--muted)}
+.cs-no,.cs-end{font-size:15px;line-height:1.55;color:var(--ink-2);max-width:62ch;margin-top:20px}
+.cs-end{border-left:2px solid var(--red);padding-left:18px;color:var(--ink)}
+.warn{border:1px solid var(--line);background:var(--paper-2);padding:22px 24px;margin-top:30px;font-size:14px;line-height:1.55;color:var(--ink-2);max-width:78ch}
+.warn b{color:var(--ink);font-weight:600}
+@media(max-width:900px){.cs-grid{grid-template-columns:1fr;gap:22px}
+ .of{grid-template-columns:1fr auto;gap:6px 14px}
+ .of-p{grid-column:1;font-size:13.5px}
+ .of-m{grid-row:1;grid-column:2;text-align:right}}
+</style>
+</head>
+<body class="inner">
+<header class="top solid" id="top-bar">
+ <div class="top-in">
+  <a class="brand" href="index.html" aria-label="NOTA — на главную">
+   <svg class="mark" viewBox="12 5 96 103" fill="none" aria-hidden="true">
+    <path d="M 92.18 30.00 A 44 44 0 1 1 69.90 17.13" stroke="currentColor" stroke-width="8"/>
+    <path d="M 60 60 L 89.04 9.70" stroke="#CE2029" stroke-width="8"/>
+   </svg>
+   <span class="rule"></span>
+   <span class="lk">
+    <span class="wm">NOT<i>A</i></span>
+    <span class="brandtag">NB: NOT A CHOICE. THE CHOICE.</span>
+   </span>
+  </a>
+  <nav class="nav">
+      <a href="podbor.html" data-m="podbor">Подбор</a>
+      <a href="metod.html" data-m="metod">Метод</a>
+      <a href="karta.html" data-m="karta">Карта объектов</a>
+      <a href="razbory.html" data-m="razbory">Разборы</a>
+      <a href="nota-index.html" data-m="index">Индекс</a>
+      <a class="now" href="tel:+74950000000">+7 495 000-00-00</a>
+     </nav>
+   <button class="burger" id="burger" type="button" aria-label="Меню" aria-expanded="false"><span></span><span></span><span></span></button>
+ </div>
+</header>
+
+<main>
+<section class="first tight-b"><div class="wrap">
+ <p class="ttl">Сценарии</p>
+ <h1>Одинаковых запросов<br>не бывает</h1>
+ <p class="lead">Тринадцать сценариев покупки: что человек говорит на первом разговоре, что мы слышим за этим, какие дома показываем и от чего отказываемся. Дома и цифры — из нашей базы 288 новых домов Москвы от бизнес-класса и выше.</p>
+ <div class="facts" style="margin-top:34px">
+  <div class="fact"><b>13</b> сценариев</div>
+  <div class="fact"><b>288</b> домов в базе</div>
+  <div class="fact"><b>3</b> отметки: да, присмотреться, нет</div>
+ </div>
+ <div class="warn"><b>Люди вымышлены, дома настоящие.</b> Семьи, бюджеты и решения в этих сценариях собраны из типичных запросов и не описывают конкретных клиентов. Дома, сроки и цена метра взяты из нашей базы на 23 сентября 2026 года; метраж и суммы — расчёт от цены метра, а не предложение. Прогноз цен и доходности — гипотеза, а не обещание: проверяйте по конкретному лоту и договору.</div>
+</div></section>
+
+<section class="tight"><div class="wrap">
+ <div class="two">
+  <div><p class="ttl">Как читать</p><h2 style="margin-top:20px">Три отметки</h2></div>
+  <div><p class="lede">Отметка — дом подходит под сценарий, и мы готовы это объяснить числами. Присмотреться — подходит с оговоркой, чаще по сроку или цене. Без отметки — дом не проходит именно в этом сценарии; в другом он может стоять первым.</p></div>
+ </div>
+ <div class="chipgrp" style="margin-top:26px"><div class="chips">
+  <a class="chip" href="#c01">01 · Пять лет и понятный выход</a>
+  <a class="chip" href="#c02">02 · Покупка на две жизни сразу</a>
+  <a class="chip" href="#c03">03 · Пешком — это район, а не дом</a>
+  <a class="chip" href="#c04">04 · Две сестры и один паркинг</a>
+  <a class="chip" href="#c05">05 · Первые три года решают не метры</a>
+  <a class="chip" href="#c06">06 · Покупаем маршрут ребёнка</a>
+  <a class="chip" href="#c07">07 · Два ребёнка — два разных маршрута</a>
+  <a class="chip" href="#c08">08 · Решает то, что за дверью подъезда</a>
+  <a class="chip" href="#c09">09 · Поближе — это без горки и без шоссе</a>
+  <a class="chip" href="#c10">10 · Две двери между рабочими местами</a>
+  <a class="chip" href="#c11">11 · Смотрим не на скидку, а на скорость</a>
+  <a class="chip" href="#c12">12 · В премиуме растёт не метр, а характеристика</a>
+  <a class="chip" href="#c13">13 · Доходность решает не цена, а конкуренция при сдаче</a>
+ </div></div>
+</div></section>
+
+<section class="tight"><div class="wrap">
+<article class="cs" id="c01">
+ <div class="cs-top">
+  <span class="cs-n">01</span>
+  <div>
+   <p class="ttl">Студент · МГУ · до 18 млн</p>
+   <h2>Пять лет и понятный выход</h2>
+  </div>
+ </div>
+ <div class="cs-grid">
+  <div class="cs-brief">
+   <p class="ttl">Бриф</p>
+   <ul>
+    <li>Дочь поступила на мехмат, общежитие не рассматривают</li>
+    <li>До Главного здания не больше получаса</li>
+    <li>Одна комната или студия, бюджет 18 млн под ключ</li>
+    <li>Через пять лет — сдавать или продавать</li>
+   </ul>
+  </div>
+  <div class="cs-main">
+   <p class="cs-read"><b>Что мы услышали.</b> Запрос звучит как «квартира рядом с МГУ», а решается как «пять лет учёбы плюс понятный выход». У Главного здания метр съедает весь бюджет, поэтому мы искали первый пояс, из которого дорога до факультета не превращается в две пересадки.</p>
+   <div class="ofs">
+   <div class="of of-yes">
+    <div class="of-n"><b>Инноватор</b><span>Раменки · бизнес · сдан</span></div>
+    <div class="of-p">от 477,8 тыс/м² · 37 м² ≈ 17,7 млн</div>
+    <div class="of-m">Отметка</div>
+   </div>
+   <div class="of of-mid">
+    <div class="of-n"><b>Обручева 30</b><span>Коньково · бизнес · IV кв. 2026</span></div>
+    <div class="of-p">от 450,9 тыс/м² · 40 м² ≈ 18 млн</div>
+    <div class="of-m">Присмотреться</div>
+   </div>
+   <div class="of of-no">
+    <div class="of-n"><b>Наметкин Тауэр</b><span>Черёмушки · бизнес · II кв. 2026</span></div>
+    <div class="of-p">от 322 тыс/м² · 52 м² ≈ 16,7 млн</div>
+    <div class="of-m">Без отметки</div>
+   </div>
+   </div>
+   <p class="cs-no"><b>Без отметки.</b> Наметкин Тауэр дешевле всех в списке, но это 2071 квартира и дорога с пересадкой. Для студента дешёвый метр здесь оплачивается сорока минутами в день — за пять лет это больше тысячи часов.</p>
+   <p class="cs-end"><b>Чем закончилось.</b> Взяли 37 м² в Инноваторе. До Главного здания двенадцать минут на велосипеде, зимой — один автобус. Квартиру решили не сдавать: после выпуска в ней остаётся младший брат.</p>
+  </div>
+ </div>
+</article>
+<article class="cs" id="c02">
+ <div class="cs-top">
+  <span class="cs-n">02</span>
+  <div>
+   <p class="ttl">Студент · МГУ · до 40 млн</p>
+   <h2>Покупка на две жизни сразу</h2>
+  </div>
+ </div>
+ <div class="cs-grid">
+  <div class="cs-brief">
+   <p class="ttl">Бриф</p>
+   <ul>
+    <li>Сын на третьем курсе, впереди магистратура</li>
+    <li>Родители думают переехать в Москву через несколько лет</li>
+    <li>Две комнаты, Раменки или Мосфильмовская</li>
+    <li>Бюджет 40 млн, срок готовности не критичен</li>
+   </ul>
+  </div>
+  <div class="cs-main">
+   <p class="cs-read"><b>Что мы услышали.</b> В одном запросе два сценария: четыре студенческих года и пятнадцать семейных лет. Выбирать нужно по второму — по планировке, двору и окнам, а не по числу минут до факультета. Минуты через четыре года перестанут иметь значение, а окна на магистраль останутся.</p>
+   <div class="ofs">
+   <div class="of of-yes">
+    <div class="of-n"><b>Stories на Мосфильмовской</b><span>Раменки · бизнес · I кв. 2026</span></div>
+    <div class="of-p">от 520,4 тыс/м² · 62 м² ≈ 32 млн</div>
+    <div class="of-m">Отметка</div>
+   </div>
+   <div class="of of-mid">
+    <div class="of-n"><b>Инноватор</b><span>Раменки · бизнес · сдан</span></div>
+    <div class="of-p">от 477,8 тыс/м² · 58 м² ≈ 28 млн</div>
+    <div class="of-m">Присмотреться</div>
+   </div>
+   <div class="of of-no">
+    <div class="of-n"><b>Событие</b><span>Раменки · премиум · IV кв. 2029</span></div>
+    <div class="of-p">от 519,3 тыс/м² · 3987 квартир</div>
+    <div class="of-m">Без отметки</div>
+   </div>
+   </div>
+   <p class="cs-no"><b>Без отметки.</b> Событие стоит как премиум и при этом обещает почти четыре тысячи квартир и стройку до 2029 года. Сын заканчивает магистратуру раньше, чем во дворе уберут забор.</p>
+   <p class="cs-end"><b>Чем закончилось.</b> Взяли 62 м² в Stories — 440 квартир на весь дом. Сын живёт один, через четыре года квартира достаётся родителям, ремонт делали сразу «взрослый».</p>
+  </div>
+ </div>
+</article>
+<article class="cs" id="c03">
+ <div class="cs-top">
+  <span class="cs-n">03</span>
+  <div>
+   <p class="ttl">Студент · Вышка, Покровский бульвар · до 25 млн</p>
+   <h2>Пешком — это район, а не дом</h2>
+  </div>
+ </div>
+ <div class="cs-grid">
+  <div class="cs-brief">
+   <p class="ttl">Бриф</p>
+   <ul>
+    <li>Второй курс, корпус на Покровском бульваре</li>
+    <li>Принципиально ходить пешком, без метро</li>
+    <li>Студия или одна комната</li>
+    <li>Бюджет 25 млн</li>
+   </ul>
+  </div>
+  <div class="cs-main">
+   <p class="cs-read"><b>Что мы услышали.</b> «Пешком до Покровки» — это Басманный, а в Басманном новых домов нашего сегмента единицы. Значит выбор идёт не между районами, а между тремя домами, и проверять надо не цену метра, а двор, паркинг и то, что происходит с окнами во дворе-колодце.</p>
+   <div class="ofs">
+   <div class="of of-yes">
+    <div class="of-n"><b>Интеллигент</b><span>Басманный · бизнес · I кв. 2026</span></div>
+    <div class="of-p">от 452 тыс/м² · 52 м² ≈ 23,5 млн</div>
+    <div class="of-m">Отметка</div>
+   </div>
+   <div class="of of-mid">
+    <div class="of-n"><b>Резиденции архитекторов</b><span>Басманный · бизнес · сдан</span></div>
+    <div class="of-p">от 441 тыс/м² · 55 м² ≈ 24 млн</div>
+    <div class="of-m">Присмотреться</div>
+   </div>
+   <div class="of of-no">
+    <div class="of-n"><b>Chkalov</b><span>Басманный · элитный · сдан</span></div>
+    <div class="of-p">от 669 тыс/м² · 37 м² ≈ 25 млн</div>
+    <div class="of-m">Без отметки</div>
+   </div>
+   </div>
+   <p class="cs-no"><b>Без отметки.</b> В Chkalov за те же деньги выходит 37 метров. Маленький лот в доме элит-класса продаётся дольше всего: покупатель такого адреса приходит за большой площадью.</p>
+   <p class="cs-end"><b>Чем закончилось.</b> Взяли 52 м² в Интеллигенте. До корпуса пятнадцать минут пешком через Хохловский переулок, машину не покупали.</p>
+  </div>
+ </div>
+</article>
+<article class="cs" id="c04">
+ <div class="cs-top">
+  <span class="cs-n">04</span>
+  <div>
+   <p class="ttl">Студентки · Вышка, Шаболовка · до 45 млн</p>
+   <h2>Две сестры и один паркинг</h2>
+  </div>
+ </div>
+ <div class="cs-grid">
+  <div class="cs-brief">
+   <p class="ttl">Бриф</p>
+   <ul>
+    <li>Две дочери учатся в Москве, родители — в другом городе</li>
+    <li>Нужны две изолированные спальни</li>
+    <li>Метро не дальше семи минут пешком</li>
+    <li>Бюджет 45 млн, потом сдавать</li>
+   </ul>
+  </div>
+  <div class="cs-main">
+   <p class="cs-read"><b>Что мы услышали.</b> Это не «квартира студентке», а «две взрослые дочери на четыре года, дальше аренда». Хорошая новость: обе задачи решает одна и та же вещь — две изолированные спальни рядом с метро. Такая планировка и сдаётся лучше всего.</p>
+   <div class="ofs">
+   <div class="of of-yes">
+    <div class="of-n"><b>Инсайдер</b><span>Даниловский · бизнес · III кв. 2026</span></div>
+    <div class="of-p">от 433 тыс/м² · 78 м² ≈ 34 млн</div>
+    <div class="of-m">Отметка</div>
+   </div>
+   <div class="of of-mid">
+    <div class="of-n"><b>А22</b><span>Даниловский · бизнес · IV кв. 2028</span></div>
+    <div class="of-p">от 451,7 тыс/м² · 80 м² ≈ 36 млн</div>
+    <div class="of-m">Присмотреться</div>
+   </div>
+   <div class="of of-no">
+    <div class="of-n"><b>Level Павелецкая Сити</b><span>Даниловский · бизнес · IV кв. 2027</span></div>
+    <div class="of-p">от 537,9 тыс/м² · 3252 квартиры</div>
+    <div class="of-m">Без отметки</div>
+   </div>
+   </div>
+   <p class="cs-no"><b>Без отметки.</b> Level Павелецкая Сити выходит на рынок сразу тремя тысячами квартир. В момент, когда дочери съедут и квартиру нужно будет сдавать, соседи будут сдавать её же — только дешевле.</p>
+   <p class="cs-end"><b>Чем закончилось.</b> Взяли 78 м² в Инсайдере за 34 млн, 11 млн осталось на ремонт и мебель. Ключи — к началу третьего курса.</p>
+  </div>
+ </div>
+</article>
+<article class="cs" id="c05">
+ <div class="cs-top">
+  <span class="cs-n">05</span>
+  <div>
+   <p class="ttl">Семья · ребёнку 8 месяцев · до 55 млн</p>
+   <h2>Первые три года решают не метры</h2>
+  </div>
+ </div>
+ <div class="cs-grid">
+  <div class="cs-brief">
+   <p class="ttl">Бриф</p>
+   <ul>
+    <li>Первый ребёнок, сейчас 42 м² у Сокола</li>
+    <li>Двор без машин, лифт от паркинга, коляска в лифте</li>
+    <li>Поликлиника и парк в шаговой доступности</li>
+    <li>Бюджет 55 млн, въезд через год-два</li>
+   </ul>
+  </div>
+  <div class="cs-main">
+   <p class="cs-read"><b>Что мы услышали.</b> Мы попросили описать не квартиру, а обычный вторник: подъём, коляска, лифт, двор, магазин, сон на балконе. После этого список параметров переписался сам — ширина лифта и пандус оказались важнее двух лишних метров кухни.</p>
+   <div class="ofs">
+   <div class="of of-yes">
+    <div class="of-n"><b>Эмоушен</b><span>Хорошёво-Мнёвники · бизнес · II кв. 2027</span></div>
+    <div class="of-p">от 395 тыс/м² · 92 м² ≈ 36 млн</div>
+    <div class="of-m">Отметка</div>
+   </div>
+   <div class="of of-mid">
+    <div class="of-n"><b>MYPRIORITY Мнёвники</b><span>Хорошёво-Мнёвники · бизнес · IV кв. 2028</span></div>
+    <div class="of-p">от 479,2 тыс/м² · 88 м² ≈ 42 млн</div>
+    <div class="of-m">Присмотреться</div>
+   </div>
+   <div class="of of-no">
+    <div class="of-n"><b>Сидней Сити</b><span>Хорошёво-Мнёвники · премиум · III кв. 2027</span></div>
+    <div class="of-p">от 461 тыс/м² · 6500 квартир</div>
+    <div class="of-m">Без отметки</div>
+   </div>
+   </div>
+   <p class="cs-no"><b>Без отметки.</b> Сидней Сити — шесть с половиной тысяч квартир. На детской площадке это чувствуется каждый вечер, а очередь в лифт с коляской — каждое утро.</p>
+   <p class="cs-end"><b>Чем закончилось.</b> Взяли 92 м² в Эмоушене — 551 квартира на дом, пойма в десяти минутах. Въехали, когда ребёнку было два года, 19 млн ушли на ремонт и запас.</p>
+  </div>
+ </div>
+</article>
+<article class="cs" id="c06">
+ <div class="cs-top">
+  <span class="cs-n">06</span>
+  <div>
+   <p class="ttl">Семья · школьник 9 лет · до 70 млн</p>
+   <h2>Покупаем маршрут ребёнка</h2>
+  </div>
+ </div>
+ <div class="cs-grid">
+  <div class="cs-brief">
+   <p class="ttl">Бриф</p>
+   <ul>
+    <li>Сын сильный в математике, цель — школа на Юго-Западе</li>
+    <li>Сейчас снимают в Ясенево</li>
+    <li>Дорога до школы без пересадок</li>
+    <li>Бюджет 70 млн, въезд к 1 сентября</li>
+   </ul>
+  </div>
+  <div class="cs-main">
+   <p class="cs-read"><b>Что мы услышали.</b> Покупается не дом, а дорога ребёнка до школы и обратно: она повторится около двух тысяч раз. Поэтому сначала мы поставили на карту школу и посмотрели, из каких домов до неё идут пешком или на одном автобусе, и только потом сравнивали классы и планировки.</p>
+   <div class="ofs">
+   <div class="of of-yes">
+    <div class="of-n"><b>Обручева 30</b><span>Коньково · бизнес · IV кв. 2026</span></div>
+    <div class="of-p">от 450,9 тыс/м² · 112 м² ≈ 50 млн</div>
+    <div class="of-m">Отметка</div>
+   </div>
+   <div class="of of-mid">
+    <div class="of-n"><b>СТОУН Грэйн</b><span>Обручевский · бизнес · IV кв. 2028</span></div>
+    <div class="of-p">от 538,2 тыс/м² · 100 м² ≈ 54 млн</div>
+    <div class="of-m">Присмотреться</div>
+   </div>
+   <div class="of of-no">
+    <div class="of-n"><b>ТАТУМ, Обручева 27</b><span>Обручевский · бизнес · I кв. 2029</span></div>
+    <div class="of-p">от 499,4 тыс/м² · старт продаж</div>
+    <div class="of-m">Без отметки</div>
+   </div>
+   </div>
+   <p class="cs-no"><b>Без отметки.</b> ТАТУМ и СТОУН Грэйн стоят на нужных улицах, но ключи будут в 2028–2029 году. Это ещё два-три года съёма и переход в новую школу в середине средних классов.</p>
+   <p class="cs-end"><b>Чем закончилось.</b> Взяли 112 м² в Обручева 30 за 50 млн. Въехали в августе, сын пошёл в пятый класс уже из своей квартиры; на разницу сделали ремонт и оплатили год занятий.</p>
+  </div>
+ </div>
+</article>
+<article class="cs" id="c07">
+ <div class="cs-top">
+  <span class="cs-n">07</span>
+  <div>
+   <p class="ttl">Семья · дети 14 и 4 · до 90 млн</p>
+   <h2>Два ребёнка — два разных маршрута</h2>
+  </div>
+ </div>
+ <div class="cs-grid">
+  <div class="cs-brief">
+   <p class="ttl">Бриф</p>
+   <ul>
+    <li>Дочь в гимназии в центре, сын идёт в сад</li>
+    <li>Нужны четыре комнаты и свои зоны</li>
+    <li>Одна машина, но паркинг на два места</li>
+    <li>Бюджет 90 млн</li>
+   </ul>
+  </div>
+  <div class="cs-main">
+   <p class="cs-read"><b>Что мы услышали.</b> У подростка и дошкольника расписания не пересекаются нигде. Значит ищем точку, из которой коротки оба маршрута — до гимназии по прямой ветке и до сада пешком, — а не «хороший район» вообще. Таких точек в городе немного, и они редко совпадают с самыми известными адресами.</p>
+   <div class="ofs">
+   <div class="of of-yes">
+    <div class="of-n"><b>МОМЕНТС</b><span>Покровское-Стрешнево · бизнес · I кв. 2027</span></div>
+    <div class="of-p">от 539 тыс/м² · 145 м² ≈ 78 млн</div>
+    <div class="of-m">Отметка</div>
+   </div>
+   <div class="of of-mid">
+    <div class="of-n"><b>АЛИА</b><span>Покровское-Стрешнево · премиум · II кв. 2028</span></div>
+    <div class="of-p">от 501,7 тыс/м² · 150 м² ≈ 75 млн</div>
+    <div class="of-m">Присмотреться</div>
+   </div>
+   <div class="of of-no">
+    <div class="of-n"><b>Остров</b><span>Хорошёво-Мнёвники · премиум · II кв. 2029</span></div>
+    <div class="of-p">от 581 тыс/м² · 12 000 квартир</div>
+    <div class="of-m">Без отметки</div>
+   </div>
+   </div>
+   <p class="cs-no"><b>Без отметки.</b> В Острове есть и школа, и сад в проекте. Но стройка идёт до 2029 года — это ровно всё дошкольное детство младшего под окнами.</p>
+   <p class="cs-end"><b>Чем закончилось.</b> Взяли 145 м² в МОМЕНТС, два машиноместа. Дочь ездит в гимназию без пересадок, сын ходит в сад через двор.</p>
+  </div>
+ </div>
+</article>
+<article class="cs" id="c08">
+ <div class="cs-top">
+  <span class="cs-n">08</span>
+  <div>
+   <p class="ttl">Семья · трое детей · до 150 млн</p>
+   <h2>Решает то, что за дверью подъезда</h2>
+  </div>
+ </div>
+ <div class="cs-grid">
+  <div class="cs-brief">
+   <p class="ttl">Бриф</p>
+   <ul>
+    <li>Дети 11, 8 и 3 года</li>
+    <li>Пять комнат, место, где дети гуляют сами</li>
+    <li>Лыжи, велосипед, гребля — рядом, а не по выходным</li>
+    <li>Бюджет 150 млн, готовы ждать до 2027</li>
+   </ul>
+  </div>
+  <div class="cs-main">
+   <p class="cs-read"><b>Что мы услышали.</b> При трёх детях метраж перестаёт быть главным параметром: решает то, что начинается за дверью подъезда. Может ли восьмилетка выйти один, есть ли куда деть велосипеды, далеко ли от школы до дома без единого перехода через магистраль.</p>
+   <div class="ofs">
+   <div class="of of-yes">
+    <div class="of-n"><b>Крылатская 33</b><span>Крылатское · премиум · 2027</span></div>
+    <div class="of-p">от 580 тыс/м² · 190 м² ≈ 110 млн</div>
+    <div class="of-m">Отметка</div>
+   </div>
+   <div class="of of-mid">
+    <div class="of-n"><b>Дом Горизонтов</b><span>Крылатское · премиум · 2027</span></div>
+    <div class="of-p">от 673,5 тыс/м² · 170 м² ≈ 115 млн</div>
+    <div class="of-m">Присмотреться</div>
+   </div>
+   <div class="of of-no">
+    <div class="of-n"><b>Событие</b><span>Раменки · премиум · IV кв. 2029</span></div>
+    <div class="of-p">от 519,3 тыс/м² · 3987 квартир</div>
+    <div class="of-m">Без отметки</div>
+   </div>
+   </div>
+   <p class="cs-no"><b>Без отметки.</b> Событие дало бы больше метров за те же деньги, но въезд в 2029-м: старший к этому времени заканчивает школу, ради которой всё и затевалось.</p>
+   <p class="cs-end"><b>Чем закончилось.</b> Взяли 190 м² на Крылатской, 110 млн. Школа через парк, гребной канал в двадцати минутах пешком, оставшиеся деньги ушли в ремонт и хранение.</p>
+  </div>
+ </div>
+</article>
+<article class="cs" id="c09">
+ <div class="cs-top">
+  <span class="cs-n">09</span>
+  <div>
+   <p class="ttl">Родители · 74 и 71 год · до 45 млн</p>
+   <h2>Поближе — это без горки и без шоссе</h2>
+  </div>
+ </div>
+ <div class="cs-grid">
+  <div class="cs-brief">
+   <p class="ttl">Бриф</p>
+   <ul>
+    <li>Родители продают квартиру в другом городе</li>
+    <li>Дети живут в Раменках, жить вместе не хотят ни те ни другие</li>
+    <li>Нужны поликлиника, аптека и продукты пешком</li>
+    <li>Бюджет 45 млн</li>
+   </ul>
+  </div>
+  <div class="cs-main">
+   <p class="cs-read"><b>Что мы услышали.</b> «Поближе к нам» на карте выглядит как радиус, а в жизни — как дорога без подъёма и без перехода через шоссе. Мы прошли маршруты сами: от подъезда до поликлиники, до автобуса, до детей. Два дома из короткого списка отпали на подъёме от метро.</p>
+   <div class="ofs">
+   <div class="of of-yes">
+    <div class="of-n"><b>Поклонная 7</b><span>Дорогомилово · премиум · II кв. 2026</span></div>
+    <div class="of-p">от 465,3 тыс/м² · 70 м² ≈ 33 млн</div>
+    <div class="of-m">Отметка</div>
+   </div>
+   <div class="of of-mid">
+    <div class="of-n"><b>Инноватор</b><span>Раменки · бизнес · сдан</span></div>
+    <div class="of-p">от 477,8 тыс/м² · 66 м² ≈ 31 млн</div>
+    <div class="of-m">Присмотреться</div>
+   </div>
+   <div class="of of-no">
+    <div class="of-n"><b>Ривер Парк Кутузовский</b><span>Дорогомилово · премиум · 2027</span></div>
+    <div class="of-p">от 800 тыс/м² · вид на воду</div>
+    <div class="of-m">Без отметки</div>
+   </div>
+   </div>
+   <p class="cs-no"><b>Без отметки.</b> Ривер Парк Кутузовский — про вид. В этом сценарии вид используется реже, чем лифт, ровный тротуар и аптека на первом этаже, а стоит втрое дороже.</p>
+   <p class="cs-end"><b>Чем закончилось.</b> Взяли 70 м² на Поклонной за 33 млн. До детей восемнадцать минут пешком через парк, поликлиника и рынок — в одном квартале. Оставшиеся 12 млн положили на вклад.</p>
+  </div>
+ </div>
+</article>
+<article class="cs" id="c10">
+ <div class="cs-top">
+  <span class="cs-n">10</span>
+  <div>
+   <p class="ttl">Пара · оба работают из дома · до 60 млн</p>
+   <h2>Две двери между рабочими местами</h2>
+  </div>
+ </div>
+ <div class="cs-grid">
+  <div class="cs-brief">
+   <p class="ttl">Бриф</p>
+   <ul>
+    <li>Обоим по 34, созвоны с утра до вечера</li>
+    <li>Нужны два закрытых кабинета</li>
+    <li>Машины нет, важны кофейни и зелень рядом</li>
+    <li>Бюджет 60 млн</li>
+   </ul>
+  </div>
+  <div class="cs-main">
+   <p class="cs-read"><b>Что мы услышали.</b> Такой запрос решается планировкой и акустикой, а не районом. Нужны две двери между рабочими местами, окна не на магистраль и стояки, которые не гудят. Мы отсекли все квартиры, где второй «кабинет» — это спальня с проходом на кухню.</p>
+   <div class="ofs">
+   <div class="of of-yes">
+    <div class="of-n"><b>Мира</b><span>Алексеевский · премиум · 2027</span></div>
+    <div class="of-p">от 636,9 тыс/м² · 85 м² ≈ 54 млн</div>
+    <div class="of-m">Отметка</div>
+   </div>
+   <div class="of of-mid">
+    <div class="of-n"><b>Апсайд Тауэрс</b><span>Бутырский · бизнес · II кв. 2027</span></div>
+    <div class="of-p">от 501 тыс/м² · 100 м² ≈ 50 млн</div>
+    <div class="of-m">Присмотреться</div>
+   </div>
+   <div class="of of-mid">
+    <div class="of-n"><b>MOD</b><span>Марьина Роща · премиум · сдан</span></div>
+    <div class="of-p">от 587 тыс/м² · 90 м² ≈ 53 млн</div>
+    <div class="of-m">Присмотреться</div>
+   </div>
+   </div>
+   <p class="cs-no"><b>Без отметки.</b> Без отметки здесь не дом, а конкретные корпуса: всё, что выходит окнами на Третье кольцо. Для двух людей на созвонах это главный отказ, в каком бы доме квартира ни была.</p>
+   <p class="cs-end"><b>Чем закончилось.</b> Взяли 85 м² в Мире. Кабинеты в разных концах квартиры, между ними кухня; парк в семи минутах.</p>
+  </div>
+ </div>
+</article>
+<article class="cs" id="c11">
+ <div class="cs-top">
+  <span class="cs-n">11</span>
+  <div>
+   <p class="ttl">Инвестиция · вход на старте · 30 млн</p>
+   <h2>Смотрим не на скидку, а на скорость</h2>
+  </div>
+ </div>
+ <div class="cs-grid">
+  <div class="cs-brief">
+   <p class="ttl">Бриф</p>
+   <ul>
+    <li>Свободные 30 млн, горизонт три-четыре года</li>
+    <li>Готов купить на котловане и ждать</li>
+    <li>Продавать планирует до ключей или сразу после</li>
+    <li>Вопрос один: куда заходить сейчас</li>
+   </ul>
+  </div>
+  <div class="cs-main">
+   <p class="cs-read"><b>Что мы услышали.</b> Цена в новостройке двигается не по настроению застройщика. При эскроу и проектном финансировании есть согласованный с банком график продаж и цен, и когда корпус уходит быстрее плана, его индексируют раньше соседнего. Застройщики называют шаг порядка 1–1,5 %; период мы уточняем и будем считать сами. Поэтому вход мы выбираем по скорости вымывания лотов по корпусам, а не по величине стартовой скидки.</p>
+   <div class="ofs">
+   <div class="of of-yes">
+    <div class="of-n"><b>Симоновский вал</b><span>Южнопортовый · бизнес · II кв. 2030</span></div>
+    <div class="of-p">от 455,3 тыс/м² · 260 квартир</div>
+    <div class="of-m">Отметка</div>
+   </div>
+   <div class="of of-yes">
+    <div class="of-n"><b>Строгино 360</b><span>Строгино · бизнес · 2028–2029</span></div>
+    <div class="of-p">от 379 тыс/м² · 436 квартир</div>
+    <div class="of-m">Отметка</div>
+   </div>
+   <div class="of of-mid">
+    <div class="of-n"><b>NEXUS by Akvilon</b><span>Кунцево · бизнес · III кв. 2029</span></div>
+    <div class="of-p">от 474,5 тыс/м² · 639 квартир</div>
+    <div class="of-m">Присмотреться</div>
+   </div>
+   <div class="of of-mid">
+    <div class="of-n"><b>Солос</b><span>Сокольники · бизнес · I кв. 2029</span></div>
+    <div class="of-p">от 401,8 тыс/м² · 1243 квартиры</div>
+    <div class="of-m">Присмотреться</div>
+   </div>
+   <div class="of of-no">
+    <div class="of-n"><b>Veer</b><span>Можайский · бизнес · 2028–2029</span></div>
+    <div class="of-p">от 429,6 тыс/м² · 3720 квартир</div>
+    <div class="of-m">Без отметки</div>
+   </div>
+   </div>
+   <p class="cs-no"><b>Без отметки.</b> Veer — большой и внятный проект, но выходить из него придётся в очереди из тысяч квартир того же дома. На входе это не видно, на выходе видно сразу.</p>
+   <p class="cs-end"><b>Чем закончилось.</b> Взял 42 м² на Симоновском валу. Дальше мы раз в месяц снимаем остатки по корпусам: как только темп продаж падает, это сигнал не ждать следующей индексации.</p>
+  </div>
+ </div>
+</article>
+<article class="cs" id="c12">
+ <div class="cs-top">
+  <span class="cs-n">12</span>
+  <div>
+   <p class="ttl">Инвестиция · премиум или бизнес · 80 млн</p>
+   <h2>В премиуме растёт не метр, а характеристика</h2>
+  </div>
+ </div>
+ <div class="cs-grid">
+  <div class="cs-brief">
+   <p class="ttl">Бриф</p>
+   <ul>
+    <li>80 млн, хочет «премиум — там надёжнее»</li>
+    <li>Готов ждать до пяти лет</li>
+    <li>Не готов к долгой экспозиции на выходе</li>
+    <li>Просит один дом, а не портфель</li>
+   </ul>
+  </div>
+  <div class="cs-main">
+   <p class="cs-read"><b>Что мы услышали.</b> В премиуме дорожает не квадратный метр вообще, а редкая характеристика: этаж, вид, видовое остекление, конкретный корпус. Рядовой лот в доме премиум-класса ведёт себя как дорогой бизнес-класс, а выход из него дольше — покупателей на такую цену в разы меньше. Поэтому мы предложили не один дом, а два разных горизонта.</p>
+   <div class="ofs">
+   <div class="of of-yes">
+    <div class="of-n"><b>Строгино 360</b><span>Строгино · бизнес · 2028–2029</span></div>
+    <div class="of-p">от 379 тыс/м² · 45 м² ≈ 17 млн</div>
+    <div class="of-m">Отметка</div>
+   </div>
+   <div class="of of-yes">
+    <div class="of-n"><b>Сезар Силика</b><span>Хорошёво-Мнёвники · премиум · I кв. 2030</span></div>
+    <div class="of-p">от 452,7 тыс/м² · верхние этажи, 666 квартир</div>
+    <div class="of-m">Отметка</div>
+   </div>
+   <div class="of of-no">
+    <div class="of-n"><b>Типовой лот на среднем этаже</b><span>любой премиальный дом</span></div>
+    <div class="of-p">цена адреса, поведение бизнес-класса</div>
+    <div class="of-m">Без отметки</div>
+   </div>
+   </div>
+   <p class="cs-no"><b>Без отметки.</b> Рядовая квартира на пятом этаже в доме премиум-класса — это переплата за адрес, которую на выходе придётся объяснять покупателю. Если в премиум заходить, то за тем, чего в доме мало.</p>
+   <p class="cs-end"><b>Чем закончилось.</b> Взял два лота: бизнес-класс со сроком 2028 и верхний этаж в премиуме со сроком 2030. Разные сроки — чтобы не выходить на рынок двумя квартирами одновременно.</p>
+  </div>
+ </div>
+</article>
+<article class="cs" id="c13">
+ <div class="cs-top">
+  <span class="cs-n">13</span>
+  <div>
+   <p class="ttl">Пассивный доход · два лота по 25 млн</p>
+   <h2>Доходность решает не цена, а конкуренция при сдаче</h2>
+  </div>
+ </div>
+ <div class="cs-grid">
+  <div class="cs-brief">
+   <p class="ttl">Бриф</p>
+   <ul>
+    <li>50 млн на два лота под аренду</li>
+    <li>Хочет въехать в аренду сразу после сдачи</li>
+    <li>Готов на бизнес-класс, не на студии-апартаменты</li>
+    <li>Спрашивает, какие районы сейчас горячие</li>
+   </ul>
+  </div>
+  <div class="cs-main">
+   <p class="cs-read"><b>Что мы услышали.</b> По рынку аренды Москвы в начале 2026 года считают около 5,5 % годовых до налогов и простоя; в бизнес-классе обычно ниже. Разницу в полтора-два процента делает не дом, а простой и конкуренция: сколько квартир выходит на рынок в один квартал в пятнадцати минутах вокруг. Поэтому мы считаем не цену метра, а число соседей, сдающих то же самое.</p>
+   <div class="ofs">
+   <div class="of of-yes">
+    <div class="of-n"><b>Аквилон BESIDE 2.0</b><span>Нижегородский · бизнес · II кв. 2027</span></div>
+    <div class="of-p">от 369,9 тыс/м² · 1106 квартир</div>
+    <div class="of-m">Отметка</div>
+   </div>
+   <div class="of of-yes">
+    <div class="of-n"><b>УНО. Соколиная гора</b><span>Соколиная Гора · бизнес · II кв. 2027</span></div>
+    <div class="of-p">от 435 тыс/м² · 642 квартиры</div>
+    <div class="of-m">Отметка</div>
+   </div>
+   <div class="of of-mid">
+    <div class="of-n"><b>Мираполис</b><span>Ярославский · бизнес · IV кв. 2027</span></div>
+    <div class="of-p">от 328 тыс/м² · 1941 квартира</div>
+    <div class="of-m">Присмотреться</div>
+   </div>
+   <div class="of of-no">
+    <div class="of-n"><b>Level Павелецкая Сити</b><span>Даниловский · бизнес · IV кв. 2027</span></div>
+    <div class="of-p">от 537,9 тыс/м² · 3252 квартиры</div>
+    <div class="of-m">Без отметки</div>
+   </div>
+   </div>
+   <p class="cs-no"><b>Без отметки.</b> Level Павелецкая Сити выводит на рынок три тысячи квартир в один квартал. Первые арендодатели там будут снижать ставку друг против друга весь первый год.</p>
+   <p class="cs-end"><b>Чем закончилось.</b> Взял две однокомнатные в разных районах со сдачей в один год, но в разных кварталах — чтобы не конкурировать с самим собой. Ставку считаем по факту сдачи, а не по обещаниям.</p>
+  </div>
+ </div>
+</article>
+</div></section>
+
+<section class="tight"><div class="wrap">
+ <div class="two">
+  <div><p class="ttl">Дальше</p><h2 style="margin-top:20px">Ваш сценарий</h2></div>
+  <div>
+   <p class="lede">Ни один из этих сценариев не совпадёт с вашим полностью — и это нормально: совпадать должен метод, а не семья. Заполните анкету, и на первом разговоре мы покажем, как ваш запрос выглядит на карте из 288 домов.</p>
+   <div class="btns" style="margin-top:26px"><a class="btn btn-l" href="podbor.html">Заполнить анкету</a> <a class="btn btn-l" href="karta.html">Посмотреть базу</a></div>
+  </div>
+ </div>
+</div></section>
+</main>
+
+<footer>
+ <div class="wrap foot">
+  <a class="brand" href="index.html">
+   <svg class="mark" viewBox="12 5 96 103" fill="none" aria-hidden="true">
+    <path d="M 90.57 28.35 A 44 44 0 1 1 72.13 17.70" stroke="currentColor" stroke-width="6.3"/>
+    <path d="M 60 60 L 89.04 9.70" stroke="#CE2029" stroke-width="6.3"/>
+   </svg>
+   <span class="rule"></span>
+   <span class="lk">
+    <span class="wm">NOT<i>A</i></span>
+    <span class="brandtag">NOT A CHOICE. THE CHOICE.</span>
+   </span>
+  </a>
+  <div class="foot-r">
+   <div><a href="tel:+74950000000">+7 495 000-00-00</a> · <a href="https://t.me/nota_estate">Telegram</a> · <a href="#">MAX</a> · <a href="mailto:hello@nota.estate">hello@nota.estate</a></div>
+   <div class="foot-nav"><a href="podbor.html">Подбор</a> · <a href="metod.html">Метод</a> · <a href="karta.html">Карта объектов</a> · <a href="doma/">Дома</a> · <a href="razbory.html">Разборы</a> · <a href="scenarii.html">Сценарии</a> · <a href="nota-index.html">Индекс</a></div>
+  </div>
+ </div>
+ <div class="wrap foot-legal">
+  <span>ИП — · ИНН — · ОГРНИП —</span>
+  <span><a href="politika.html">Политика конфиденциальности</a> · <a href="politika.html#soglasie">Согласие на обработку данных</a></span>
+ </div>
+</footer>
+<script src="js/nota.js"></script>
+</body>
+</html>

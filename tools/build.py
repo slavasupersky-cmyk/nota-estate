@@ -11,8 +11,9 @@ T = ROOT / 'tools'
 site = {k: v for k, v in json.loads((T / 'site.json').read_text()).items() if not k.startswith('_')}
 HEADER = (T / 'partials/header.html').read_text()
 FOOTER = (T / 'partials/footer.html').read_text()
+CONTACT = (T / 'partials/contact.html').read_text()
 
-SITE_PAGES = ['index.html', 'podbor.html', 'metod.html', 'karta.html', 'razbory.html', 'razbor-hamovniki.html',
+SITE_PAGES = ['index.html', 'podbor.html', 'metod.html', 'karta.html', 'razbory.html', 'razbor-hamovniki.html', 'scenarii.html',
               'nota-index.html', 'index-2026-08.html', 'index-2026-09.html', 'politika.html']
 
 def section_of(rel):
@@ -39,6 +40,7 @@ def apply_shell(path):
     foot_attr = fm.group(1) if fm else ''
     s2 = re.sub(r'<header class="top[\s\S]*?</header>', lambda m: fill(HEADER, rel).rstrip('\n'), s, count=1)
     s2 = re.sub(r'<footer[^>]*>[\s\S]*?</footer>', lambda m: fill(FOOTER, rel, {'FOOT_ATTR': foot_attr}).rstrip('\n'), s2, count=1)
+    s2 = re.sub(r'<section class="contact" id="kontakt">[\s\S]*?</section>', lambda m: fill(CONTACT, rel).rstrip('\n'), s2, count=1)
     # реквизиты внутри текста (политика): <!--rekv-->…<!--/rekv-->
     s2 = re.sub(r'<!--rekv-->[\s\S]*?<!--/rekv-->',
                 lambda m: '<!--rekv-->ИП {ip_name}, ИНН {inn}, ОГРНИП {ogrnip}<!--/rekv-->'.format(**site), s2)
@@ -52,5 +54,6 @@ if __name__ == '__main__':
     doma.build(ROOT)
     pages = [ROOT / p for p in SITE_PAGES if (ROOT / p).exists()]
     pages += sorted((ROOT / 'doma').glob('**/index.html'))
+    pages += sorted((ROOT / 'razbory').glob('**/index.html'))
     n = sum(apply_shell(p) for p in pages)
     print(f'шапка/подвал: обновлено {n} из {len(pages)} страниц')

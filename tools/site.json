@@ -1,12 +1,13 @@
 {
- "_comment": "Контакты и реквизиты — одно место на весь сайт. После правки: python3 tools/build.py",
+ "_comment": "Контакты и реквизиты — одно место на весь сайт. max_url — заглушка, заменить на ссылку MAX. После правки: python3 tools/build.py",
  "phone": "+7 495 000-00-00",
  "phone_href": "+74950000000",
  "tg": "nota_estate",
- "ig": "nota.estate",
  "email": "hello@nota.estate",
  "office": "Москва, Николоямская, 40с1",
  "ip_name": "—",
  "inn": "—",
- "ogrnip": "—"
+ "ogrnip": "—",
+ "max_url": "#",
+ "max_name": "NOTA"
 }

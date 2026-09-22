@@ -169,3 +169,33 @@
   }
  }
 })();
+
+/* ---- калькулятор «Сколько стоит въехать» ---- */
+(function(){
+ var box=document.getElementById('calc'); if(!box) return;
+ var g=function(id){return document.getElementById(id)};
+ var ids=['c-area','c-new','c-rem','c-wait','c-rent','c-old','c-rem2','c-torg'];
+ function num(v,d){return v.toLocaleString('ru-RU',{minimumFractionDigits:d||0,maximumFractionDigits:d||0})}
+ function mln(r){return (r/1e6).toLocaleString('ru-RU',{minimumFractionDigits:1,maximumFractionDigits:1})+' млн ₽'}
+ function mon(m){var n=Math.round(m),a=n%10,b=n%100;var w=(a==1&&b!=11)?'месяц':(a>=2&&a<=4&&(b<12||b>14))?'месяца':'месяцев';return n+' '+w}
+ function draw(){
+  var v={};ids.forEach(function(i){var el=g(i);v[i]=parseFloat(el.value);var o=el.nextElementSibling;o.textContent=num(v[i],i=='c-torg'?1:0)+' '+o.dataset.u});
+  var A=v['c-area'];
+  var priceNew=A*v['c-new']*1e3, rem=A*v['c-rem']*1e3;
+  var remMonths=v['c-rem']>0?6:0, waitAll=v['c-wait']+remMonths;
+  var rent=v['c-rent']*1e3*waitAll;
+  var totalNew=priceNew+rem+rent;
+  var priceOld=A*v['c-old']*1e3, torg=priceOld*v['c-torg']/100, rem2=A*v['c-rem2']*1e3, m2=v['c-rem2']>0?(v['c-rem2']>40?4:2):0, rent2=v['c-rent']*1e3*m2, totalOld=priceOld-torg+rem2+rent2;
+  g('o-new').textContent=mln(totalNew);
+  g('o-new-d').textContent='Квартира '+mln(priceNew)+' + ремонт '+mln(rem)+' + аренда '+mln(rent)+'. Въезд через '+mon(waitAll)+'.';
+  g('o-old').textContent=mln(totalOld);
+  g('o-old-d').textContent='Квартира '+mln(priceOld)+' − торг '+mln(torg)+(rem2?' + ремонт '+mln(rem2)+' + аренда '+mln(rent2)+'. Въезд через '+mon(m2)+'.':'. Въезд — после сделки.');
+  var d=totalNew-totalOld, t;
+  if(Math.abs(d)<5e5) t='Въезд обходится почти одинаково. Решают ставка ипотеки, дом и срок.';
+  else if(d>0) t='Готовая квартира дешевле на <em>'+mln(d)+'</em> и даёт въехать на '+mon(Math.max(0,waitAll-m2))+' раньше. У новостройки остаются новый дом, паркинг по проекту и льготная ставка.';
+  else t='Новостройка дешевле на <em>'+mln(-d)+'</em>, даже с ремонтом и арендой. Цена — ожидание: '+mon(waitAll)+' до въезда.';
+  g('o-v').innerHTML=t;
+ }
+ ids.forEach(function(i){g(i).addEventListener('input',draw)});
+ draw();
+})();
