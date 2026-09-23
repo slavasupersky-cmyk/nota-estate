@@ -1,4 +1,4 @@
-"""Карточки домов: data/zhk-moskva-biznes-plus-geo.csv + tools/doma.json → doma/<slug>/index.html"""
+"""Карточки домов: data/doma.csv (выгрузка из nota-baza, см. tools/baza.py) + tools/doma.json → doma/<slug>/index.html"""
 import csv, json, html, re, pathlib
 
 DATE = '21 сентября 2026'
@@ -18,12 +18,41 @@ def fmt(n, d=0):
     s = f'{n:,.{d}f}'.replace(',', ' ').replace('.', ',')
     return s
 
+def plural(n, one, few, many):
+    n = abs(int(n)); m10, m100 = n % 10, n % 100
+    return one if m10 == 1 and m100 != 11 else few if 2 <= m10 <= 4 and not 12 <= m100 <= 14 else many
+
+def schools_html(r, R):
+    """Блок «Школы рядом»: минуты пешком по улицам из маршрутов базы. Пусто, если маршрутов нет (Рублёвка)."""
+    if not r.get('school_min'):
+        return ''
+    bits = [f'Ближайшая школа — {e(r["school_name"])}, {r["school_min"]} мин пешком.']
+    if r.get('nota_school_min') and r['nota_school_name'] != r['school_name']:
+        bits.append(f'Ближайшая из нашей базы школ — {e(r["nota_school_name"])}, {r["nota_school_min"]} мин.')
+    n15 = int(r['nota_15'] or 0)
+    if n15:
+        bits.append(f'В 15 минутах — {n15} {plural(n15, "школа", "школы", "школ")} из базы.')
+    if r.get('marked_min'):
+        bits.append(f'С отметкой NOTA — {e(r["marked_name"])}, {r["marked_min"]} мин.')
+    else:
+        bits.append('Школ с отметкой NOTA в получасе пешком нет.')
+    approx = '' if r.get('geo_precision') == 'адрес' else ' Координаты дома примерные, минуты — плюс-минус пять.'
+    return f'''<section class="tight"><div class="wrap two">
+ <div><p class="ttl">Школы рядом</p></div>
+ <div><p class="lede">{' '.join(bits)}</p>
+ <p class="hint">Пешком по улицам и дворам, 4,5 км/ч, до ближайшего корпуса школы.{approx} Все школы вокруг дома — на карте <a href="{R}shkoly-marshruty.html">«До школы пешком»</a>.</p></div>
+</div></section>
+'''
+
 def district_label(d):
     return d if re.search(r'[.,~]|д\.|шоссе', d) else f'{d} район'
 
 def load(root):
-    p = root / 'data/zhk-moskva-biznes-plus-geo.csv'
-    return list(csv.DictReader(p.open(encoding='utf-8-sig'), delimiter=';'))
+    p = root / 'data/doma.csv'
+    rows = list(csv.DictReader(p.open(encoding='utf-8-sig'), delimiter=';'))
+    for r in rows:
+        r['class_final'] = r['class']
+    return rows
 
 def evaluate(r, cfg):
     cls = r['class_final']
@@ -35,6 +64,10 @@ def evaluate(r, cfg):
     p = 'нет данных' if ratio is None else ('да' if ratio >= PARK_NORM[cls] else 'нет')
     q = 'нет данных' if u is None else ('да' if u <= UNITS_NORM[cls][0] else 'нет')
     ans = [a, p, q]
+    # ответы из базы (proverki: 01 адрес, 05 машина, 04 плотность) главнее расчёта на месте
+    for i, c in enumerate(('p01', 'p05', 'p04')):
+        if r.get(c) in ('да', 'нет', 'нет данных'):
+            ans[i] = r[c]
     if 'нет' in ans: v = ('no', 'Без отметки')
     elif all(x == 'да' for x in ans): v = ('mark', 'Отметка')
     else: v = ('look', 'Присмотреться')
@@ -85,6 +118,11 @@ def card(slug, cfg, r):
     cls = r['class_final']; R = '../../'
     ans, (vk, vt), u, pk, ratio = evaluate(r, cfg)
     title = cfg['title']; dev = r['developer'] or 'застройщик не указан'
+    import pathlib
+    root_ = pathlib.Path(__file__).resolve().parent.parent
+    has_img = (root_ / 'img/doma' / f'{slug}.jpg').exists()
+    img_html = (f'<figure class="h-img"><img src="{R}img/doma/{slug}.jpg" alt="{e(title)} — визуализация застройщика" width="960" height="600">'
+                f'<figcaption>Визуализация застройщика</figcaption></figure>\n') if has_img else ''
     price = num(r['price_from_m2'])
     stage = r['stage'] + (f', срок — {r["deadline"]}' if r['deadline'] and r['deadline'] != 'сдан' else '')
     kind = r['type']
@@ -118,7 +156,7 @@ def card(slug, cfg, r):
  <h1>{e(title)} <span class="h-dev">{e(dev)}</span></h1>
  <p class="lead">{e(r["address"])} · {e(stage)}</p>
  <div class="h-verdict"><span class="tag {vk}">{vt}</span><span>{verdict_txt}</span></div>
- <div class="h-stats">
+ {img_html}<div class="h-stats">
 {stat_html}
  </div>
 </div></section>
@@ -128,7 +166,7 @@ def card(slug, cfg, r):
  <div><p class="lede h-note">{e(cfg["note"])}</p></div>
 </div></section>
 
-<section class="method"><div class="wrap">
+{schools_html(r, R)}<section class="method"><div class="wrap">
  <p class="ttl">Три вопроса к дому</p>
  <div class="tablewrap">
   <table class="h-q">
@@ -164,8 +202,8 @@ def build(root):
     cfgs = {k: v for k, v in json.loads((root / 'tools/doma.json').read_text()).items() if not k.startswith('_')}
     listing = []
     for slug, cfg in cfgs.items():
-        r = next((x for x in rows if x['name'].startswith(cfg['match'])), None)
-        if not r: print('нет в базе:', cfg['match']); continue
+        r = next((x for x in rows if x['slug'] == slug), None) or next((x for x in rows if x['name'].startswith(cfg.get('match', '\0'))), None)
+        if not r: print('нет в базе:', slug); continue
         page, meta = card(slug, cfg, r)
         d = root / 'doma' / slug; d.mkdir(parents=True, exist_ok=True)
         (d / 'index.html').write_text(page)

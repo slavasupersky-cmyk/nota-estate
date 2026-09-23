@@ -1,4 +1,4 @@
-"""Карта объектов: data/zhk-moskva-biznes-plus-geo.csv (+ data/doma-extra.csv, img/doma/<slug>.jpg)
+"""Карта объектов: data/doma.csv (выгрузка из nota-baza, см. tools/baza.py) + img/doma/<slug>.jpg
 → <main> страницы karta.html: карта с точками по реальным координатам, фильтры, список «по вашим фильтрам»."""
 import csv, json, re, html
 
@@ -13,6 +13,7 @@ OUT = {'Сколково', 'Рублёвка'}
 TR = dict(zip('абвгдеёжзийклмнопрстуфхцчшщъыьэюя',
               ['a', 'b', 'v', 'g', 'd', 'e', 'e', 'zh', 'z', 'i', 'y', 'k', 'l', 'm', 'n', 'o', 'p', 'r', 's', 't', 'u',
                'f', 'kh', 'ts', 'ch', 'sh', 'sch', '', 'y', '', 'e', 'yu', 'ya']))
+OKR = ['ЦАО', 'САО', 'СВАО', 'ВАО', 'ЮВАО', 'ЮАО', 'ЮЗАО', 'ЗАО', 'СЗАО', 'Сколково', 'Рублёвка']
 YB = {'now': 'Сдан или в 2026', 'y27': '2027', 'y28': '2028 и позже', 'ann': 'Анонс'}
 
 
@@ -84,12 +85,14 @@ def when_text(r):
 
 
 def build(root):
-    rows = list(csv.DictReader((root / 'data/zhk-moskva-biznes-plus-geo.csv').open(encoding='utf-8-sig'), delimiter=';'))
+    rows = list(csv.DictReader((root / 'data/doma.csv').open(encoding='utf-8-sig'), delimiter=';'))
     extra = {}
-    xp = root / 'data/doma-extra.csv'
-    if xp.exists():
-        for r in csv.DictReader(xp.open(encoding='utf-8-sig'), delimiter=';'):
-            extra[r['slug'].strip()] = r
+    for r in rows:
+        r['class_final'] = r['class']
+        lp = num(r['lot_min_price'])
+        extra[r['slug']] = {'price_median_m2': r['lots_median_m2'] or r['price_median_m2'], 'lots_count': r['lots'],
+                            'lot_min_area': r['lot_min_m2'], 'lot_min_price_mln': fmt(lp / 1e6, 1) if lp else '',
+                            'checked': r['lots_date']}
     notes = {k: v for k, v in json.loads((root / 'tools/doma.json').read_text()).items() if not k.startswith('_')}
     geo_src = (root / 'nota-karta-zhk.html').read_text()
     D, M, W = grab(geo_src, 'DISTRICTS'), grab(geo_src, 'MKAD'), grab(geo_src, 'W')
@@ -108,16 +111,11 @@ def build(root):
     # --- дома и слаги
     items, used = [], {}
     for r in rows:
-        slug = slugify(r['name'])
-        used[slug] = used.get(slug, 0) + 1
-        if used[slug] > 1:
-            slug += '-' + slugify(r['district'])[:12]
-        items.append((slug, r))
+        items.append((r['slug'], r))  # слаг — из базы, одинаковый везде
     doma_slug = {}
     for s_, cfg in notes.items():
-        for slug, r in items:
-            if r['name'].startswith(cfg['match']):
-                doma_slug[slug] = s_
+        if any(slug == s_ for slug, _ in items):
+            doma_slug[s_] = s_
 
     # --- врезка для Рублёвки и Сколково
     outs = [proj(num(r['lat']), num(r['lon'])) for _, r in items if r['okrug'] in OUT]
@@ -156,7 +154,9 @@ def build(root):
         form = ' '.join(x for x in (('pent' if r['penthouse_flag'] == 'да' else ''), ('club' if (u or 999) <= 100 else '')) if x)
         p = Pin(proj(num(r['lat']), num(r['lon']))) if r['okrug'] in OUT else P(proj(num(r['lat']), num(r['lon'])))
         name = r['name'].split(' (')[0]
-        dots.append(f'<circle cx="{p[0]:.1f}" cy="{p[1]:.1f}" r="{R_DOT[ck]}" class="kd {ck}" data-i="{i}" data-c="{ck}" data-y="{yb}" data-f="{form}"><title>{e(name)}</title></circle>')
+        ok_, rk = slugify(r['okrug']), ('' if r['okrug'] in OUT else slugify(r['district']))
+        geo_attr = f' data-o="{ok_}" data-r="{rk}"'
+        dots.append(f'<circle cx="{p[0]:.1f}" cy="{p[1]:.1f}" r="{R_DOT[ck]}" class="kd {ck}" data-i="{i}" data-c="{ck}" data-y="{yb}" data-f="{form}"{geo_attr}><title>{e(name)}</title></circle>')
 
         x = extra.get(slug, {})
         pmed = num(x.get('price_median_m2', '') or '')
@@ -180,6 +180,10 @@ def build(root):
         facts = [('Адрес', r['address']), ('Застройщик', dev), ('Класс', CLS[r['class_final']]), ('Стадия', stage),
                  ('Квартир', fmt(u) if u else 'нет данных'),
                  ('Машиномест на квартиру', fmt(pk / u, 2) if (u and pk) else 'нет данных')]
+        if r.get('school_min'):
+            t = f'ближайшая школа — {r["school_min"]} мин'
+            t += f', с отметкой NOTA — {r["marked_min"]} мин' if r.get('marked_min') else ', с отметкой NOTA в получасе нет'
+            facts.append(('До школы пешком', t))
         if pf:
             facts.append(('Цена от', f'{fmt(pf / 1000)} тыс ₽ за м²'))
         if pmed:
@@ -188,7 +192,7 @@ def build(root):
         pic = f'<div class="hs-img"><img src="img/doma/{slug}.jpg" alt="{e(name)}" loading="lazy"></div>' if img else ''
         price_cell = f'от {fmt(pf / 1000)} тыс/м²' if pf else 'по запросу'
         lis.append(
-            f'<article class="hs" id="h-{slug}" data-i="{i}" data-c="{ck}" data-y="{yb}" data-f="{form}">'
+            f'<article class="hs" id="h-{slug}" data-i="{i}" data-c="{ck}" data-y="{yb}" data-f="{form}"{geo_attr}>'
             f'<button class="hs-row" type="button" aria-expanded="false"><span class="hs-n"><b>{e(name)}</b><small>{e(dev)}</small></span>'
             f'<span class="hs-c">{CLS[r["class_final"]]}</span><span class="hs-d">{e(r["district"])}</span>'
             f'<span class="hs-p">{price_cell}</span><span class="hs-w">{e(when_text(r))}</span></button>'
@@ -208,17 +212,30 @@ def build(root):
     pent = sum(1 for _, r in items if r['penthouse_flag'] == 'да')
     club = sum(1 for _, r in items if (num(r['units_total']) or 999) <= 100)
 
-    def chip(g, k, t, on=False):
+    def chip(g, k, t, on=False, extra=''):
         lab, _, cnt = t.partition(' · ')
         c = f' <span class="cn">{cnt}</span>' if cnt else ' <span class="cn"></span>'
-        return f'<button class="chip" type="button" data-g="{g}" data-k="{k}" aria-pressed="{"true" if on else "false"}"><span class="cl">{lab}</span>{c}</button>'
+        return f'<button class="chip" type="button" data-g="{g}" data-k="{k}"{extra} aria-pressed="{"true" if on else "false"}"><span class="cl">{lab}</span>{c}</button>'
+
+    oc = {o: sum(1 for _, r in items if r['okrug'] == o) for o in OKR}
+    dist = {}
+    for _, r in items:
+        if r['okrug'] not in OUT:
+            dist.setdefault(r['okrug'], {}).setdefault(r['district'], 0)
+            dist[r['okrug']][r['district']] += 1
+    rgrp = ''.join(
+        f'<div class="chips kr" data-for="{slugify(o)}" hidden>' + chip('r', 'all', 'Все районы', True, f' data-o="{slugify(o)}"')
+        + ''.join(chip('r', slugify(d), f'{d} · {n}', False, f' data-o="{slugify(o)}"') for d, n in sorted(dist[o].items()))
+        + '</div>' for o in OKR if o in dist)
+    geo_filters = ('<div class="chipgrp"><span class="lb">Округ и район</span><div class="chips">' + chip('o', 'all', 'Вся карта', True)
+                   + ''.join(chip('o', slugify(o), f'{o} · {oc[o]}') for o in OKR if oc[o]) + '</div>' + rgrp + '</div>')
 
     filters = ('<div class="chipgrp"><span class="lb">Класс дома</span><div class="chips">' + chip('c', 'all', 'Все классы', True)
                + ''.join(chip('c', k, f'{t} · {counts[k]}') for k, t in [('biz', 'Бизнес'), ('prem', 'Премиум'), ('elit', 'Элит'), ('dlx', 'Делюкс')])
                + '</div></div><div class="chipgrp"><span class="lb">Когда ключи</span><div class="chips">' + chip('y', 'all', 'Любой срок', True)
                + ''.join(chip('y', k, f'{YB[k]} · {yc[k]}') for k in YB if yc[k])
                + '</div></div><div class="chipgrp"><span class="lb">Формат</span><div class="chips">' + chip('f', 'all', 'Любой формат', True)
-               + chip('f', 'pent', f'С пентхаусами · {pent}') + chip('f', 'club', f'До 100 квартир · {club}') + '</div></div>')
+               + chip('f', 'pent', f'С пентхаусами · {pent}') + chip('f', 'club', f'До 100 квартир · {club}') + '</div></div>' + geo_filters)
     n = len(items)
     main = f'''<main>
 <section class="first tight-b"><div class="wrap">
@@ -274,10 +291,4 @@ def build(root):
     a = s.index('<main>')
     b = s.index('</main>') + len('</main>')
     kp.write_text(s[:a] + main + s[b:])
-    with (root / 'data/doma-slugs.csv').open('w', encoding='utf-8') as f:
-        w = csv.writer(f, delimiter=';')
-        w.writerow(['slug', 'name', 'developer', 'class', 'district', 'address', 'has_img'])
-        for slug, r in items:
-            w.writerow([slug, r['name'], r['developer'], r['class_final'], r['district'], r['address'],
-                        'да' if (root / 'img/doma' / f'{slug}.jpg').exists() else ''])
-    print('карта: домов', n, '· с картинкой', sum(1 for d in data if d.get('img')), '· доп. данные', len(extra))
+    print('карта: домов', n, '· с картинкой', sum(1 for d in data if d.get('img')), '· со срезом лотов', sum(1 for v in extra.values() if v['lots_count']))

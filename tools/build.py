@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Сборка общих частей сайта NOTA.
 Запуск из корня репозитория:  python3 tools/build.py
-1) карточки домов из data/zhk-moskva-biznes-plus-geo.csv + tools/doma.json → doma/<slug>/index.html, doma/index.html
+0) выгрузка из мастер-базы ../nota-baza в data/ (tools/baza.py, только публичные поля)
+1) карточки домов из data/doma.csv + tools/doma.json → doma/<slug>/index.html, doma/index.html
 2) шапка и подвал из tools/partials во все страницы сайта (клиентские nota-* не трогаем)
 3) контакты и реквизиты из tools/site.json
 """
@@ -51,12 +52,22 @@ def apply_shell(path):
 
 if __name__ == '__main__':
     sys.path.insert(0, str(T))
-    import doma, karta, images
+    import baza, doma, karta, images
+
+    def all_pages():
+        ps = [ROOT / p for p in SITE_PAGES if (ROOT / p).exists()]
+        ps += sorted((ROOT / 'doma').glob('**/index.html'))
+        ps += sorted((ROOT / 'razbory').glob('**/index.html'))
+        return ps
+
+    before = {p: p.read_bytes() for p in all_pages()}
+    baza.export(ROOT)
     images.build(ROOT)
     doma.build(ROOT)
     karta.build(ROOT)
-    pages = [ROOT / p for p in SITE_PAGES if (ROOT / p).exists()]
-    pages += sorted((ROOT / 'doma').glob('**/index.html'))
-    pages += sorted((ROOT / 'razbory').glob('**/index.html'))
-    n = sum(apply_shell(p) for p in pages)
-    print(f'шапка/подвал: обновлено {n} из {len(pages)} страниц')
+    pages = all_pages()
+    for p in pages:
+        apply_shell(p)
+    # считаем по итоговому содержимому: карточки и карта пересобираются каждый раз, но если текст тот же — это не изменение
+    n = sum(1 for p in pages if before.get(p) != p.read_bytes())
+    print(f'страницы: изменилось {n} из {len(pages)}')

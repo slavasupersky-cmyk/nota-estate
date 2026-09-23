@@ -201,14 +201,17 @@
  var data=JSON.parse(document.getElementById('kdata').textContent);
  var dots=[].slice.call(map.querySelectorAll('.kd')), items=[].slice.call(document.querySelectorAll('.hs'));
  var chips=[].slice.call(document.querySelectorAll('.kmap-l .chip')), cnt=document.getElementById('kcnt'), kt=document.getElementById('kt');
- var st={c:'all',y:'all',f:'all'};
+ var G=['c','y','f','o','r'], ALL={c:'all',y:'all',f:'all',o:'all',r:'all'}, st=Object.assign({},ALL);
  var SZ={biz:[45,70,100],prem:[60,90,130],elit:[90,140,200],dlx:[120,180,250]};
- function ok(el){return (st.c=='all'||el.dataset.c==st.c)&&(st.y=='all'||el.dataset.y==st.y)&&(st.f=='all'||(' '+el.dataset.f+' ').indexOf(' '+st.f+' ')>-1)}
- function okExcept(el,g,k){var t={c:st.c,y:st.y,f:st.f};t[g]=k;return (t.c=='all'||el.dataset.c==t.c)&&(t.y=='all'||el.dataset.y==t.y)&&(t.f=='all'||(' '+el.dataset.f+' ').indexOf(' '+t.f+' ')>-1)}
+ function test(el,t){return G.every(function(g){var v=t[g];if(v=='all')return true;var d=el.dataset[g]||'';return g=='f'?(' '+d+' ').indexOf(' '+v+' ')>-1:d==v})}
+ function ok(el){return test(el,st)}
+ function okExcept(el,g,k){var t=Object.assign({},st);t[g]=k;if(g=='o')t.r='all';return test(el,t)}
+ function rows(){[].slice.call(document.querySelectorAll('.kmap-l .kr')).forEach(function(r){r.hidden=r.dataset.for!==st.o})}
  function facets(){chips.forEach(function(b){var n=0;items.forEach(function(it){if(okExcept(it,b.dataset.g,b.dataset.k))n++});var c=b.querySelector('.cn');if(c)c.textContent=n;b.classList.toggle('zero',n===0&&b.getAttribute('aria-pressed')!=='true')})}
- function apply(){var n=0;facets();dots.forEach(function(d){d.classList.toggle('off',!ok(d))});items.forEach(function(it){var on=ok(it);it.hidden=!on;if(on)n++});cnt.textContent='Показано '+n+' из '+items.length;if(kt&&!kt.hidden){var i=+kt.dataset.i;if(!ok(dots[i]))hideT()}}
- chips.forEach(function(b){b.addEventListener('click',function(){var g=b.dataset.g;chips.filter(function(x){return x.dataset.g==g}).forEach(function(x){x.setAttribute('aria-pressed','false')});b.setAttribute('aria-pressed','true');st[g]=b.dataset.k;apply()})});
- document.querySelectorAll('[data-reset]').forEach(function(b){b.addEventListener('click',function(){st={c:'all',y:'all',f:'all'};chips.forEach(function(x){x.setAttribute('aria-pressed',x.dataset.k=='all'?'true':'false')});apply()})});
+ function press(g,k){chips.filter(function(x){return x.dataset.g==g}).forEach(function(x){x.setAttribute('aria-pressed',x.dataset.k==k&&(g!='r'||x.dataset.o==st.o||k=='all')?'true':'false')});st[g]=k}
+ function apply(){var n=0;rows();facets();dots.forEach(function(d){d.classList.toggle('off',!ok(d))});items.forEach(function(it){var on=ok(it);it.hidden=!on;if(on)n++});cnt.textContent='Показано '+n+' из '+items.length;if(kt&&!kt.hidden){var i=+kt.dataset.i;if(!ok(dots[i]))hideT()}}
+ chips.forEach(function(b){b.addEventListener('click',function(){var g=b.dataset.g;press(g,b.dataset.k);if(g=='o')press('r','all');apply()})});
+ document.querySelectorAll('[data-reset]').forEach(function(b){b.addEventListener('click',function(){st=Object.assign({},ALL);chips.forEach(function(x){x.setAttribute('aria-pressed',x.dataset.k=='all'?'true':'false')});apply()})});
  function mln(v){return v.toLocaleString('ru-RU',{minimumFractionDigits:1,maximumFractionDigits:1})}
  function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
  function side(it){
