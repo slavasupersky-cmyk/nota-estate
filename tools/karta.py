@@ -209,7 +209,9 @@ def build(root):
     club = sum(1 for _, r in items if (num(r['units_total']) or 999) <= 100)
 
     def chip(g, k, t, on=False):
-        return f'<button class="chip" type="button" data-g="{g}" data-k="{k}" aria-pressed="{"true" if on else "false"}">{t}</button>'
+        lab, _, cnt = t.partition(' · ')
+        c = f' <span class="cn">{cnt}</span>' if cnt else ' <span class="cn"></span>'
+        return f'<button class="chip" type="button" data-g="{g}" data-k="{k}" aria-pressed="{"true" if on else "false"}"><span class="cl">{lab}</span>{c}</button>'
 
     filters = ('<div class="chipgrp"><span class="lb">Класс дома</span><div class="chips">' + chip('c', 'all', 'Все классы', True)
                + ''.join(chip('c', k, f'{t} · {counts[k]}') for k, t in [('biz', 'Бизнес'), ('prem', 'Премиум'), ('elit', 'Элит'), ('dlx', 'Делюкс')])

@@ -1,0 +1,50 @@
+<div class="app">
+  <div class="top">
+    <div class="brand">
+      <svg viewBox="0 0 120 120" aria-hidden="true"><path d="M 90.57 28.35 A 44 44 0 1 1 72.13 17.70" fill="none" stroke="#101317" stroke-width="9"/><path d="M 60 60 L 89.04 9.70" fill="none" stroke="#CE2029" stroke-width="9"/></svg>
+      <span class="word">NOTA</span>
+      <span class="eyebrow">Карта · школы и дома</span>
+    </div>
+    <h1>До школы пешком</h1>
+    <p class="dek" id="dek">Минуты по улицам, а не по прямой.</p>
+    <div class="seg" role="tablist" aria-label="Что выбираем">
+      <button role="tab" id="m-zhk" aria-selected="true">От дома к школам</button>
+      <button role="tab" id="m-sch" aria-selected="false">От школы к домам</button>
+    </div>
+    <div class="search">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
+      <input id="q" type="text" autocomplete="off" spellcheck="false" placeholder="Дом, застройщик или район" aria-label="Поиск">
+      <ul class="sugg" id="sugg" hidden></ul>
+    </div>
+    <div class="ctl">
+      <div class="ctl-row"><span class="ctl-l">Пешком</span><div class="chips" id="c-min"></div></div>
+      <div class="ctl-row"><span class="ctl-l" id="c-l2">Школы</span><div class="chips" id="c-2"></div></div>
+    </div>
+  </div>
+  <div class="bottom" id="bottom">
+    <section class="card" id="card"></section>
+    <div id="list"></div>
+    <details class="method" id="method">
+      <summary>Как считали</summary>
+      <p><b>Маршрут — по пешеходной сети OpenStreetMap:</b> тротуары, переходы, дворы, лестницы, подземные переходы. Магистрали без тротуаров, закрытые и частные территории, шлагбаумы и калитки с пометкой «частный» в маршрут не попадают. Если дом стоит на стройплощадке, от него идём к ближайшим дорожкам по прямой, но не через железную дорогу, реку или магистраль.</p>
+      <p><b>Минуты — при 4,5 км/ч</b> (75 метров в минуту), без ожидания на светофорах. Для школы берём ближайший к дому корпус: у московских школ их по три–десять, и начальная школа часто стоит отдельно от старшей.</p>
+      <p><b>Школы.</b> <span id="m-schools"></span> Корпуса взяты из OpenStreetMap и привязаны к школам по номеру, названию и адресу; у 30 школ известен только адрес, у 13 — примерное место, в таблице это помечено.</p>
+      <p><b>Чего здесь нет.</b> Закрепления домов за школами: приём в первый класс идёт по месту жительства, и ближайшая школа не всегда «своя» — это следующий слой. Транспорт и машина с пробками — по кнопкам Яндекса у каждой строки.</p>
+      <p><span id="m-data"></span></p>
+    </details>
+  </div>
+  <div class="mapwrap">
+    <div id="map"></div>
+    <div class="loading" id="loading">Загружаем карту…</div>
+    <details class="legend" id="legend" open><summary>Условные знаки</summary><div class="lgs">
+      <div class="lg"><i class="sq"></i>Новый дом · светлее бизнес, темнее делюкс</div>
+      <div class="lg"><i class="c mark"></i>Школа с отметкой</div>
+      <div class="lg"><i class="c note"></i>На заметку</div>
+      <div class="lg"><i class="c best"></i>Лучшая в районе</div>
+      <div class="lg"><i class="c base"></i>Другая школа из базы</div>
+      <div class="lg"><i class="c osm"></i>Школа без оценки NOTA</div>
+      <div class="lg"><i class="ln"></i>Пеший маршрут</div>
+      <div class="lg"><i class="ln r"></i>Маршрут до школы с отметкой</div>
+    </div></details>
+  </div>
+</div>

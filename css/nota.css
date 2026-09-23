@@ -765,3 +765,7 @@ table,.strip,.h-stats,.co b,.pr b,.ratio,.bars,.jr-share,.calc output{font-varia
 .kt-b .kt-pr{font-weight:600;margin-top:4px}
 @media(max-width:860px){.kd{r:6}.kd.dlx{r:7}}
 .smp-col.smp-heard{display:block}
+.chip .cn{color:var(--muted);font-weight:400;margin-left:2px}
+.chip .cn:before{content:"· "}
+.chip[aria-pressed="true"] .cn{color:var(--ink-2)}
+.chip.zero{opacity:.4}
