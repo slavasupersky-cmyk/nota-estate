@@ -54,16 +54,25 @@
  });
  document.addEventListener('click',function(){closeAll()});
  function val(name){var s=document.querySelector('.sel[data-name="'+name+'"],.bud[data-name="'+name+'"]');return s?s.dataset.value:''}
- /* ---- бюджет в анкете: ползунок и своё число, шаг — 1 млн ---- */
+ /* ---- бюджет в анкете: «от — до», два ползунка по шкале шагов; последний шаг — без верхней границы ---- */
  var bud=document.querySelector('.bud');
  if(bud){
-  var bn=bud.querySelector('input[type=number]'), br=bud.querySelector('input[type=range]'), bx=bud.querySelector('.bud-x');
+  var BS=[15,20,25,30,35,40,45,50,60,70,80,90,100,120,150,200,250,300,400,500,700,1000,null];
+  var na=bud.querySelector('.bud-a'), nb=bud.querySelector('.bud-b'), ra=bud.querySelector('.r-a'), rb=bud.querySelector('.r-b'), bx=bud.querySelector('.bud-x');
   var fire=function(){bud.dispatchEvent(new CustomEvent('selchange',{bubbles:true}))};
-  var setB=function(v,src){v=Math.round(+v); if(!v||v<1) return;
-   if(src!=='n') bn.value=v; if(src!=='r') br.value=Math.min(+br.max,Math.max(+br.min,v));
-   bud.classList.remove('none'); bud.dataset.value='Бюджет до '+v+' млн'; fire()};
-  br.addEventListener('input',function(){setB(br.value,'r')});
-  bn.addEventListener('input',function(){setB(bn.value,'n')});
+  var idx=function(v){if(v==null||v==='')return BS.length-1;v=+v;for(var i=0;i<BS.length-1;i++){if(BS[i]>=v)return i}return BS.length-2};
+  var txt=function(){var a=+na.value||15,b=nb.value===''?null:+nb.value;
+   bud.dataset.value=b==null?'Бюджет от '+a+' млн, без верхней границы':'Бюджет от '+a+' до '+b+' млн'; bud.classList.remove('none'); fire()};
+  var fromRange=function(src){var ia=+ra.value, ib=+rb.value;
+   if(ia>ib){if(src==='a'){ib=ia;rb.value=ib}else{ia=ib;ra.value=ia}}
+   if(ia>BS.length-2){ia=BS.length-2;ra.value=ia}
+   na.value=BS[ia]; nb.value=BS[ib]==null?'':BS[ib]; txt()};
+  ra.addEventListener('input',function(){fromRange('a')});
+  rb.addEventListener('input',function(){fromRange('b')});
+  na.addEventListener('input',function(){if(na.value!=='')ra.value=Math.min(idx(na.value),BS.length-2);txt()});
+  na.addEventListener('change',function(){if(!na.value||+na.value<15)na.value=15;if(nb.value!==''&&+nb.value<+na.value)nb.value=na.value;ra.value=idx(na.value);rb.value=idx(nb.value);txt()});
+  nb.addEventListener('input',function(){rb.value=idx(nb.value);txt()});
+  nb.addEventListener('change',function(){if(nb.value!==''&&+nb.value<+na.value)nb.value=na.value;rb.value=idx(nb.value);txt()});
   bx.addEventListener('click',function(){bud.classList.add('none'); bud.dataset.value='Бюджет пока не считали'; fire()});
  }
 
@@ -173,6 +182,7 @@
    var close=function(){mdl.hidden=true; document.body.style.overflow=''};
    ask.addEventListener('click',function(){
     document.getElementById('mdl-sum').textContent=summary();
+    var an=document.getElementById('anote'), mt=mdl.querySelector('textarea'); if(an&&mt&&an.value.trim()&&!mt.value.trim()) mt.value=an.value.trim();
     mdl.hidden=false; document.body.style.overflow='hidden';
     var f=mdl.querySelector('input'); if(f)setTimeout(function(){f.focus()},60);
    });
@@ -438,4 +448,14 @@
  });
  function fromHash(){var t=location.hash&&document.getElementById(location.hash.slice(1)); if(t&&t.classList.contains('cs')&&!t.classList.contains('open')){var b=t.querySelector('.cs-more'); if(b) b.click(); t.scrollIntoView({block:'start'})}}
  window.addEventListener('hashchange',fromHash); fromHash();
+})();
+
+/* ---- формы: «Отправить» доступна только с галочкой согласия на обработку данных ---- */
+(function(){
+ document.querySelectorAll('form').forEach(function(f){
+  var c=f.querySelector('.consent input'); if(!c) return;
+  var bs=[].slice.call(f.querySelectorAll('button.btn'));
+  var set=function(){bs.forEach(function(b){b.disabled=!c.checked; b.title=c.checked?'':'Поставьте галочку согласия на обработку данных'})};
+  c.addEventListener('change',set); set();
+ });
 })();

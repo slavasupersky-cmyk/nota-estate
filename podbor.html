@@ -58,10 +58,10 @@
     <p class="ttl" style="margin-bottom:2px">Про задачу</p>
     <div class="sel" data-name="scen"><button type="button" class="sel-btn">Это будет основной дом</button>
      <ul class="sel-list"><li>Это будет основной дом</li><li>Вторая квартира, для города</li><li>Детям, на вырост</li><li>Родителям, поближе</li><li>Сдавать</li><li>Ещё не решили</li></ul></div>
-    <div class="bud" data-name="budget" data-value="Бюджет до 40 млн">
-     <div class="bud-h"><span class="bud-l">Бюджет, до</span><label class="bud-in"><input type="number" min="5" max="999" step="1" value="40" inputmode="numeric" aria-label="Бюджет, до, млн ₽"><span>млн ₽</span></label></div>
-     <input type="range" min="10" max="200" step="1" value="40" aria-label="Бюджет, до, млн ₽">
-     <div class="bud-f"><span>10</span><button class="linkbtn bud-x" type="button">Пока не считали</button><span>200+</span></div>
+    <div class="bud" data-name="budget" data-value="Бюджет от 30 до 60 млн">
+     <div class="bud-h"><span class="bud-l">Бюджет, млн ₽</span><span class="bud-in"><input type="number" class="bud-a" min="15" step="1" value="30" inputmode="numeric" aria-label="Бюджет от, млн ₽"><i>—</i><input type="number" class="bud-b" min="15" step="1" value="60" placeholder="∞" inputmode="numeric" aria-label="Бюджет до, млн ₽; пусто — без ограничения"></span></div>
+     <div class="bud-r"><input type="range" class="r-a" min="0" max="22" step="1" value="3" aria-label="Бюджет от"><input type="range" class="r-b" min="0" max="22" step="1" value="9" aria-label="Бюджет до"></div>
+     <div class="bud-f"><span>от 15</span><button class="linkbtn bud-x" type="button">Пока не считали</button><span>без ограничения</span></div>
     </div>
     <div class="sel" data-name="gor"><button type="button" class="sel-btn">Владеть три года</button>
      <ul class="sel-list"><li>Владеть три года</li><li>Лет пять-семь</li><li>Надолго, может, навсегда</li><li>Как получится</li></ul></div>
@@ -72,7 +72,10 @@
     <p class="ttl" style="margin-bottom:14px">Что для вас важно</p>
     <div class="rank" id="rank"></div>
     <p id="verdict" style="color:var(--ink-2)"></p>
-    <div class="btns" style="margin-top:22px"><button class="btn" type="button" id="ask">Соберите мне подборку</button></div>
+    <div class="res-row">
+     <label class="res-note"><span class="ttl">Что ещё важно</span><textarea id="anote" rows="2" placeholder="Своими словами: этаж, вид, школа рядом, срок въезда — всё, чего нет в ползунках"></textarea></label>
+     <button class="btn" type="button" id="ask">Соберите мне подборку</button>
+    </div>
    </div>
   </div>
   <p class="hint">После отправки анкета придёт к нам, а вам — подборка: пять домов под ваши веса и отдельный список тех, что не подошли, с причиной по каждому.</p>
@@ -149,6 +152,7 @@
    <input type="text" placeholder="Как вас зовут" autocomplete="name">
    <input type="text" placeholder="Телефон или ник в Telegram / MAX">
    <textarea placeholder="Если есть что добавить — допишите здесь"></textarea>
+   <label class="consent"><input type="checkbox"><span>Согласен на обработку персональных данных и прочитал <a href="politika.html">политику конфиденциальности</a>.</span></label>
    <div><button class="btn" type="button">Отправить</button></div>
    <p class="note">Контакты никому не передаём и без предупреждения не звоним.</p>
   </form>

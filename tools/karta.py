@@ -8,6 +8,7 @@ LAT0, LON0, KX, KY = 55.75297, 37.61758, 62.65, 111.2      # локальная 
 S = 15.0                                                    # px на км
 CLS = {'бизнес': 'Бизнес', 'премиум': 'Премиум', 'элитный': 'Элит', 'делюкс': 'Делюкс'}
 CKEY = {'бизнес': 'biz', 'премиум': 'prem', 'элитный': 'elit', 'делюкс': 'dlx'}
+BAND = ''
 R_DOT = {'biz': 3.4, 'prem': 4.0, 'elit': 4.6, 'dlx': 5.2}
 SIZES = {'biz': (45, 70, 100), 'prem': (60, 90, 130), 'elit': (90, 140, 200), 'dlx': (120, 180, 250)}
 OUT = {'Сколково', 'Рублёвка'}
@@ -150,6 +151,7 @@ def build(root):
     for k, v in W['rings'].items():
         svg.append(f'<path d="{smooth_path(v, k != "Бульварное", P)}" class="k-ring"/>')
     svg.append(f'<path d="{smooth_path(M, True, P)}" class="k-ring k-mkad"/>')
+    band = list(svg[2:])  # подложка без фона и подписей — для полосы-карты на главной
     t = P((max(p[0] for p in W['rings']['ТТК']) + .4, 0.2))
     svg.append(f'<text x="{t[0]:.0f}" y="{t[1]:.0f}" class="k-lbl">ТТК</text>')
     t = P((max(xs) + .3, 3))
@@ -168,6 +170,8 @@ def build(root):
         ok_, rk = slugify(r['okrug']), ('' if r['okrug'] in OUT else slugify(r['district']))
         mk = RK.get(r.get('rynok', ''), 'prim')
         geo_attr = f' data-o="{ok_}" data-r="{rk}" data-m="{mk}"'
+        if r['okrug'] not in OUT:
+            band.append(f'<circle cx="{p[0]:.1f}" cy="{p[1]:.1f}" r="{R_DOT[ck] * .17:.2f}" class="bd {ck}"/>')
         dots.append(f'<circle cx="{p[0]:.1f}" cy="{p[1]:.1f}" r="{R_DOT[ck]}" class="kd {ck}" data-i="{i}" data-c="{ck}" data-y="{yb}" data-f="{form}"{geo_attr}><title>{e(name)}</title></circle>')
 
         x = extra.get(slug, {})
@@ -272,7 +276,7 @@ def build(root):
 <section class="first tight-b"><div class="wrap">
  <p class="ttl">Карта домов</p>
  <h1>{nd} на одной карте</h1>
- <p class="lead">Новые дома от бизнес-класса и выше: старая Москва, Сколково и Рублёвка. Наведите на точку, чтобы увидеть дом, нажмите — откроется его карточка в списке ниже. Фильтры меняют и карту, и список.</p>
+ <p class="lead">Новые дома от бизнес-класса и выше: старая Москва, Сколково и многоквартирные дома Рублёвки. Наведите на точку, чтобы увидеть дом, нажмите — откроется его карточка в списке ниже. Фильтры меняют и карту, и список.</p>
 </div></section>
 
 <section class="tight first-content kscreen"><div class="wrap kmap">
@@ -322,6 +326,13 @@ def build(root):
 </div>
 <script type="application/json" id="kdata">{json.dumps(data, ensure_ascii=False)}</script>
 </main>'''
+    # полоса-карта для главной: центр — Третье кольцо, по высоте — две трети кольца (build.py вставляет её между <!--karta-band-->)
+    tk = [P(q) for q in W['rings']['ТТК']]
+    tx0, tx1 = min(q[0] for q in tk), max(q[0] for q in tk); ty0, ty1 = min(q[1] for q in tk), max(q[1] for q in tk)
+    bh = (ty1 - ty0) * 2 / 3; bw = bh * 3.8; cx, cy = (tx0 + tx1) / 2, (ty0 + ty1) / 2 + bh * .18  # центр чуть ниже: подпись закрывает низ полосы
+    global BAND
+    BAND = (f'<svg class="kband" viewBox="{cx - bw / 2:.1f} {cy - bh / 2:.1f} {bw:.1f} {bh:.1f}" preserveAspectRatio="xMidYMid slice" aria-hidden="true">'
+            f'<rect x="{cx - bw:.1f}" y="{cy - bh:.1f}" width="{bw * 2:.1f}" height="{bh * 2:.1f}" class="k-bg"/>' + ''.join(band) + '</svg>')
     kp = root / 'karta.html'
     s = kp.read_text()
     a = s.index('<main>')

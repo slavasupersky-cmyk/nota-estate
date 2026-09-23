@@ -59,6 +59,8 @@ def apply_shell(path):
         s2 = re.sub(r'<!--itog-t-->[\s\S]*?<!--/itog-t-->', lambda m: '<!--itog-t-->\n' + ITOG_TABLE + '\n  <!--/itog-t-->', s2, count=1)
     if rel == APART_PAGE and APART_LIST:
         s2 = re.sub(r'<!--apart-l-->[\s\S]*?<!--/apart-l-->', lambda m: '<!--apart-l-->\n' + APART_LIST + '\n  <!--/apart-l-->', s2, count=1)
+    if rel == 'index.html' and KARTA_BAND:
+        s2 = re.sub(r'<!--karta-band-->[\s\S]*?<!--/karta-band-->', lambda m: '<!--karta-band-->' + KARTA_BAND + '<!--/karta-band-->', s2, count=1)
     if rel == 'index.html' and HOME_TABLE:
         s2 = re.sub(r'<!--baza-t-->[\s\S]*?<!--/baza-t-->', lambda m: '<!--baza-t-->\n' + HOME_TABLE + '\n   <!--/baza-t-->', s2, count=1)
     if s2 != s:
@@ -66,6 +68,7 @@ def apply_shell(path):
     return False
 
 HOME_TABLE = ''
+KARTA_BAND = ''
 N = {}
 
 # ---------------------------------------------------------------- живые цифры
@@ -242,6 +245,7 @@ if __name__ == '__main__':
     karta.build(ROOT)
     rstats = reytingi.build(ROOT) or {}
     HOME_TABLE = doma.home_table(ROOT)
+    KARTA_BAND = karta.BAND
     N = numbers(ROOT, rstats)
     ITOG_TABLE = itog_table(ROOT)
     APART_LIST = apart_list(ROOT)

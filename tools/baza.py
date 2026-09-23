@@ -10,6 +10,7 @@ RYNOK = {'анонс': 'анонс', 'старт продаж': 'первичк�
          'строится, есть сданные': 'первичка и вторичка', 'сдан, есть остатки': 'первичка и вторичка',
          'распродан': 'только вторичка'}
 HIDE_STAGES = {'дубль'}  # строки-дубли держатся в базе ради связей, на сайт не идут
+HIDE_TYPES = {'коттеджи', 'таунхаусы'}  # посёлки — отдельный рынок, на сайт не идут (решение Supersky 24.09); в базе остаются
 
 CHECKS_PASPORT = ['01', '02', '03', '04', '05', '06', '07', '08', '09']
 
@@ -103,7 +104,7 @@ def export(root, verbose=True):
     D = root / 'data'
     changed = []
 
-    doma = [d for d in read(B / 'doma.csv') if d.get('stage') not in HIDE_STAGES]
+    doma = [d for d in read(B / 'doma.csv') if d.get('stage') not in HIDE_STAGES and d.get('type') not in HIDE_TYPES]
     krit = read(B / 'kriterii.csv')
     CHECK_NAMES.update({k['id']: k['proverka'].lower() for k in krit})
     tol = {x['class']: x for x in read(B / 'itog.csv')}
@@ -115,7 +116,8 @@ def export(root, verbose=True):
         k = (x['slug'], x['check'])
         if k not in latest or date_key(x['checked']) >= date_key(latest[k]['checked']):
             latest[k] = x
-    prov_pub = sorted(latest.values(), key=lambda x: (x['slug'], x['check']))
+    live = {d['slug'] for d in doma}
+    prov_pub = sorted((v for v in latest.values() if v['slug'] in live), key=lambda x: (x['slug'], x['check']))
 
     # школы и маршруты
     shk = {s['school_id']: s for s in read(B / 'shkoly.csv')}
