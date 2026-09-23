@@ -57,6 +57,8 @@ def apply_shell(path):
     s2 = faq_ld(s2)
     if rel == 'metod.html' and ITOG_TABLE:
         s2 = re.sub(r'<!--itog-t-->[\s\S]*?<!--/itog-t-->', lambda m: '<!--itog-t-->\n' + ITOG_TABLE + '\n  <!--/itog-t-->', s2, count=1)
+    if rel == APART_PAGE and APART_LIST:
+        s2 = re.sub(r'<!--apart-l-->[\s\S]*?<!--/apart-l-->', lambda m: '<!--apart-l-->\n' + APART_LIST + '\n  <!--/apart-l-->', s2, count=1)
     if rel == 'index.html' and HOME_TABLE:
         s2 = re.sub(r'<!--baza-t-->[\s\S]*?<!--/baza-t-->', lambda m: '<!--baza-t-->\n' + HOME_TABLE + '\n   <!--/baza-t-->', s2, count=1)
     if s2 != s:
@@ -87,7 +89,7 @@ def numbers(root, extra=None):
     """Цифры, которые меняются вместе с базой. Ключи для шаблонов:
     doma — домов на сайте; biz, prem, elit, dlx — по классам; spor — домов, которым источники дают разные классы;
     med_biz…med_dlx — медиана цены «от» за м² по классу (город, без Рублёвки и Сколкова); v_prodazhe — домов с предложением по комнатности;
-    kartochki — карточек домов; shkoly, shkoly_mark, shkoly_zam, pent, pent_base, pent_min, pent_max — из рейтингов (tools/reytingi.py)."""
+    kartochki — карточек домов; apart — домов с апартаментами (проверка 08); shkoly, shkoly_mark, shkoly_zam, pent, pent_base, pent_min, pent_max — из рейтингов (tools/reytingi.py)."""
     rd = lambda p: list(csv.DictReader(p.open(encoding='utf-8-sig'), delimiter=';')) if p.exists() else []
     rows = rd(root / 'data/doma.csv')
     cls = Counter(r['class'] for r in rows)
@@ -102,8 +104,45 @@ def numbers(root, extra=None):
     for k, c in (('biz', 'бизнес'), ('prem', 'премиум'), ('elit', 'элитный'), ('dlx', 'делюкс')):
         v = [_num(r['price_from_m2']) for r in city if r['class'] == c and _num(r['price_from_m2'])]
         n['med_' + k] = _m2(statistics.median(v)) if v else '—'
+    n['apart'] = len({r['slug'] for r in rd(root / 'data/proverki.csv')
+                      if r['check'] == '08' and 'апартамент' in (r['value'] or '').lower()})
+    # {srez} — дата среза базы (когда data/doma.csv последний раз менялся)
+    import datetime
+    dp = root / 'data/doma.csv'
+    n['srez'] = datetime.date.fromtimestamp(dp.stat().st_mtime).strftime('%d.%m.%Y') if dp.exists() else '—'
+    # {dopusk} — допуск минусов для отметки словами, из data/itog.csv: «до одного в бизнесе и премиуме, ни одного в элите и делюксе»
+    prep = {'бизнес': 'бизнесе', 'премиум': 'премиуме', 'элитный': 'элите', 'делюкс': 'делюксе'}
+    word = {1: 'одного', 2: 'двух', 3: 'трёх', 4: 'четырёх'}
+    groups = {}
+    for t in rd(root / 'data/itog.csv'):
+        groups.setdefault(int(t['otmetka_max_minus']), []).append(prep.get(t['class'], t['class']))
+    parts = []
+    for o, cl in sorted(groups.items(), key=lambda x: -x[0]):
+        where = ', '.join(cl[:-1]) + ' и ' + cl[-1] if len(cl) > 1 else cl[0]
+        parts.append(f'ни одного в {where}' if o == 0 else f'до {word.get(o, o)} в {where}')
+    n['dopusk'] = ', '.join(parts) or '—'
     n.update(extra or {})
     return n
+
+APART_PAGE = 'razbory/apartamenty-ili-kvartira/index.html'
+
+def apart_list(root):
+    """Дома с апартаментами по классам для разбора «Апартаменты или квартира» (между <!--apart-l--> и <!--/apart-l-->):
+    проверка 08 в data/proverki.csv, в значении — «апартаменты». Ссылки ведут на дом на карте."""
+    rd = lambda p: list(csv.DictReader(p.open(encoding='utf-8-sig'), delimiter=';')) if p.exists() else []
+    ap = {r['slug'] for r in rd(root / 'data/proverki.csv') if r['check'] == '08' and 'апартамент' in (r['value'] or '').lower()}
+    rows = [r for r in rd(root / 'data/doma.csv') if r['slug'] in ap]
+    if not rows: return ''
+    esc = lambda x: x.replace('&', '&amp;').replace('<', '&lt;').replace('"', '&quot;')
+    out = []
+    for c, title in (('бизнес', 'Бизнес'), ('премиум', 'Премиум'), ('элитный', 'Элит'), ('делюкс', 'Делюкс')):
+        cr = sorted((r for r in rows if r['class'] == c), key=lambda r: (r.get('name_short') or r['name']).lower())
+        if not cr: continue
+        chips = ''.join(f'<a class="chip" href="../../karta.html#h-{r["slug"]}">{esc(r.get("name_short") or r["name"])}</a>' for r in cr)
+        out.append(f'  <p class="ttl" style="margin:22px 0 12px">{title} · {len(cr)}</p>\n  <div class="chips">{chips}</div>')
+    return '\n'.join(out)
+
+APART_LIST = ''
 
 def itog_table(root):
     """Таблица допуска минусов по классам для metod.html (между <!--itog-t--> и <!--/itog-t-->): data/itog.csv + итоги по базе."""
@@ -205,6 +244,7 @@ if __name__ == '__main__':
     HOME_TABLE = doma.home_table(ROOT)
     N = numbers(ROOT, rstats)
     ITOG_TABLE = itog_table(ROOT)
+    APART_LIST = apart_list(ROOT)
     for old, new in MOVED.items():
         (ROOT / old).write_text(stub(old, new))
     pages = all_pages()

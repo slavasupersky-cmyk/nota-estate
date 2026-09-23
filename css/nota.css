@@ -790,14 +790,14 @@ table,.strip,.h-stats,.co b,.pr b,.ratio,.bars,.jr-share,.calc output{font-varia
 /* метод: 17 проверок */
 .mt-lv{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-top:30px}
 .mt-l{background:var(--paper);padding:26px 24px 28px;display:flex;flex-direction:column;gap:10px}
-.mt-k{font-size:clamp(44px,4.6vw,64px);font-weight:800;line-height:.92;letter-spacing:-.045em;color:var(--red);font-variant-numeric:lining-nums}
+.mt-k{font-size:clamp(44px,4.6vw,64px);font-weight:800;line-height:.92;letter-spacing:-.045em;color:var(--ink);font-variant-numeric:lining-nums}
 .mt-l b{font-size:19px;font-weight:600;letter-spacing:-.025em}
 .mt-l p{color:var(--ink-2);font-size:15px;line-height:1.55;max-width:52ch}
 .mt-src{font-size:13px;color:var(--muted);margin-top:auto;padding-top:6px}
 @media(max-width:820px){.mt-lv{grid-template-columns:1fr}}
 .mt-stop{list-style:none;margin:30px 0 0;padding:0;display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--line);border-top:2px solid var(--red);border-bottom:1px solid var(--line)}
 .mt-stop li{background:var(--paper);padding:20px 18px 24px;display:flex;flex-direction:column;gap:8px}
-.mt-stop span{font-size:12px;font-weight:600;color:var(--red);letter-spacing:.06em;font-variant-numeric:tabular-nums}
+.mt-stop span{font-size:12px;font-weight:600;color:var(--muted);letter-spacing:.06em;font-variant-numeric:tabular-nums}
 .mt-stop b{font-size:17px;font-weight:600;letter-spacing:-.02em;line-height:1.25}
 .mt-stop p{font-size:14px;line-height:1.5;color:var(--ink-2)}
 @media(max-width:1100px){.mt-stop{grid-template-columns:repeat(3,1fr)}}

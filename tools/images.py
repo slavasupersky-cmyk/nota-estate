@@ -12,9 +12,15 @@ def build(root):
     out.mkdir(parents=True, exist_ok=True)
     if not src.exists():
         return
+    # только дома, которые есть на сайте: у дублей и скрытых домов картинку не делаем
+    import csv
+    dp = root / 'data/doma.csv'
+    live = {r['slug'] for r in csv.DictReader(dp.open(encoding='utf-8-sig'), delimiter=';')} if dp.exists() else None
     n = 0
     for f in sorted(src.iterdir()):
         if f.suffix.lower() not in ('.jpg', '.jpeg', '.png', '.webp'):
+            continue
+        if live is not None and f.stem.lower() not in live:
             continue
         dst = out / (f.stem.lower() + '.jpg')
         if dst.exists() and dst.stat().st_mtime >= f.stat().st_mtime:
