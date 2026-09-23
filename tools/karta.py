@@ -278,13 +278,15 @@ def build(root):
 <section class="tight first-content kscreen"><div class="wrap kmap">
  <div class="kmap-l">
   <label class="ri-q kq"><span class="cg-l">Найти дом</span><input type="search" id="kq" placeholder="Название, застройщик или улица" autocomplete="off"></label>
-  {filters}
+  <button class="kf-t" type="button" aria-expanded="false" aria-controls="kf">Фильтры<span class="kf-n"></span></button>
+  <div class="kf" id="kf">{filters}</div>
   <p class="hint"><a href="#spisok">К списку домов</a> · <a href="metod.html#klassy">Что значит класс</a> · <button class="linkbtn" type="button" data-reset>Сбросить фильтры</button></p>
  </div>
  <div class="kmap-r">
   <div class="map" id="kmap">{"".join(svg)}<div class="kt" id="kt" hidden></div>
    <div class="kz" aria-label="Масштаб карты"><button type="button" data-z="in" aria-label="Приблизить">+</button><button type="button" data-z="out" aria-label="Отдалить">−</button><button type="button" data-z="reset" aria-label="Вся карта" title="Вся карта">⤢</button></div></div>
   <div class="legend"><span><i class="biz"></i>Бизнес</span><span><i class="prem"></i>Премиум</span><span><i class="elit"></i>Элит</span><span><i class="dlx"></i>Делюкс</span><span class="lg-note">Точки стоят по адресам из базы. Приблизить — «+», двойной щелчок или два пальца; приближенную карту можно двигать.</span></div>
+  <p class="km-mob">Карту удобнее смотреть с компьютера. На телефоне приближайте кнопкой «+» или двумя пальцами.</p>
  </div>
 </div></section>
 

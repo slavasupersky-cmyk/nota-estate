@@ -233,12 +233,16 @@
   gc.forEach(function(x){x.setAttribute('aria-pressed',x.dataset.k==k&&(g!='r'||x.dataset.o==st.o||k=='all')?'true':'false')});st[g]=k}
  /* список — порциями по LIM, чтобы на телефоне страница не уходила в бесконечность */
  var LIM=20, lim=LIM, more=document.getElementById('kmore');
- function apply(){var n=0;rows();facets();dots.forEach(function(d){d.classList.toggle('off',!ok(d))});
+ function apply(){var n=0;rows();facets();fcount();dots.forEach(function(d){d.classList.toggle('off',!ok(d))});
   items.forEach(function(it){var on=ok(it);if(on)n++;it.hidden=!(on&&(n<=lim||it.classList.contains('open')))});
   cnt.textContent=(n===items.length?'Все '+n+' '+pl(n,'дом','дома','домов'):'Найдено '+n+' из '+items.length)+(n>lim?' · показаны первые '+lim:'');
   if(more){var left=n-lim;more.hidden=left<=0;more.textContent='Показать ещё '+Math.min(LIM,left)+' · осталось '+left}
   if(kt&&!kt.hidden){var i=+kt.dataset.i;if(!ok(dots[i]))hideT()}}
  if(more) more.addEventListener('click',function(){lim+=LIM;apply()});
+ /* телефон: фильтры свёрнуты под кнопкой, на кнопке — сколько групп выбрано */
+ var kft=document.querySelector('.kf-t'), kml=document.querySelector('.kmap-l');
+ if(kft) kft.addEventListener('click',function(){var o=kml.classList.toggle('fopen');kft.setAttribute('aria-expanded',o?'true':'false')});
+ function fcount(){if(!kft)return;var n=G.filter(function(g){return st[g]!=='all'&&g!=='r'}).length;kft.querySelector('.kf-n').textContent=n?' · выбрано '+n:''}
  if(kq) kq.addEventListener('input',function(){Q=kq.value.trim().toLowerCase().replace(/ё/g,'е');lim=LIM;apply()});
  chips.forEach(function(b){b.addEventListener('click',function(){var g=b.dataset.g;press(g,b.dataset.k);if(g=='o')press('r','all');lim=LIM;apply()})});
  document.querySelectorAll('[data-reset]').forEach(function(b){b.addEventListener('click',function(){st=Object.assign({},ALL);Q='';if(kq)kq.value='';chips.forEach(function(x){x.setAttribute('aria-pressed',x.dataset.k=='all'?'true':'false')});lim=LIM;apply()})});

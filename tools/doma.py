@@ -381,7 +381,9 @@ def home_table(root):
         u = num(r['units_total']); pp, closed = pips(r)
         vk, vt, _ = verdict(root, r)
         link = f'<a href="doma/{slug}/">{e(title)}</a>' if slug in cfgs else e(title)
-        out.append(f'    <tr><td>{link} · {e(r["developer"])}</td><td>{CLASS_RU[r["class"]]}</td><td>{fmt(u) if u else "нет данных"}</td>'
+        # на телефоне колонки класса и квартир прячутся: дом, застройщик и класс идут строками в первой ячейке
+        out.append(f'    <tr><td><b class="pp-h">{link}</b><small class="pp-dev">{e(r["developer"])}</small><small class="pp-cls">{CLASS_RU[r["class"]]}</small></td>'
+                   f'<td>{CLASS_RU[r["class"]]}</td><td>{fmt(u) if u else "нет данных"}</td>'
                    f'<td>{pp}<span class="pp-c">{closed} из 9</span></td><td><span class="tag {vk}">{vt}</span></td></tr>')
     out.append('   </table>')
     return '\n'.join(out)

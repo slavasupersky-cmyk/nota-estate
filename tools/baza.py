@@ -13,7 +13,7 @@ HIDE_STAGES = {'дубль'}  # строки-дубли держатся в ба
 
 CHECKS_PASPORT = ['01', '02', '03', '04', '05', '06', '07', '08', '09']
 
-DOMA_COLS = ['slug', 'name', 'name_short', 'dev_id', 'developer', 'class', 'class_declared', 'class_disputed', 'okrug', 'district',
+DOMA_COLS = ['slug', 'name', 'name_short', 'dev_id', 'developer', 'class', 'class_zayavlen', 'class_why', 'class_declared', 'class_disputed', 'okrug', 'district',
              'address', 'lat', 'lon', 'geo_precision', 'type', 'units_total', 'units_per_floor', 'floors', 'ceilings_m', 'parking',
              'stage', 'deadline_initial', 'deadline', 'price_from_m2', 'price_median_m2', 'price_check', 'penthouses', 'penthouse_flag',
              'architect', 'facade', 'energy_class', 'escrow', 'maintenance_rub_m2', 'website', 'sources', 'updated']

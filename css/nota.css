@@ -1066,3 +1066,74 @@ body.has-pick{padding-bottom:70px}
 .kz button+button{border-top:1px solid var(--line)}
 .kz button:hover{background:var(--paper-2)}
 .kz button[data-z=reset]{font-size:16px}
+
+/* ---- телефон и чтение, правки 23.09 (вечер) ---- */
+/* текст «От редактора» — размером основного текста, буквица остаётся крупной */
+.jr-ed-t{font-size:17px;line-height:1.62;letter-spacing:0}
+.jr-ed-t p:first-child:first-letter{font-size:4.4em;line-height:.78}
+/* «Из чего складывается отметка» — раскрывающиеся пункты с баллами */
+.ri-w{margin-top:30px}
+.ri-w summary{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding-right:44px}
+.ri-wb{flex:0 0 auto;font-weight:600;color:var(--red);font-size:14px;white-space:nowrap}
+.ri-w details p{max-width:72ch}
+/* рейтинги на главной — своим блоком */
+#reytingi .rt-row{grid-template-columns:repeat(3,1fr)}
+#reytingi .rt-row a b{font-size:17px}
+#reytingi .btns{margin-top:22px}
+/* карта: кнопка фильтров и подсказка — только на телефоне */
+.kf-t,.km-mob{display:none}
+@media(max-width:860px){
+ .kmap>*{min-width:0}
+ .kf-t{display:flex;align-items:center;gap:4px;width:100%;justify-content:space-between;font:inherit;font-size:14px;font-weight:600;padding:11px 14px;border:1px solid var(--ink);background:var(--surface);color:var(--ink);cursor:pointer;margin-bottom:6px}
+ .kf-t:after{content:"";width:7px;height:7px;border-right:1.5px solid var(--ink);border-bottom:1.5px solid var(--ink);transform:rotate(45deg);margin:0 4px 4px auto}
+ .kf-n{font-weight:400;color:var(--muted)}
+ .kmap-l:not(.fopen) .kf{display:none}
+ .kmap-l.fopen .kf-t:after{transform:rotate(225deg);margin-bottom:-2px}
+ .kf{padding-bottom:8px}
+ .km-mob{display:block;font-size:12.5px;color:var(--muted);margin-top:8px;line-height:1.5}
+ .kscreen .kmap-r .map svg{max-height:none;min-height:0;width:100%;height:auto}
+}
+@media(max-width:760px){
+ /* фильтры рейтингов и карты — переносом в ширину экрана, без прокрутки вбок */
+ .kmap-l .chips,.ri-filters .chips,.chipgrp .chips{flex-wrap:wrap!important;overflow:visible!important;margin-right:0!important;padding-right:0!important}
+ .kmap-l .chip,.ri-filters .chip{font-size:12.5px;padding:6px 9px;flex:0 0 auto}
+}
+@media(max-width:700px){
+ /* цифры с подписью: число в одну строку, подписи — ровной колонкой */
+ .h-stats{grid-template-columns:max-content minmax(0,1fr);gap:0;background:none}
+ .h-stats>div{display:contents}
+ .h-stats b,.h-stats span{display:flex;align-items:center;padding:14px 0;border-bottom:1px solid var(--line);background:var(--paper)}
+ .h-stats b{white-space:nowrap;padding-right:16px;font-size:30px}
+ .h-stats span{font-size:13.5px;line-height:1.45}
+ /* таблица «Каждый вывод — с цифрами»: дом, застройщик и класс строками, без прокрутки */
+ .tablewrap:has(.pp-home){overflow:visible;border:0;background:none}
+ table.pp-home{min-width:0;font-size:14px}
+ .pp-home th:nth-child(2),.pp-home td:nth-child(2),.pp-home th:nth-child(3),.pp-home td:nth-child(3){display:none}
+ .pp-home th,.pp-home td{padding:12px 8px 12px 0}
+ .pp-home td:first-child{width:38%}
+ .pp-home .pp{flex-wrap:wrap;max-width:96px}
+ .pp-home .pp-c{display:block;margin:4px 0 0;font-size:12px}
+ .pp-home .tag{font-size:11.5px;padding:3px 7px;white-space:nowrap}
+ #reytingi .rt-row{grid-template-columns:1fr}
+ /* шкала классов: видны подпись строки, бизнес и премиум, дальше — вбок */
+ .cls-t:not(.it-t){min-width:0;width:calc(112px + 4 * ((100vw - 56px - 112px) / 2))}
+ .cls-t td,.cls-t th{padding:10px 8px}
+ .cls-t th:not(:first-child){font-size:14px}
+ /* таблица допуска: целиком в ширину экрана */
+ .it-t{min-width:0!important;table-layout:auto!important;width:100%}
+ .it-t th:first-child,.it-t td:first-child{width:auto!important;position:static!important;box-shadow:none!important}
+ .it-t th,.it-t td{padding:9px 5px;font-size:12px!important}
+ .it-t .tag{font-size:10.5px;padding:2px 5px;white-space:normal}
+ .jr-ed-t{font-size:16px}
+ .ri-w summary{font-size:15px}
+}
+/* общий вид: подпись застройщика и класса в таблице на главной */
+.pp-home .pp-dev,.pp-home .pp-cls{display:block;font-size:12.5px;color:var(--muted);font-weight:400;margin-top:2px}
+.pp-home .pp-cls{display:none}
+@media(max-width:700px){.pp-home .pp-cls{display:block}}
+.pp-home .pp-h{font-weight:600}
+@media(max-width:700px){
+ .pp-home .pp{max-width:none;flex-wrap:nowrap;gap:2px}
+ .pp-home .pp i{width:8px;height:8px}
+}
+@media(max-width:440px){.it-t th:nth-child(5),.it-t td:nth-child(5){display:none}}
