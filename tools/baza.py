@@ -71,14 +71,15 @@ def num(v):
         return None
 
 
-RED = {'06', '08'}  # «нет» здесь — красная линия; у 02 — только с пометкой «красная линия» в note
+RED = set()  # красная линия только по пометке «красная линия» в note
+RED_MARKED = {'02', '06', '08'}  # 06 «нет» без пометки = рейтинг ЕРЗ ниже 3,0 → обычный минус
 CHECK_NAMES = {}
 
 
 def pasport(ans, notes, cls, tol):
     """Итог паспорта (метод 23.09): красная линия → «Без отметки»; иначе считаем минусы («нет»)
     среди проверок с данными и сравниваем с допуском класса из nota-baza/itog.csv."""
-    red = [c for c in CHECKS_PASPORT if ans.get(c) == 'нет' and (c in RED or (c == '02' and 'красная линия' in notes.get(c, '')))]
+    red = [c for c in CHECKS_PASPORT if ans.get(c) == 'нет' and (c in RED or (c in RED_MARKED and 'красная линия' in notes.get(c, '')))]
     if red:
         return 'Без отметки', 'красная линия: ' + ', '.join(CHECK_NAMES.get(c, c) for c in red)
     known = [c for c in CHECKS_PASPORT if ans.get(c) in ('да', 'нет')]
@@ -136,6 +137,8 @@ def export(root, verbose=True):
     src.mkdir(parents=True, exist_ok=True)
     foto = set()
     for d in sorted((B / 'foto').glob('*/')) if (B / 'foto').exists() else []:
+        if not d.is_dir():
+            continue
         cov = next((p for p in d.iterdir() if p.stem.lower() == 'cover' and p.suffix.lower() in ('.jpg', '.jpeg', '.png', '.webp')), None)
         if not cov:
             continue
