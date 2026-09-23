@@ -18,7 +18,9 @@ CALC_COLS = ['p01', 'p02', 'p03', 'p04', 'p05', 'p06', 'p07', 'p08', 'p09', 'pas
 PUBLIC = {
     'proverki.csv': ['slug', 'check', 'answer', 'value', 'source', 'checked'],
     'zastroyshchiki.csv': ['dev_id', 'name', 'erz_rating', 'erz_checked', 'sdano_3_goda', 'ostanovleno', 'bankrotstvo', 'sayt'],
-    'shkoly.csv': ['school_id', 'name', 'category', 'tier', 'marked', 'index', 'grant', 'okrug', 'district', 'address', 'site', 'korpusov', 'lat', 'lon', 'geo_precision'],
+    'shkoly.csv': ['school_id', 'name', 'official_name', 'category', 'tier', 'marked', 'index', 'grant', 'raex_msk_compete', 'raex_rf', 'vsosh_w', 'vsosh_p',
+                   'price', 'why', 'zone', 'okrug', 'district', 'address', 'site', 'korpusov', 'lat', 'lon', 'geo_precision'],
+    'kriterii.csv': None,
     'penthausy.csv': ['pent_id', 'slug', 'zhk', 'developer', 'okrug', 'district', 'address', 'count', 'area_m2', 'floor', 'price_total', 'price_m2', 'features', 'status', 'source', 'checked'],
     'oplata-skhemy.csv': ['scheme_id', 'dev_id', 'developer', 'slug', 'zhk', 'klass', 'tip', 'opisanie', 'stavka', 'srok', 'pv', 'vvod', 'skidka_100', 'ogranicheniya', 'source', 'deystvuet', 'checked'],
     'oplata-banki.csv': None,

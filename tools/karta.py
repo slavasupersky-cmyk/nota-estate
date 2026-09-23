@@ -230,9 +230,9 @@ def build(root):
     geo_filters = ('<div class="chipgrp"><span class="lb">Округ и район</span><div class="chips">' + chip('o', 'all', 'Вся карта', True)
                    + ''.join(chip('o', slugify(o), f'{o} · {oc[o]}') for o in OKR if oc[o]) + '</div>' + rgrp + '</div>')
 
-    filters = ('<div class="chipgrp"><span class="lb">Класс дома</span><div class="chips">' + chip('c', 'all', 'Все классы', True)
+    filters = ('<div class="chipgrp"><span class="lb">Класс дома <em>можно несколько</em></span><div class="chips">' + chip('c', 'all', 'Все классы', True)
                + ''.join(chip('c', k, f'{t} · {counts[k]}') for k, t in [('biz', 'Бизнес'), ('prem', 'Премиум'), ('elit', 'Элит'), ('dlx', 'Делюкс')])
-               + '</div></div><div class="chipgrp"><span class="lb">Когда ключи</span><div class="chips">' + chip('y', 'all', 'Любой срок', True)
+               + '</div></div><div class="chipgrp"><span class="lb">Когда ключи <em>можно несколько</em></span><div class="chips">' + chip('y', 'all', 'Любой срок', True)
                + ''.join(chip('y', k, f'{YB[k]} · {yc[k]}') for k in YB if yc[k])
                + '</div></div><div class="chipgrp"><span class="lb">Формат</span><div class="chips">' + chip('f', 'all', 'Любой формат', True)
                + chip('f', 'pent', f'С пентхаусами · {pent}') + chip('f', 'club', f'До 100 квартир · {club}') + '</div></div>' + geo_filters)
@@ -247,7 +247,7 @@ def build(root):
 <section class="tight first-content kscreen"><div class="wrap kmap">
  <div class="kmap-l">
   {filters}
-  <p class="hint"><a href="#spisok">К списку домов</a> · <button class="linkbtn" type="button" data-reset>Сбросить фильтры</button></p>
+  <p class="hint"><a href="#spisok">К списку домов</a> · <a href="metod.html#klassy">Что значит класс</a> · <button class="linkbtn" type="button" data-reset>Сбросить фильтры</button></p>
  </div>
  <div class="kmap-r">
   <div class="map" id="kmap">{"".join(svg)}<div class="kt" id="kt" hidden></div></div>
@@ -265,6 +265,7 @@ def build(root):
  <div class="hs-list" id="klist">
 {chr(10).join(lis)}
  </div>
+ <div class="hs-more"><button class="btn btn-l" type="button" id="kmore" hidden>Показать ещё</button></div>
  <p class="hint">Данные базы NOTA на сентябрь 2026: классы, адреса, число квартир и машиномест, стадии и цены «от» — из каталогов и проектных деклараций. Если чего-то нет, застройщик это не раскрыл.</p>
 </div></section>
 

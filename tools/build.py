@@ -15,7 +15,10 @@ FOOTER = (T / 'partials/footer.html').read_text()
 CONTACT = (T / 'partials/contact.html').read_text()
 
 SITE_PAGES = ['index.html', 'podbor.html', 'metod.html', 'karta.html', 'razbory.html', 'razbor-hamovniki.html', 'scenarii.html',
-              'nota-index.html', 'index-2026-08.html', 'index-2026-09.html', 'politika.html']
+              'reytingi.html', 'politika.html']
+# старые адреса → новые (страница-переадресация, в сборку не входит)
+MOVED = {'nota-index.html': 'reytingi.html', 'index-2026-09.html': 'reytingi/shkoly-moskvy/',
+         'index-2026-08.html': 'razbory/klassy-novostroek/'}
 
 def section_of(rel):
     if rel == 'index.html': return 'home'
@@ -23,14 +26,14 @@ def section_of(rel):
     if rel == 'metod.html': return 'metod'
     if rel == 'karta.html' or rel.startswith('doma/'): return 'karta'
     if rel.startswith('razbor'): return 'razbory'
-    if rel == 'nota-index.html' or re.match(r'index-\d', rel): return 'index'
+    if rel.startswith('reytingi'): return 'reytingi'
     return None
 
 def fill(tpl, rel, extra=None):
     depth = rel.count('/')
     d = dict(site, R='../' * depth)
     cur = section_of(rel)
-    for k in ('home', 'podbor', 'metod', 'karta', 'razbory', 'index'):
+    for k in ('home', 'podbor', 'metod', 'karta', 'razbory', 'reytingi'):
         d['CUR_' + k] = ' class="cur"' if k == cur else ''
     d.update(extra or {})
     return re.sub(r'\{(\w+)\}', lambda m: d.get(m.group(1), m.group(0)), tpl)
@@ -46,18 +49,58 @@ def apply_shell(path):
     # реквизиты внутри текста (политика): <!--rekv-->…<!--/rekv-->
     s2 = re.sub(r'<!--rekv-->[\s\S]*?<!--/rekv-->',
                 lambda m: '<!--rekv-->ИП {ip_name}, ИНН {inn}, ОГРНИП {ogrnip}<!--/rekv-->'.format(**site), s2)
+    s2 = faq_ld(s2)
+    if rel == 'index.html' and HOME_TABLE:
+        s2 = re.sub(r'<!--baza-t-->[\s\S]*?<!--/baza-t-->', lambda m: '<!--baza-t-->\n' + HOME_TABLE + '\n   <!--/baza-t-->', s2, count=1)
     if s2 != s:
         path.write_text(s2); return True
     return False
 
+HOME_TABLE = ''
+
+def _txt(h):
+    return re.sub(r'\s+', ' ', re.sub(r'<[^>]+>', '', h)).replace('&nbsp;', ' ').strip()
+
+def faq_ld(s):
+    """Разметка FAQPage (<script id="ld-faq">) собирается из вопросов на странице: <div class="faq"><details><summary>…</summary><p>…</p>."""
+    if 'id="ld-faq"' not in s: return s
+    m = re.search(r'<div class="faq">([\s\S]*?)</div>', s)
+    if not m: return s
+    qa = [(_txt(q), _txt(a)) for q, a in re.findall(r'<details><summary>([\s\S]*?)</summary>([\s\S]*?)</details>', m.group(1))]
+    ld = {'@context': 'https://schema.org', '@type': 'FAQPage',
+          'mainEntity': [{'@type': 'Question', 'name': q, 'acceptedAnswer': {'@type': 'Answer', 'text': a}} for q, a in qa]}
+    return re.sub(r'<script type="application/ld\+json" id="ld-faq">[\s\S]*?</script>',
+                  lambda _: '<script type="application/ld+json" id="ld-faq">' + json.dumps(ld, ensure_ascii=False) + '</script>', s, count=1)
+
+def stub(old, new):
+    """Страница по старому адресу: сразу уводит на новый."""
+    depth = old.count('/')
+    href = '../' * depth + new
+    return f'''<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Страница переехала — NOTA</title>
+<meta name="robots" content="noindex">
+<link rel="canonical" href="{href}">
+<meta http-equiv="refresh" content="0; url={href}">
+<script>location.replace({json.dumps(href)} + location.hash)</script>
+</head>
+<body style="font-family:Onest,Arial,sans-serif;background:#fff;color:#101317;padding:40px">
+<p>Страница переехала: <a href="{href}">{href}</a></p>
+</body>
+</html>
+'''
+
 if __name__ == '__main__':
     sys.path.insert(0, str(T))
-    import baza, doma, karta, images
+    import baza, doma, karta, images, reytingi
 
     def all_pages():
         ps = [ROOT / p for p in SITE_PAGES if (ROOT / p).exists()]
         ps += sorted((ROOT / 'doma').glob('**/index.html'))
         ps += sorted((ROOT / 'razbory').glob('**/index.html'))
+        ps += sorted((ROOT / 'reytingi').glob('**/index.html'))
         return ps
 
     before = {p: p.read_bytes() for p in all_pages()}
@@ -65,6 +108,10 @@ if __name__ == '__main__':
     images.build(ROOT)
     doma.build(ROOT)
     karta.build(ROOT)
+    reytingi.build(ROOT)
+    HOME_TABLE = doma.home_table(ROOT)
+    for old, new in MOVED.items():
+        (ROOT / old).write_text(stub(old, new))
     pages = all_pages()
     for p in pages:
         apply_shell(p)

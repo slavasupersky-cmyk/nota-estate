@@ -92,8 +92,8 @@
 /* ---- активный пункт меню ---- */
  (function(){
   var f=(location.pathname.split('/').pop()||'index.html');
-  var map={'karta.html':'karta','razbory.html':'razbory','razbor-hamovniki.html':'razbory','nota-index.html':'index'};
-  var k=map[f]||(/^index-\d/.test(f)?'index':null); if(!k)return;
+  var map={'karta.html':'karta','razbory.html':'razbory','razbor-hamovniki.html':'razbory','reytingi.html':'reytingi'};
+  var k=map[f]||(/\/reytingi\//.test(location.pathname)?'reytingi':/\/razbory\//.test(location.pathname)?'razbory':null); if(!k)return;
   document.querySelectorAll('.nav a[data-m="'+k+'"]').forEach(function(a){a.classList.add('cur')});
  })();
 
@@ -203,15 +203,27 @@
  var chips=[].slice.call(document.querySelectorAll('.kmap-l .chip')), cnt=document.getElementById('kcnt'), kt=document.getElementById('kt');
  var G=['c','y','f','o','r'], ALL={c:'all',y:'all',f:'all',o:'all',r:'all'}, st=Object.assign({},ALL);
  var SZ={biz:[45,70,100],prem:[60,90,130],elit:[90,140,200],dlx:[120,180,250]};
- function test(el,t){return G.every(function(g){var v=t[g];if(v=='all')return true;var d=el.dataset[g]||'';return g=='f'?(' '+d+' ').indexOf(' '+v+' ')>-1:d==v})}
+ var MULTI={c:1,y:1};
+ function test(el,t){return G.every(function(g){var v=t[g];if(v=='all')return true;var d=el.dataset[g]||'';if(MULTI[g])return v.indexOf(d)>-1;return g=='f'?(' '+d+' ').indexOf(' '+v+' ')>-1:d==v})}
  function ok(el){return test(el,st)}
- function okExcept(el,g,k){var t=Object.assign({},st);t[g]=k;if(g=='o')t.r='all';return test(el,t)}
+ function okExcept(el,g,k){var t=Object.assign({},st);t[g]=(MULTI[g]&&k!=='all')?[k]:k;if(g=='o')t.r='all';return test(el,t)}
  function rows(){[].slice.call(document.querySelectorAll('.kmap-l .kr')).forEach(function(r){r.hidden=r.dataset.for!==st.o})}
  function facets(){chips.forEach(function(b){var n=0;items.forEach(function(it){if(okExcept(it,b.dataset.g,b.dataset.k))n++});var c=b.querySelector('.cn');if(c)c.textContent=n;b.classList.toggle('zero',n===0&&b.getAttribute('aria-pressed')!=='true')})}
- function press(g,k){chips.filter(function(x){return x.dataset.g==g}).forEach(function(x){x.setAttribute('aria-pressed',x.dataset.k==k&&(g!='r'||x.dataset.o==st.o||k=='all')?'true':'false')});st[g]=k}
- function apply(){var n=0;rows();facets();dots.forEach(function(d){d.classList.toggle('off',!ok(d))});items.forEach(function(it){var on=ok(it);it.hidden=!on;if(on)n++});cnt.textContent='Показано '+n+' из '+items.length;if(kt&&!kt.hidden){var i=+kt.dataset.i;if(!ok(dots[i]))hideT()}}
- chips.forEach(function(b){b.addEventListener('click',function(){var g=b.dataset.g;press(g,b.dataset.k);if(g=='o')press('r','all');apply()})});
- document.querySelectorAll('[data-reset]').forEach(function(b){b.addEventListener('click',function(){st=Object.assign({},ALL);chips.forEach(function(x){x.setAttribute('aria-pressed',x.dataset.k=='all'?'true':'false')});apply()})});
+ function press(g,k){var gc=chips.filter(function(x){return x.dataset.g==g});
+  if(MULTI[g]){var cur=(k==='all'||st[g]==='all')?[]:st[g].slice();if(k!=='all'){var i=cur.indexOf(k);if(i<0)cur.push(k);else cur.splice(i,1)}
+   if(!cur.length||cur.length>=gc.length-1)cur='all';st[g]=cur;
+   gc.forEach(function(x){x.setAttribute('aria-pressed',(cur==='all'?x.dataset.k==='all':cur.indexOf(x.dataset.k)>-1)?'true':'false')});return}
+  gc.forEach(function(x){x.setAttribute('aria-pressed',x.dataset.k==k&&(g!='r'||x.dataset.o==st.o||k=='all')?'true':'false')});st[g]=k}
+ /* список — порциями по LIM, чтобы на телефоне страница не уходила в бесконечность */
+ var LIM=20, lim=LIM, more=document.getElementById('kmore');
+ function apply(){var n=0;rows();facets();dots.forEach(function(d){d.classList.toggle('off',!ok(d))});
+  items.forEach(function(it){var on=ok(it);if(on)n++;it.hidden=!(on&&(n<=lim||it.classList.contains('open')))});
+  cnt.textContent=(n===items.length?'Все '+n+' домов':'Найдено '+n+' из '+items.length)+(n>lim?' · показаны первые '+lim:'');
+  if(more){var left=n-lim;more.hidden=left<=0;more.textContent='Показать ещё '+Math.min(LIM,left)+' · осталось '+left}
+  if(kt&&!kt.hidden){var i=+kt.dataset.i;if(!ok(dots[i]))hideT()}}
+ if(more) more.addEventListener('click',function(){lim+=LIM;apply()});
+ chips.forEach(function(b){b.addEventListener('click',function(){var g=b.dataset.g;press(g,b.dataset.k);if(g=='o')press('r','all');lim=LIM;apply()})});
+ document.querySelectorAll('[data-reset]').forEach(function(b){b.addEventListener('click',function(){st=Object.assign({},ALL);chips.forEach(function(x){x.setAttribute('aria-pressed',x.dataset.k=='all'?'true':'false')});lim=LIM;apply()})});
  function mln(v){return v.toLocaleString('ru-RU',{minimumFractionDigits:1,maximumFractionDigits:1})}
  function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
  function side(it){
@@ -265,4 +277,92 @@
   document.addEventListener('keydown',function(ev){if(ev.key==='Escape'&&!md.hidden){md.hidden=true;document.body.style.overflow=''}})}
  if(location.hash.indexOf('#h-')===0){var it0=document.getElementById(location.hash.slice(1)); if(it0) openItem(it0,true)}
  apply();
+})();
+
+/* ---- рейтинги и длинные списки: фильтры-чипы со счётчиками, поиск, «Показать ещё» ---- */
+(function(){
+ [].slice.call(document.querySelectorAll('[data-rlist]')).forEach(function(box){
+  var items=[].slice.call(box.querySelectorAll('.ri')), chips=[].slice.call(box.querySelectorAll('.chip[data-g]'));
+  var G=[]; chips.forEach(function(c){if(G.indexOf(c.dataset.g)<0)G.push(c.dataset.g)});
+  var st={}; G.forEach(function(g){st[g]='all'});
+  var q=box.querySelector('input[type=search]'), qv='', cnt=box.querySelector('.ri-cnt'), more=box.querySelector('.ri-more');
+  var LIM=+(box.getAttribute('data-lim')||20), lim=LIM;
+  function norm(s){return (s||'').toLowerCase().replace(/ё/g,'е')}
+  function test(el,t){for(var i=0;i<G.length;i++){var g=G[i],v=t[g];if(v==='all')continue;var d=' '+(el.dataset[g]||'')+' ',hit=false;
+    for(var j=0;j<v.length;j++){if(d.indexOf(' '+v[j]+' ')>-1){hit=true;break}}if(!hit)return false}
+   return !qv||norm(el.dataset.q).indexOf(qv)>-1}
+  function facets(){chips.forEach(function(b){var t={};G.forEach(function(g){t[g]=st[g]});t[b.dataset.g]=b.dataset.k==='all'?'all':[b.dataset.k];var n=0;
+   items.forEach(function(it){if(test(it,t))n++});var c=b.querySelector('.cn');if(c)c.textContent=n;
+   b.classList.toggle('zero',n===0&&b.getAttribute('aria-pressed')!=='true')})}
+  function apply(){var n=0;facets();
+   items.forEach(function(it){var on=test(it,st);if(on)n++;it.hidden=!(on&&(n<=lim||it.classList.contains('open')))});
+   if(cnt)cnt.textContent=(n===items.length?'Все '+n:'Найдено '+n+' из '+items.length)+(n>lim?' · показаны первые '+lim:'');
+   if(more){var left=n-lim;more.hidden=left<=0;more.textContent='Показать ещё '+Math.min(LIM,left)+' · осталось '+left}}
+  chips.forEach(function(b){b.addEventListener('click',function(){var g=b.dataset.g,k=b.dataset.k,gc=chips.filter(function(x){return x.dataset.g===g});
+   var cur=(k==='all'||st[g]==='all')?[]:st[g].slice();if(k!=='all'){var i=cur.indexOf(k);if(i<0)cur.push(k);else cur.splice(i,1)}
+   if(!cur.length||cur.length>=gc.length-1)cur='all';st[g]=cur;
+   gc.forEach(function(x){x.setAttribute('aria-pressed',(cur==='all'?x.dataset.k==='all':cur.indexOf(x.dataset.k)>-1)?'true':'false')});lim=LIM;apply()})});
+  if(q)q.addEventListener('input',function(){qv=norm(q.value.trim());lim=LIM;apply()});
+  if(more)more.addEventListener('click',function(){lim+=LIM;apply()});
+  [].slice.call(box.querySelectorAll('[data-reset]')).forEach(function(b){b.addEventListener('click',function(){
+   G.forEach(function(g){st[g]='all'});chips.forEach(function(x){x.setAttribute('aria-pressed',x.dataset.k==='all'?'true':'false')});
+   if(q){q.value='';qv=''}lim=LIM;apply()})});
+  var dj=box.querySelector('.ri-data'), D=null; try{D=dj?JSON.parse(dj.textContent):null}catch(e){}
+  function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+  function near(it){var nb=it.querySelector('.ri-near[data-sid]');if(!nb||nb.dataset.done||!D)return;var L=D.n[nb.dataset.sid]||[];
+   nb.innerHTML='<p class="k">Новые дома рядом, пешком</p><ul>'+L.map(function(x){var h=D.h[x[0]]||[x[0],''];
+    return '<li><a href="'+D.R+'karta.html#h-'+x[0]+'">'+esc(h[0])+'</a><span>'+esc(h[1])+' · '+x[1]+' мин</span></li>'}).join('')+'</ul>';nb.dataset.done=1}
+  function toggle(it,on){it.classList.toggle('open',on);if(on)near(it);var bd=it.querySelector('.ri-body'),bt=it.querySelector('.ri-row');if(bd)bd.hidden=!on;if(bt)bt.setAttribute('aria-expanded',on?'true':'false')}
+  items.forEach(function(it){var bt=it.querySelector('.ri-row');if(bt)bt.addEventListener('click',function(){toggle(it,!it.classList.contains('open'))})});
+  function fromHash(){if(!location.hash)return;var t=null;try{t=box.querySelector(location.hash)}catch(e){}
+   if(t&&t.classList.contains('ri')){toggle(t,true);apply();setTimeout(function(){t.scrollIntoView({block:'start'})},30)}}
+  window.addEventListener('hashchange',fromHash);
+  /* подборка: школы → дома рядом пешком (рейтинг школ) */
+  var bar=box.querySelector('.pickbar'), md=box.querySelector('.modal');
+  if(bar&&md&&D){
+   var KEY='nota-pick-schools', picked=[];
+   try{picked=JSON.parse(localStorage.getItem(KEY)||'[]')||[]}catch(e){picked=[]}
+   picked=picked.filter(function(id){return !!document.getElementById('s-'+id)});
+   function save(){try{localStorage.setItem(KEY,JSON.stringify(picked))}catch(e){}}
+   function pl(n,a,b,c){var x=n%10,y=n%100;return x===1&&y!==11?a:(x>=2&&x<=4&&(y<10||y>20)?b:c)}
+   function nameOf(id){var el=document.getElementById('s-'+id);return el?el.getAttribute('data-name'):id}
+   function houses(){var m={};picked.forEach(function(id){(D.n[id]||[]).forEach(function(x){if(x[1]>20)return;var h=D.h[x[0]];if(!h)return;var c=m[x[0]],nm=nameOf(id);
+     if(!c)m[x[0]]={s:x[0],n:h[0],c:h[1],p:h[2],min:x[1],sch:[nm]};else{if(x[1]<c.min)c.min=x[1];if(c.sch.indexOf(nm)<0)c.sch.push(nm)}})});
+    return Object.keys(m).map(function(k){return m[k]}).sort(function(a,b){return a.min-b.min||(a.p||1e12)-(b.p||1e12)})}
+   function mark(){items.forEach(function(it){var id=it.id.slice(2),on=picked.indexOf(id)>-1;it.classList.toggle('picked',on);var b=it.querySelector('.ri-pick');if(b){b.textContent=on?'Убрать из подборки':'В подборку';b.classList.toggle('on',on)}})}
+   function renderBar(){bar.hidden=!picked.length;document.body.classList.toggle('has-pick',picked.length>0);if(!picked.length)return;var n=houses().length;
+    bar.querySelector('.pb-t').innerHTML='Выбрано: <b>'+picked.length+'</b> '+pl(picked.length,'школа','школы','школ')+' · домов рядом: <b>'+n+'</b>'}
+   function fill(){var L=houses();
+    md.querySelector('.pk-sel').innerHTML=picked.map(function(id){return '<span class="pk-s">'+esc(nameOf(id))+'<button type="button" data-unpick="'+id+'" aria-label="Убрать">×</button></span>'}).join('');
+    md.querySelector('.pk-list').innerHTML=L.length?('<p class="hint">'+L.length+' '+pl(L.length,'дом','дома','домов')+' в 20 минутах пешком, от ближайших:</p><ul>'+L.map(function(h){return '<li><a href="'+D.R+'karta.html#h-'+h.s+'">'+esc(h.n)+'</a><span>'+esc(h.c)+(h.p?' · от '+(h.p>=1e6?(Math.round(h.p/1e5)/10).toString().replace('.',',')+' млн':Math.round(h.p/1000)+' тыс')+' ₽/м²':'')+' · '+h.min+' мин пешком · '+esc(h.sch.join(', '))+'</span></li>'}).join('')+'</ul>'):
+     '<p class="hint">В 20 минутах пешком от выбранных школ домов из нашей базы нет. Напишите нам — подберём варианты по соседству.</p>'}
+   function openM(){fill();md.hidden=false;document.body.style.overflow='hidden'}
+   function closeM(){md.hidden=true;document.body.style.overflow=''}
+   box.addEventListener('click',function(ev){var b=ev.target.closest&&ev.target.closest('.ri-pick');if(!b)return;var id=b.getAttribute('data-pick'),i=picked.indexOf(id);
+    if(i<0)picked.push(id);else picked.splice(i,1);save();mark();renderBar()});
+   bar.querySelector('.pb-clr').addEventListener('click',function(){picked=[];save();mark();renderBar()});
+   bar.querySelector('.pb-go').addEventListener('click',openM);
+   md.addEventListener('click',function(ev){if(ev.target.hasAttribute('data-close')){closeM();return}var u=ev.target.getAttribute('data-unpick');
+    if(u){picked.splice(picked.indexOf(u),1);save();mark();renderBar();if(!picked.length)closeM();else fill()}});
+   document.addEventListener('keydown',function(ev){if(ev.key==='Escape'&&!md.hidden)closeM()});
+   md.querySelector('.pk-copy').addEventListener('click',function(){var L=houses(),btn=this;
+    var t='Школы: '+picked.map(nameOf).join('; ')+'\nДома рядом пешком: '+L.map(function(h){return h.n+' — '+h.min+' мин'}).join('; ');
+    function manual(){var ta=md.querySelector('.pk-ta');if(!ta){ta=document.createElement('textarea');ta.className='pk-ta';ta.readOnly=true;md.querySelector('.pk-list').appendChild(ta)}ta.value=t;ta.focus();ta.select();btn.textContent='Выделено — скопируйте'}
+    if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(t).then(function(){btn.textContent='Список скопирован'},manual);else manual()});
+   mark();renderBar();
+  }
+  apply(); fromHash();
+ });
+})();
+
+/* ---- сценарии: на телефоне раскрываются по кнопке ---- */
+(function(){
+ var cs=[].slice.call(document.querySelectorAll('article.cs')); if(!cs.length) return;
+ cs.forEach(function(a){var top=a.querySelector('.cs-top'); if(!top) return;
+  var b=document.createElement('button'); b.type='button'; b.className='cs-more'; b.textContent='Раскрыть сценарий'; b.setAttribute('aria-expanded','false');
+  top.insertAdjacentElement('afterend',b);
+  b.addEventListener('click',function(){var o=a.classList.toggle('open'); b.textContent=o?'Свернуть':'Раскрыть сценарий'; b.setAttribute('aria-expanded',o?'true':'false'); if(!o) a.scrollIntoView({block:'start'})});
+ });
+ function fromHash(){var t=location.hash&&document.getElementById(location.hash.slice(1)); if(t&&t.classList.contains('cs')&&!t.classList.contains('open')){var b=t.querySelector('.cs-more'); if(b) b.click(); t.scrollIntoView({block:'start'})}}
+ window.addEventListener('hashchange',fromHash); fromHash();
 })();
