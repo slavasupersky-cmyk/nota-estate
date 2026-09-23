@@ -58,3 +58,7 @@ node_modules/
 *.log
 *.tmp
 Thumbs.db
+
+# ---- служебное Python ----
+__pycache__/
+*.pyc
