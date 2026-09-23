@@ -633,8 +633,9 @@ section.tight .arts{margin-top:22px!important}
 .co-v{margin-top:auto;padding-top:16px;border-top:1px solid var(--ink);font-size:16px;line-height:1.5;color:var(--ink)}
 .co-v em{font-style:normal;color:var(--red);font-weight:600}
 /* сколько стоит */
-.price{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:30px}
-@media(max-width:980px){.price{grid-template-columns:1fr 1fr}}
+.price{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:30px}
+@media(max-width:1180px){.price{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:980px){.price{grid-template-columns:1fr 1fr}.price .pr:last-child:nth-child(odd){grid-column:1/-1}}
 @media(max-width:560px){.price{grid-template-columns:1fr}}
 .pr{background:var(--surface);padding:clamp(18px,2.2vw,26px);display:flex;flex-direction:column;gap:8px}
 .pr b{font-size:clamp(26px,2.6vw,34px);font-weight:800;letter-spacing:-.03em;line-height:1.05}
@@ -752,6 +753,21 @@ table,.strip,.h-stats,.co b,.pr b,.ratio,.bars,.jr-share,.calc output{font-varia
 .hs-real{margin-top:18px}
 .hs-real p:not(.k){margin-top:6px;font-size:14.5px;line-height:1.55;color:var(--ink-2)}
 .hs-side .btns{margin-top:18px}
+/* что в продаже по комнатности (карта) и в карточке дома: единицы — в заголовке, в ячейках только числа */
+.hs-real:first-child{margin-top:0}
+.hs-t{width:100%;min-width:0;border-collapse:collapse;margin-top:10px;font-size:14px;font-variant-numeric:tabular-nums}
+.hs-t th{font-size:10.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-align:left;padding:0 10px 6px 0;border-bottom:1px solid var(--line);white-space:nowrap}
+.hs-t td{padding:8px 10px 8px 0;border-bottom:1px solid var(--line);vertical-align:top}
+.hs-t td:nth-last-child(-n+2){white-space:nowrap}
+.hs-t th:last-child,.hs-t td:last-child{padding-right:0;text-align:right}
+.hs-t td:first-child{color:var(--ink)}
+.hs-real .hint{margin-top:8px;font-size:12.5px}
+.lt-t{min-width:0}
+.lt-t td:nth-last-child(-n+2){white-space:nowrap}
+.lt-t th:last-child,.lt-t td:last-child{text-align:right}
+.lt-t td small{display:block;margin-top:3px;color:var(--muted);font-size:12.5px;white-space:normal}
+@media(max-width:600px){.lt-t{font-size:14px}.lt-t th{letter-spacing:.08em;white-space:normal}.lt-t th,.lt-t td{padding:10px 6px}.lt-t td:first-child{white-space:nowrap}.lt-t td small{display:none}}
+@media(max-width:420px){.hs-t{font-size:13px}.hs-t th,.hs-t td{padding-right:6px}}
 @media(max-width:860px){
  .hs-head{display:none}
  .hs-row{grid-template-columns:minmax(0,1fr) auto;gap:4px 12px}
@@ -1019,3 +1035,34 @@ body.has-pick{padding-bottom:70px}
  .cls-t tr.cls-price td:first-child{background:var(--paper-2)}
  .cls-t td{font-size:13.5px}
 }
+
+/* бюджет в анкете подбора: число + ползунок */
+.bud{border:1px solid var(--line);background:var(--surface);padding:12px 15px 10px}
+.bud-h{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.bud-l{font-size:15.5px}
+.bud-in{display:flex;align-items:center;gap:6px;font-size:15.5px;color:var(--ink-2)}
+.bud-in input{width:72px;font:inherit;font-size:17px;font-weight:600;text-align:right;padding:4px 6px;border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:0;-moz-appearance:textfield}
+.bud-in input::-webkit-outer-spin-button,.bud-in input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.bud-in input:focus{outline:none;border-color:var(--ink)}
+.bud input[type=range]{width:100%;-webkit-appearance:none;appearance:none;height:2px;background:var(--line);outline:none;margin:14px 0 8px}
+.bud input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--ink);cursor:pointer;border:none}
+.bud input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:var(--ink);cursor:pointer;border:none}
+.bud-f{display:flex;justify-content:space-between;align-items:center;font-size:12.5px;color:var(--muted)}
+.bud-x{font-size:12.5px}
+.bud.none .bud-in input,.bud.none input[type=range]{opacity:.35}
+.bud.none .bud-x{color:var(--ink);text-decoration:none}
+.kmap-l .kq{margin:4px 0 14px;grid-template-columns:1fr;gap:6px}
+.kmap-l .kq input{max-width:none}
+.mt-stop.three{grid-template-columns:repeat(3,1fr)}
+@media(max-width:860px){.mt-stop.three{grid-template-columns:1fr}}
+.it-t td:not(:first-child),.it-t th:not(:first-child){text-align:left}
+/* масштаб карты */
+#kmap svg{touch-action:pan-y}
+#kmap.zoomed svg{touch-action:none;cursor:grab}
+#kmap.dragging svg{cursor:grabbing}
+#kmap svg path,#kmap svg rect,#kmap svg circle{vector-effect:non-scaling-stroke}
+.kz{position:absolute;right:10px;top:10px;display:flex;flex-direction:column;border:1px solid var(--line);background:var(--surface);z-index:5}
+.kz button{width:34px;height:34px;border:0;background:none;font:inherit;font-size:20px;line-height:1;color:var(--ink);cursor:pointer}
+.kz button+button{border-top:1px solid var(--line)}
+.kz button:hover{background:var(--paper-2)}
+.kz button[data-z=reset]{font-size:16px}

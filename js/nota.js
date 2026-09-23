@@ -53,7 +53,19 @@
   });
  });
  document.addEventListener('click',function(){closeAll()});
- function val(name){var s=document.querySelector('.sel[data-name="'+name+'"]');return s?s.dataset.value:''}
+ function val(name){var s=document.querySelector('.sel[data-name="'+name+'"],.bud[data-name="'+name+'"]');return s?s.dataset.value:''}
+ /* ---- бюджет в анкете: ползунок и своё число, шаг — 1 млн ---- */
+ var bud=document.querySelector('.bud');
+ if(bud){
+  var bn=bud.querySelector('input[type=number]'), br=bud.querySelector('input[type=range]'), bx=bud.querySelector('.bud-x');
+  var fire=function(){bud.dispatchEvent(new CustomEvent('selchange',{bubbles:true}))};
+  var setB=function(v,src){v=Math.round(+v); if(!v||v<1) return;
+   if(src!=='n') bn.value=v; if(src!=='r') br.value=Math.min(+br.max,Math.max(+br.min,v));
+   bud.classList.remove('none'); bud.dataset.value='Бюджет до '+v+' млн'; fire()};
+  br.addEventListener('input',function(){setB(br.value,'r')});
+  bn.addEventListener('input',function(){setB(bn.value,'n')});
+  bx.addEventListener('click',function(){bud.classList.add('none'); bud.dataset.value='Бюджет пока не считали'; fire()});
+ }
 
  /* ---- фильтры базы ---- */
  var chipsBox=document.getElementById('chips');
@@ -73,7 +85,7 @@
    var n=0;
    rows.forEach(function(r){var on=ok(r);r.style.display=on?'':'none';if(on)n++});
    var c=document.getElementById('cnt');
-   if(c)c.textContent='Показано '+n+' из '+rows.length+' строк среза. Полная база — 288 домов.';
+   if(c)c.textContent='Показано '+n+' из '+rows.length+' строк среза.';
    document.querySelectorAll('#mapdots [data-c]').forEach(function(d){
     var on=ok(d); d.style.opacity=on?'1':'.10';
    });
@@ -129,7 +141,7 @@
    var low=s[s.length-1], spread=s[0].value-low.value;
    var v='Больше всего для вас значит '+s[0].dataset.k.toLowerCase()+', меньше всего — '+low.dataset.k.toLowerCase()+'. ';
    v+= spread<3 ? 'Веса почти ровные — так бывает, когда сценарий ещё не выбран. Тогда начнём с разговора, а не с подборки.'
-     : 'С такими весами домов останется меньше, чем кажется, — и это нормально: мы ставим отметку восемнадцати из 288.';
+     : 'С такими весами подходящих домов останется немного — и это нормально: лучше пять точных вариантов, чем пятьдесят «почти».';
    var sc=val('scen'), bd=val('budget');
    if(sc&&bd)v+=' '+sc+'. '+bd.charAt(0).toUpperCase()+bd.slice(1)+'.';
    document.getElementById('verdict').textContent=v;
@@ -201,12 +213,17 @@
  var data=JSON.parse(document.getElementById('kdata').textContent);
  var dots=[].slice.call(map.querySelectorAll('.kd')), items=[].slice.call(document.querySelectorAll('.hs'));
  var chips=[].slice.call(document.querySelectorAll('.kmap-l .chip')), cnt=document.getElementById('kcnt'), kt=document.getElementById('kt');
- var G=['c','y','f','o','r'], ALL={c:'all',y:'all',f:'all',o:'all',r:'all'}, st=Object.assign({},ALL);
+ var G=['c','y','f','o','r','m'], ALL={c:'all',y:'all',f:'all',o:'all',r:'all',m:'all'}, st=Object.assign({},ALL);
  var SZ={biz:[45,70,100],prem:[60,90,130],elit:[90,140,200],dlx:[120,180,250]};
  var MULTI={c:1,y:1};
+ function pl(n,a,b,c){var x=n%10,y=n%100;return x===1&&y!==11?a:(x>=2&&x<=4&&(y<10||y>20)?b:c)}
  function test(el,t){return G.every(function(g){var v=t[g];if(v=='all')return true;var d=el.dataset[g]||'';if(MULTI[g])return v.indexOf(d)>-1;return g=='f'?(' '+d+' ').indexOf(' '+v+' ')>-1:d==v})}
- function ok(el){return test(el,st)}
- function okExcept(el,g,k){var t=Object.assign({},st);t[g]=(MULTI[g]&&k!=='all')?[k]:k;if(g=='o')t.r='all';return test(el,t)}
+ /* поиск по названию, застройщику и адресу: точки карты берут строку поиска у своего дома в списке */
+ var byI={}; items.forEach(function(it){byI[it.dataset.i]=it});
+ var Q='', kq=document.getElementById('kq');
+ function qok(el){if(!Q)return true;var it=byI[el.dataset.i];return !!it&&(it.dataset.q||'').indexOf(Q)>-1}
+ function ok(el){return test(el,st)&&qok(el)}
+ function okExcept(el,g,k){var t=Object.assign({},st);t[g]=(MULTI[g]&&k!=='all')?[k]:k;if(g=='o')t.r='all';return test(el,t)&&qok(el)}
  function rows(){[].slice.call(document.querySelectorAll('.kmap-l .kr')).forEach(function(r){r.hidden=r.dataset.for!==st.o})}
  function facets(){chips.forEach(function(b){var n=0;items.forEach(function(it){if(okExcept(it,b.dataset.g,b.dataset.k))n++});var c=b.querySelector('.cn');if(c)c.textContent=n;b.classList.toggle('zero',n===0&&b.getAttribute('aria-pressed')!=='true')})}
  function press(g,k){var gc=chips.filter(function(x){return x.dataset.g==g});
@@ -218,21 +235,33 @@
  var LIM=20, lim=LIM, more=document.getElementById('kmore');
  function apply(){var n=0;rows();facets();dots.forEach(function(d){d.classList.toggle('off',!ok(d))});
   items.forEach(function(it){var on=ok(it);if(on)n++;it.hidden=!(on&&(n<=lim||it.classList.contains('open')))});
-  cnt.textContent=(n===items.length?'Все '+n+' домов':'Найдено '+n+' из '+items.length)+(n>lim?' · показаны первые '+lim:'');
+  cnt.textContent=(n===items.length?'Все '+n+' '+pl(n,'дом','дома','домов'):'Найдено '+n+' из '+items.length)+(n>lim?' · показаны первые '+lim:'');
   if(more){var left=n-lim;more.hidden=left<=0;more.textContent='Показать ещё '+Math.min(LIM,left)+' · осталось '+left}
   if(kt&&!kt.hidden){var i=+kt.dataset.i;if(!ok(dots[i]))hideT()}}
  if(more) more.addEventListener('click',function(){lim+=LIM;apply()});
+ if(kq) kq.addEventListener('input',function(){Q=kq.value.trim().toLowerCase().replace(/ё/g,'е');lim=LIM;apply()});
  chips.forEach(function(b){b.addEventListener('click',function(){var g=b.dataset.g;press(g,b.dataset.k);if(g=='o')press('r','all');lim=LIM;apply()})});
- document.querySelectorAll('[data-reset]').forEach(function(b){b.addEventListener('click',function(){st=Object.assign({},ALL);chips.forEach(function(x){x.setAttribute('aria-pressed',x.dataset.k=='all'?'true':'false')});lim=LIM;apply()})});
+ document.querySelectorAll('[data-reset]').forEach(function(b){b.addEventListener('click',function(){st=Object.assign({},ALL);Q='';if(kq)kq.value='';chips.forEach(function(x){x.setAttribute('aria-pressed',x.dataset.k=='all'?'true':'false')});lim=LIM;apply()})});
  function mln(v){return v.toLocaleString('ru-RU',{minimumFractionDigits:1,maximumFractionDigits:1})}
  function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
  function side(it){
   var sd=it.querySelector('.hs-side'); if(sd.dataset.done) return; var r=data[+it.dataset.i], h='';
-  h+='<div class="hs-ex"><p class="k">Примеры стоимости</p>';
-  if(r.p){h+='<ul>'+SZ[r.k].map(function(s){return '<li><b>'+s+' м²</b><span>≈ '+mln(r.p*s/1000)+' млн ₽</span></li>'}).join('')+'</ul><p class="hint">Расчёт от цены «от», а не предложение: этаж, вид и отделка двигают цену.</p>'}
-  else h+='<p>Цену застройщик не публикует — узнаем для вас.</p>';
-  h+='</div><div class="hs-real"><p class="k">Что в продаже сейчас</p>';
-  h+= r.x ? '<p>В продаже '+esc(r.x[0]||'—')+' лотов, самый доступный — '+esc(r.x[1]||'—')+' м² за '+esc(r.x[2]||'—')+' млн ₽. Сверка '+esc(r.x[3]||'')+'.</p>' : '<p>Застройщики меняют прайс и набор лотов каждую неделю. Пришлём, что в продаже сейчас: минимальный лот, планировки и условия оплаты.</p>';
+  var sum=r.x?((r.x[0]?'В продаже '+esc(r.x[0])+' '+pl(+r.x[0],'лот','лота','лотов')+'. ':'')+(r.x[2]?'Самый доступный — '+(r.x[1]?esc(r.x[1])+' м² за ':'')+esc(r.x[2])+' млн ₽.':'')):'';
+  var when=r.td||(r.x&&r.x[3])||'';
+  if(r.t){
+   /* по комнатности — из среза базы loty-po-tipam: тип, лотов, площадь, цена */
+   var hl=r.t.some(function(t){return t[1]});
+   h+='<div class="hs-real"><p class="k">Что в продаже сейчас</p>'+(sum?'<p>'+sum+'</p>':'');
+   h+='<table class="hs-t"><thead><tr><th>Тип</th>'+(hl?'<th>Лотов</th>':'')+'<th>Площадь, м²</th><th>Цена, млн ₽</th></tr></thead><tbody>'+r.t.map(function(t){
+    return '<tr><td>'+esc(t[0])+'</td>'+(hl?'<td>'+(t[1]?esc(t[1]):'—')+'</td>':'')+'<td>'+(t[2]?esc(t[2]):'—')+'</td><td>'+(t[3]?esc(t[3]):'по запросу')+'</td></tr>'}).join('')+'</tbody></table>';
+   h+='<p class="hint">'+(when?'Сверка '+esc(when)+'. ':'')+'Цены — со скидкой застройщика, если он её показывает. Лоты уходят каждую неделю: актуальный набор пришлём.</p>';
+  } else {
+   h+='<div class="hs-ex"><p class="k">Примеры стоимости</p>';
+   if(r.p){h+='<ul>'+SZ[r.k].map(function(s){return '<li><b>'+s+' м²</b><span>≈ '+mln(r.p*s/1000)+' млн ₽</span></li>'}).join('')+'</ul><p class="hint">Расчёт от цены «от», а не предложение: этаж, вид и отделка двигают цену.</p>'}
+   else h+='<p>Цену застройщик не публикует — узнаем для вас.</p>';
+   h+='</div><div class="hs-real"><p class="k">Что в продаже сейчас</p>';
+   h+= sum ? '<p>'+sum+(when?' Сверка '+esc(when)+'.':'')+'</p>' : '<p>Застройщики меняют прайс и набор лотов каждую неделю. Пришлём, что в продаже сейчас: минимальный лот, планировки и условия оплаты.</p>';
+  }
   h+='</div><div class="btns"><button class="btn hs-cta" type="button" data-house="'+esc(r.n)+'">Хочу актуальное предложение</button>'+(r.dm?' <a class="btn btn-l" href="doma/'+r.dm+'/">Подробный разбор</a>':'')+'</div>';
   sd.innerHTML=h; sd.dataset.done=1;
  }
@@ -264,6 +293,44 @@
   if(ev.target.classList.contains('kt-x')){hideT();return}
   var o=ev.target.getAttribute('data-open'); if(o!==null){var it=items.filter(function(x){return x.dataset.i==o})[0]; hideT(); if(it){it.hidden=false; openItem(it,true)}}
  });
+ /* ---- приближение и перетаскивание: меняем viewBox, точки при этом почти не растут ---- */
+ var svg=map.querySelector('svg'), vb0=svg.getAttribute('viewBox').split(/[\s,]+/).map(Number), vb=vb0.slice(), MAXZ=8, moved=false;
+ dots.forEach(function(d){d.dataset.r0=d.getAttribute('r')});
+ function zoomed(){return vb[2]<vb0[2]-0.5}
+ function setVB(){
+  vb[2]=Math.min(vb0[2],Math.max(vb0[2]/MAXZ,vb[2])); vb[3]=vb[2]*vb0[3]/vb0[2];
+  vb[0]=Math.min(vb0[0]+vb0[2]-vb[2],Math.max(vb0[0],vb[0])); vb[1]=Math.min(vb0[1]+vb0[3]-vb[3],Math.max(vb0[1],vb[1]));
+  svg.setAttribute('viewBox',vb.map(function(x){return x.toFixed(2)}).join(' '));
+  var z=vb0[2]/vb[2]; dots.forEach(function(d){d.setAttribute('r',(+d.dataset.r0/Math.pow(z,0.75)).toFixed(2))});
+  map.classList.toggle('zoomed',zoomed()); if(!kt.hidden) hideT();
+ }
+ function toUser(cx,cy){var m=svg.getScreenCTM();return {x:(cx-m.e)/m.a,y:(cy-m.f)/m.d}}
+ function zoomAt(f,cx,cy){var r=svg.getBoundingClientRect();if(cx==null){cx=r.left+r.width/2;cy=r.top+r.height/2}
+  var p=toUser(cx,cy),fx=(p.x-vb[0])/vb[2],fy=(p.y-vb[1])/vb[3],w=Math.min(vb0[2],Math.max(vb0[2]/MAXZ,vb[2]/f)),h=w*vb0[3]/vb0[2];
+  vb=[p.x-fx*w,p.y-fy*h,w,h]; setVB()}
+ map.querySelectorAll('.kz button').forEach(function(b){b.addEventListener('click',function(ev){ev.stopPropagation();
+  if(b.dataset.z=='reset'){vb=vb0.slice();setVB()} else zoomAt(b.dataset.z=='in'?2:0.5)})});
+ svg.addEventListener('dblclick',function(ev){ev.preventDefault();zoomAt(2,ev.clientX,ev.clientY)});
+ map.addEventListener('wheel',function(ev){if(!(ev.ctrlKey||ev.metaKey||zoomed()))return;ev.preventDefault();zoomAt(Math.exp(-ev.deltaY*(ev.ctrlKey?0.01:0.002)),ev.clientX,ev.clientY)},{passive:false});
+ var drag=null;
+ svg.addEventListener('pointerdown',function(ev){if(ev.pointerType==='touch'||!zoomed()||ev.button!==0)return;drag={x:ev.clientX,y:ev.clientY,vb:vb.slice(),a:svg.getScreenCTM().a};moved=false});
+ window.addEventListener('pointermove',function(ev){if(!drag)return;var dx=ev.clientX-drag.x,dy=ev.clientY-drag.y;if(!moved&&Math.abs(dx)+Math.abs(dy)<5)return;moved=true;map.classList.add('dragging');
+  vb=[drag.vb[0]-dx/drag.a,drag.vb[1]-dy/drag.a,drag.vb[2],drag.vb[3]];setVB()});
+ window.addEventListener('pointerup',function(){if(drag){drag=null;map.classList.remove('dragging');setTimeout(function(){moved=false},0)}});
+ map.addEventListener('click',function(ev){if(moved){ev.stopPropagation();ev.preventDefault()}},true);
+ /* телефон: щипок — масштаб, один палец двигает только приближенную карту, иначе страница листается как обычно */
+ var tc=null;
+ function tmid(t){return {x:(t[0].clientX+t[1].clientX)/2,y:(t[0].clientY+t[1].clientY)/2,d:Math.hypot(t[0].clientX-t[1].clientX,t[0].clientY-t[1].clientY)}}
+ svg.addEventListener('touchstart',function(ev){var t=ev.touches,m0=svg.getScreenCTM();
+  if(t.length===2){var m=tmid(t);tc={two:1,d:m.d,P:toUser(m.x,m.y),e:m0.e+m0.a*vb[0],f:m0.f+m0.d*vb[1],W:vb[2]*m0.a,w:vb[2]};ev.preventDefault()}
+  else if(t.length===1&&zoomed()){tc={x:t[0].clientX,y:t[0].clientY,vb:vb.slice(),a:m0.a};moved=false}},{passive:false});
+ svg.addEventListener('touchmove',function(ev){if(!tc)return;var t=ev.touches;
+  if(tc.two&&t.length===2){var m=tmid(t);ev.preventDefault();moved=true;
+   var w=Math.min(vb0[2],Math.max(vb0[2]/MAXZ,tc.w*tc.d/m.d)),k=tc.W/w;
+   vb=[tc.P.x-(m.x-tc.e)/k,tc.P.y-(m.y-tc.f)/k,w,w*vb0[3]/vb0[2]];setVB()}
+  else if(!tc.two&&t.length===1){var dx=t[0].clientX-tc.x,dy=t[0].clientY-tc.y;if(!moved&&Math.abs(dx)+Math.abs(dy)<6)return;ev.preventDefault();moved=true;
+   vb=[tc.vb[0]-dx/tc.a,tc.vb[1]-dy/tc.a,tc.vb[2],tc.vb[3]];setVB()}},{passive:false});
+ svg.addEventListener('touchend',function(ev){if(ev.touches.length===0){tc=null;setTimeout(function(){moved=false},50)}});
  map.addEventListener('click',function(ev){
   if(ev.target.tagName==='circle'||kt.contains(ev.target)) return;
   var best=null,bd=18*18; dots.forEach(function(d){if(d.classList.contains('off'))return;var q=d.getBoundingClientRect(),dx=q.left+q.width/2-ev.clientX,dy=q.top+q.height/2-ev.clientY,dd=dx*dx+dy*dy;if(dd<bd){bd=dd;best=d}});
@@ -275,8 +342,10 @@
   document.getElementById('kmdl-h').textContent=b.dataset.house; md.hidden=false; document.body.style.overflow='hidden'});
  if(md){md.addEventListener('click',function(ev){if(ev.target.hasAttribute('data-close')){md.hidden=true;document.body.style.overflow=''}});
   document.addEventListener('keydown',function(ev){if(ev.key==='Escape'&&!md.hidden){md.hidden=true;document.body.style.overflow=''}})}
- if(location.hash.indexOf('#h-')===0){var it0=document.getElementById(location.hash.slice(1)); if(it0) openItem(it0,true)}
- apply();
+ /* дом по ссылке karta.html#h-<slug>: открыть, показать даже за пределами первых 20, прокрутить к нему */
+ function fromHash(){var it0=location.hash.indexOf('#h-')===0&&document.getElementById(location.hash.slice(1)); apply(); if(it0&&it0.classList.contains('hs')){openItem(it0,false); apply(); it0.scrollIntoView({block:'start'})}}
+ window.addEventListener('hashchange',fromHash);
+ fromHash();
 })();
 
 /* ---- рейтинги и длинные списки: фильтры-чипы со счётчиками, поиск, «Показать ещё» ---- */

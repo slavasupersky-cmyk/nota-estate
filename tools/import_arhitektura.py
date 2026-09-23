@@ -144,7 +144,7 @@ def main(src):
  <div>
   <p class="lede">{e(srcs)}</p>
   <p class="hint">{lic}</p>
-  <div class="btns"><a class="btn" href="{R}reytingi/shkoly-moskvy/">Школы Москвы под отметку</a> <a class="btn btn-l" href="{R}podbor.html">Подобрать дом рядом со школой</a></div>
+  <div class="btns"><a class="btn" href="{R}reytingi/shkoly-moskvy/">Школы Москвы с нашей отметкой</a> <a class="btn btn-l" href="{R}podbor.html">Подобрать дом рядом со школой</a></div>
  </div>
 </div></section>
 </main>

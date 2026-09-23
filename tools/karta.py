@@ -1,6 +1,7 @@
 """Карта объектов: data/doma.csv (выгрузка из nota-baza, см. tools/baza.py) + img/doma/<slug>.jpg
 → <main> страницы karta.html: карта с точками по реальным координатам, фильтры, список «по вашим фильтрам»."""
 import csv, json, re, html
+import loty as LT
 
 e = html.escape
 LAT0, LON0, KX, KY = 55.75297, 37.61758, 62.65, 111.2      # локальная проекция, 1 = 1 км, центр — Кремль
@@ -13,6 +14,8 @@ OUT = {'Сколково', 'Рублёвка'}
 TR = dict(zip('абвгдеёжзийклмнопрстуфхцчшщъыьэюя',
               ['a', 'b', 'v', 'g', 'd', 'e', 'e', 'zh', 'z', 'i', 'y', 'k', 'l', 'm', 'n', 'o', 'p', 'r', 's', 't', 'u',
                'f', 'kh', 'ts', 'ch', 'sh', 'sch', '', 'y', '', 'e', 'yu', 'ya']))
+RK = {'первичка': 'prim', 'первичка и вторичка': 'both', 'только вторичка': 'vtor', 'анонс': 'ann'}
+RK_T = [('prim', 'У застройщика'), ('both', 'Застройщик и перепродажа'), ('vtor', 'Только вторичка'), ('ann', 'Анонс, продаж нет')]
 OKR = ['ЦАО', 'САО', 'СВАО', 'ВАО', 'ЮВАО', 'ЮАО', 'ЮЗАО', 'ЗАО', 'СЗАО', 'Сколково', 'Рублёвка']
 YB = {'now': 'Сдан или в 2026', 'y27': '2027', 'y28': '2028 и позже', 'ann': 'Анонс'}
 
@@ -31,7 +34,13 @@ def num(v):
 
 
 def fmt(n, d=0):
-    return f'{n:,.{d}f}'.replace(',', ' ').replace('.', ',')
+    # тысячи — через неразрывный пробел, чтобы «2 651» не разрывалось на телефоне
+    return f'{n:,.{d}f}'.replace(',', '\u00a0').replace('.', ',')
+
+
+def plural(n, one, few, many):
+    n = abs(int(n)); m10, m100 = n % 10, n % 100
+    return one if m10 == 1 and m100 != 11 else few if 2 <= m10 <= 4 and not 12 <= m100 <= 14 else many
 
 
 def grab(s, name):
@@ -91,8 +100,9 @@ def build(root):
         r['class_final'] = r['class']
         lp = num(r['lot_min_price'])
         extra[r['slug']] = {'price_median_m2': r['lots_median_m2'] or r['price_median_m2'], 'lots_count': r['lots'],
-                            'lot_min_area': r['lot_min_m2'], 'lot_min_price_mln': fmt(lp / 1e6, 1) if lp else '',
+                            'lot_min_area': r['lot_min_m2'].replace('.', ','), 'lot_min_price_mln': fmt(lp / 1e6, 1) if lp else '',
                             'checked': r['lots_date']}
+    tipy = LT.load(root)
     notes = {k: v for k, v in json.loads((root / 'tools/doma.json').read_text()).items() if not k.startswith('_')}
     geo_src = (root / 'nota-karta-zhk.html').read_text()
     D, M, W = grab(geo_src, 'DISTRICTS'), grab(geo_src, 'MKAD'), grab(geo_src, 'W')
@@ -127,7 +137,8 @@ def build(root):
     def Pin(p):
         return (IN_X + 15 + (p[0] - bx0) * kin, IN_Y + 15 + (p[1] - by0) * kin)
 
-    svg = [f'<svg viewBox="0 0 {Wd:.0f} {Hd:.0f}" role="img" aria-label="Карта Москвы: {len(items)} новых домов базы NOTA">',
+    nd = f'{len(items)} ' + plural(len(items), 'новый дом', 'новых дома', 'новых домов')
+    svg = [f'<svg viewBox="0 0 {Wd:.0f} {Hd:.0f}" role="img" aria-label="Карта Москвы: {nd} базы NOTA">',
            f'<rect width="{Wd:.0f}" height="{Hd:.0f}" class="k-bg"/>']
     for d in D:
         for ring in d['r']:
@@ -155,7 +166,8 @@ def build(root):
         p = Pin(proj(num(r['lat']), num(r['lon']))) if r['okrug'] in OUT else P(proj(num(r['lat']), num(r['lon'])))
         name = r['name'].split(' (')[0]
         ok_, rk = slugify(r['okrug']), ('' if r['okrug'] in OUT else slugify(r['district']))
-        geo_attr = f' data-o="{ok_}" data-r="{rk}"'
+        mk = RK.get(r.get('rynok', ''), 'prim')
+        geo_attr = f' data-o="{ok_}" data-r="{rk}" data-m="{mk}"'
         dots.append(f'<circle cx="{p[0]:.1f}" cy="{p[1]:.1f}" r="{R_DOT[ck]}" class="kd {ck}" data-i="{i}" data-c="{ck}" data-y="{yb}" data-f="{form}"{geo_attr}><title>{e(name)}</title></circle>')
 
         x = extra.get(slug, {})
@@ -177,7 +189,16 @@ def build(root):
             if r['penthouse_flag'] == 'да':
                 bits.append('Есть пентхаусы.')
             summ = ' '.join(bits)
-        facts = [('Адрес', r['address']), ('Застройщик', dev), ('Класс', CLS[r['class_final']]), ('Стадия', stage),
+        # класс по нашей шкале; если каталоги и застройщик пишут другое — говорим об этом рядом
+        cls_txt = CLS[r['class_final']]
+        if r.get('class_disputed') == 'да':
+            low = (r.get('class_declared') or '').lower()
+            other = [w for k, w in (('бизнес', 'бизнес'), ('премиум', 'премиум'), ('элит', 'элит'), ('делюкс', 'делюкс'))
+                     if k in low and w != CLS[r['class_final']].lower()]
+            if other:
+                cls_txt += ' по нашей шкале · в каталогах и у застройщика встречается ' + ' и '.join(other)
+        facts = [('Адрес', r['address']), ('Застройщик', dev), ('Класс', cls_txt), ('Стадия', stage),
+                 ('Где купить', dict(RK_T)[RK.get(r.get('rynok', ''), 'prim')].lower()),
                  ('Квартир', fmt(u) if u else 'нет данных'),
                  ('Машиномест на квартиру', fmt(pk / u, 2) if (u and pk) else 'нет данных')]
         if r.get('school_min'):
@@ -189,10 +210,11 @@ def build(root):
         if pmed:
             facts.append(('Медиана', f'{fmt(pmed / 1000)} тыс ₽ за м²'))
         fact_html = ''.join(f'<div><dt>{a}</dt><dd>{e(b)}</dd></div>' for a, b in facts)
+        qtext = ' '.join([r['name'], r.get('name_short', ''), dev, r['district'], r['address']]).lower().replace('ё', 'е')
         pic = f'<div class="hs-img"><img src="img/doma/{slug}.jpg" alt="{e(name)}" loading="lazy"></div>' if img else ''
         price_cell = f'от {fmt(pf / 1000)} тыс/м²' if pf else 'по запросу'
         lis.append(
-            f'<article class="hs" id="h-{slug}" data-i="{i}" data-c="{ck}" data-y="{yb}" data-f="{form}"{geo_attr}>'
+            f'<article class="hs" id="h-{slug}" data-i="{i}" data-c="{ck}" data-y="{yb}" data-f="{form}"{geo_attr} data-q="{e(qtext)}">'
             f'<button class="hs-row" type="button" aria-expanded="false"><span class="hs-n"><b>{e(name)}</b><small>{e(dev)}</small></span>'
             f'<span class="hs-c">{CLS[r["class_final"]]}</span><span class="hs-d">{e(r["district"])}</span>'
             f'<span class="hs-p">{price_cell}</span><span class="hs-w">{e(when_text(r))}</span></button>'
@@ -202,8 +224,14 @@ def build(root):
                'p': round(pf / 1000) if pf else None, 'w': when_text(r), 's': slug}
         if img: rec['img'] = 1
         if slug in doma_slug: rec['dm'] = doma_slug[slug]
+        tp = tipy.get(slug)
         if x.get('lots_count') or x.get('lot_min_price_mln'):
-            rec['x'] = [x.get('lots_count') or '', x.get('lot_min_area') or '', x.get('lot_min_price_mln') or '', x.get('checked') or '']
+            rec['x'] = [x.get('lots_count') or '', x.get('lot_min_area') or '', x.get('lot_min_price_mln') or '',
+                        (LT.when(tp) if tp else '') or x.get('checked') or '']
+        if tp:
+            # что в продаже по комнатности: [тип, лотов, площадь, цена]; дата — самая свежая сверка по дому
+            rec['t'] = [[t['label'], t['lots'] or '', t['area'], t['price']] for t in tp]
+            rec['td'] = LT.when(tp)
         data.append(rec)
     svg.append('<g id="kdots">' + ''.join(dots) + '</g></svg>')
 
@@ -217,6 +245,7 @@ def build(root):
         c = f' <span class="cn">{cnt}</span>' if cnt else ' <span class="cn"></span>'
         return f'<button class="chip" type="button" data-g="{g}" data-k="{k}"{extra} aria-pressed="{"true" if on else "false"}"><span class="cl">{lab}</span>{c}</button>'
 
+    mc = {k: sum(1 for _, r in items if RK.get(r.get('rynok', ''), 'prim') == k) for k, _ in RK_T}
     oc = {o: sum(1 for _, r in items if r['okrug'] == o) for o in OKR}
     dist = {}
     for _, r in items:
@@ -235,32 +264,36 @@ def build(root):
                + '</div></div><div class="chipgrp"><span class="lb">Когда ключи <em>можно несколько</em></span><div class="chips">' + chip('y', 'all', 'Любой срок', True)
                + ''.join(chip('y', k, f'{YB[k]} · {yc[k]}') for k in YB if yc[k])
                + '</div></div><div class="chipgrp"><span class="lb">Формат</span><div class="chips">' + chip('f', 'all', 'Любой формат', True)
-               + chip('f', 'pent', f'С пентхаусами · {pent}') + chip('f', 'club', f'До 100 квартир · {club}') + '</div></div>' + geo_filters)
+               + chip('f', 'pent', f'С пентхаусами · {pent}') + chip('f', 'club', f'До 100 квартир · {club}') + '</div></div>'
+               + '<div class="chipgrp"><span class="lb">Где купить</span><div class="chips">' + chip('m', 'all', 'Любой рынок', True)
+               + ''.join(chip('m', k, f'{t} · {mc[k]}') for k, t in RK_T if mc[k]) + '</div></div>' + geo_filters)
     n = len(items)
     main = f'''<main>
 <section class="first tight-b"><div class="wrap">
  <p class="ttl">Карта объектов</p>
- <h1>{n} новых домов на одной карте</h1>
+ <h1>{nd} на одной карте</h1>
  <p class="lead">Новые дома от бизнес-класса и выше: старая Москва, Сколково и Рублёвка. Наведите на точку, чтобы увидеть дом, нажмите — откроется его карточка в списке ниже. Фильтры меняют и карту, и список.</p>
 </div></section>
 
 <section class="tight first-content kscreen"><div class="wrap kmap">
  <div class="kmap-l">
+  <label class="ri-q kq"><span class="cg-l">Найти дом</span><input type="search" id="kq" placeholder="Название, застройщик или улица" autocomplete="off"></label>
   {filters}
   <p class="hint"><a href="#spisok">К списку домов</a> · <a href="metod.html#klassy">Что значит класс</a> · <button class="linkbtn" type="button" data-reset>Сбросить фильтры</button></p>
  </div>
  <div class="kmap-r">
-  <div class="map" id="kmap">{"".join(svg)}<div class="kt" id="kt" hidden></div></div>
-  <div class="legend"><span><i class="biz"></i>Бизнес</span><span><i class="prem"></i>Премиум</span><span><i class="elit"></i>Элит</span><span><i class="dlx"></i>Делюкс</span><span class="lg-note">Точки стоят по адресам из базы.</span></div>
+  <div class="map" id="kmap">{"".join(svg)}<div class="kt" id="kt" hidden></div>
+   <div class="kz" aria-label="Масштаб карты"><button type="button" data-z="in" aria-label="Приблизить">+</button><button type="button" data-z="out" aria-label="Отдалить">−</button><button type="button" data-z="reset" aria-label="Вся карта" title="Вся карта">⤢</button></div></div>
+  <div class="legend"><span><i class="biz"></i>Бизнес</span><span><i class="prem"></i>Премиум</span><span><i class="elit"></i>Элит</span><span><i class="dlx"></i>Делюкс</span><span class="lg-note">Точки стоят по адресам из базы. Приблизить — «+», двойной щелчок или два пальца; приближенную карту можно двигать.</span></div>
  </div>
 </div></section>
 
 <section class="tight" id="spisok"><div class="wrap">
  <div class="two">
   <div><p class="ttl">Список домов</p><h2 style="margin-top:20px">Дома по вашим фильтрам</h2></div>
-  <div><p class="lede">Нажмите на дом, чтобы раскрыть карточку: коротко о доме, примеры стоимости и что сейчас в продаже. Актуальные лоты пришлём по запросу — прайсы меняются каждую неделю.</p></div>
+  <div><p class="lede">Нажмите на дом, чтобы раскрыть карточку: коротко о доме и что сейчас в продаже — студии, одно-, двух- и трёхкомнатные, площади и цены. Актуальные лоты пришлём по запросу — прайсы меняются каждую неделю.</p></div>
  </div>
- <div class="hs-bar"><span id="kcnt">Показано {n} из {n}</span><button class="linkbtn" type="button" data-reset>Сбросить фильтры</button></div>
+ <div class="hs-bar"><span id="kcnt">Все {n} {plural(n, "дом", "дома", "домов")}</span><button class="linkbtn" type="button" data-reset>Сбросить фильтры</button></div>
  <div class="hs-head"><span>Дом и застройщик</span><span>Класс</span><span>Район</span><span>Цена</span><span>Ключи</span></div>
  <div class="hs-list" id="klist">
 {chr(10).join(lis)}

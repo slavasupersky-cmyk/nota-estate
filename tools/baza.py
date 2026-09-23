@@ -5,6 +5,12 @@
 import csv, io, os, pathlib, re, shutil
 from collections import defaultdict
 
+# рынок по стадии: где сейчас можно купить квартиру в доме
+RYNOK = {'анонс': 'анонс', 'старт продаж': 'первичка', 'строится': 'первичка',
+         'строится, есть сданные': 'первичка и вторичка', 'сдан, есть остатки': 'первичка и вторичка',
+         'распродан': 'только вторичка'}
+HIDE_STAGES = {'дубль'}  # строки-дубли держатся в базе ради связей, на сайт не идут
+
 CHECKS_PASPORT = ['01', '02', '03', '04', '05', '06', '07', '08', '09']
 
 DOMA_COLS = ['slug', 'name', 'name_short', 'dev_id', 'developer', 'class', 'class_declared', 'class_disputed', 'okrug', 'district',
@@ -14,7 +20,7 @@ DOMA_COLS = ['slug', 'name', 'name_short', 'dev_id', 'developer', 'class', 'clas
 # вычисляемые колонки, которые добавляет выгрузка
 CALC_COLS = ['p01', 'p02', 'p03', 'p04', 'p05', 'p06', 'p07', 'p08', 'p09', 'pasport', 'pasport_why',
              'school_min', 'school_name', 'nota_school_min', 'nota_school_name', 'nota_15', 'marked_min', 'marked_name', 'marked_20',
-             'lots', 'lot_min_m2', 'lot_min_price', 'lots_median_m2', 'lots_date', 'has_foto']
+             'lots', 'lot_min_m2', 'lot_min_price', 'lots_median_m2', 'lots_date', 'has_foto', 'rynok']
 PUBLIC = {
     'proverki.csv': ['slug', 'check', 'answer', 'value', 'source', 'checked'],
     'zastroyshchiki.csv': ['dev_id', 'name', 'erz_rating', 'erz_checked', 'sdano_3_goda', 'ostanovleno', 'bankrotstvo', 'sayt'],
@@ -25,6 +31,8 @@ PUBLIC = {
     'oplata-skhemy.csv': ['scheme_id', 'dev_id', 'developer', 'slug', 'zhk', 'klass', 'tip', 'opisanie', 'stavka', 'srok', 'pv', 'vvod', 'skidka_100', 'ogranicheniya', 'source', 'deystvuet', 'checked'],
     'oplata-banki.csv': None,
     'oplata-tipy.csv': None,
+    'itog.csv': None,
+    'otkrytost-cen.csv': None,
 }
 
 
@@ -63,18 +71,27 @@ def num(v):
         return None
 
 
-def pasport(ans, stops):
-    """Итог паспорта по правилу README: стоп-фактор «нет» → без отметки; все стоп-факторы пройдены
-    и «да» у большинства проверок паспорта → отметка; иначе присмотреться."""
-    no = [c for c in stops if ans.get(c) == 'нет']
-    if no:
-        return 'Без отметки', 'нет: ' + ', '.join(no)
-    nd = [c for c in CHECKS_PASPORT if ans.get(c, 'нет данных') == 'нет данных']
-    da = sum(1 for c in CHECKS_PASPORT if ans.get(c) == 'да')
-    stops_ok = all(ans.get(c) in ('да', 'не применяется') for c in stops)
-    if stops_ok and da > len(CHECKS_PASPORT) / 2:
-        return 'Отметка', ''
-    return 'Присмотреться', ('нет данных: ' + ', '.join(nd)) if nd else ''
+RED = {'06', '08'}  # «нет» здесь — красная линия; у 02 — только с пометкой «красная линия» в note
+CHECK_NAMES = {}
+
+
+def pasport(ans, notes, cls, tol):
+    """Итог паспорта (метод 23.09): красная линия → «Без отметки»; иначе считаем минусы («нет»)
+    среди проверок с данными и сравниваем с допуском класса из nota-baza/itog.csv."""
+    red = [c for c in CHECKS_PASPORT if ans.get(c) == 'нет' and (c in RED or (c == '02' and 'красная линия' in notes.get(c, '')))]
+    if red:
+        return 'Без отметки', 'красная линия: ' + ', '.join(CHECK_NAMES.get(c, c) for c in red)
+    known = [c for c in CHECKS_PASPORT if ans.get(c) in ('да', 'нет')]
+    minus = [c for c in known if ans[c] == 'нет']
+    t = tol.get(cls, {'otmetka_max_minus': '1', 'bez_otmetki_from_minus': '3', 'min_known': '4'})
+    why = ('минусы: ' + ', '.join(CHECK_NAMES.get(c, c) for c in minus)) if minus else ''
+    if len(known) < int(t['min_known']):
+        return 'Присмотреться', 'мало данных: известно ' + str(len(known)) + ' из ' + str(len(CHECKS_PASPORT)) + (' · ' + why if why else '')
+    if len(minus) >= int(t['bez_otmetki_from_minus']):
+        return 'Без отметки', why
+    if len(minus) <= int(t['otmetka_max_minus']):
+        return 'Отметка', why
+    return 'Присмотреться', why
 
 
 def export(root, verbose=True):
@@ -85,9 +102,10 @@ def export(root, verbose=True):
     D = root / 'data'
     changed = []
 
-    doma = read(B / 'doma.csv')
+    doma = [d for d in read(B / 'doma.csv') if d.get('stage') not in HIDE_STAGES]
     krit = read(B / 'kriterii.csv')
-    stops = [k['id'] for k in krit if k['uroven'] == 'паспорт' and k['stop'] == 'да']
+    CHECK_NAMES.update({k['id']: k['proverka'].lower() for k in krit})
+    tol = {x['class']: x for x in read(B / 'itog.csv')}
 
     # свежий ответ по каждой проверке
     latest = {}
@@ -110,7 +128,7 @@ def export(root, verbose=True):
     loty, loty_date = {}, ''
     if loty_files:
         f = loty_files[-1]
-        loty_date = f.stem
+        loty_date = '.'.join(reversed(f.stem.split('-')))
         loty = {x['slug']: x for x in read(f)}
 
     # картинки: foto/<slug>/cover.* → img/_src/doma/<slug>.<ext> (дальше ужимает images.py)
@@ -134,7 +152,8 @@ def export(root, verbose=True):
         ans = {c: latest[(s, c)]['answer'] for c in CHECKS_PASPORT if (s, c) in latest}
         for c in CHECKS_PASPORT:
             r['p' + c] = ans.get(c, '')
-        r['pasport'], r['pasport_why'] = pasport(ans, stops)
+        notes = {c: latest[(s, c)].get('note', '') for c in CHECKS_PASPORT if (s, c) in latest}
+        r['pasport'], r['pasport_why'] = pasport(ans, notes, d.get('class', ''), tol)
 
         rs = sorted(routes.get(s, []), key=lambda m: float(m['walk_min'] or 999))
         def nm(m):
@@ -155,6 +174,7 @@ def export(root, verbose=True):
             r.update(lots=l.get('lots', ''), lot_min_m2=l.get('lot_min_m2', ''), lot_min_price=l.get('lot_min_price', ''),
                      lots_median_m2=l.get('price_median_m2', ''), lots_date=loty_date)
         r['has_foto'] = 'да' if s in foto else ''
+        r['rynok'] = RYNOK.get(d.get('stage', ''), 'первичка')
         out.append(r)
 
     if write(D / 'doma.csv', out, DOMA_COLS + CALC_COLS): changed.append('data/doma.csv')
@@ -166,6 +186,11 @@ def export(root, verbose=True):
         if not rows:
             continue
         if write(D / name, rows, cols or list(rows[0])): changed.append('data/' + name)
+    lpt = sorted((B / 'loty-po-tipam').glob('*.csv')) if (B / 'loty-po-tipam').exists() else []
+    if lpt:
+        rows = [x for x in read(lpt[-1]) if x.get('slug') in {d['slug'] for d in doma}]
+        cols = [c for c in rows[0] if c not in ('primechanie',)] if rows else []
+        if rows and write(D / 'loty-po-tipam.csv', rows, cols): changed.append('data/loty-po-tipam.csv')
     pub_routes = [dict(slug=m['slug'], school_id=m['school_id'], korpus_id=m['korpus_id'], walk_min=m['walk_min'], walk_m=m['walk_m'])
                   for s in sorted(routes) for m in sorted(routes[s], key=lambda m: float(m['walk_min']))]
     if write(D / 'marshruty.csv', pub_routes, ['slug', 'school_id', 'korpus_id', 'walk_min', 'walk_m']): changed.append('data/marshruty.csv')

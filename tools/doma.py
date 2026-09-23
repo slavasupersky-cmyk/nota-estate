@@ -2,13 +2,16 @@
 Паспорт дома — 9 проверок метода (data/kriterii.csv), ответы и факты — из data/proverki.csv.
 Здесь же — таблица-пример для главной (home_table) и «пипсы» паспорта (pips), их берут build.py и karta.py."""
 import csv, json, html, re, pathlib
+import loty as LT
 
-DATE = '23 сентября 2026'
+MONTHS = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря']
 PARK_NORM = {'бизнес': 0.8, 'премиум': 1.5, 'элитный': 2.0, 'делюкс': 2.0}
 UNITS_NORM = {'бизнес': (837, 'не больше типичного дома класса — 837'), 'премиум': (665, 'не больше типичного дома класса — 665'),
               'элитный': (100, 'до 100 квартир'), 'делюкс': (30, 'до 30 квартир')}
 CLASS_RU = {'бизнес': 'Бизнес', 'премиум': 'Премиум', 'элитный': 'Элит', 'делюкс': 'Делюкс'}
 CLASS_GEN = {'бизнес': 'бизнес-класса', 'премиум': 'премиум-класса', 'элитный': 'элит-класса', 'делюкс': 'делюкса'}
+CLASS_NOM = {'бизнес': 'бизнес-класс', 'премиум': 'премиум-класс', 'элитный': 'элит-класс', 'делюкс': 'делюкс'}
+CLASS_PREP = {'бизнес': 'в бизнес-классе', 'премиум': 'в премиум-классе', 'элитный': 'в элит-классе', 'делюкс': 'в делюксе'}
 ADDR_RULE = {'бизнес': 'в старых границах Москвы', 'премиум': 'внутри Третьего кольца', 'элитный': 'в ЦАО', 'делюкс': 'в ЦАО'}
 PASPORT = ['01', '02', '03', '04', '05', '06', '07', '08', '09']
 HOME_SLUGS = ['forum', 'simonovskiy-val', 'scala', 'bolshaya-nikitskaya-16', 'republic']
@@ -67,6 +70,51 @@ def schools_html(r, R):
 </div></section>
 '''
 
+def date_ru(d):
+    """23.09.2026 или 2026-09-23 → «23 сентября 2026»."""
+    m = re.match(r'(\d{1,2})\.(\d{1,2})\.(\d{4})$', d or '') or re.match(r'(\d{4})-(\d{1,2})-(\d{1,2})$', d or '')
+    if not m: return ''
+    a, b, c = m.groups()
+    dd, mm, yy = (a, b, c) if len(c) == 4 else (c, b, a)
+    return f'{int(dd)} {MONTHS[int(mm) - 1]} {yy}'
+
+def sale_html(r, tp, R):
+    """Блок «Что в продаже»: срез по комнатности из data/loty-po-tipam.csv; сверху — итог среза loty (всего лотов, самый доступный)."""
+    if not tp: return ''
+    bits = []
+    n, a, pr = num(r.get('lots')), num(r.get('lot_min_m2')), num(r.get('lot_min_price'))
+    if n: bits.append(f'В продаже {fmt(n)} {plural(n, "лот", "лота", "лотов")}')
+    if pr: bits.append(('самый доступный — ' if n else 'Самый доступный лот — ') + (f'{fmt(a, 1).replace(",0", "")} м² за ' if a else '') + f'{" ".join(LT.money(pr))} ₽')
+    lead = (', '.join(bits) + '.') if bits else ''
+    hl = any(t['lots'] for t in tp)
+    trs = []
+    for t in tp:
+        ex = f'<small>например, {e(t["lot"])}</small>' if t['lot'] else ''
+        trs.append(f'   <tr><td><b>{e(t["label"])}</b></td>' + (f'<td>{t["lots"] or "—"}</td>' if hl else '') +
+                   f'<td>{e(t["area"]) or "—"}</td><td>{e(t["price"]) or "по запросу"}{ex}</td></tr>')
+    otd = sorted({t['otdelka'] for t in tp if t['otdelka']})
+    src = ', '.join(LT.sources(tp))
+    note = []
+    if src: note.append(f'Источник: {e(src)}')
+    w = LT.when(tp)
+    if w: note.append(f'сверка {w}')
+    hint = ' · '.join(note) + '. ' if note else ''
+    hint += 'Цены — со скидкой застройщика, если он её показывает' + (f'; отделка — {e(", ".join(otd))}' if otd else '') + '. Лоты уходят каждую неделю: актуальный набор и планировки пришлём.'
+    return f'''<section class="tight" id="prodazha"><div class="wrap">
+ <div class="two">
+  <div><p class="ttl">Что в продаже</p><h2 style="margin-top:20px">Квартиры<br>по комнатности</h2></div>
+  <div>{f'<p class="lede">{lead}</p>' if lead else ''}</div>
+ </div>
+ <div class="tablewrap">
+  <table class="lt-t">
+   <tr><th>Тип</th>{'<th>Лотов</th>' if hl else ''}<th>Площадь, м²</th><th>Цена, млн ₽</th></tr>
+{chr(10).join(trs)}
+  </table>
+ </div>
+ <p class="hint">{hint}</p>
+</div></section>
+'''
+
 def district_label(d):
     return d if re.search(r'[.,~]|д\.|шоссе', d) else f'{d} район'
 
@@ -87,13 +135,13 @@ def norm(r, c):
     cls = r['class_final']
     if c == '01':
         return 'не применяем за МКАД' if r['okrug'] in ('Рублёвка', 'Сколково') else f'{CLASS_RU[cls].lower()} — {ADDR_RULE[cls]}'
-    if c == '02': return 'без ТЭЦ, мусорного завода и промзоны рядом, магистраль дальше 150 м'
-    if c == '03': return 'метро до 15 минут пешком, школа с отметкой в километре'
+    if c == '02': return 'ТЭЦ, мусорный завод и полигон не ближе 150 м (иначе красная линия), промзона и магистраль тоже'
+    if c == '03': return 'метро, МЦК или МЦД до 15 минут пешком'
     if c == '04': return UNITS_NORM[cls][1]
     if c == '05': return f'от {fmt(PARK_NORM[cls], 1)} места на квартиру'
-    if c == '06': return 'рейтинг ЕРЗ.РФ от 3 из 5, без остановленных строек'
+    if c == '06': return 'без остановленных строек и банкротств (иначе красная линия), рейтинг ЕРЗ.РФ от 3 из 5'
     if c == '07': return 'перенос срока не больше полугода'
-    if c == '08': return 'продажа через эскроу'
+    if c == '08': return 'продажа через эскроу, документы в порядке (иначе красная линия)'
     if c == '09': return 'не дороже медианы класса в районе больше чем на 30%'
     return ''
 
@@ -135,32 +183,52 @@ def pips(r, title=True):
 
 VK = {'Отметка': 'mark', 'Присмотреться': 'look', 'Без отметки': 'no'}
 
+_T = {}
+def tolerance(root):
+    """Допуск минусов по классу из data/itog.csv (выгрузка nota-baza/itog.csv)."""
+    if not _T:
+        for t in read(root / 'data/itog.csv'):
+            _T[t['class']] = dict(otm=int(t['otmetka_max_minus']), bez=int(t['bez_otmetki_from_minus']), known=int(t['min_known']))
+    return _T
+
+def red_line(r):
+    """Какие проверки дом не прошёл по красной линии (считает baza.py, причина — в pasport_why)."""
+    w = r.get('pasport_why') or ''
+    return [x.strip() for x in w.split(':', 1)[1].split(',')] if w.startswith('красная линия') else []
+
+def minus_word(n):
+    return f'{n} {plural(n, "минус", "минуса", "минусов")}'
+
 def verdict(root, r):
-    """Итог паспорта (считает baza.py) + объяснение человеческими словами."""
+    """Итог паспорта (метод 23.09, считает baza.py): красная линия (02 с пометкой, 06, 08) → «Без отметки»;
+    иначе минусы («нет» среди проверок с данными) против допуска класса из itog.csv. «Мало данных» показываем как «Проверяем»."""
     K = krit(root); cls = r['class_final']
     vt = r.get('pasport') or 'Присмотреться'
     vk = VK.get(vt, 'look')
-    if vk == 'no':
-        why = []
-        for c in PASPORT:
-            if K.get(c, {}).get('stop') and (r.get('p' + c) == 'нет'):
-                if c == '01': why.append(f'адрес не своего класса — {CLASS_RU[cls].lower()} {ADDR_RULE[cls].replace("в старых", "за старыми").replace("внутри Третьего кольца", "за Третьим кольцом").replace("в ЦАО", "за пределами ЦАО")}')
-                elif c == '04':
-                    u = num(r['units_total'])
-                    why.append(f'{fmt(u)} {plural(u, "квартира", "квартиры", "квартир")} — больше, чем {"в типичном доме" if cls in ("бизнес", "премиум") else "допускает норма"} {CLASS_GEN[cls]} ({UNITS_NORM[cls][0]})' if u else 'слишком много соседей')
-                elif c == '02': why.append('тяжёлое соседство')
-                elif c == '06': why.append('застройщик срывает сроки')
-                elif c == '08': why.append('продажа без эскроу')
-        txt = 'Дом пересекает красную линию: ' + '; '.join(why) + '. Это не приговор дому — это то, что стоит знать до сделки.'
+    why = r.get('pasport_why') or ''
+    t = tolerance(root).get(cls, dict(otm=1, bez=3, known=4))
+    minus = [K[c]['name'].lower() for c in PASPORT if r.get('p' + c) == 'нет' and c in K]
+    open_ = [K[c]['name'].lower() for c in PASPORT if answer(r, c)[0] == 'u' and c in K]
+    gen = CLASS_GEN[cls]
+    if why.startswith('мало данных'):
+        vt, vk = 'Проверяем', 'look'
+        known = sum(1 for c in PASPORT if r.get('p' + c) in ('да', 'нет'))
+        txt = f'Ответов пока мало: закрыто {known} из 9 проверок паспорта. Итог поставим, когда их будет хотя бы {t["known"]}.'
+    elif red_line(r):
+        txt = 'Дом пересекает красную линию: ' + ', '.join(red_line(r)) + '. Это не приговор дому — это то, что стоит знать до сделки.'
+    elif vk == 'no':
+        txt = f'Минусов больше, чем выдерживает {CLASS_NOM[cls]}: {", ".join(minus)}. {CLASS_PREP[cls].capitalize()} «без отметки» — с {t["bez"]} {"минуса" if t["bez"] % 10 == 1 and t["bez"] % 100 != 11 else "минусов"}.'
+        if r.get('p04') == 'нет' and num(r['units_total']):
+            u = num(r['units_total'])
+            txt += f' По плотности: {fmt(u)} {plural(u, "квартира", "квартиры", "квартир")} при норме {UNITS_NORM[cls][0]}.'
     elif vk == 'mark':
-        txt = 'Стоп-факторов нет, и на большинство проверок паспорта ответ «да».'
+        txt = ('Красных линий нет, и ни одного минуса.' if not minus else
+               f'Красных линий нет, {minus_word(len(minus))} — {", ".join(minus)} — в допуске {gen}.')
     else:
-        open_ = [K[c]['name'].lower() for c in PASPORT if answer(r, c)[0] == 'u' and c in K]
-        no_ = [K[c]['name'].lower() for c in PASPORT if r.get('p' + c) == 'нет' and c in K]
         bits = []
-        if no_: bits.append('не дотягивает: ' + ', '.join(no_))
+        if minus: bits.append(f'{minus_word(len(minus))}: {", ".join(minus)} — больше, чем допускает отметка {CLASS_PREP[cls]}')
         if open_: bits.append('ещё проверяем: ' + ', '.join(open_))
-        txt = 'Стоп-факторов пока не нашли. ' + ('; '.join(bits).capitalize() + '.' if bits else '') + ' Закроем проверки — обновим итог.'
+        txt = 'Красных линий нет. ' + ('; '.join(bits)[:1].upper() + '; '.join(bits)[1:] + '.' if bits else '') + ' Закроем проверки — обновим итог.'
     return vk, vt, txt
 
 def passport_html(root, r, R):
@@ -175,13 +243,13 @@ def passport_html(root, r, R):
         when = (f.get('checked') or '').strip() if ak != 'u' else ''
         meta = ' · '.join(x for x in (src if src and not src.startswith('координаты базы') else '', when) if x)
         v = value(root, r, c)
-        rows.append(f'''   <tr class="{ak}"><td><span class="pp-n">{c}</span><b>{e(k["name"])}</b>{'<em>стоп-фактор</em>' if k.get("stop") else ''}</td>
+        rows.append(f'''   <tr class="{ak}"><td><span class="pp-n">{c}</span><b>{e(k["name"])}</b>{'<em>красная линия</em>' if (c in ('06', '08') or (c == '02' and 'окружение' in red_line(r))) else ''}</td>
     <td>{e(v) if v else '<span class="muted">—</span>'}{f'<small>{e(meta)}</small>' if meta else ''}</td><td>{e(norm(r, c))}</td><td><span class="tag {tag}">{at}</span></td></tr>''')
     _, closed = pips(r)
     return f'''<section class="method" id="pasport"><div class="wrap">
  <div class="two">
   <div><p class="ttl">Паспорт дома</p><h2 style="margin-top:20px">Девять проверок,<br>закрыто {closed} из 9</h2></div>
-  <div><p class="lede">Паспорт собираем по открытым данным: проектная декларация, карты, рейтинг застройщика. «Проверяем» — значит, ответа с источником пока нет, и мы его не додумываем. Стоп-факторы отмечены красным: если хоть один из них «нет», отметки не будет.</p></div>
+  <div><p class="lede">Паспорт собираем по открытым данным: проектная декларация, карты, рейтинг застройщика. «Проверяем» — значит, ответа с источником пока нет, и мы его не додумываем. «Нет» по проверке — это минус; сколько минусов выдерживает дом, зависит от класса. Красная линия — остановленные стройки у застройщика, продажа мимо эскроу или ТЭЦ, мусорный завод и полигон рядом: тогда отметки не будет.</p></div>
  </div>
  <div class="tablewrap">
   <table class="h-q pp-t">
@@ -242,6 +310,8 @@ def card(root, slug, cfg, r):
     title = cfg['title']; dev = r['developer'] or 'застройщик не указан'
     price = num(r['price_from_m2'])
     stage = r['stage'] + (f', срок — {r["deadline"]}' if r['deadline'] and r['deadline'] != 'сдан' else '')
+    RYN = {'первичка': 'продаёт застройщик', 'первичка и вторичка': 'продаёт застройщик, есть перепродажа', 'только вторичка': 'только вторичка', 'анонс': 'продаж ещё нет'}
+    if r.get('rynok') in RYN: stage += ' · ' + RYN[r['rynok']]
     kind = r['type']
     stats = [(fmt(u) if u else '—', 'апартаментов' if kind == 'апартаменты' else 'квартир в доме'),
              (fmt(ratio, 2) if ratio else '—', 'машиномест на квартиру'),
@@ -250,6 +320,7 @@ def card(root, slug, cfg, r):
     checks = '\n'.join(f'   <li>{e(c)}</li>' for c in cfg.get('check', []))
     _, closed = pips(r)
     has_img = (root / 'img/doma' / f'{slug}.jpg').exists()
+    tp = LT.load(root).get(r['slug'])
     img_html = (f'<figure class="h-img"><img src="{R}img/doma/{slug}.jpg" alt="{e(title)} — визуализация застройщика" width="960" height="600">'
                 f'<figcaption>Визуализация застройщика</figcaption></figure>\n') if has_img else ''
     desc = f'{title} ({dev}) — {CLASS_RU[cls].lower()}, {r["district"]}. Паспорт NOTA: {closed} из 9 проверок закрыты, итог — {vt.lower()}. Адрес, плотность, машина, сроки, цена и школы рядом.'
@@ -275,7 +346,7 @@ def card(root, slug, cfg, r):
 </div></section>
 
 {passport_html(root, r, R)}
-{schools_html(r, R)}<section class="tight"><div class="wrap two">
+{schools_html(r, R)}{sale_html(r, tp, R)}<section class="tight"><div class="wrap two">
  <div><p class="ttl">Что проверить на месте</p><h2 style="margin-top:20px">Вопросы<br>для просмотра</h2></div>
  <div>
   <ul class="h-check">
@@ -290,7 +361,7 @@ def card(root, slug, cfg, r):
  <ul class="h-src">
 {sources_html(r["sources"])}
  </ul>
- <p class="hint">Данные базы NOTA на {DATE}. Если застройщик раскроет новые цифры, итог пересчитаем.</p>
+ <p class="hint">Данные базы NOTA на {date_ru(r.get("updated")) or "сентябрь 2026"}. Если застройщик раскроет новые цифры, итог пересчитаем.</p>
 </div></section>
 '''
     return HEAD.format(title=f'{title} ({dev}) — {CLASS_RU[cls].lower()}, {r["district"]}. Паспорт дома — NOTA', desc=e(desc), R=R, ld=ld_html) + body + TAIL.format(R=R), (title, CLASS_RU[cls], r['district'], vk, vt, u, r, dev)
@@ -326,7 +397,7 @@ def build(root):
         d = root / 'doma' / slug; d.mkdir(parents=True, exist_ok=True)
         (d / 'index.html').write_text(page)
         listing.append((slug,) + meta)
-    order = {'mark': 0, 'look': 1, 'no': 2}
+    order = {'mark': 0, 'look': 1, 'no': 2}  # «Проверяем» идёт вместе с «Присмотреться»
     listing.sort(key=lambda x: (order[x[4]], x[1]))
     trs = '\n'.join(f'    <tr><td><a href="{s}/">{e(t)}</a></td><td>{e(dv)}</td><td><span class="tag {vk}">{vt}</span></td><td>{c}</td><td>{e(d)}</td><td>{fmt(u) if u else "—"}</td><td>{pips(r)[0]}</td></tr>'
                     for s, t, c, d, vk, vt, u, r, dv in listing)
@@ -344,7 +415,7 @@ def build(root):
 {trs}
   </table>
  </div>
- <p class="hint"><span class="pp-key"><i class="y"></i> да <i class="n"></i> нет <i class="u"></i> проверяем</span> Карточек пока {len(listing)} из 288. Все дома базы — на <a href="../karta.html">карте объектов</a>, как устроена проверка — в <a href="../metod.html">методе</a>.</p>
+ <p class="hint"><span class="pp-key"><i class="y"></i> да <i class="n"></i> нет <i class="u"></i> проверяем</span> Карточек пока {len(listing)} из {len(rows)}. Все дома базы — на <a href="../karta.html">карте объектов</a>, как устроена проверка — в <a href="../metod.html">методе</a>.</p>
 </div></section>
 ''' + TAIL.format(R=R)
     (root / 'doma/index.html').write_text(idx)

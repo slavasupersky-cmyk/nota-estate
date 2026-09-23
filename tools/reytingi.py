@@ -1,5 +1,5 @@
 """Рейтинги NOTA: страницы reytingi/<slug>/index.html из выгрузки базы (data/).
-- reytingi/shkoly-moskvy/   — школы Москвы под отметку: data/shkoly.csv + снимок data/shkoly-baza-2026-09-23.json (описания, цены,
+- reytingi/shkoly-moskvy/   — школы Москвы с нашей отметкой: data/shkoly.csv + снимок data/shkoly-baza-2026-09-23.json (описания, цены,
                                архитектура) + data/marshruty.csv (минуты пешком до домов) + data/doma.csv
 - reytingi/penthausy-moskvy/ — пентхаусы в продаже: data/penthausy.csv
 Хаб reytingi.html — статичный, правится руками. Фильтры, счётчики и «Показать ещё» — общий модуль [data-rlist] в js/nota.js."""
@@ -227,7 +227,7 @@ def shkoly(root):
             f'{tiers["Отметка"]} с отметкой NOTA, {tiers["На заметку"]} на заметку. Фильтры по типу, уровню и округу, новые дома рядом пешком.')
     body = cover('img/ix-2026-09-shkola.jpg', 'Кампус современной школы',
                  f'<b>Рейтинг</b><span>Школы Москвы</span><span>Сентябрь 2026</span><span>{n_all} школ</span>',
-                 'Школы Москвы под&nbsp;отметку',
+                 'Школы Москвы с&nbsp;нашей отметкой',
                  f'{n_all} московских школ — городских, частных, спортивных и при вузах — по восьми открытым рейтингам. {tiers["Отметка"]} получили отметку NOTA, ещё {tiers["На заметку"]} — на заметку. И сколько минут пешком до них от новых домов.') + f'''
 <section><div class="wrap jr-ed">
  <div><p class="ttl">На заметку:</p></div>
@@ -339,9 +339,10 @@ def shkoly(root):
  </div>
 </div></section>
 '''
-    page = HEAD.format(title=f'Школы Москвы под отметку: рейтинг {n_all} школ 2026 — NOTA', R=R, desc=e(desc), img='img/ix-2026-09-shkola.jpg',
-                       ld=ld_list('Школы Москвы под отметку', desc, 'reytingi/shkoly-moskvy/', names)) + body + TAIL.format(R=R)
-    return write(root, 'shkoly-moskvy', page), n_all
+    page = HEAD.format(title=f'Школы Москвы с нашей отметкой: рейтинг {n_all} школ 2026 — NOTA', R=R, desc=e(desc), img='img/ix-2026-09-shkola.jpg',
+                       ld=ld_list('Школы Москвы с нашей отметкой', desc, 'reytingi/shkoly-moskvy/', names)) + body + TAIL.format(R=R)
+    stats = {'shkoly': n_all, 'shkoly_mark': tiers.get('Отметка', 0), 'shkoly_zam': tiers.get('На заметку', 0)}
+    return write(root, 'shkoly-moskvy', page), n_all, stats
 
 # ---------------------------------------------------------------- пентхаусы
 PDIST = [('hamovniki', 'Хамовники', ['Хамовники']), ('yakimanka', 'Якиманка и Замоскворечье', ['Якиманка', 'Замоскворечье']),
@@ -474,12 +475,16 @@ def penthausy(root):
     names = [x['r']['zhk'] for x in data]
     page = HEAD.format(title=f'Пентхаусы Москвы: {n} пентхаусов в новых домах, цены 2026 — NOTA', R=R, desc=e(desc), img='img/18-penthaus.jpg',
                        ld=ld_list('Пентхаусы Москвы', desc, 'reytingi/penthausy-moskvy/', names)) + body + TAIL.format(R=R)
-    return write(root, 'penthausy-moskvy', page), n
+    stats = {'pent': n, 'pent_sale': len(sale), 'pent_base': in_base,
+             'pent_min': m2(cheapest['pm'][0] or cheapest['key']), 'pent_max': m2(top[0]['key'])}
+    return write(root, 'penthausy-moskvy', page), n, stats
 
 def build(root):
-    out = []
+    """Собирает страницы рейтингов и отдаёт их цифры для хаба reytingi.html (живые цифры build.py)."""
+    out, stats = [], {}
     a = shkoly(root)
-    if a: out.append(f'школы {a[1]}')
+    if a: out.append(f'школы {a[1]}'); stats.update(a[2])
     b = penthausy(root)
-    if b: out.append(f'пентхаусы {b[1]}')
+    if b: out.append(f'пентхаусы {b[1]}'); stats.update(b[2])
     print('рейтинги:', ', '.join(out) or 'нет данных')
+    return stats
