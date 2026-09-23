@@ -771,7 +771,8 @@ table,.strip,.h-stats,.co b,.pr b,.ratio,.bars,.jr-share,.calc output{font-varia
 .chip.zero{opacity:.4}
 .kmap-l .kr{margin-top:10px;padding-top:10px;border-top:1px dashed var(--line)}
 .kmap-l .kr[hidden]{display:none}
-.h-img{margin:34px 0 0}
-.h-img img{display:block;width:100%;height:auto;aspect-ratio:16/10;object-fit:cover;filter:grayscale(1);transition:filter .4s}
+.h-img{margin:34px 0 0;max-width:960px}
+.h-img img{display:block;width:100%;height:auto;aspect-ratio:21/9;object-fit:cover;filter:grayscale(1);transition:filter .4s}
 .h-img:hover img{filter:none}
 .h-img figcaption{font-size:12.5px;color:var(--muted);margin-top:8px}
+@media(max-width:600px){.h-img img{aspect-ratio:16/10}}
