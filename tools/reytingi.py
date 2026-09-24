@@ -2,6 +2,7 @@
 - reytingi/shkoly-moskvy/   — школы Москвы с нашей отметкой: data/shkoly.csv + снимок data/shkoly-baza-2026-09-23.json (описания, цены,
                                архитектура) + data/marshruty.csv (минуты пешком до домов) + data/doma.csv
 - reytingi/penthausy-moskvy/ — пентхаусы в продаже: data/penthausy.csv
+- reytingi/doma-u-parka-i-vody/ — постоянный рейтинг: дома в 300 м от парка или воды (data/doma.csv: park_m, water_m из проверки 02)
 Хаб reytingi.html — статичный, правится руками. Фильтры, счётчики и «Показать ещё» — общий модуль [data-rlist] в js/nota.js."""
 import csv, json, html, re, pathlib, statistics as st
 from collections import defaultdict, Counter
@@ -478,6 +479,128 @@ def penthausy(root):
              'pent_min': m2(cheapest['pm'][0] or cheapest['key']), 'pent_max': m2(top[0]['key'])}
     return write(root, 'penthausy-moskvy', page), n, stats
 
+# ---------------------------------------------------------------- дома у парка и воды (постоянный рейтинг, пересчитывается со сборкой)
+PARK_R = 300  # по прямой, м
+OKR = [('cao', 'ЦАО'), ('zao', 'ЗАО'), ('szao', 'СЗАО'), ('sao', 'САО'), ('svao', 'СВАО'), ('vao', 'ВАО'), ('yuvao', 'ЮВАО'), ('yuao', 'ЮАО'), ('yuzao', 'ЮЗАО'), ('out', 'Сколково и Рублёвка')]
+ITOG_TAG = {'Отметка': ('mark', 'Отметка'), 'Присмотреться': ('look', 'Присмотреться'), 'Без отметки': ('no', 'Без отметки')}
+
+def meters(m):
+    return 'вплотную' if m < 20 else f'{fmt(m)} м'
+
+def park(root):
+    doma = read(root / 'data/doma.csv')
+    if not doma or 'park_m' not in doma[0]: return None
+    prov = {(r['slug'], r['check']): r for r in read(root / 'data/proverki.csv')}
+    okr_key = {l: k for k, l in OKR}
+    okr_key.update({'Сколково': 'out', 'Рублёвка': 'out'})
+    rows = []
+    for h in doma:
+        p, w = num(h.get('park_m')), num(h.get('water_m'))
+        pin, win = p is not None and p <= PARK_R, w is not None and w <= PARK_R
+        if not (pin or win): continue
+        tier = 'both' if pin and win else 'park' if pin else 'water'
+        key = (0, max(p, w)) if tier == 'both' else (1, p) if tier == 'park' else (2, w)
+        rows.append(dict(h=h, p=p, w=w, tier=tier, key=key))
+    if not rows: return None
+    rows.sort(key=lambda x: (x['key'], x['h']['name']))
+    n, nb = len(rows), sum(1 for x in rows if x['tier'] == 'both')
+    npk, nw = sum(1 for x in rows if x['p'] is not None and x['p'] <= PARK_R), sum(1 for x in rows if x['w'] is not None and x['w'] <= PARK_R)
+    clean = sum(1 for x in rows if prov.get((x['h']['slug'], '02'), {}).get('answer') == 'да')
+    total = len(doma)
+    items = []
+    for i, x in enumerate(rows, 1):
+        h = x['h']; s = h['slug']
+        name = h['name'].split(' (')[0]
+        cls = CLS.get(h['class'], h['class'])
+        sub = ' · '.join(v for v in (cls.capitalize(), h['district'], h['developer']) if v)
+        tg, tl = ITOG_TAG.get(h.get('pasport', ''), ('look', 'Проверяем'))
+        if x['tier'] == 'both':
+            val, lab = meters(max(x['p'], x['w'])), 'до парка и воды'
+        elif x['tier'] == 'park':
+            val, lab = meters(x['p']), 'до парка'
+        else:
+            val, lab = meters(x['w']), 'до воды'
+        pk = (meters(x['p']) + (f' — {h["park_name"]}' if h.get('park_name') else ' — парк или сквер от 1 га')) if x['p'] is not None else 'дальше 500 м'
+        wt = (meters(x['w']) + (f' — {h["water_name"]}' if h.get('water_name') else ' — река, пруд или канал')) if x['w'] is not None else 'дальше 500 м'
+        g2 = prov.get((s, '02'), {})
+        sosed = ('в 150 м нет промзон, ТЭЦ и крупных магистралей' if g2.get('answer') == 'да' else
+                 ('рядом ' + g2.get('value', '')) if g2.get('answer') == 'нет' else 'нет данных')
+        m = 'clean' if g2.get('answer') == 'да' else 'minus' if g2.get('answer') == 'нет' else 'nd'
+        pf = num(h.get('price_from_m2'))
+        dl = [('Парк или сквер', pk), ('Вода', wt), ('Соседство', sosed), ('Адрес', h['address'] or '—'),
+              ('Цена', f'от {fmt(pf / 1000)} тыс ₽ за м²' if pf else 'по запросу'),
+              ('Наш итог', tl + (f' — {h["pasport_why"]}' if h.get('pasport_why') else ''))]
+        dl_html = ''.join(f'<dt>{k}</dt><dd>{e(v)}</dd>' for k, v in dl)
+        card = root / 'doma' / s / 'index.html'
+        links = (f'<a href="{R}doma/{s}/">Паспорт дома</a> · ' if card.exists() else '') + f'<a href="{R}karta.html#h-{s}">Дом на карте</a>'
+        q = ' '.join([h['name'], h['developer'], h['district'], h['address'], h.get('park_name', ''), h.get('water_name', '')]).lower().replace('ё', 'е')
+        items.append(f'''<article class="ri" id="d-{s}" data-n="{x["tier"]}" data-c="{HK.get(h["class"], "biz")}" data-o="{okr_key.get(h["okrug"], "other")}" data-m="{m}" data-i="{tg}" data-q="{e(q)}">
+ <button class="ri-row" type="button" aria-expanded="false"><span class="ri-n">{i}</span><span class="ri-t"><b>{e(name)}</b><span>{e(sub)}</span></span><span class="ri-c"><span class="tag {tg}">{tl}</span></span><span class="ri-v">{val}<small>{lab}</small></span></button>
+ <div class="ri-body" hidden><div class="ri-main"><dl>{dl_html}</dl><p class="hint" style="margin-top:12px">{links}</p></div></div>
+</article>''')
+    near = min(rows, key=lambda x: min(v for v in (x['p'], x['w']) if v is not None))
+    near_m = min(v for v in (near['p'], near['w']) if v is not None)
+    desc = (f'{n} новых домов Москвы в {PARK_R} метрах от парка или воды, из них {nb} — у парка и воды сразу. '
+            'Расстояние по прямой, название парка и водоёма, соседство и наш итог по каждому дому.')
+    body = cover('img/04-naberezhnaya.jpg', 'Набережная Москвы-реки с парком',
+                 f'<b>Рейтинг</b><span>Постоянный</span><span>Обновляется вместе с базой</span><span>{n} {plural(n, "дом", "дома", "домов")}</span>',
+                 'Дома у парка и воды',
+                 f'Парк и воду рядом с домом нельзя достроить потом. Из {total} новых домов нашей базы {n} стоят в {PARK_R} метрах от парка, сквера или воды, и {nb} — у парка и воды сразу.') + f'''
+<section><div class="wrap jr-ed">
+ <div><p class="ttl">От редактора</p></div>
+ <div>
+  <div class="jr-ed-t">
+   <p>Дом можно перестроить, двор — переделать, лобби — обновить. Парк за забором и воду под окнами не добавит ни один застройщик. Поэтому это соседство держит цену дольше, чем отделка и общие зоны: через десять лет лобби устареет, а парк останется.</p>
+   <p>Мы взяли все дома нашей базы и измерили, сколько от каждого до ближайшего парка или сквера от гектара и до воды — реки, пруда, канала. В рейтинг попали дома, у которых хотя бы одно из двух ближе {PARK_R} метров. Сначала — те, у кого рядом и то и другое.</p>
+  </div>
+  <p class="jr-sign"><span><b>Елена</b>, редактор NOTA</span></p>
+ </div>
+</div></section>
+
+<section style="padding-top:0"><div class="wrap">
+ <div class="strip" style="margin-top:0">
+  <div><b>{n}</b><small>{plural(n, "дом", "дома", "домов")} из {total} — в {PARK_R} м от парка или воды</small></div>
+  <div><b>{nb}</b><small>у парка и воды сразу</small></div>
+  <div><b>{npk}</b><small>в {PARK_R} м от парка или сквера, {nw} — от воды</small></div>
+  <div><b>{clean}</b><small>из них без промзон и крупных магистралей в 150 м</small></div>
+ </div>
+</div></section>
+
+<section class="method" id="spisok"><div class="wrap" data-rlist data-lim="20">
+ <div class="two">
+  <div><p class="ttl">Рейтинг</p><h2 style="margin-top:20px">Сначала парк и вода, потом по расстоянию</h2></div>
+  <div><p class="lede">Первыми идут дома, у которых в {PARK_R} метрах и парк, и вода: они отсортированы по дальнему из двух. Дальше — только у парка и только у воды, от ближних к дальним. Откройте дом: название парка и водоёма, соседство, цена и наш итог.</p></div>
+ </div>
+ <div class="ri-filters">
+  {chips('n', 'Что рядом', [('both', 'Парк и вода'), ('park', 'Только парк'), ('water', 'Только вода')])}
+  {chips('c', 'Класс', [('biz', 'Бизнес'), ('prem', 'Премиум'), ('elit', 'Элит'), ('dlx', 'Делюкс')])}
+  {chips('o', 'Округ', OKR)}
+  {chips('m', 'Соседство', [('clean', 'Без промзон и магистралей'), ('minus', 'Есть промзона или магистраль')])}
+  {chips('i', 'Наш итог', [('mark', 'Отметка'), ('look', 'Присмотреться'), ('no', 'Без отметки')])}
+  <label class="ri-q"><span class="cg-l">Поиск</span><input type="search" placeholder="Дом, район или парк" autocomplete="off"></label>
+ </div>
+ <div class="hs-bar"><span class="ri-cnt"></span><button class="linkbtn" type="button" data-reset>Сбросить фильтры</button></div>
+ <div class="ri-list">
+{chr(10).join(items)}
+ </div>
+ <div class="hs-more"><button class="btn btn-l ri-more" type="button" hidden>Показать ещё</button></div>
+</div></section>
+
+<section><div class="wrap two">
+ <div><p class="ttl">Как считали</p><h2 style="margin-top:20px">По карте,<br>по прямой</h2></div>
+ <div>
+  <p class="lede">Парки, скверы от гектара и водоёмы — из OpenStreetMap. Расстояние — по прямой от дома до ближайшего края парка или воды. Это не время пешком: забор, магистраль или железная дорога могут удлинить путь, и это мы проверяем на месте.</p>
+  <p class="hint">Рядом с парком бывает и промзона, и шумная дорога — поэтому у каждого дома есть строка «Соседство» из проверки 02 паспорта. Рейтинг пересчитывается с каждым обновлением базы: новый дом, новый сквер или поправка на карте — и список меняется сам. <a href="{R}metod.html">Как устроен паспорт дома</a>.</p>
+  <div class="btns"><a class="btn btn-l" href="{R}karta.html">Дома на карте</a> <a class="btn" href="{R}podbor.html">Подобрать дом у парка</a></div>
+ </div>
+</div></section>
+'''
+    names = [x['h']['name'].split(' (')[0] for x in rows]
+    page = HEAD.format(title=f'Дома у парка и воды: {n} новых домов Москвы в {PARK_R} м от парка или реки — NOTA', R=R, desc=e(desc),
+                       img='img/04-naberezhnaya.jpg', ld=ld_list('Дома у парка и воды', desc, 'reytingi/doma-u-parka-i-vody/', names)) + body + TAIL.format(R=R)
+    stats = {'park_n': n, 'park_both': nb, 'park_clean': clean, 'park_r': PARK_R}
+    return write(root, 'doma-u-parka-i-vody', page), n, stats
+
 def build(root):
     """Собирает страницы рейтингов и отдаёт их цифры для хаба reytingi.html (живые цифры build.py)."""
     out, stats = [], {}
@@ -485,5 +608,7 @@ def build(root):
     if a: out.append(f'школы {a[1]}'); stats.update(a[2])
     b = penthausy(root)
     if b: out.append(f'пентхаусы {b[1]}'); stats.update(b[2])
+    c = park(root)
+    if c: out.append(f'у парка и воды {c[1]}'); stats.update(c[2])
     print('рейтинги:', ', '.join(out) or 'нет данных')
     return stats

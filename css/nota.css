@@ -1254,3 +1254,6 @@ section .two.rz-h,section.tight .two.rz-h:has(h2){align-items:start}
  .bandlink .bandcap .fakebtn{margin:0 auto}
 }
 .bandlink:hover .fakebtn,.ix-next:hover .fakebtn{background:var(--red);border-color:var(--red);color:#fff}
+/* 24.09 главная: четыре рейтинга — сеткой 2×2 */
+#reytingi .rt-row{grid-template-columns:repeat(2,1fr)}
+@media(max-width:900px){#reytingi .rt-row{grid-template-columns:1fr}}

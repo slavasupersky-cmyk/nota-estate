@@ -14,14 +14,15 @@ HIDE_TYPES = {'коттеджи', 'таунхаусы'}  # посёлки — о
 
 CHECKS_PASPORT = ['01', '02', '03', '04', '05', '06', '07', '08', '09']
 
-DOMA_COLS = ['slug', 'name', 'name_short', 'dev_id', 'developer', 'class', 'class_zayavlen', 'class_why', 'class_declared', 'class_disputed', 'okrug', 'district',
+DOMA_COLS = ['slug', 'name', 'name_short', 'dev_id', 'developer', 'class', 'class_zayavlen', 'class_why', 'class_declared', 'class_disputed', 'okrug', 'district', 'klaster',
              'address', 'lat', 'lon', 'geo_precision', 'type', 'units_total', 'units_per_floor', 'floors', 'ceilings_m', 'parking',
              'stage', 'deadline_initial', 'deadline', 'price_from_m2', 'price_median_m2', 'price_check', 'penthouses', 'penthouse_flag',
              'architect', 'facade', 'energy_class', 'escrow', 'maintenance_rub_m2', 'website', 'sources', 'updated']
 # вычисляемые колонки, которые добавляет выгрузка
 CALC_COLS = ['p01', 'p02', 'p03', 'p04', 'p05', 'p06', 'p07', 'p08', 'p09', 'pasport', 'pasport_why',
              'school_min', 'school_name', 'nota_school_min', 'nota_school_name', 'nota_15', 'marked_min', 'marked_name', 'marked_20',
-             'lots', 'lot_min_m2', 'lot_min_price', 'lots_median_m2', 'lots_date', 'has_foto', 'rynok']
+             'lots', 'lot_min_m2', 'lot_min_price', 'lots_median_m2', 'lots_date', 'has_foto', 'rynok',
+             'park_m', 'park_name', 'water_m', 'water_name']
 PUBLIC = {
     'proverki.csv': ['slug', 'check', 'answer', 'value', 'source', 'checked'],
     'zastroyshchiki.csv': ['dev_id', 'name', 'erz_rating', 'erz_checked', 'sdano_3_goda', 'ostanovleno', 'bankrotstvo', 'sayt'],
@@ -34,6 +35,7 @@ PUBLIC = {
     'oplata-tipy.csv': None,
     'itog.csv': None,
     'otkrytost-cen.csv': None,
+    'klastery.csv': None,  # кластеры районов из курса «Элитная Москва» — контуры и фильтр на карте
     'obnovleniya.csv': None,  # журнал еженедельных обновлений базы — строка «Обновлено …» на карте
 }
 
@@ -59,6 +61,15 @@ def write(p, rows, cols):
         return False
     p.write_text(new, encoding='utf-8')
     return True
+
+
+def green(t):
+    """Парк и вода рядом из проверки 02 (OpenStreetMap, по прямой, радиус 500 м): «парк 49 м (Синичкин сквер)», «вода 222 м (Большой пруд)»."""
+    out = {}
+    for k, w in (('park', 'парк'), ('water', 'вода')):
+        m = re.search(w + r' (\d+) м(?: \(([^()]*(?:\([^()]*\)[^()]*)*)\))?', t or '')
+        out[k + '_m'], out[k + '_name'] = (m.group(1), (m.group(2) or '').strip()) if m else ('', '')
+    return out
 
 
 def date_key(d):
@@ -181,6 +192,9 @@ def export(root, verbose=True):
                      lots_median_m2=l.get('price_median_m2', ''), lots_date=loty_date)
         r['has_foto'] = 'да' if s in foto else ''
         r['rynok'] = RYNOK.get(d.get('stage', ''), 'первичка')
+        g2 = latest.get((s, '02'))
+        if g2:
+            r.update(green(' '.join([g2.get('value', ''), g2.get('note', '')])))
         out.append(r)
 
     if write(D / 'doma.csv', out, DOMA_COLS + CALC_COLS): changed.append('data/doma.csv')
