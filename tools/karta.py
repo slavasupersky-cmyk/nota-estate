@@ -16,7 +16,7 @@ TR = dict(zip('абвгдеёжзийклмнопрстуфхцчшщъыьэю�
               ['a', 'b', 'v', 'g', 'd', 'e', 'e', 'zh', 'z', 'i', 'y', 'k', 'l', 'm', 'n', 'o', 'p', 'r', 's', 't', 'u',
                'f', 'kh', 'ts', 'ch', 'sh', 'sch', '', 'y', '', 'e', 'yu', 'ya']))
 RK = {'первичка': 'prim', 'первичка и вторичка': 'both', 'только вторичка': 'vtor', 'анонс': 'ann'}
-RK_T = [('prim', 'У застройщика'), ('both', 'Застройщик и перепродажа'), ('vtor', 'Только вторичка'), ('ann', 'Анонс, продаж нет')]
+RK_T = [('prim', 'Застройщик'), ('both', 'Застройщик и вторичка'), ('vtor', 'Только вторичка'), ('ann', 'Анонс, продаж нет')]
 OKR = ['ЦАО', 'САО', 'СВАО', 'ВАО', 'ЮВАО', 'ЮАО', 'ЮЗАО', 'ЗАО', 'СЗАО', 'Сколково', 'Рублёвка']
 YB = {'now': 'Сдан или в 2026', 'y27': '2027', 'y28': '2028 и позже', 'ann': 'Анонс'}
 
@@ -202,7 +202,7 @@ def build(root):
             if other:
                 cls_txt += ' по нашей шкале · в каталогах и у застройщика встречается ' + ' и '.join(other)
         facts = [('Адрес', r['address']), ('Застройщик', dev), ('Класс', cls_txt), ('Стадия', stage),
-                 ('Где купить', dict(RK_T)[RK.get(r.get('rynok', ''), 'prim')].lower()),
+                 ('Кто продаёт', dict(RK_T)[RK.get(r.get('rynok', ''), 'prim')].lower()),
                  ('Квартир', fmt(u) if u else 'нет данных'),
                  ('Машиномест на квартиру', fmt(pk / u, 2) if (u and pk) else 'нет данных')]
         if r.get('school_min'):
@@ -269,7 +269,7 @@ def build(root):
                + ''.join(chip('y', k, f'{YB[k]} · {yc[k]}') for k in YB if yc[k])
                + '</div></div><div class="chipgrp"><span class="lb">Формат</span><div class="chips">' + chip('f', 'all', 'Любой формат', True)
                + chip('f', 'pent', f'С пентхаусами · {pent}') + chip('f', 'club', f'До 100 квартир · {club}') + '</div></div>'
-               + '<div class="chipgrp"><span class="lb">Где купить</span><div class="chips">' + chip('m', 'all', 'Любой рынок', True)
+               + '<div class="chipgrp"><span class="lb">Кто продаёт</span><div class="chips">' + chip('m', 'all', 'Любой продавец', True)
                + ''.join(chip('m', k, f'{t} · {mc[k]}') for k, t in RK_T if mc[k]) + '</div></div>' + geo_filters)
     n = len(items)
     main = f'''<main>
@@ -312,7 +312,7 @@ def build(root):
  <div class="modal-bg" data-close></div>
  <div class="modal-in" role="dialog" aria-modal="true" aria-labelledby="kmdl-h">
   <button class="modal-x" type="button" data-close aria-label="Закрыть">×</button>
-  <p class="ttl">Актуальное предложение</p>
+  <p class="ttl">Актуальная подборка</p>
   <h3 id="kmdl-h">Дом</h3>
   <p style="margin-top:12px;color:var(--ink-2);font-size:15px">Пришлём, что в продаже сейчас: минимальный лот, планировки, цены и условия оплаты. Обычно в тот же день.</p>
   <form novalidate class="cform" style="margin-top:14px;box-shadow:none">
@@ -320,7 +320,7 @@ def build(root):
    <label class="fl-l">Телефон или ник в Telegram / MAX<input type="text" placeholder="+7 … или @ник"></label>
    <label class="fl-l">Что важно<textarea placeholder="Площадь, этаж, бюджет — если хотите уточнить"></textarea></label>
    <label class="consent"><input type="checkbox"><span>Согласен на обработку персональных данных и прочитал <a href="politika.html">политику конфиденциальности</a>.</span></label>
-   <div class="send"><button class="btn" type="button">Получить предложение</button></div>
+   <div class="send"><button class="btn" type="button">Получить подборку</button></div>
   </form>
  </div>
 </div>

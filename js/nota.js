@@ -254,6 +254,46 @@
  if(kft) kft.addEventListener('click',function(){var o=kml.classList.toggle('fopen');kft.setAttribute('aria-expanded',o?'true':'false')});
  function fcount(){if(!kft)return;var n=G.filter(function(g){return st[g]!=='all'&&g!=='r'}).length;kft.querySelector('.kf-n').textContent=n?' · выбрано '+n:''}
  if(kq) kq.addEventListener('input',function(){Q=kq.value.trim().toLowerCase().replace(/ё/g,'е');lim=LIM;apply()});
+ /* подсказки под «Найти дом»: начал писать — видишь дома, ткнул — открылась карточка */
+ if(kq){
+  var lb=kq.closest('label'), kw=document.createElement('div'); kw.className='kq-w'; lb.parentNode.insertBefore(kw,lb); kw.appendChild(lb);
+  var sg=document.createElement('ul'); sg.className='kq-s'; sg.id='kq-s'; sg.setAttribute('role','listbox'); sg.hidden=true; kw.appendChild(sg);
+  kq.setAttribute('role','combobox'); kq.setAttribute('aria-controls','kq-s'); kq.setAttribute('aria-autocomplete','list'); kq.setAttribute('aria-expanded','false');
+  var sgI=-1, sgL=[];
+  function nrm(t){return String(t||'').toLowerCase().replace(/ё/g,'е')}
+  function hl(t,q){var n=nrm(t),i=n.indexOf(q);return i<0?esc(t):esc(t.slice(0,i))+'<mark>'+esc(t.slice(i,i+q.length))+'</mark>'+esc(t.slice(i+q.length))}
+  function sgClose(){sg.hidden=true;sgI=-1;kq.setAttribute('aria-expanded','false')}
+  function sgMark(){[].forEach.call(sg.children,function(li,j){li.classList.toggle('on',j===sgI);li.setAttribute('aria-selected',j===sgI?'true':'false')})}
+  function sgFill(){
+   var q=nrm(kq.value.trim()); if(q.length<2){sgClose();return}
+   var L=[];
+   items.forEach(function(it){var r=data[+it.dataset.i], n=nrm(r.n), sc=-1;
+    if(n.indexOf(q)===0)sc=0; else if((' '+n).indexOf(' '+q)>-1||n.indexOf('«'+q)>-1)sc=1; else if(n.indexOf(q)>-1)sc=2; else if((' '+(it.dataset.q||'')).replace(/[«»"(),.\/-]/g,' ').indexOf(' '+q)>-1)sc=3; else if((it.dataset.q||'').indexOf(q)>-1)sc=4;
+    if(sc>-1)L.push({it:it,r:r,sc:sc})});
+   L.sort(function(a,b){return a.sc-b.sc||a.r.n.localeCompare(b.r.n,'ru')});
+   sgL=L.slice(0,8); sgI=-1;
+   if(!sgL.length){sg.innerHTML='<li class="kq-no">Такого дома в базе нет — попробуйте застройщика или улицу</li>';sg.hidden=false;return}
+   sg.innerHTML=sgL.map(function(x,j){var r=x.r, sub;
+    if(x.sc>=3){var ad=x.it.querySelector('.hs-facts dd'), at=ad?ad.textContent:'';
+     sub=nrm(at).indexOf(q)>-1?hl(at,q):nrm(r.d).indexOf(q)>-1?hl(r.d,q)+' · '+esc(r.ds):hl(r.ds,q)+' · '+esc(r.d)}
+    else sub=esc(r.ds)+' · '+esc(r.d);
+    return '<li role="option" data-j="'+j+'"><b>'+hl(r.n,q)+'</b><small>'+esc(r.c)+' · '+sub+'</small></li>'}).join('')+(L.length>8?'<li class="kq-no">Ещё '+(L.length-8)+' — в списке ниже</li>':'');
+   sg.hidden=false; kq.setAttribute('aria-expanded','true');
+  }
+  function sgGo(j){var x=sgL[j]; if(!x)return; sgClose(); kq.value=''; Q=''; kq.blur();
+   var h='#h-'+x.r.s; if(location.hash===h) fromHash(); else location.hash=h}
+  kq.addEventListener('input',sgFill);
+  kq.addEventListener('focus',sgFill);
+  kq.addEventListener('keydown',function(ev){
+   if(sg.hidden||!sgL.length){return}
+   if(ev.key==='ArrowDown'){sgI=(sgI+1)%sgL.length;sgMark();ev.preventDefault()}
+   else if(ev.key==='ArrowUp'){sgI=(sgI-1+sgL.length)%sgL.length;sgMark();ev.preventDefault()}
+   else if(ev.key==='Enter'){sgGo(sgI<0?0:sgI);ev.preventDefault()}
+   else if(ev.key==='Escape'){sgClose()}});
+  sg.addEventListener('mousedown',function(ev){ev.preventDefault()});
+  sg.addEventListener('click',function(ev){var li=ev.target.closest('li[data-j]'); if(li) sgGo(+li.dataset.j)});
+  kq.addEventListener('blur',function(){setTimeout(sgClose,120)});
+ }
  chips.forEach(function(b){b.addEventListener('click',function(){var g=b.dataset.g;press(g,b.dataset.k);if(g=='o')press('r','all');lim=LIM;apply()})});
  document.querySelectorAll('[data-reset]').forEach(function(b){b.addEventListener('click',function(){st=Object.assign({},ALL);Q='';if(kq)kq.value='';chips.forEach(function(x){x.setAttribute('aria-pressed',x.dataset.k=='all'?'true':'false')});lim=LIM;apply()})});
  function mln(v){return v.toLocaleString('ru-RU',{minimumFractionDigits:1,maximumFractionDigits:1})}
@@ -276,7 +316,7 @@
    h+='</div><div class="hs-real"><p class="k">Что в продаже сейчас</p>';
    h+= sum ? '<p>'+sum+(when?' Сверка '+esc(when)+'.':'')+'</p>' : '<p>Застройщики меняют прайс и набор лотов каждую неделю. Пришлём, что в продаже сейчас: минимальный лот, планировки и условия оплаты.</p>';
   }
-  h+='</div><div class="btns"><button class="btn hs-cta" type="button" data-house="'+esc(r.n)+'">Хочу актуальное предложение</button>'+(r.dm?' <a class="btn btn-l" href="doma/'+r.dm+'/">Подробный разбор</a>':'')+'</div>';
+  h+='</div><div class="btns hs-btns">'+(r.dm?'<a class="btn btn-l" href="doma/'+r.dm+'/">Подробный разбор</a>':'')+'<button class="btn hs-cta" type="button" data-house="'+esc(r.n)+'">Получить актуальную подборку</button></div>';
   sd.innerHTML=h; sd.dataset.done=1;
  }
  function openItem(it,scroll){
