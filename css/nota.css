@@ -1220,14 +1220,14 @@ section .two.rz-h,section.tight .two.rz-h:has(h2){align-items:start}
 .kupd span{display:block;margin-top:2px}
 /* 24.09 главная: картинка — белый макет Москвы (высотка с красной звездой, Сити, дома всех классов).
    Компьютер: макет справа внизу, ~64% высоты экрана, текст поднят наверх. Телефон: макет целиком, прижат вправо, цифры ложатся на набережную */
-.hero-img{background:#fff url(../img/01-hero-maket.jpg) right bottom/auto 64% no-repeat}
+.hero-img{background:#fff url(../img/01-hero-maket.jpg) right 0 bottom 4%/auto 72% no-repeat}
 .hero-img::after{background:linear-gradient(90deg,rgba(255,255,255,.7) 0%,rgba(255,255,255,.3) 34%,rgba(255,255,255,0) 50%)}
 @media(min-width:901px){.hero{align-items:stretch}.hero-in{display:flex;flex-direction:column;justify-content:space-between;padding-top:calc(118px + env(safe-area-inset-top,0px))}}
-@media(max-width:1180px) and (min-width:901px){.hero-img{background-size:auto 50%}}
+@media(max-width:1180px) and (min-width:901px){.hero-img{background-size:auto 56%}}
 @media(max-width:900px){
- .hero-img{background:#fff url(../img/01-hero-maket-m2.jpg) right 0 bottom 150px/94% auto no-repeat}
+ .hero-img{background:#fff url(../img/01-hero-maket-m2.jpg) right 0 bottom 210px/94% auto no-repeat}
  .hero-img::after{display:none}
- .hero{min-height:max(100svh,calc(340px + 58vw + 190px))}
+ .hero{min-height:max(100svh,calc(340px + 58vw + 250px))}
  .ratio b,.ratio em{text-shadow:0 0 3px #fff,0 0 8px #fff,0 0 14px #fff}
  .ratio em{color:var(--ink-2)}}
 /* 24.09 кнопки: переход или действие — прижаты вправо (там курсор), главная кнопка крайняя справа;
@@ -1241,3 +1241,16 @@ section .two.rz-h,section.tight .two.rz-h:has(h2){align-items:start}
 .res-note textarea{height:62px;min-height:62px;resize:none}
 .res-row .btn{height:62px;justify-content:center}
 @media(max-width:700px){.res-row .btn{justify-self:end}}
+/* 24.09 полоса-карта на главной: точки крупнее (как на карте), на телефоне — ещё крупнее */
+.bd{stroke-width:1.2}
+@media(max-width:700px){.bandlink .bandmap{height:230px}.bd{transform-box:fill-box;transform-origin:center;transform:scale(1.35)}}
+/* 24.09 кнопки на телефоне: две — рядом, поровну; одна второстепенная — по центру; одна главная (Telegram и т. п.) — слева */
+@media(max-width:700px){
+ .btns{flex-wrap:wrap;justify-content:center;gap:10px}
+ .btns>.btn{flex:1 1 calc(50% - 5px);min-width:0;justify-content:center;text-align:center;padding:14px 12px;font-size:14.5px;line-height:1.3}
+ .btns:has(>.btn:only-child)>.btn{flex:0 1 auto;padding:14px 22px}
+ .btns:has(>.btn:not(.btn-l):only-child){justify-content:flex-start}
+ .btns-c{justify-content:center}
+ .bandlink .bandcap .fakebtn{margin:0 auto}
+}
+.bandlink:hover .fakebtn,.ix-next:hover .fakebtn{background:var(--red);border-color:var(--red);color:#fff}

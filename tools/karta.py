@@ -175,6 +175,7 @@ def build(root):
         svg.append(f'<path d="{smooth_path(v, k != "Бульварное", P)}" class="k-ring"/>')
     svg.append(f'<path d="{smooth_path(M, True, P)}" class="k-ring k-mkad"/>')
     band = list(svg[2:])  # подложка без фона и подписей — для полосы-карты на главной
+    bdots = []  # точки полосы: сверху — старшие классы
     t = P((max(p[0] for p in W['rings']['ТТК']) + .4, 0.2))
     svg.append(f'<text x="{t[0]:.0f}" y="{t[1]:.0f}" class="k-lbl">ТТК</text>')
     t = P((max(xs) + .3, 3))
@@ -194,7 +195,7 @@ def build(root):
         mk = RK.get(r.get('rynok', ''), 'prim')
         geo_attr = f' data-o="{ok_}" data-r="{rk}" data-m="{mk}"'
         if r['okrug'] not in OUT:
-            band.append(f'<circle cx="{p[0]:.1f}" cy="{p[1]:.1f}" r="{R_DOT[ck] * .17:.2f}" class="bd {ck}"/>')
+            bdots.append((list(R_DOT).index(ck), f'<circle cx="{p[0]:.1f}" cy="{p[1]:.1f}" r="{R_DOT[ck] * .38:.2f}" class="bd {ck}"/>'))
         dots.append(f'<circle cx="{p[0]:.1f}" cy="{p[1]:.1f}" r="{R_DOT[ck]}" class="kd {ck}" data-i="{i}" data-c="{ck}" data-y="{yb}" data-f="{form}"{geo_attr}><title>{e(name)}</title></circle>')
 
         x = extra.get(slug, {})
@@ -357,7 +358,7 @@ def build(root):
     bh = (ty1 - ty0) * 2 / 3; bw = bh * 3.8; cx, cy = (tx0 + tx1) / 2, (ty0 + ty1) / 2 + bh * .18  # центр чуть ниже: подпись закрывает низ полосы
     global BAND
     BAND = (f'<svg class="kband" viewBox="{cx - bw / 2:.1f} {cy - bh / 2:.1f} {bw:.1f} {bh:.1f}" preserveAspectRatio="xMidYMid slice" aria-hidden="true">'
-            f'<rect x="{cx - bw:.1f}" y="{cy - bh:.1f}" width="{bw * 2:.1f}" height="{bh * 2:.1f}" class="k-bg"/>' + ''.join(band) + '</svg>')
+            f'<rect x="{cx - bw:.1f}" y="{cy - bh:.1f}" width="{bw * 2:.1f}" height="{bh * 2:.1f}" class="k-bg"/>' + ''.join(band) + ''.join(d for _, d in sorted(bdots, key=lambda t: t[0])) + '</svg>')
     kp = root / 'karta.html'
     s = kp.read_text()
     a = s.index('<main>')
