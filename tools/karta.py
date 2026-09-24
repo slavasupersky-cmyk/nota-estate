@@ -94,6 +94,29 @@ def when_text(r):
     return 'анонс' if 'анонс' in r['stage'] else 'уточняется'
 
 
+MES = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря']
+
+def obnovleno(root):
+    """Строка «Обновлено …» из data/obnovleniya.csv (журнал еженедельных обновлений базы)."""
+    import csv
+    p = root / 'data/obnovleniya.csv'
+    if not p.exists():
+        return ''
+    rows = [r for r in csv.DictReader(p.open(encoding='utf-8-sig'), delimiter=';') if r.get('data')]
+    if not rows:
+        return ''
+    r = rows[-1]
+    d, m, y = r['data'].split('.')
+    parts = []
+    for k, t in (('dobavleno', 'добавлено'), ('ubrano', 'убрано'), ('izmeneno', 'изменено')):
+        v = (r.get(k) or '').strip()
+        if v and v != '0':
+            parts.append(f'{t} {v}')
+    tail = (' · ' + ', '.join(parts)) if parts else ''
+    why = r.get('chto', '').strip()
+    return (f' <p class="kupd"><b>Обновлено {int(d)} {MES[int(m) - 1]} {y}</b>{tail}. '
+            f'Базу обновляем каждый понедельник.' + (f' <span>Что изменилось: {why}.</span>' if why else '') + '</p>')
+
 def build(root):
     rows = list(csv.DictReader((root / 'data/doma.csv').open(encoding='utf-8-sig'), delimiter=';'))
     extra = {}
@@ -272,11 +295,13 @@ def build(root):
                + '<div class="chipgrp"><span class="lb">Кто продаёт</span><div class="chips">' + chip('m', 'all', 'Любой продавец', True)
                + ''.join(chip('m', k, f'{t} · {mc[k]}') for k, t in RK_T if mc[k]) + '</div></div>' + geo_filters)
     n = len(items)
+    upd = obnovleno(root)
     main = f'''<main>
 <section class="first tight-b"><div class="wrap">
  <p class="ttl">Карта домов</p>
  <h1>{nd} на одной карте</h1>
  <p class="lead">Новые дома от бизнес-класса и выше: старая Москва, Сколково и многоквартирные дома Рублёвки. Наведите на точку, чтобы увидеть дом, нажмите — откроется его карточка в списке ниже. Фильтры меняют и карту, и список.</p>
+{upd}
 </div></section>
 
 <section class="tight first-content kscreen"><div class="wrap kmap">

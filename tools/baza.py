@@ -34,6 +34,7 @@ PUBLIC = {
     'oplata-tipy.csv': None,
     'itog.csv': None,
     'otkrytost-cen.csv': None,
+    'obnovleniya.csv': None,  # журнал еженедельных обновлений базы — строка «Обновлено …» на карте
 }
 
 
