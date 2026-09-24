@@ -1218,13 +1218,26 @@ section .two.rz-h,section.tight .two.rz-h:has(h2){align-items:start}
 .kupd{margin:14px 0 0;font-size:14px;line-height:1.5;color:var(--muted);max-width:760px}
 .kupd b{color:var(--ink);font-weight:600}
 .kupd span{display:block;margin-top:2px}
-/* 24.09 главная: картинка — белый макет Москвы (высотка с красной звездой, Сити, дома всех классов); левая часть белая — под текст */
-.hero-img{background:#fff url(../img/01-hero-maket.jpg) right bottom/auto 80% no-repeat}
-.hero-img::after{background:linear-gradient(90deg,rgba(255,255,255,.75) 0%,rgba(255,255,255,.4) 34%,rgba(255,255,255,0) 52%),linear-gradient(180deg,rgba(255,255,255,0) 78%,rgba(255,255,255,.75) 95%,#fff 100%)}
-@media(max-width:1180px) and (min-width:901px){.hero-img{background-size:auto 54%}}
+/* 24.09 главная: картинка — белый макет Москвы (высотка с красной звездой, Сити, дома всех классов).
+   Компьютер: макет справа внизу, ~64% высоты экрана, текст поднят наверх. Телефон: макет целиком, прижат вправо, цифры ложатся на набережную */
+.hero-img{background:#fff url(../img/01-hero-maket.jpg) right bottom/auto 64% no-repeat}
+.hero-img::after{background:linear-gradient(90deg,rgba(255,255,255,.7) 0%,rgba(255,255,255,.3) 34%,rgba(255,255,255,0) 50%)}
+@media(min-width:901px){.hero{align-items:stretch}.hero-in{display:flex;flex-direction:column;justify-content:space-between;padding-top:calc(118px + env(safe-area-inset-top,0px))}}
+@media(max-width:1180px) and (min-width:901px){.hero-img{background-size:auto 50%}}
 @media(max-width:900px){
- /* телефон: макет — отдельной полосой между текстом и цифрами, чтобы цифры стояли на белом */
- .hero-img{background:#fff}
+ .hero-img{background:#fff url(../img/01-hero-maket-m2.jpg) right 0 bottom 150px/94% auto no-repeat}
  .hero-img::after{display:none}
- .hero-txt::after{content:"";display:block;height:clamp(210px,min(64vw,40svh),560px);margin:18px -26px 0;background:linear-gradient(180deg,rgba(255,255,255,0) 78%,#fff 100%),url(../img/01-hero-maket-m.jpg) 60% 0/cover no-repeat}
- .hero-foot{margin-top:18px}}
+ .hero{min-height:max(100svh,calc(340px + 58vw + 190px))}
+ .ratio b,.ratio em{text-shadow:0 0 3px #fff,0 0 8px #fff,0 0 14px #fff}
+ .ratio em{color:var(--ink-2)}}
+/* 24.09 кнопки: переход или действие — прижаты вправо (там курсор), главная кнопка крайняя справа;
+   «показать ещё» и каталожные ссылки под сеткой карточек — по центру; при наведении любая кнопка красная */
+.btns{justify-content:flex-end}
+.btns .btn:not(.btn-l){order:2}
+.btns-c{justify-content:center}
+.btn:hover,.btn-l:hover,body.dark .btn:hover,body.dark .btn-l:hover,.analytics .btn:hover{background:var(--red);border-color:var(--red);color:#fff}
+.btn:disabled:hover{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+/* подбор: кнопка той же высоты, что поле «Что ещё важно» */
+.res-note textarea{height:62px;min-height:62px;resize:none}
+.res-row .btn{height:62px;justify-content:center}
+@media(max-width:700px){.res-row .btn{justify-self:end}}
