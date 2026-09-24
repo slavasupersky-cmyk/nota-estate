@@ -487,6 +487,31 @@ ITOG_TAG = {'Отметка': ('mark', 'Отметка'), 'Присмотрет�
 def meters(m):
     return 'вплотную' if m < 20 else f'{fmt(m)} м'
 
+def lead_modal(src):
+    """Окно «Актуальная подборка» по дому прямо на странице рейтинга. src — откуда заявка: уходит вместе с формой."""
+    return f'''
+<div class="modal" id="lead" hidden data-src="{e(src)}">
+ <div class="modal-bg" data-close></div>
+ <div class="modal-in" role="dialog" aria-modal="true" aria-labelledby="lead-h">
+  <button class="modal-x" type="button" data-close aria-label="Закрыть">×</button>
+  <p class="ttl">Актуальная подборка</p>
+  <h3 id="lead-h">Дом</h3>
+  <p style="margin-top:12px;color:var(--ink-2);font-size:15px">Пришлём, что в продаже в этом доме сейчас: лоты, планировки, цены и условия оплаты. Обычно в тот же день.</p>
+  <form novalidate class="cform" style="margin-top:14px;box-shadow:none">
+   <input type="hidden" name="source" value="">
+   <input type="hidden" name="house" value="">
+   <label class="fl-l">Как к вам обращаться<input type="text" name="name" autocomplete="name" placeholder="Имя"></label>
+   <label class="fl-l">Телефон или ник в Telegram / MAX<input type="text" name="contact" placeholder="+7 … или @ник"></label>
+   <label class="fl-l">Что важно<textarea name="note" placeholder="Площадь, этаж, бюджет — если хотите уточнить"></textarea></label>
+   <label class="consent"><input type="checkbox"><span>Согласен на обработку персональных данных и прочитал <a href="{R}politika.html">политику конфиденциальности</a>.</span></label>
+   <p class="lead-src hint" style="margin:10px 0 0"></p>
+   <div class="send"><button class="btn" type="button">Получить подборку</button></div>
+  </form>
+ </div>
+</div>
+'''
+
+
 def park(root):
     doma = read(root / 'data/doma.csv')
     if not doma or 'park_m' not in doma[0]: return None
@@ -532,11 +557,15 @@ def park(root):
               ('Наш итог', tl + (f' — {h["pasport_why"]}' if h.get('pasport_why') else ''))]
         dl_html = ''.join(f'<dt>{k}</dt><dd>{e(v)}</dd>' for k, v in dl)
         card = root / 'doma' / s / 'index.html'
-        links = (f'<a href="{R}doma/{s}/">Паспорт дома</a> · ' if card.exists() else '') + f'<a href="{R}karta.html#h-{s}">Дом на карте</a>'
+        pic = (f'<div class="ri-img"><img src="{R}img/doma/{s}.jpg" alt="{e(name)}" loading="lazy"></div>'
+               if (root / 'img' / 'doma' / f'{s}.jpg').exists() else '')
+        btns = (f'<a class="btn btn-l" href="{R}karta.html#h-{s}">Дом на карте</a>'
+                + (f' <a class="btn btn-l" href="{R}doma/{s}/">Паспорт дома</a>' if card.exists() else '')
+                + f' <button class="btn" type="button" data-lead="{e(name)}">Получить актуальную подборку</button>')
         q = ' '.join([h['name'], h['developer'], h['district'], h['address'], h.get('park_name', ''), h.get('water_name', '')]).lower().replace('ё', 'е')
         items.append(f'''<article class="ri" id="d-{s}" data-n="{x["tier"]}" data-c="{HK.get(h["class"], "biz")}" data-o="{okr_key.get(h["okrug"], "other")}" data-m="{m}" data-i="{tg}" data-q="{e(q)}">
  <button class="ri-row" type="button" aria-expanded="false"><span class="ri-n">{i}</span><span class="ri-t"><b>{e(name)}</b><span>{e(sub)}</span></span><span class="ri-c"><span class="tag {tg}">{tl}</span></span><span class="ri-v">{val}<small>{lab}</small></span></button>
- <div class="ri-body" hidden><div class="ri-main"><dl>{dl_html}</dl><p class="hint" style="margin-top:12px">{links}</p></div></div>
+ <div class="ri-body" hidden><div class="ri-main"><dl>{dl_html}</dl></div><div class="ri-side">{pic}</div><div class="btns ri-btns">{btns}</div></div>
 </article>''')
     near = min(rows, key=lambda x: min(v for v in (x['p'], x['w']) if v is not None))
     near_m = min(v for v in (near['p'], near['w']) if v is not None)
@@ -594,7 +623,7 @@ def park(root):
   <div class="btns"><a class="btn btn-l" href="{R}karta.html">Дома на карте</a> <a class="btn" href="{R}podbor.html">Подобрать дом у парка</a></div>
  </div>
 </div></section>
-'''
+''' + lead_modal('Рейтинг «Дома у парка и воды»')
     names = [x['h']['name'].split(' (')[0] for x in rows]
     page = HEAD.format(title=f'Дома у парка и воды: {n} новых домов Москвы в {PARK_R} м от парка или реки — NOTA', R=R, desc=e(desc),
                        img='img/04-naberezhnaya.jpg', ld=ld_list('Дома у парка и воды', desc, 'reytingi/doma-u-parka-i-vody/', names)) + body + TAIL.format(R=R)

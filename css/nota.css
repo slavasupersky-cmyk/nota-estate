@@ -710,6 +710,14 @@ table,.strip,.h-stats,.co b,.pr b,.ratio,.bars,.jr-share,.calc output{font-varia
 .k-mkad{stroke:#6A727B;stroke-width:1.3;stroke-dasharray:none}
 .k-lbl{font-size:10px;font-weight:600;letter-spacing:.14em;fill:var(--muted)}
 .k-inset{fill:none;stroke:var(--line);stroke-width:1;stroke-dasharray:4 3}
+.k-kl{fill:var(--red);fill-opacity:.035;stroke:var(--red);stroke-opacity:.4;stroke-width:1;stroke-dasharray:3 2;vector-effect:non-scaling-stroke;pointer-events:none;transition:fill-opacity .2s,stroke-opacity .2s}
+.k-kl.on{fill-opacity:.09;stroke-opacity:.95;stroke-dasharray:none}
+.k-kll{display:none;fill:var(--red);font-weight:600;letter-spacing:.03em;paint-order:stroke;stroke:var(--surface);stroke-width:.25em;stroke-linejoin:round;pointer-events:none}
+.map.lz .k-kll,.k-kll.on{display:block}
+.kl-g{flex-basis:100%;font-size:11px;color:var(--muted);margin:6px 0 -2px}
+.kl-g:first-of-type{margin-top:2px}
+.kl-note{font-size:12px;color:var(--muted);margin:8px 0 0;line-height:1.45}
+@media(max-width:860px){.kl-g{display:none}}
 .kd{stroke:#fff;stroke-width:1.2;cursor:pointer;transition:opacity .2s}
 .kd.biz,.legend i.biz{fill:#B4BBC2;background:#B4BBC2}
 .kd.prem,.legend i.prem{fill:#6A727B;background:#6A727B}
@@ -1257,3 +1265,12 @@ section .two.rz-h,section.tight .two.rz-h:has(h2){align-items:start}
 /* 24.09 главная: четыре рейтинга — сеткой 2×2 */
 #reytingi .rt-row{grid-template-columns:repeat(2,1fr)}
 @media(max-width:900px){#reytingi .rt-row{grid-template-columns:1fr}}
+/* 24.09 рейтинг «у парка и воды»: картинка дома и кнопки в раскрытой строке */
+.ri-side .ri-img{aspect-ratio:16/10;overflow:hidden;background:var(--paper-2)}
+.ri-side .ri-img img{width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(1);transition:filter .4s}
+.ri.open .ri-side .ri-img img,.ri-side .ri-img:hover img{filter:none}
+.ri-btns{grid-column:1/-1;margin-top:4px}
+.lead-src{font-size:12.5px;color:var(--muted)}
+.kring{fill:rgba(255,255,255,.55);stroke:#101317;stroke-width:3;vector-effect:non-scaling-stroke;pointer-events:none}
+@media(max-width:860px){.kring{r:13}}
+.btn:disabled:hover,body.dark .btn:disabled:hover{background:var(--ink);border-color:var(--ink);color:var(--paper)}

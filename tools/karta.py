@@ -1,6 +1,7 @@
 """Карта объектов: data/doma.csv (выгрузка из nota-baza, см. tools/baza.py) + img/doma/<slug>.jpg
 → <main> страницы karta.html: карта с точками по реальным координатам, фильтры, список «по вашим фильтрам»."""
-import csv, json, re, html
+import csv
+import math, json, re, html
 import loty as LT
 
 e = html.escape
@@ -74,6 +75,95 @@ def smooth_path(pts, closed, P):
         d += 'C%.1f %.1f %.1f %.1f %.1f %.1f' % (P(c1) + P(c2) + P(p2))
     return d + ('Z' if closed else '')
 
+
+
+
+KLASTERY = False  # контуры, фильтр «Кластер» и строка в карточке; данные в базе остаются
+
+
+def _loops(cells, st):
+    """Контуры множества клеток сетки: обход граничных рёбер против часовой, лишние точки убираем."""
+    nxt = {}
+    for i, j in cells:
+        for (a, b_), (c, d), nb in (((i, j), (i + 1, j), (i, j - 1)), ((i + 1, j), (i + 1, j + 1), (i + 1, j)),
+                                    ((i + 1, j + 1), (i, j + 1), (i, j + 1)), ((i, j + 1), (i, j), (i - 1, j))):
+            if nb not in cells:
+                nxt.setdefault((a, b_), []).append((c, d))
+    loops = []
+    while nxt:
+        v0 = next(iter(nxt))
+        loop, v = [v0], v0
+        while True:
+            outs = nxt[v]
+            w = outs.pop()
+            if not outs:
+                del nxt[v]
+            if w == v0:
+                break
+            loop.append(w)
+            v = w
+            if v not in nxt:
+                break
+        pts = [(x * st, y * st) for x, y in loop]
+        loops.append(_simplify(pts, st * .9))
+    return [l for l in loops if len(l) >= 3]
+
+
+def _simplify(pts, tol):
+    """Дуглас — Пекер для замкнутого контура."""
+    def dp(seg):
+        if len(seg) < 3:
+            return seg
+        (x0, y0), (x1, y1) = seg[0], seg[-1]
+        L = math.hypot(x1 - x0, y1 - y0) or 1e-9
+        dm, im = 0, 0
+        for k in range(1, len(seg) - 1):
+            d = abs((x1 - x0) * (y0 - seg[k][1]) - (x0 - seg[k][0]) * (y1 - y0)) / L
+            if d > dm:
+                dm, im = d, k
+        if dm <= tol:
+            return [seg[0], seg[-1]]
+        return dp(seg[:im + 1])[:-1] + dp(seg[im:])
+    h = len(pts) // 2
+    return dp(pts[:h + 1])[:-1] + dp(pts[h:] + [pts[0]])[:-1]
+
+
+def klastery(root, rows):
+    """Кластеры районов из курса «Элитная Москва». Территории не пересекаются: каждая точка карты в радиусе 350 м
+    от домов и ориентиров кластеров отходит ближайшему кластеру, между соседями — полоса 60 м.
+    Названия авторские, границы условные."""
+    p = root / 'data/klastery.csv'
+    if not p.exists():
+        return {}, []
+    K = {r['klaster_id']: r for r in csv.DictReader(p.open(encoding='utf-8-sig'), delimiter=';')}
+    pts = {}
+    for r in rows:
+        if r.get('klaster') in K:
+            pts.setdefault(r['klaster'], []).append(proj(num(r['lat']), num(r['lon'])))
+    for k, r in K.items():
+        for o in filter(None, (r.get('orientiry') or '').split('|')):
+            ll = o.split(' ')[0].split(',')
+            if k in pts:
+                pts[k].append(proj(float(ll[0]), float(ll[1])))
+    R, GAP, st = .35, .06, .02
+    near = {}  # клетка → {кластер: расстояние до ближайшей его точки}
+    n = int(R / st) + 1
+    for k, P_ in pts.items():
+        for x, y in P_:
+            ci, cj = int(math.floor(x / st)), int(math.floor(y / st))
+            for i in range(ci - n, ci + n + 1):
+                for j in range(cj - n, cj + n + 1):
+                    d = math.hypot((i + .5) * st - x, (j + .5) * st - y)
+                    if d <= R:
+                        m = near.setdefault((i, j), {})
+                        if d < m.get(k, 9):
+                            m[k] = d
+    own = {}
+    for c, m in near.items():
+        best = sorted(m.items(), key=lambda t: t[1])
+        if len(best) == 1 or best[0][1] + GAP < best[1][1]:
+            own.setdefault(best[0][0], set()).add(c)
+    return K, [(k, _loops(own[k], st)) for k in K if k in own]
 
 def year_bucket(r):
     dl, st = r['deadline'], r['stage']
@@ -183,6 +273,21 @@ def build(root):
     svg.append(f'<rect x="{IN_X}" y="{IN_Y}" width="{IN_W}" height="{IN_H}" class="k-inset"/>')
     svg.append(f'<text x="{IN_X}" y="{IN_Y - 10}" class="k-lbl">РУБЛЁВКА · СКОЛКОВО</text>')
 
+    # кластеры спрятаны до карты кластеров от автора курса: включить — KLASTERY = True
+    KL, shapes = klastery(root, [r for _, r in items]) if KLASTERY else ({}, [])
+    kl_svg = []
+    for k, loops in shapes:
+        hp = [P(q) for l in loops for q in l]
+        bb = (min(q[0] for q in hp), min(q[1] for q in hp), max(q[0] for q in hp), max(q[1] for q in hp))
+        d_ = ''.join(smooth_path(l, True, P) for l in loops)
+        kl_svg.append(f'<path d="{d_}" class="k-kl" data-l="{k}" data-bb="{bb[0]:.1f} {bb[1]:.1f} {bb[2] - bb[0]:.1f} {bb[3] - bb[1]:.1f}"/>')
+        big = max(loops, key=len)
+        # подпись — в центре своей территории, чтобы не залезать на соседей
+        cx = sum(P(q)[0] for q in big) / len(big)
+        cy = sum(P(q)[1] for q in big) / len(big)
+        kl_svg.append(f'<text x="{cx:.1f}" y="{cy:.1f}" class="k-kll" data-l="{k}" text-anchor="middle" dominant-baseline="middle">{e(KL[k]["nazvanie"])}</text>')
+    svg.append('<g id="kkl">' + ''.join(kl_svg) + '</g>')
+
     dots, data, lis = [], [], []
     for i, (slug, r) in enumerate(items):
         ck = CKEY[r['class_final']]
@@ -193,7 +298,8 @@ def build(root):
         name = r['name'].split(' (')[0]
         ok_, rk = slugify(r['okrug']), ('' if r['okrug'] in OUT else slugify(r['district']))
         mk = RK.get(r.get('rynok', ''), 'prim')
-        geo_attr = f' data-o="{ok_}" data-r="{rk}" data-m="{mk}"'
+        lk = r.get('klaster', '') if r.get('klaster', '') in KL else ''
+        geo_attr = f' data-o="{ok_}" data-r="{rk}" data-m="{mk}" data-l="{lk}"'
         if r['okrug'] not in OUT:
             bdots.append((list(R_DOT).index(ck), f'<circle cx="{p[0]:.1f}" cy="{p[1]:.1f}" r="{R_DOT[ck] * .38:.2f}" class="bd {ck}"/>'))
         dots.append(f'<circle cx="{p[0]:.1f}" cy="{p[1]:.1f}" r="{R_DOT[ck]}" class="kd {ck}" data-i="{i}" data-c="{ck}" data-y="{yb}" data-f="{form}"{geo_attr}><title>{e(name)}</title></circle>')
@@ -229,6 +335,9 @@ def build(root):
                  ('Кто продаёт', dict(RK_T)[RK.get(r.get('rynok', ''), 'prim')].lower()),
                  ('Квартир', fmt(u) if u else 'нет данных'),
                  ('Машиномест на квартиру', fmt(pk / u, 2) if (u and pk) else 'нет данных')]
+        if lk:
+            kr_ = KL[lk]
+            facts.insert(1, ('Кластер', f'{kr_["nazvanie"]} · {kr_["rayon"].lower() if kr_["rayon"] == "За Садовым" else kr_["rayon"]} — {kr_["harakter"]}'))
         if r.get('school_min'):
             t = f'ближайшая школа — {r["school_min"]} мин'
             t += f', с отметкой NOTA — {r["marked_min"]} мин' if r.get('marked_min') else ', с отметкой NOTA в получасе нет'
@@ -249,6 +358,7 @@ def build(root):
             f'<div class="hs-body" hidden>{pic}<div class="hs-main"><p class="hs-sum">{e(summ)}</p><dl class="hs-facts">{fact_html}</dl></div>'
             f'<div class="hs-side"></div></div></article>')
         rec = {'n': name, 'd': dev, 'c': CLS[r['class_final']], 'k': ck, 'ds': r['district'],
+               **({'kl': KL[lk]['nazvanie']} if lk else {}),
                'p': round(pf / 1000) if pf else None, 'w': when_text(r), 's': slug}
         if img: rec['img'] = 1
         if slug in doma_slug: rec['dm'] = doma_slug[slug]
@@ -284,8 +394,23 @@ def build(root):
         f'<div class="chips kr" data-for="{slugify(o)}" hidden>' + chip('r', 'all', 'Все районы', True, f' data-o="{slugify(o)}"')
         + ''.join(chip('r', slugify(d), f'{d} · {n}', False, f' data-o="{slugify(o)}"') for d, n in sorted(dist[o].items()))
         + '</div>' for o in OKR if o in dist)
+    lc = {}
+    for _, r in items:
+        if r.get('klaster') in KL:
+            lc[r['klaster']] = lc.get(r['klaster'], 0) + 1
+    kl_chips, last = '', None
+    for k, r in KL.items():
+        if not lc.get(k):
+            continue
+        if r['rayon'] != last:
+            kl_chips += f'<span class="kl-g">{e(r["rayon"])}</span>'
+            last = r['rayon']
+        kl_chips += chip('l', k, f'{r["nazvanie"]} · {lc[k]}')
+    kl_filter = ('<div class="chipgrp kl-grp"><span class="lb">Кластер <em>центр, по курсу «Элитная Москва»</em></span><div class="chips">'
+                 + chip('l', 'all', 'Все кластеры', True) + kl_chips + '</div>'
+                 + '<p class="kl-note">Названия авторские, границы условные: контур обводит дома кластера и его ориентиры. Добавляем кластеры по мере разборов районов.</p></div>') if lc else ''
     geo_filters = ('<div class="chipgrp"><span class="lb">Округ и район</span><div class="chips">' + chip('o', 'all', 'Вся карта', True)
-                   + ''.join(chip('o', slugify(o), f'{o} · {oc[o]}') for o in OKR if oc[o]) + '</div>' + rgrp + '</div>')
+                   + ''.join(chip('o', slugify(o), f'{o} · {oc[o]}') for o in OKR if oc[o]) + '</div>' + rgrp + '</div>' + kl_filter)
 
     filters = ('<div class="chipgrp"><span class="lb">Класс дома <em>можно несколько</em></span><div class="chips">' + chip('c', 'all', 'Все классы', True)
                + ''.join(chip('c', k, f'{t} · {counts[k]}') for k, t in [('biz', 'Бизнес'), ('prem', 'Премиум'), ('elit', 'Элит'), ('dlx', 'Делюкс')])

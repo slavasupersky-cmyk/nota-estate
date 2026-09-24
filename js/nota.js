@@ -223,7 +223,7 @@
  var data=JSON.parse(document.getElementById('kdata').textContent);
  var dots=[].slice.call(map.querySelectorAll('.kd')), items=[].slice.call(document.querySelectorAll('.hs'));
  var chips=[].slice.call(document.querySelectorAll('.kmap-l .chip')), cnt=document.getElementById('kcnt'), kt=document.getElementById('kt');
- var G=['c','y','f','o','r','m'], ALL={c:'all',y:'all',f:'all',o:'all',r:'all',m:'all'}, st=Object.assign({},ALL);
+ var G=['c','y','f','o','r','m','l'], ALL={c:'all',y:'all',f:'all',o:'all',r:'all',m:'all',l:'all'}, st=Object.assign({},ALL);
  var SZ={biz:[45,70,100],prem:[60,90,130],elit:[90,140,200],dlx:[120,180,250]};
  var MULTI={c:1,y:1};
  function pl(n,a,b,c){var x=n%10,y=n%100;return x===1&&y!==11?a:(x>=2&&x<=4&&(y<10||y>20)?b:c)}
@@ -310,8 +310,8 @@
   kq.addEventListener('blur',function(){setTimeout(sgClose,120)});
  }
 
- chips.forEach(function(b){b.addEventListener('click',function(){var g=b.dataset.g;press(g,b.dataset.k);if(g=='o')press('r','all');lim=LIM;apply()})});
- document.querySelectorAll('[data-reset]').forEach(function(b){b.addEventListener('click',function(){st=Object.assign({},ALL);Q='';GS=null;if(kq)kq.value='';chips.forEach(function(x){x.setAttribute('aria-pressed',x.dataset.k=='all'?'true':'false')});lim=LIM;apply()})});
+ chips.forEach(function(b){b.addEventListener('click',function(){var g=b.dataset.g;press(g,b.dataset.k);if(g=='o')press('r','all');lim=LIM;apply();if(g=='l'&&window.klFit)klFit(st.l)})});
+ document.querySelectorAll('[data-reset]').forEach(function(b){b.addEventListener('click',function(){st=Object.assign({},ALL);if(window.klFit)klFit('all');Q='';GS=null;if(kq)kq.value='';chips.forEach(function(x){x.setAttribute('aria-pressed',x.dataset.k=='all'?'true':'false')});lim=LIM;apply()})});
  function mln(v){return v.toLocaleString('ru-RU',{minimumFractionDigits:1,maximumFractionDigits:1})}
  function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
  function side(it){
@@ -346,7 +346,7 @@
  function showT(d,pinned){
   var r=data[+d.dataset.i], box=map.getBoundingClientRect(), p=d.getBoundingClientRect();
   kt.innerHTML=(pinned?'<button class="kt-x" type="button" aria-label="Закрыть">×</button>':'')+(r.img?'<div class="kt-img" style="background-image:url(img/doma/'+r.s+'.jpg)"></div>':'')+
-   '<div class="kt-b"><b>'+esc(r.n)+'</b><span class="m">'+esc(r.d)+'</span><span class="m">'+esc(r.c)+' · '+esc(r.ds)+'</span><span class="kt-pr">'+(r.p?'от '+r.p.toLocaleString('ru-RU')+' тыс ₽ за м²':'цена по запросу')+'</span><span class="m">Ключи: '+esc(r.w)+'</span>'+
+   '<div class="kt-b"><b>'+esc(r.n)+'</b><span class="m">'+esc(r.d)+'</span><span class="m">'+esc(r.c)+' · '+esc(r.ds)+(r.kl?' · '+esc(r.kl):'')+'</span><span class="kt-pr">'+(r.p?'от '+r.p.toLocaleString('ru-RU')+' тыс ₽ за м²':'цена по запросу')+'</span><span class="m">Ключи: '+esc(r.w)+'</span>'+
    (pinned?'<button class="btn" type="button" data-open="'+d.dataset.i+'">Открыть карточку</button>':'')+'</div>';
   kt.dataset.i=d.dataset.i; kt.hidden=false;
   var x=p.left-box.left+p.width/2+14, y=p.top-box.top-10, w=kt.offsetWidth, hgt=kt.offsetHeight;
@@ -367,13 +367,27 @@
  var svg=map.querySelector('svg'), vb0=svg.getAttribute('viewBox').split(/[\s,]+/).map(Number), vb=vb0.slice(), MAXZ=8, moved=false;
  dots.forEach(function(d){d.dataset.r0=d.getAttribute('r')});
  function zoomed(){return vb[2]<vb0[2]-0.5}
+ /* красное кольцо вокруг дома, открытого по ссылке */
+ var ring=null;
+ function ringAt(d){if(!ring){ring=document.createElementNS('http://www.w3.org/2000/svg','circle');ring.setAttribute('class','kring')}
+  ring._d=d; ring.setAttribute('cx',d.getAttribute('cx')); ring.setAttribute('cy',d.getAttribute('cy')); d.parentNode.insertBefore(ring,d)}
  function setVB(){
   vb[2]=Math.min(vb0[2],Math.max(vb0[2]/MAXZ,vb[2])); vb[3]=vb[2]*vb0[3]/vb0[2];
   vb[0]=Math.min(vb0[0]+vb0[2]-vb[2],Math.max(vb0[0],vb[0])); vb[1]=Math.min(vb0[1]+vb0[3]-vb[3],Math.max(vb0[1],vb[1]));
   svg.setAttribute('viewBox',vb.map(function(x){return x.toFixed(2)}).join(' '));
   var z=vb0[2]/vb[2]; dots.forEach(function(d){d.setAttribute('r',(+d.dataset.r0/Math.pow(z,0.75)).toFixed(2))});
-  map.classList.toggle('zoomed',zoomed()); if(!kt.hidden) hideT();
+  if(ring&&ring._d) ring.setAttribute('r',(+ring._d.getAttribute('r')*2.6).toFixed(2));
+  map.classList.toggle('zoomed',zoomed()); if(typeof klText==='function')klText(); if(!kt.hidden) hideT();
  }
+ /* кластеры: подписи держат экранный размер и видны при приближении; выбор кластера — подсветка контура и приближение к нему */
+ var kkl=svg.querySelector('#kkl'), kls=kkl?[].slice.call(kkl.querySelectorAll('.k-kl')):[];
+ function klText(){if(!kkl)return;var w=svg.getBoundingClientRect().width||1;kkl.style.fontSize=(11*vb[2]/w).toFixed(3)+'px';map.classList.toggle('lz',vb0[2]/vb[2]>=2.5)}
+ window.klFit=function(k){kls.forEach(function(p){p.classList.toggle('on',p.dataset.l===k)});
+  [].forEach.call(kkl?kkl.querySelectorAll('.k-kll'):[],function(t){t.classList.toggle('on',t.dataset.l===k)});
+  if(k==='all'){vb=vb0.slice();setVB();return}
+  var p=kls.filter(function(x){return x.dataset.l===k})[0]; if(!p)return; var b=p.dataset.bb.split(' ').map(Number);
+  var w=Math.max(b[2],b[3]*vb0[2]/vb0[3])*2.2; w=Math.min(vb0[2],Math.max(vb0[2]/MAXZ,w)); var h=w*vb0[3]/vb0[2];
+  vb=[b[0]+b[2]/2-w/2,b[1]+b[3]/2-h/2,w,h]; setVB()};
  function toUser(cx,cy){var m=svg.getScreenCTM();return {x:(cx-m.e)/m.a,y:(cy-m.f)/m.d}}
  function zoomAt(f,cx,cy){var r=svg.getBoundingClientRect();if(cx==null){cx=r.left+r.width/2;cy=r.top+r.height/2}
   var p=toUser(cx,cy),fx=(p.x-vb[0])/vb[2],fy=(p.y-vb[1])/vb[3],w=Math.min(vb0[2],Math.max(vb0[2]/MAXZ,vb[2]/f)),h=w*vb0[3]/vb0[2];
@@ -413,7 +427,15 @@
  if(md){md.addEventListener('click',function(ev){if(ev.target.hasAttribute('data-close')){md.hidden=true;document.body.style.overflow=''}});
   document.addEventListener('keydown',function(ev){if(ev.key==='Escape'&&!md.hidden){md.hidden=true;document.body.style.overflow=''}})}
  /* дом по ссылке karta.html#h-<slug>: открыть, показать даже за пределами первых 20, прокрутить к нему */
- function fromHash(){var it0=location.hash.indexOf('#h-')===0&&document.getElementById(location.hash.slice(1)); apply(); if(it0&&it0.classList.contains('hs')){openItem(it0,false); apply(); it0.scrollIntoView({block:'start'})}}
+ function fromHash(){var it0=location.hash.indexOf('#h-')===0&&document.getElementById(location.hash.slice(1)); apply(); if(!(it0&&it0.classList.contains('hs'))) return;
+  openItem(it0,false); apply();
+  /* показать дом на карте: приблизить к точке, подсветить, открыть подпись; карточка раскрыта в списке ниже */
+  var d=dots[+it0.dataset.i]; if(!d){it0.scrollIntoView({block:'start'});return}
+  var cx=+d.getAttribute('cx'), cy=+d.getAttribute('cy'), w=vb0[2]/(map.offsetWidth>600?4:2.5), hh=w*vb0[3]/vb0[2]; vb=[cx-w/2,cy-hh/2,w,hh];
+  d.parentNode.appendChild(d); ringAt(d); setVB();
+  dots.forEach(function(x){x.classList.toggle('sel',x===d)});
+  /* браузер сам прыгает к якорю в списке — возвращаемся к карте после него */
+  setTimeout(function(){map.scrollIntoView({block:'center'}); if(map.offsetWidth>600) setTimeout(function(){showT(d,true)},150)},90)}
  window.addEventListener('hashchange',fromHash);
  fromHash();
 })();
@@ -504,6 +526,20 @@
  });
  function fromHash(){var t=location.hash&&document.getElementById(location.hash.slice(1)); if(t&&t.classList.contains('cs')&&!t.classList.contains('open')){var b=t.querySelector('.cs-more'); if(b) b.click(); t.scrollIntoView({block:'start'})}}
  window.addEventListener('hashchange',fromHash); fromHash();
+})();
+
+/* ---- заявка по дому прямо со страницы (рейтинги): кнопка [data-lead] открывает окно #lead, в форму уходит откуда заявка ---- */
+(function(){
+ var md=document.getElementById('lead'); if(!md) return;
+ var h=document.getElementById('lead-h'), src=md.querySelector('.lead-src'), fs=md.querySelector('input[name=source]'), fh=md.querySelector('input[name=house]');
+ function close(){md.hidden=true;document.body.style.overflow=''}
+ document.addEventListener('click',function(ev){var b=ev.target.closest&&ev.target.closest('[data-lead]'); if(!b) return;
+  var house=b.getAttribute('data-lead'), from=md.getAttribute('data-src')||document.title;
+  h.textContent=house; fh.value=house; fs.value=from+' · '+house+' · '+location.pathname;
+  src.textContent='Заявка со страницы: '+from+' → '+house;
+  md.hidden=false; document.body.style.overflow='hidden'; var i=md.querySelector('input[name=name]'); if(i) setTimeout(function(){i.focus()},50)});
+ md.addEventListener('click',function(ev){if(ev.target.hasAttribute('data-close')) close()});
+ document.addEventListener('keydown',function(ev){if(ev.key==='Escape'&&!md.hidden) close()});
 })();
 
 /* ---- формы: «Отправить» доступна только с галочкой согласия на обработку данных ---- */
