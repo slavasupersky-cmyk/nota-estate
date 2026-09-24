@@ -230,8 +230,8 @@
  function test(el,t){return G.every(function(g){var v=t[g];if(v=='all')return true;var d=el.dataset[g]||'';if(MULTI[g])return v.indexOf(d)>-1;return g=='f'?(' '+d+' ').indexOf(' '+v+' ')>-1:d==v})}
  /* поиск по названию, застройщику и адресу: точки карты берут строку поиска у своего дома в списке */
  var byI={}; items.forEach(function(it){byI[it.dataset.i]=it});
- var Q='', kq=document.getElementById('kq');
- function qok(el){if(!Q)return true;var it=byI[el.dataset.i];return !!it&&(it.dataset.q||'').indexOf(Q)>-1}
+ var Q='', GS=null, kq=document.getElementById('kq');
+ function qok(el){if(GS)return !!GS[el.dataset.i];if(!Q)return true;var it=byI[el.dataset.i];return !!it&&(it.dataset.q||'').indexOf(Q)>-1}
  function ok(el){return test(el,st)&&qok(el)}
  function okExcept(el,g,k){var t=Object.assign({},st);t[g]=(MULTI[g]&&k!=='all')?[k]:k;if(g=='o')t.r='all';return test(el,t)&&qok(el)}
  function rows(){[].slice.call(document.querySelectorAll('.kmap-l .kr')).forEach(function(r){r.hidden=r.dataset.for!==st.o})}
@@ -243,7 +243,7 @@
   gc.forEach(function(x){x.setAttribute('aria-pressed',x.dataset.k==k&&(g!='r'||x.dataset.o==st.o||k=='all')?'true':'false')});st[g]=k}
  /* список — порциями по LIM, чтобы на телефоне страница не уходила в бесконечность */
  var LIM=20, lim=LIM, more=document.getElementById('kmore');
- function apply(){var n=0;rows();facets();fcount();dots.forEach(function(d){d.classList.toggle('off',!ok(d))});
+ function apply(){var n=0;rows();map.classList.toggle('kq-on',!!(GS||Q));facets();fcount();dots.forEach(function(d){d.classList.toggle('off',!ok(d))});
   items.forEach(function(it){var on=ok(it);if(on)n++;it.hidden=!(on&&(n<=lim||it.classList.contains('open')))});
   cnt.textContent=(n===items.length?'Все '+n+' '+pl(n,'дом','дома','домов'):'Найдено '+n+' из '+items.length)+(n>lim?' · показаны первые '+lim:'');
   if(more){var left=n-lim;more.hidden=left<=0;more.textContent='Показать ещё '+Math.min(LIM,left)+' · осталось '+left}
@@ -253,34 +253,49 @@
  var kft=document.querySelector('.kf-t'), kml=document.querySelector('.kmap-l');
  if(kft) kft.addEventListener('click',function(){var o=kml.classList.toggle('fopen');kft.setAttribute('aria-expanded',o?'true':'false')});
  function fcount(){if(!kft)return;var n=G.filter(function(g){return st[g]!=='all'&&g!=='r'}).length;kft.querySelector('.kf-n').textContent=n?' · выбрано '+n:''}
- if(kq) kq.addEventListener('input',function(){Q=kq.value.trim().toLowerCase().replace(/ё/g,'е');lim=LIM;apply()});
- /* подсказки под «Найти дом»: начал писать — видишь дома, ткнул — открылась карточка */
+ if(kq) kq.addEventListener('input',function(){GS=null;Q=kq.value.trim().toLowerCase().replace(/ё/g,'е');lim=LIM;apply()});
+ /* подсказки под «Найти дом»: застройщик или район — оставить на карте и в списке только его дома; дом — открыть карточку */
  if(kq){
   var lb=kq.closest('label'), kw=document.createElement('div'); kw.className='kq-w'; lb.parentNode.insertBefore(kw,lb); kw.appendChild(lb);
   var sg=document.createElement('ul'); sg.className='kq-s'; sg.id='kq-s'; sg.setAttribute('role','listbox'); sg.hidden=true; kw.appendChild(sg);
   kq.setAttribute('role','combobox'); kq.setAttribute('aria-controls','kq-s'); kq.setAttribute('aria-autocomplete','list'); kq.setAttribute('aria-expanded','false');
   var sgI=-1, sgL=[];
   function nrm(t){return String(t||'').toLowerCase().replace(/ё/g,'е')}
+  /* застройщики: «MR Group (MR Private)» → MR Group; «Level Group / MR Group» → оба; «проект передан от …» не считаем */
+  var DEV={}, DS={};
+  items.forEach(function(it){var i=it.dataset.i, r=data[+i];
+   String(r.d||'').replace(/\([^)]*\)/g,'').split(/\s*[\/;]\s*/).forEach(function(n){n=n.trim().replace(/[,.]$/,'');if(!n||/не указан|^(ранее|проект|бывш|реализ)/i.test(n))return;var k=nrm(n);(DEV[k]=DEV[k]||{t:n,s:{},n:0});if(!DEV[k].s[i]){DEV[k].s[i]=1;DEV[k].n++}});
+   if(r.ds){var k=nrm(r.ds);(DS[k]=DS[k]||{t:r.ds,s:{},n:0});DS[k].s[i]=1;DS[k].n++}});
+  function wstart(t,q){return (' '+nrm(t)).replace(/[«»"(),.\/-]/g,' ').indexOf(' '+q)>-1}
   function hl(t,q){var n=nrm(t),i=n.indexOf(q);return i<0?esc(t):esc(t.slice(0,i))+'<mark>'+esc(t.slice(i,i+q.length))+'</mark>'+esc(t.slice(i+q.length))}
   function sgClose(){sg.hidden=true;sgI=-1;kq.setAttribute('aria-expanded','false')}
-  function sgMark(){[].forEach.call(sg.children,function(li,j){li.classList.toggle('on',j===sgI);li.setAttribute('aria-selected',j===sgI?'true':'false')})}
+  function sgMark(){[].forEach.call(sg.querySelectorAll('li[data-j]'),function(li){var on=+li.dataset.j===sgI;li.classList.toggle('on',on);li.setAttribute('aria-selected',on?'true':'false');if(on)li.scrollIntoView({block:'nearest'})})}
+  function groups(src,q,kind,max){var L=[];for(var k in src){if(k.indexOf(q)===0||wstart(src[k].t,q))L.push({g:kind,t:src[k].t,s:src[k].s,n:src[k].n,sc:k.indexOf(q)===0?0:1})}
+   L.sort(function(a,b){return a.sc-b.sc||b.n-a.n});return L.slice(0,max)}
   function sgFill(){
+   if(GS){sgClose();return}
    var q=nrm(kq.value.trim()); if(q.length<2){sgClose();return}
-   var L=[];
+   var G=groups(DEV,q,'dev',3).concat(groups(DS,q,'ds',2)), L=[];
    items.forEach(function(it){var r=data[+it.dataset.i], n=nrm(r.n), sc=-1;
-    if(n.indexOf(q)===0)sc=0; else if((' '+n).indexOf(' '+q)>-1||n.indexOf('«'+q)>-1)sc=1; else if(n.indexOf(q)>-1)sc=2; else if((' '+(it.dataset.q||'')).replace(/[«»"(),.\/-]/g,' ').indexOf(' '+q)>-1)sc=3; else if((it.dataset.q||'').indexOf(q)>-1)sc=4;
+    if(n.indexOf(q)===0)sc=0; else if(wstart(r.n,q))sc=1; else if(n.indexOf(q)>-1)sc=2; else if(wstart(it.dataset.q,q))sc=3; else if((it.dataset.q||'').indexOf(q)>-1)sc=4;
     if(sc>-1)L.push({it:it,r:r,sc:sc})});
    L.sort(function(a,b){return a.sc-b.sc||a.r.n.localeCompare(b.r.n,'ru')});
-   sgL=L.slice(0,8); sgI=-1;
+   var H=L.slice(0,G.length?6:8); sgL=G.concat(H); sgI=-1;
    if(!sgL.length){sg.innerHTML='<li class="kq-no">Такого дома в базе нет — попробуйте застройщика или улицу</li>';sg.hidden=false;return}
-   sg.innerHTML=sgL.map(function(x,j){var r=x.r, sub;
+   var h='', j=0;
+   if(G.length){h+='<li class="kq-h">Показать на карте все дома</li>';G.forEach(function(x){
+    h+='<li class="kq-g" role="option" data-j="'+(j++)+'"><b>'+hl(x.t,q)+'</b><small>'+(x.g=='dev'?'застройщик':'район')+' · '+x.n+' '+pl(x.n,'дом','дома','домов')+'</small></li>'})}
+   if(H.length){if(G.length)h+='<li class="kq-h">Дома</li>';H.forEach(function(x){var r=x.r, sub;
     if(x.sc>=3){var ad=x.it.querySelector('.hs-facts dd'), at=ad?ad.textContent:'';
      sub=nrm(at).indexOf(q)>-1?hl(at,q):nrm(r.d).indexOf(q)>-1?hl(r.d,q)+' · '+esc(r.ds):hl(r.ds,q)+' · '+esc(r.d)}
     else sub=esc(r.ds)+' · '+esc(r.d);
-    return '<li role="option" data-j="'+j+'"><b>'+hl(r.n,q)+'</b><small>'+esc(r.c)+' · '+sub+'</small></li>'}).join('')+(L.length>8?'<li class="kq-no">Ещё '+(L.length-8)+' — в списке ниже</li>':'');
-   sg.hidden=false; kq.setAttribute('aria-expanded','true');
+    h+='<li role="option" data-j="'+(j++)+'"><b>'+hl(r.n,q)+'</b><small>'+esc(r.c)+' · '+sub+'</small></li>'})}
+   if(L.length>H.length)h+='<li class="kq-no">Ещё '+(L.length-H.length)+' — в списке ниже</li>';
+   sg.innerHTML=h; sg.hidden=false; kq.setAttribute('aria-expanded','true');
   }
-  function sgGo(j){var x=sgL[j]; if(!x)return; sgClose(); kq.value=''; Q=''; kq.blur();
+  function sgGo(j){var x=sgL[j]; if(!x)return; sgClose(); kq.blur();
+   if(x.g){GS=x.s; Q=''; kq.value=x.t; lim=LIM; apply(); return}
+   kq.value=''; Q=''; GS=null;
    var h='#h-'+x.r.s; if(location.hash===h) fromHash(); else location.hash=h}
   kq.addEventListener('input',sgFill);
   kq.addEventListener('focus',sgFill);
@@ -288,14 +303,15 @@
    if(sg.hidden||!sgL.length){return}
    if(ev.key==='ArrowDown'){sgI=(sgI+1)%sgL.length;sgMark();ev.preventDefault()}
    else if(ev.key==='ArrowUp'){sgI=(sgI-1+sgL.length)%sgL.length;sgMark();ev.preventDefault()}
-   else if(ev.key==='Enter'){sgGo(sgI<0?0:sgI);ev.preventDefault()}
+   else if(ev.key==='Enter'){ev.preventDefault(); if(sgI>-1||sgL[0].g) sgGo(sgI<0?0:sgI); else sgClose()}
    else if(ev.key==='Escape'){sgClose()}});
   sg.addEventListener('mousedown',function(ev){ev.preventDefault()});
   sg.addEventListener('click',function(ev){var li=ev.target.closest('li[data-j]'); if(li) sgGo(+li.dataset.j)});
   kq.addEventListener('blur',function(){setTimeout(sgClose,120)});
  }
+
  chips.forEach(function(b){b.addEventListener('click',function(){var g=b.dataset.g;press(g,b.dataset.k);if(g=='o')press('r','all');lim=LIM;apply()})});
- document.querySelectorAll('[data-reset]').forEach(function(b){b.addEventListener('click',function(){st=Object.assign({},ALL);Q='';if(kq)kq.value='';chips.forEach(function(x){x.setAttribute('aria-pressed',x.dataset.k=='all'?'true':'false')});lim=LIM;apply()})});
+ document.querySelectorAll('[data-reset]').forEach(function(b){b.addEventListener('click',function(){st=Object.assign({},ALL);Q='';GS=null;if(kq)kq.value='';chips.forEach(function(x){x.setAttribute('aria-pressed',x.dataset.k=='all'?'true':'false')});lim=LIM;apply()})});
  function mln(v){return v.toLocaleString('ru-RU',{minimumFractionDigits:1,maximumFractionDigits:1})}
  function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
  function side(it){

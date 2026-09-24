@@ -1209,3 +1209,7 @@ section .two.rz-h,section.tight .two.rz-h:has(h2){align-items:start}
 .mt-g h3 span{font-size:.62em;letter-spacing:0;margin-left:8px;white-space:nowrap}
 .mt-leg{margin-top:14px}
 .mt-leg b{font-weight:600;color:var(--ink)}
+.kq-s .kq-h{cursor:default;padding:8px 14px 2px;font-size:10.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.kq-s .kq-g b{font-weight:600}
+.kq-s .kq-g+.kq-h{border-top:1px solid var(--line);margin-top:4px;padding-top:10px}
+#kmap.kq-on .kd.off{opacity:0}
