@@ -407,17 +407,22 @@ def penthausy(root):
         srcs = [u for u in re.split(r'\s*\|\s*', r['source']) if u.startswith('http')]
         src_html = ', '.join(f'<a href="{e(u)}" rel="nofollow noopener">{e(host(u))}</a>' for u in srcs)
         dl_html = ''.join(f'<dt>{k}</dt><dd>{e(v)}</dd>' for k, v in dl) + (f'<dt>Источники</dt><dd>{src_html} · {e(r["checked"])}</dd>' if src_html else '')
-        link = ''
-        if r['slug'] and r['slug'] in doma:
-            h = doma[r['slug']]
-            card = root / 'doma' / r['slug'] / 'index.html'
-            href = f'{R}doma/{r["slug"]}/' if card.exists() else f'{R}karta.html#h-{r["slug"]}'
-            link = f'<div class="ri-near"><p class="k">Дом в нашей базе</p><p style="margin:0"><a href="{href}">{e(h["name"].split(" (")[0])}</a> — {e(h["class"].replace("элитный", "элит"))}, {e(h["stage"])}{", срок — " + e(h["deadline"]) if h["deadline"] and h["deadline"] != "сдан" else ""}</p></div>'
+        link, pic, btns = '', '', ''
+        sl = r['slug']
+        if sl and sl in doma:
+            h = doma[sl]
+            card = root / 'doma' / sl / 'index.html'
+            srok = (', срок — ' + h['deadline']) if h['deadline'] and h['deadline'] != 'сдан' else ''
+            link = f'<p class="ri-home"><span class="k">Дом в нашей базе</span>{e(h["name"].split(" (")[0])} — {e(h["class"].replace("элитный", "элит"))}, {e(h["stage"])}{e(srok)}</p>'
+            if (root / 'img' / 'doma' / f'{sl}.jpg').exists():
+                pic = f'<div class="ri-img"><img src="{R}img/doma/{sl}.jpg" alt="{e(name)}" loading="lazy"></div>'
+            btns = f'<a class="btn btn-l" href="{R}karta.html#h-{sl}">Дом на карте</a>' + (f' <a class="btn btn-l" href="{R}doma/{sl}/">Паспорт дома</a>' if card.exists() else '')
+        btns += f' <button class="btn" type="button" data-lead="Пентхаус · {e(name)}">Получить предложение</button>'
         q = ' '.join([r['zhk'], r['developer'], r['district'], r['features']]).lower().replace('ё', 'е')
         st_tag = f'<span class="tag look">{status}</span>' if status else ''
         items.append(f'''<article class="ri" id="p-{r["pent_id"]}" data-d="{x["dk"]}" data-b="{band(x)}" data-s="{"sale" if not status else "other"}" data-q="{e(q)}">
  <button class="ri-row" type="button" aria-expanded="false"><span class="ri-n">{i}</span><span class="ri-t"><b>{e(name)}</b><span>{e(sub)}</span></span><span class="ri-c">{st_tag}</span><span class="ri-v">{pm}<small>за м²</small></span></button>
- <div class="ri-body" hidden><div class="ri-main"><dl>{dl_html}</dl></div>{link}</div>
+ <div class="ri-body" hidden><div class="ri-main"><dl>{dl_html}</dl>{link}</div><div class="ri-side">{pic}</div><div class="btns ri-btns">{btns}</div></div>
 </article>''')
     n = len(data)
     desc = (f'{n} пентхаусов в новых домах Москвы: {len(sale)} в продаже, цены от {m2(cheapest["pm"][0] or cheapest["key"])} до {m2(top[0]["key"])} рублей за метр. '
@@ -471,7 +476,7 @@ def penthausy(root):
   <div class="btns"><a class="btn" href="{R}podbor.html">Подобрать пентхаус</a> <a class="btn btn-l" href="{R}karta.html">Дома на карте</a></div>
  </div>
 </div></section>
-'''
+''' + lead_modal('Рейтинг «Пентхаусы Москвы»')
     names = [x['r']['zhk'] for x in data]
     page = HEAD.format(title=f'Пентхаусы Москвы: {n} пентхаусов в новых домах, цены 2026 — NOTA', R=R, desc=e(desc), img='img/18-penthaus.jpg',
                        ld=ld_list('Пентхаусы Москвы', desc, 'reytingi/penthausy-moskvy/', names)) + body + TAIL.format(R=R)
@@ -561,7 +566,7 @@ def park(root):
                if (root / 'img' / 'doma' / f'{s}.jpg').exists() else '')
         btns = (f'<a class="btn btn-l" href="{R}karta.html#h-{s}">Дом на карте</a>'
                 + (f' <a class="btn btn-l" href="{R}doma/{s}/">Паспорт дома</a>' if card.exists() else '')
-                + f' <button class="btn" type="button" data-lead="{e(name)}">Получить актуальную подборку</button>')
+                + f' <button class="btn" type="button" data-lead="{e(name)}">Получить предложение</button>')
         q = ' '.join([h['name'], h['developer'], h['district'], h['address'], h.get('park_name', ''), h.get('water_name', '')]).lower().replace('ё', 'е')
         items.append(f'''<article class="ri" id="d-{s}" data-n="{x["tier"]}" data-c="{HK.get(h["class"], "biz")}" data-o="{okr_key.get(h["okrug"], "other")}" data-m="{m}" data-i="{tg}" data-q="{e(q)}">
  <button class="ri-row" type="button" aria-expanded="false"><span class="ri-n">{i}</span><span class="ri-t"><b>{e(name)}</b><span>{e(sub)}</span></span><span class="ri-c"><span class="tag {tg}">{tl}</span></span><span class="ri-v">{val}<small>{lab}</small></span></button>

@@ -1274,3 +1274,5 @@ section .two.rz-h,section.tight .two.rz-h:has(h2){align-items:start}
 .kring{fill:rgba(255,255,255,.55);stroke:#101317;stroke-width:3;vector-effect:non-scaling-stroke;pointer-events:none}
 @media(max-width:860px){.kring{r:13}}
 .btn:disabled:hover,body.dark .btn:disabled:hover{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.ri-home{margin:14px 0 0;font-size:14px;color:var(--ink-2)}
+.ri-home .k{display:block;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:4px}
