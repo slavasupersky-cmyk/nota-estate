@@ -1213,3 +1213,8 @@ section .two.rz-h,section.tight .two.rz-h:has(h2){align-items:start}
 .kq-s .kq-g b{font-weight:600}
 .kq-s .kq-g+.kq-h{border-top:1px solid var(--line);margin-top:4px;padding-top:10px}
 #kmap.kq-on .kd.off{opacity:0}
+
+/* Строка «Обновлено …» на карте (журнал обновлений базы) */
+.kupd{margin:14px 0 0;font-size:14px;line-height:1.5;color:var(--muted);max-width:760px}
+.kupd b{color:var(--ink);font-weight:600}
+.kupd span{display:block;margin-top:2px}
