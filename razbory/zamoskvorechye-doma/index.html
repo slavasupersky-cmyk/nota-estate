@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<title>Замоскворечье и Якиманка по домам — NOTA</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light only">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../css/nota.css">
+<link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+<meta name="description" content="Замоскворечье и Якиманка по домам: 17 домов продаёт застройщик — с ценой входа по формату, 21 готовый дом живёт только на вторичке, у нескольких цену приходится спрашивать. Сверка по ЦИАН 24 сентября 2026.">
+<meta property="og:title" content="Замоскворечье и Якиманка по домам — NOTA">
+<meta property="og:image" content="../../img/zamoskvorechye/zolotoy.jpg">
+<style>
+.hd-card{display:grid;grid-template-columns:minmax(0,.44fr) minmax(0,.56fr);gap:clamp(22px,3.4vw,52px);padding:clamp(28px,3.4vw,46px) 0;border-top:1px solid var(--line);align-items:start}
+.hd-card:first-of-type{border-top:0}
+.hd-card h3{font-size:clamp(24px,2.6vw,34px);font-weight:800;letter-spacing:-.03em;line-height:1.08;margin-top:10px}
+.hd-k{font-size:12.5px;color:var(--muted);display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center}
+.tag{font-weight:600;font-size:10px;letter-spacing:.16em;text-transform:uppercase;border:1px solid var(--hair);padding:3px 8px;color:var(--ink-2)}
+.tag.red{color:var(--red);border-color:var(--red)}
+.hd-facts{list-style:none;margin:14px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:6px 8px}
+.hd-facts li{font-size:13px;color:var(--ink-2);background:var(--paper-2);padding:4px 9px}
+.hd-t{margin-top:18px}
+.hd-t table{min-width:0}
+.hd-t td:nth-child(2),.hd-t td:nth-child(3){white-space:nowrap}
+.hd-sub{font-size:14px;color:var(--muted);margin-top:12px}
+.hd-note{margin-top:16px;border-left:2px solid var(--red);padding-left:16px;font-size:15.5px;line-height:1.55;color:var(--ink)}
+.hd-note b{font-weight:600}
+.hd-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin-top:34px}
+.hd-cell{background:var(--paper);padding:0 0 26px;display:flex;flex-direction:column}
+.hd-cell .ph{border:none;margin-bottom:18px}
+.hd-cell>*:not(.ph){padding:0 22px}
+.hd-cell h3{margin-top:10px;font-size:21px;font-weight:700}
+.hd-addr{font-size:13.5px;color:var(--muted);margin-top:4px}
+.hd-cell .hd-facts{padding:0 22px}
+.hd-st{margin:16px 22px 0;padding:0 !important;display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line)}
+.hd-st div{background:var(--paper);padding:10px 12px}
+.hd-st dt{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.hd-st dd{margin:4px 0 0;font-size:15px;font-weight:600;letter-spacing:-.01em}
+.hd-st dd span{font-weight:400;color:var(--muted);font-size:13px}
+.hd-cell .hd-note{margin:16px 22px 0;font-size:14.5px}
+.hd-strip{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,2vw,24px);margin-top:30px}
+.hd-strip figure{margin:0}
+.hd-strip figcaption{font-size:13px;color:var(--muted);margin-top:8px}
+.hd-toc{display:flex;flex-wrap:wrap;gap:8px;margin-top:26px}
+.hd-toc a{font-size:13.5px;text-decoration:none;border:1px solid var(--hair);padding:7px 12px;color:var(--ink-2)}
+.hd-toc a:hover{border-color:var(--ink);color:var(--ink)}
+@media(max-width:1000px){.hd-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:760px){.hd-card{grid-template-columns:1fr}.hd-grid{grid-template-columns:1fr}.hd-strip{grid-template-columns:1fr}.hd-cell>*:not(.ph),.hd-cell .hd-facts{padding:0 16px}.hd-st,.hd-cell .hd-note{margin-left:16px;margin-right:16px}}
+.hd-cell.noimg{padding-top:22px}
+.hd-link{margin-top:14px;font-size:14px}
+.hd-link a{color:var(--red);text-decoration:none;border-bottom:1px solid currentColor}
+.hd-grid{background:transparent!important;gap:0!important;border:0!important}
+.hd-cell,.hd-grp{box-shadow:0 0 0 .5px var(--line),inset 0 0 0 .5px var(--line)}
+.hd-grp{grid-column:1/-1;background:var(--paper-2);padding:14px 22px;font-weight:600;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2)}
+</style>
+</head>
+<body class="inner">
+<header class="top solid" id="top-bar">
+ <div class="top-in">
+  <a class="brand" href="../../index.html" aria-label="NOTA — на главную">
+   <svg class="mark" viewBox="12 5 96 103" fill="none" aria-hidden="true">
+    <path d="M 92.18 30.00 A 44 44 0 1 1 69.90 17.13" stroke="currentColor" stroke-width="8"/>
+    <path d="M 60 60 L 89.04 9.70" stroke="#CE2029" stroke-width="8"/>
+   </svg>
+   <span class="rule"></span>
+   <span class="lk">
+    <span class="wm">NOT<i>A</i></span>
+    <span class="brandtag">NB: NOT A CHOICE. THE CHOICE.</span>
+   </span>
+  </a>
+  <nav class="nav">
+      <a href="../../index.html" data-m="home">Главная</a>
+      <a href="../../podbor.html" data-m="podbor">Подбор</a>
+      <a href="../../karta.html" data-m="karta">Карта домов</a>
+      <a href="../../razbory.html" data-m="razbory" class="cur">Разборы</a>
+      <a href="../../reytingi.html" data-m="reytingi">Рейтинги</a>
+      <a href="../../metod.html" data-m="metod">Метод</a>
+      <a class="now" href="tel:+74950000000">+7 495 000-00-00</a>
+     </nav>
+   <button class="burger" id="burger" type="button" aria-label="Меню" aria-expanded="false"><span></span><span></span><span></span></button>
+ </div>
+</header>
+<main>
+<section class="first tight-b"><div class="wrap">
+ <p class="crumbs"><a href="../../razbory.html">Разборы</a> <span>/</span> <a href="../../razbor-zamoskvorechye.html">Замоскворечье и Якиманка</a> <span>/</span> По домам</p>
+ <p class="ttl">Разбор · сверка 24 сентября 2026</p>
+ <h1>Замоскворечье и Якиманка по домам</h1>
+ <p class="lead">На заметку: на правом берегу напротив Кремля одновременно работают три рынка. Семнадцать домов продаёт застройщик — цена видна сразу, по каждому формату. Двадцать один готовый дом живёт только на вторичке — там цену показывает объявление, а не сделка. У нескольких клубных домов витрины почти нет, и цену приходится спрашивать.</p>
+ <div class="phwrap"><div class="ph has" data-ar="21x9"><img src="../../img/zamoskvorechye/zolotoy.jpg" alt="Софийская набережная, квартал «Золотой»" loading="lazy"></div></div>
+</div></section>
+
+<section class="tight"><div class="wrap">
+ <div class="h-stats">
+  <div><b>17</b><span>домов продаёт застройщик — с ценой входа по каждому формату</span></div>
+  <div><b>21</b><span>готовый дом только на вторичке, 211 лотов после склейки дублей</span></div>
+  <div><b>22 млн</b><span>самый низкий вход в новый дом района — студия 26,5 м² у Павелецкой</span></div>
+ </div>
+ <div class="hd-toc"><a href="#zastroyshchik">Продаёт застройщик</a><a href="#vtorichka">Только вторичка</a><a href="#vopros">Цена по запросу</a><a href="#skoro">Скоро</a><a href="#cifry">Что видно по цифрам</a></div>
+ <p class="hint">Цены — цены предложения на ЦИАН 24 сентября 2026, не сделок. Дубли одной квартиры у разных продавцов склеены. «В продаже, медиана» — сколько дней висят объявления дома. Заметки с прогулки по каждому дому добавим после обхода.</p>
+</div></section>
+
+<section id="zastroyshchik"><div class="wrap">
+ <p class="ttl">Первичка</p>
+ <h2>Продаёт застройщик</h2>
+ <p class="lead">Дома, где квартиру можно купить напрямую. Порядок — от набережных напротив Кремля через Кадаши и Ордынку к Якиманке; в конце — дома за Садовым кольцом, у Павелецкой: это уже другой рынок, но их часто продают как Замоскворечье. В таблицах — самый дешёвый лот каждого формата: площадь и цена, с которых начинается вход.</p>
+ <div style="margin-top:20px">
+ <article class="hd-card" id="krasny">
+  <div class="ph has" data-ar="3x2"><img src="../../img/zamoskvorechye/krasny.jpg" alt="Красный Октябрь" loading="lazy"></div>
+  <div>
+   <p class="hd-k"><span class="tag red">Продаёт застройщик</span> Набережные напротив Кремля · Берсеневская наб., 5</p>
+   <h3>Красный Октябрь</h3>
+   <ul class="hd-facts"><li>ГУТА-Девелопмент</li><li>срок III кв. 2026</li><li>до 7 этажей</li><li>29 квартир</li><li>паркинг на 69 мест</li></ul>
+   <div class="tablewrap hd-t"><table>
+    <tr><th>Формат</th><th>Площадь</th><th>Вход</th></tr>
+    <tr><td>1-комн.</td><td>от 103,6 м²</td><td><b>от 309,9 млн ₽</b></td></tr>
+   </table></div>
+   <p class="hd-sub">Метр: 2,99 млн. 1 лот у застройщика.</p>
+   <p class="hd-note"><b>На заметку:</b> Первая очередь квартала на месте кондитерской фабрики. На ЦИАН у застройщика один лот — 103,6 м² за 309,9 млн, почти 3 млн за метр. Остальное продаётся без витрины: цену и планировки спрашивать у застройщика напрямую. Территория у фабрики пешеходная — проверить, как подъехать к паркингу.</p>
+   <p class="hd-link"><a href="../../doma/krasnyy-oktyabr/">Карточка дома в базе NOTA</a></p>
+   <!-- С прогулки: -->
+  </div>
+ </article>
+ <article class="hd-card" id="zolotoy">
+  <div class="ph has" data-ar="3x2"><img src="../../img/zamoskvorechye/zolotoy.jpg" alt="Золотой" loading="lazy"></div>
+  <div>
+   <p class="hd-k"><span class="tag red">Продаёт застройщик</span> Набережные напротив Кремля · Софийская наб., 10–18</p>
+   <h3>Золотой</h3>
+   <ul class="hd-facts"><li>Capital Group</li><li>дом сдан</li><li>новые секции 3–6 этажей и отреставрированные здания</li><li>122 квартиры в новых секциях</li><li>потолки до 3,85 м</li></ul>
+   <div class="tablewrap hd-t"><table>
+    <tr><th>Формат</th><th>Площадь</th><th>Вход</th></tr>
+    <tr><td>2-комн.</td><td>от 87,5 м²</td><td><b>от 280 млн ₽</b></td></tr><tr><td>3-комн.</td><td>от 215,4 м²</td><td><b>от 464 млн ₽</b></td></tr>
+   </table></div>
+   <p class="hd-sub">Метр: 2,15–3,20 млн, медиана 2,45 млн. 7 лотов у застройщика, 6 на вторичке (медиана 2,69 млн).</p>
+   <p class="hd-note"><b>На заметку:</b> Редкий случай, когда у застройщика метр дешевле, чем у собственников: 2,45 млн против 2,69. Но лоты застройщика висят в среднем полтора года — торг возможен с обеими сторонами. Вид на храм Христа Спасителя есть не у всех квартир: смотреть этаж и сторону. Рядом Репинский сквер, летом там фестивали — квартиры на сквер и на угол у набережной шумнее.</p>
+   
+   <!-- С прогулки: -->
+  </div>
+ </article>
+ <article class="hd-card" id="duo">
+  <div class="ph has" data-ar="3x2"><img src="../../img/zamoskvorechye/duo.jpg" alt="DUO" loading="lazy"></div>
+  <div>
+   <p class="hd-k"><span class="tag red">Продаёт застройщик</span> Набережные напротив Кремля · Софийская наб., 34, стр. 3</p>
+   <h3>DUO</h3>
+   <ul class="hd-facts"><li>Hutton</li><li>срок I кв. 2028</li><li>реставрация особняка XIX века в Кокоревском подворье</li><li>49 квартир</li><li>пентхаус с бассейном</li></ul>
+   <div class="tablewrap hd-t"><table>
+    <tr><th>Формат</th><th>Площадь</th><th>Вход</th></tr>
+    <tr><td>1-комн.</td><td>от 49,6 м²</td><td><b>от 137,4 млн ₽</b></td></tr><tr><td>2-комн.</td><td>от 75,6 м²</td><td><b>от 215,9 млн ₽</b></td></tr><tr><td>3-комн.</td><td>от 134,1 м²</td><td><b>от 371,1 млн ₽</b></td></tr><tr><td>4-комн.</td><td>от 237,4 м²</td><td><b>от 678 млн ₽</b></td></tr><tr><td>5 и больше</td><td>от 236,7 м²</td><td><b>от 589,9 млн ₽</b></td></tr>
+   </table></div>
+   <p class="hd-sub">Метр: 2,49–2,96 млн, медиана 2,77 млн. 25 лотов у застройщика.</p>
+   <p class="hd-note"><b>На заметку:</b> Самый широкий выбор на Софийской набережной: 25 лотов у застройщика, от однокомнатной 49,6 м². Метр держится в узком коридоре 2,5–3,0 млн — цена почти не зависит от формата, разницу делает вид. Машиномест меньше, чем квартир, а выезд с острова в час пик — отдельный вопрос: маршрут на машине стоит проверить заранее.</p>
+   <p class="hd-link"><a href="../../doma/duo/">Карточка дома в базе NOTA</a></p>
+   <!-- С прогулки: -->
+  </div>
+ </article>
+ <article class="hd-card" id="r1864">
+  <div class="ph has" data-ar="3x2"><img src="../../img/zamoskvorechye/r1864.jpg" alt="Резиденция 1864" loading="lazy"></div>
+  <div>
+   <p class="hd-k"><span class="tag red">Продаёт застройщик</span> Набережные напротив Кремля · Софийская наб., 36/10</p>
+   <h3>Резиденция 1864</h3>
+   <ul class="hd-facts"><li>Midland Development</li><li>дом сдан</li><li>три корпуса по 7–10 этажей</li><li>68 апартаментов</li><li>паркинг на 246 мест</li></ul>
+   <div class="tablewrap hd-t"><table>
+    <tr><th>Формат</th><th>Площадь</th><th>Вход</th></tr>
+    <tr><td>4-комн.</td><td>от 289,7 м²</td><td><b>от 491,5 млн ₽</b></td></tr><tr><td>5 и больше</td><td>от 302 м²</td><td><b>от 473,8 млн ₽</b></td></tr>
+   </table></div>
+   <p class="hd-sub">Метр: 1,51–3,21 млн, медиана 1,62 млн. 7 лотов у застройщика, 2 на вторичке (медиана 1,74 млн).</p>
+   <p class="hd-note"><b>На заметку:</b> У застройщика остались только большие форматы — от 290 м² и 474 млн. Метр при этом ниже, чем у соседей по набережной: 1,62 млн против 2,77 в DUO. В нашей проверке дом упирается в юридику — с этого вопроса и начинать.</p>
+   <p class="hd-link"><a href="../../doma/rezidentsiya-1864/">Карточка дома в базе NOTA</a></p>
+   <!-- С прогулки: -->
+  </div>
+ </article>
+ <article class="hd-card" id="kosmo">
+  <div class="ph has" data-ar="3x2"><img src="../../img/zamoskvorechye/kosmo.jpg" alt="Космо 4/22" loading="lazy"></div>
+  <div>
+   <p class="hd-k"><span class="tag red">Продаёт застройщик</span> Садовническая и Космодамианская · Космодамианская наб., 4/22</p>
+   <h3>Космо 4/22</h3>
+   <ul class="hd-facts"><li>Галс-Девелопмент</li><li>дом сдан</li><li>два корпуса по 6 этажей — «Река» и «Сад»</li><li>на месте гостиницы «Байкал»</li><li>апартаменты</li></ul>
+   <div class="tablewrap hd-t"><table>
+    <tr><th>Формат</th><th>Площадь</th><th>Вход</th></tr>
+    <tr><td>студия</td><td>от 47,3 м²</td><td><b>от 165,7 млн ₽</b></td></tr><tr><td>1-комн.</td><td>от 47,6 м²</td><td><b>от 82,6 млн ₽</b></td></tr><tr><td>2-комн.</td><td>от 73,6 м²</td><td><b>от 184,1 млн ₽</b></td></tr><tr><td>3-комн.</td><td>от 174,7 м²</td><td><b>от 247,3 млн ₽</b></td></tr>
+   </table></div>
+   <p class="hd-sub">Метр: 1,62–3,50 млн, медиана 1,98 млн. 13 лотов у застройщика, 11 на вторичке (медиана 1,40 млн).</p>
+   <p class="hd-note"><b>На заметку:</b> Разрыв между застройщиком и собственниками — почти треть: 1,98 млн за метр против 1,40. Однокомнатная у застройщика — от 82,6 млн, на вторичке — от 65 млн. Прежде чем выбирать, закрыть вопрос юридики: в нашей проверке это красная линия.</p>
+   <p class="hd-link"><a href="../../doma/kosmo-4-22/">Карточка дома в базе NOTA</a></p>
+   <!-- С прогулки: -->
+  </div>
+ </article>
+ <article class="hd-card" id="sad69">
+  <div class="ph has" data-ar="3x2"><img src="../../img/zamoskvorechye/sad69.jpg" alt="Садовническая, 69" loading="lazy"></div>
+  <div>
+   <p class="hd-k"><span class="tag red">Продаёт застройщик</span> Садовническая и Космодамианская · Садовническая ул., 69</p>
+   <h3>Садовническая, 69</h3>
+   <ul class="hd-facts"><li>Балчуг Девелопмент</li><li>срок II кв. 2028</li><li>четыре корпуса разной высоты</li><li>141 квартира</li><li>потолки до 6,9 м</li></ul>
+   <div class="tablewrap hd-t"><table>
+    <tr><th>Формат</th><th>Площадь</th><th>Вход</th></tr>
+    <tr><td>1-комн.</td><td>от 55,6 м²</td><td><b>от 100,1 млн ₽</b></td></tr><tr><td>2-комн.</td><td>от 100,9 м²</td><td><b>от 181,6 млн ₽</b></td></tr><tr><td>3-комн.</td><td>от 107,7 м²</td><td><b>от 183,9 млн ₽</b></td></tr><tr><td>4-комн.</td><td>от 141,6 м²</td><td><b>от 262,5 млн ₽</b></td></tr><tr><td>5 и больше</td><td>от 265,2 м²</td><td><b>от 848,8 млн ₽</b></td></tr>
+   </table></div>
+   <p class="hd-sub">Метр: 1,71–3,20 млн, медиана 2,03 млн. 34 лота у застройщика.</p>
+   <p class="hd-note"><b>На заметку:</b> Самый большой выбор новых квартир на острове: 34 лота, от однокомнатной 55,6 м² за 100 млн. Медиана — 2,03 млн за метр, заметно ниже Софийской набережной. Корпуса разные по архитектуре и высоте — сравнивать нужно корпус, а не проект.</p>
+   <p class="hd-link"><a href="../../doma/sadovnicheskaya-69/">Карточка дома в базе NOTA</a></p>
+   <!-- С прогулки: -->
+  </div>
+ </article>
+ <article class="hd-card" id="ares">
+  <div class="ph has" data-ar="3x2"><img src="../../img/zamoskvorechye/ares.jpg" alt="A.Residence" loading="lazy"></div>
+  <div>
+   <p class="hd-k"><span class="tag red">Продаёт застройщик</span> Садовническая и Космодамианская · Садовническая ул., 82</p>
+   <h3>A.Residence</h3>
+   <ul class="hd-facts"><li>O1 Properties</li><li>сдан в 2025</li><li>пять корпусов по 5–9 этажей</li><li>181 апартамент</li><li>архитектура «Цимайло Ляшенко и Партнёры»</li></ul>
+   <div class="tablewrap hd-t"><table>
+    <tr><th>Формат</th><th>Площадь</th><th>Вход</th></tr>
+    <tr><td>2-комн.</td><td>от 55,8 м²</td><td><b>от 51,5 млн ₽</b></td></tr><tr><td>3-комн.</td><td>от 75,2 м²</td><td><b>от 88,2 млн ₽</b></td></tr><tr><td>4-комн.</td><td>от 143,4 м²</td><td><b>от 147,2 млн ₽</b></td></tr><tr><td>5 и больше</td><td>от 193,1 м²</td><td><b>от 417,7 млн ₽</b></td></tr>
+   </table></div>
+   <p class="hd-sub">Метр: 1,03–2,46 млн, медиана 1,42 млн. 29 лотов у застройщика, 16 на вторичке (медиана 1,21 млн).</p>
+   <p class="hd-note"><b>На заметку:</b> Вход у застройщика от 51,5 млн — самый низкий среди новых проектов острова. У застройщика 29 лотов с медианой 1,42 млн, у собственников — 1,21. Лоты застройщика висят в среднем 295 дней: есть о чём договариваться.</p>
+   
+   <!-- С прогулки: -->
+  </div>
+ </article>
+ <article class="hd-card" id="lavr">
+  <div class="ph has" data-ar="3x2"><img src="../../img/zamoskvorechye/lavr.jpg" alt="Лаврушинский" loading="lazy"></div>
+  <div>
+   <p class="hd-k"><span class="tag red">Продаёт застройщик</span> Кадаши и Толмачи · Б. Толмачёвский пер., 5</p>
+   <h3>Лаврушинский</h3>
+   <ul class="hd-facts"><li>Sminex</li><li>дом сдан</li><li>171 квартира</li><li>двор-парк 1,4 га</li><li>потолки до 8,25 м</li></ul>
+   <div class="tablewrap hd-t"><table>
+    <tr><th>Формат</th><th>Площадь</th><th>Вход</th></tr>
+    <tr><td>1-комн.</td><td>от 67,0 м²</td><td><b>от 193,1 млн ₽</b></td></tr><tr><td>2-комн.</td><td>от 88,0 м²</td><td><b>от 199 млн ₽</b></td></tr><tr><td>3-комн.</td><td>от 148 м²</td><td><b>от 326,1 млн ₽</b></td></tr><tr><td>4-комн.</td><td>от 205 м²</td><td><b>от 530,8 млн ₽</b></td></tr><tr><td>5 и больше</td><td>от 327 м²</td><td><b>от 941 млн ₽</b></td></tr>
+   </table></div>
+   <p class="hd-sub">Метр: 2,44–5,58 млн, медиана 3,20 млн. 61 лот у застройщика, 8 на вторичке (медиана 2,40 млн).</p>
+   <p class="hd-note"><b>На заметку:</b> Главный рынок новых квартир у Третьяковской галереи: 61 лот у застройщика с медианой 3,20 млн за метр. У собственников в том же доме — 2,40. Сравнивайте одинаковые этажи и стороны: вид на Кремль и вид во двор — разные цены. Спросите, как остаток распределён по корпусам: корпус вдоль дороги и корпус во дворе продаются по-разному.</p>
+   <p class="hd-link"><a href="../../doma/lavrushinskiy/">Карточка дома в базе NOTA</a></p>
+   <!-- С прогулки: -->
+  </div>
+ </article>
+ <article class="hd-card" id="armani">
+  <div class="ph has" data-ar="3x2"><img src="../../img/zamoskvorechye/armani.jpg" alt="Armani/Casa Moscow Residences" loading="lazy"></div>
+  <div>
+   <p class="hd-k"><span class="tag red">Продаёт застройщик</span> Кадаши и Толмачи · Старомонетный пер., 19/11</p>
+   <h3>Armani/Casa Moscow Residences</h3>
+   <ul class="hd-facts"><li>Vos&#x27;hod</li><li>сдан в 2024</li><li>24 квартиры и 3 пентхауса</li><li>отделка и мебель Armani/Casa</li><li>потолки от 3,5 м</li></ul>
+   <div class="tablewrap hd-t"><table>
+    <tr><th>Формат</th><th>Площадь</th><th>Вход</th></tr>
+    <tr><td>2-комн.</td><td>от 176,7 м²</td><td><b>от 653,8 млн ₽</b></td></tr><tr><td>3-комн.</td><td>от 217,2 м²</td><td><b>от 597,3 млн ₽</b></td></tr><tr><td>4-комн.</td><td>от 421,5 м²</td><td><b>от 3 372 млн ₽</b></td></tr>
+   </table></div>
+   <p class="hd-sub">Метр: 2,75–8,00 млн, медиана 3,68 млн. 7 лотов у застройщика, 1 на вторичке (медиана 3,20 млн).</p>
+   <p class="hd-note"><b>На заметку:</b> Здесь покупают отделку вместе с метрами: кухни, ванные и камины входят в цену. Вход — 597 млн за 217 м². Семь лотов у застройщика и один у собственника — рынок маленький, цену стоит обсуждать напрямую.</p>
+   <p class="hd-link"><a href="../../doma/armani-casa-moscow-residences/">Карточка дома в базе NOTA</a></p>
+   <!-- С прогулки: -->
+  </div>
+ </article>
+ <article class="hd-card" id="pyzh">
+  <div class="ph has" data-ar="3x2"><img src="../../img/doma/pyzhevskiy.jpg" alt="Пыжёвский" loading="lazy"></div>
+  <div>
+   <p class="hd-k"><span class="tag red">Продаёт застройщик</span> Кадаши и Толмачи · Пыжёвский пер.</p>
+   <h3>Пыжёвский</h3>
+   <ul class="hd-facts"><li>TEKTA</li><li>срок II кв. 2029</li><li>три корпуса по 9 этажей и один в 14</li><li>74 квартиры</li><li>потолки 3,5–5 м</li></ul>
+   <div class="tablewrap hd-t"><table>
+    <tr><th>Формат</th><th>Площадь</th><th>Вход</th></tr>
+    <tr><td>2-комн.</td><td>от 84,0 м²</td><td><b>от 238,9 млн ₽</b></td></tr><tr><td>3-комн.</td><td>от 149,1 м²</td><td><b>от 426,5 млн ₽</b></td></tr><tr><td>4-комн.</td><td>от 223,9 м²</td><td><b>от 459 млн ₽</b></td></tr>
+   </table></div>
+   <p class="hd-sub">Метр: 2,05–3,08 млн, медиана 2,89 млн. 6 лотов у застройщика.</p>
+   <p class="hd-note"><b>На заметку:</b> Дом ещё строится, до ключей почти три года. У застройщика на ЦИАН 6 лотов, вход — двухкомнатная 84 м² за 238,9 млн. Медиана 2,89 млн за метр — между ценой собственников и застройщика в готовом Лаврушинском.</p>
+   <p class="hd-link"><a href="../../doma/pyzhevskiy/">Карточка дома в базе NOTA</a></p>
+   <!-- С прогулки: -->
+  </div>
+ </article>
+ <article class="hd-card" id="rsez">
+  <div class="ph has" data-ar="3x2"><img src="../../img/zamoskvorechye/rsez.jpg" alt="Русские сезоны" loading="lazy"></div>
+  <div>
+   <p class="hd-k"><span class="tag red">Продаёт застройщик</span> Кадаши и Толмачи · Пятницкая ул. / Климентовский пер.</p>
+   <h3>Русские сезоны</h3>
+   <ul class="hd-facts"><li>СЗ ЭКРАН</li><li>дом сдан</li><li>11 домов по 3–7 этажей</li><li>92 квартиры, по две на этаже</li><li>виллы с отдельным входом</li></ul>
+   <div class="tablewrap hd-t"><table>
+    <tr><th>Формат</th><th>Площадь</th><th>Вход</th></tr>
+    <tr><td>4-комн.</td><td>от 117,2 м²</td><td><b>от 492,3 млн ₽</b></td></tr><tr><td>5 и больше</td><td>от 168,8 м²</td><td><b>от 687,9 млн ₽</b></td></tr>
+   </table></div>
+   <p class="hd-sub">Метр: 3,95–6,09 млн, медиана 4,29 млн. 10 лотов у застройщика.</p>
+   <p class="hd-note"><b>На заметку:</b> Один из самых дорогих метров района — медиана 4,29 млн. У застройщика 10 лотов, все от 117 м² и 492 млн, и висят они в среднем 637 дней. Долгая витрина — повод предложить свою цену.</p>
+   <p class="hd-link"><a href="../../doma/russkie-sezony/">Карточка дома в базе NOTA</a></p>
+   <!-- С прогулки: -->
+  </div>
+ </article>
+ <article class="hd-card" id="kazachiy">
+  <div class="ph has" data-ar="3x2"><img src="../../img/zamoskvorechye/kazachiy.jpg" alt="Казачий" loading="lazy"></div>
+  <div>
+   <p class="hd-k"><span class="tag red">Продаёт застройщик</span> Ордынка и Казачьи переулки · 1-й Казачий пер., 10</p>
+   <h3>Казачий</h3>
+   <ul class="hd-facts"><li>MR Group</li><li>срок III кв. 2029</li><li>76 квартир</li><li>концепция бюро Wall</li><li>паркинг на 74 места</li></ul>
+   <div class="tablewrap hd-t"><table>
+    <tr><th>Формат</th><th>Площадь</th><th>Вход</th></tr>
+    <tr><td>1-комн.</td><td>от 62,7 м²</td><td><b>от 138,8 млн ₽</b></td></tr><tr><td>2-комн.</td><td>от 108,2 м²</td><td><b>от 212,3 млн ₽</b></td></tr><tr><td>3-комн.</td><td>от 193,5 м²</td><td><b>от 381,2 млн ₽</b></td></tr>
+   </table></div>
+   <p class="hd-sub">Метр: 1,96–2,69 млн, медиана 2,23 млн. 19 лотов у застройщика.</p>
+   <p class="hd-note"><b>На заметку:</b> Бронирование открыли в июне 2026 года — один из самых свежих стартов в районе. 19 лотов, вход — однокомнатная 62,7 м² за 138,8 млн, медиана 2,23 млн за метр. Три года до ключей: условия на случай переноса смотреть до брони.</p>
+   <p class="hd-link"><a href="../../doma/kazachiy/">Карточка дома в базе NOTA</a></p>
+   <!-- С прогулки: -->
+  </div>
+ </article>
+ <article class="hd-card" id="pol44">
+  <div class="ph has" data-ar="3x2"><img src="../../img/zamoskvorechye/pol44.jpg" alt="Полянка/44" loading="lazy"></div>
+  <div>
+   <p class="hd-k"><span class="tag red">Продаёт застройщик</span> Якиманка · Б. Полянка, 44</p>
+   <h3>Полянка/44</h3>
+   <ul class="hd-facts"><li>ПСН</li><li>дом сдан</li><li>восемь корпусов, три — исторические здания Густава Гельриха</li><li>189 квартир</li><li>паркинг на 372 места</li></ul>
+   <div class="tablewrap hd-t"><table>
+    <tr><th>Формат</th><th>Площадь</th><th>Вход</th></tr>
+    <tr><td>2-комн.</td><td>от 124,9 м²</td><td><b>от 180,4 млн ₽</b></td></tr><tr><td>3-комн.</td><td>от 169,8 м²</td><td><b>от 248,4 млн ₽</b></td></tr>
+   </table></div>
+   <p class="hd-sub">Метр: 1,44–1,57 млн, медиана 1,46 млн. 3 лота у застройщика, 33 на вторичке (медиана 1,21 млн).</p>
+   <p class="hd-note"><b>На заметку:</b> Большой закрытый квартал с одним из самых доступных метров Якиманки: 33 лота у собственников с медианой 1,21 млн. У застройщика ещё три квартиры — с медианой 1,46. Сначала смотреть вторичку, потом застройщика.</p>
+   <p class="hd-link"><a href="../../doma/polyanka-44/">Карточка дома в базе NOTA</a></p>
+   <!-- С прогулки: -->
+  </div>
+ </article>
+ <article class="hd-card" id="cult">
+  <div class="ph has" data-ar="3x2"><img src="../../img/zamoskvorechye/cult.jpg" alt="CULT" loading="lazy"></div>
+  <div>
+   <p class="hd-k"><span class="tag red">Продаёт застройщик</span> Якиманка · Ленинский пр-т, 2</p>
+   <h3>CULT</h3>
+   <ul class="hd-facts"><li>GRAVION</li><li>дом сдан</li><li>на месте гостиницы «Варшава»</li><li>сервисные апартаменты</li><li>паркинг на 17 мест</li></ul>
+   <div class="tablewrap hd-t"><table>
+    <tr><th>Формат</th><th>Площадь</th><th>Вход</th></tr>
+    <tr><td>студия</td><td>от 26,8 м²</td><td><b>от 44,6 млн ₽</b></td></tr><tr><td>1-комн.</td><td>от 52,6 м²</td><td><b>от 84,4 млн ₽</b></td></tr><tr><td>2-комн.</td><td>от 73,9 м²</td><td><b>от 119,5 млн ₽</b></td></tr><tr><td>3-комн.</td><td>от 169,6 м²</td><td><b>от 402,3 млн ₽</b></td></tr><tr><td>5 и больше</td><td>от 207,1 м²</td><td><b>от 491,3 млн ₽</b></td></tr>
+   </table></div>
+   <p class="hd-sub">Метр: 1,62–2,71 млн, медиана 1,85 млн. 35 лотов у застройщика, 2 на вторичке (медиана 1,32 млн).</p>
+   <p class="hd-note"><b>На заметку:</b> Редкий для района вход в клубный дом: студии от 26,8 м² за 44,6 млн. 35 лотов у застройщика, медиана 1,85 млн. Минусы — мало машиномест и красная линия по юридике в нашей проверке.</p>
+   <p class="hd-link"><a href="../../doma/cult/">Карточка дома в базе NOTA</a></p>
+   <!-- С прогулки: -->
+  </div>
+ </article>
+ <article class="hd-card" id="tat35">
+  <div class="ph has" data-ar="3x2"><img src="../../img/zamoskvorechye/tat35.jpg" alt="Татарская, 35" loading="lazy"></div>
+  <div>
+   <p class="hd-k"><span class="tag red">Продаёт застройщик</span> Татарская слобода и Павелецкая · Б. Татарская ул., 35</p>
+   <h3>Татарская, 35</h3>
+   <ul class="hd-facts"><li>Донстрой</li><li>срок I кв. 2028</li><li>472 квартиры</li><li>башни до 26 этажей</li><li>паркинг на 603 места</li></ul>
+   <div class="tablewrap hd-t"><table>
+    <tr><th>Формат</th><th>Площадь</th><th>Вход</th></tr>
+    <tr><td>1-комн.</td><td>от 48,8 м²</td><td><b>от 74,9 млн ₽</b></td></tr><tr><td>2-комн.</td><td>от 78,0 м²</td><td><b>от 113,6 млн ₽</b></td></tr><tr><td>3-комн.</td><td>от 108,1 м²</td><td><b>от 165,2 млн ₽</b></td></tr><tr><td>4-комн.</td><td>от 131 м²</td><td><b>от 227,3 млн ₽</b></td></tr><tr><td>5 и больше</td><td>от 224,5 м²</td><td><b>от 312,1 млн ₽</b></td></tr>
+   </table></div>
+   <p class="hd-sub">Метр: 1,43–2,57 млн, медиана 1,74 млн. 95 лотов у застройщика.</p>
+   <p class="hd-note"><b>На заметку:</b> Самый большой выбор в районе — 95 лотов, от однокомнатной 48,8 м² за 74,9 млн. Медиана 1,74 млн за метр. Витрина обновляется быстро: половина объявлений опубликована меньше двух месяцев назад.</p>
+   <p class="hd-link"><a href="../../doma/bolshaya-tatarskaya-35/">Карточка дома в базе NOTA</a></p>
+   <!-- С прогулки: -->
+  </div>
+ </article>
+ <article class="hd-card" id="monblan">
+  <div class="ph has" data-ar="3x2"><img src="../../img/zamoskvorechye/monblan.jpg" alt="Монблан" loading="lazy"></div>
+  <div>
+   <p class="hd-k"><span class="tag red">Продаёт застройщик</span> За Садовым: Павелецкая · Шлюзовая наб., 2/1</p>
+   <h3>Монблан</h3>
+   <ul class="hd-facts"><li>Галс-Девелопмент</li><li>срок I кв. 2028</li><li>341 квартира</li><li>шесть секций от 7 до 27 этажей</li><li>паркинг на 267 мест</li></ul>
+   <div class="tablewrap hd-t"><table>
+    <tr><th>Формат</th><th>Площадь</th><th>Вход</th></tr>
+    <tr><td>1-комн.</td><td>от 48,9 м²</td><td><b>от 53,5 млн ₽</b></td></tr><tr><td>2-комн.</td><td>от 88,0 м²</td><td><b>от 83,7 млн ₽</b></td></tr><tr><td>3-комн.</td><td>от 112,2 м²</td><td><b>от 112,9 млн ₽</b></td></tr><tr><td>4-комн.</td><td>от 174,2 м²</td><td><b>от 167,9 млн ₽</b></td></tr><tr><td>5 и больше</td><td>от 227,2 м²</td><td><b>от 527,2 млн ₽</b></td></tr>
+   </table></div>
+   <p class="hd-sub">Метр: 1,02–1,88 млн, медиана 1,30 млн. 56 лотов у застройщика, 6 на вторичке (медиана 1,30 млн).</p>
+   <p class="hd-note"><b>На заметку:</b> Вход от 53,5 млн за однокомнатную 48,9 м², медиана 1,30 млн за метр — на четверть ниже Татарской, 35. Часть квартир смотрит на Водоотводный канал и Дом музыки: вид зависит от секции и этажа.</p>
+   <p class="hd-link"><a href="../../doma/monblan/">Карточка дома в базе NOTA</a></p>
+   <!-- С прогулки: -->
+  </div>
+ </article>
+ <article class="hd-card" id="granel">
+  <div class="ph has" data-ar="3x2"><img src="../../img/doma/paveletskaya-ot-granel.jpg" alt="Павелецкая от Гранель" loading="lazy"></div>
+  <div>
+   <p class="hd-k"><span class="tag red">Продаёт застройщик</span> За Садовым: Павелецкая · Дубининская ул., 17</p>
+   <h3>Павелецкая от Гранель</h3>
+   <ul class="hd-facts"><li>ГК Гранель</li><li>срок III кв. 2028</li><li>377 квартир</li><li>30 этажей</li><li>бизнес-класс</li></ul>
+   <div class="tablewrap hd-t"><table>
+    <tr><th>Формат</th><th>Площадь</th><th>Вход</th></tr>
+    <tr><td>студия</td><td>от 26,5 м²</td><td><b>от 22,0 млн ₽</b></td></tr><tr><td>1-комн.</td><td>от 38,0 м²</td><td><b>от 27,6 млн ₽</b></td></tr><tr><td>2-комн.</td><td>от 67,6 м²</td><td><b>от 38,2 млн ₽</b></td></tr><tr><td>3-комн.</td><td>от 70,2 м²</td><td><b>от 46,4 млн ₽</b></td></tr><tr><td>4-комн.</td><td>от 103,9 м²</td><td><b>от 72,7 млн ₽</b></td></tr>
+   </table></div>
+   <p class="hd-sub">Метр: 0,58–0,81 млн, медиана 0,70 млн. 42 лота у застройщика, 13 на вторичке (медиана 0,64 млн).</p>
+   <p class="hd-note"><b>На заметку:</b> Самый низкий вход в новый дом района: студия 26,5 м² — от 22 млн, медиана 700 тысяч за метр. Это уже не центр, а Павелецкая: другой класс и другой ритм, вокзал и Дубининская улица рядом. Машиномест 104 на весь дом.</p>
+   <p class="hd-link"><a href="../../doma/paveletskaya-ot-granel/">Карточка дома в базе NOTA</a></p>
+   <!-- С прогулки: -->
+  </div>
+ </article>
+ </div>
+</div></section>
+
+<section class="method" id="vtorichka"><div class="wrap">
+ <p class="ttl">Вторичка</p>
+ <h2>Только вторичка: двадцать один готовый дом</h2>
+ <p class="lead">Застройщик здесь уже всё продал — цену делают собственники. Группы — наши, по улицам и набережным: так дома удобнее сравнивать между собой. На острове красиво, но выезд через мосты тяжёлый; ближе к Ордынке и Садовому уезжать легче.</p>
+ <div class="hd-grid">
+  <div class="hd-grp">Набережные напротив Кремля</div>
+  <article class="hd-cell" id="sofiyskiy">
+   <div class="ph has" data-ar="3x2"><img src="../../img/zamoskvorechye/sofiyskiy.jpg" alt="Софийский" loading="lazy"></div>
+   <p class="hd-k"><span class="tag">Вторичка</span> Набережные напротив Кремля</p>
+   <h3>Софийский</h3>
+   <p class="hd-addr">Софийская наб., 34</p>
+   <ul class="hd-facts"><li>Трансстройинвест</li><li>8 этажей</li><li>224 квартиры, 43–214 м²</li><li>клинкер и камень</li></ul>
+   <dl class="hd-st">
+      <div><dt>На вторичке</dt><dd>12 лотов</dd></div>
+      <div><dt>Медиана метра</dt><dd>1,50 млн ₽/м² <span>(1,35–1,76)</span></dd></div>
+      <div><dt>Вход</dt><dd>от 78,0 млн ₽ <span>· 53–155 м²</span></dd></div>
+      <div><dt>В продаже, медиана</dt><dd>470 дн.</dd></div>
+   </dl>
+   <p class="hd-note"><b>На заметку:</b> Первая линия Софийской набережной — и самая долгая витрина района: объявления висят в среднем 470 дней. Метр 1,50 млн — почти вдвое ниже, чем в DUO по соседству. Разница — в возрасте и формате дома.</p>
+   
+   <!-- С прогулки: -->
+  </article>
+  <div class="hd-grp">Садовническая и Космодамианская</div>
+  <article class="hd-cell" id="viewpoint">
+   <div class="ph has" data-ar="3x2"><img src="../../img/zamoskvorechye/viewpoint.jpg" alt="Balchug Viewpoint" loading="lazy"></div>
+   <p class="hd-k"><span class="tag">Вторичка</span> Садовническая и Космодамианская</p>
+   <h3>Balchug Viewpoint</h3>
+   <p class="hd-addr">Садовническая наб., 7</p>
+   <ul class="hd-facts"><li>архитектор Хади Тегерани</li><li>6 этажей</li><li>116 апартаментов</li><li>закрытый двор</li></ul>
+   <dl class="hd-st">
+      <div><dt>На вторичке</dt><dd>9 лотов</dd></div>
+      <div><dt>Медиана метра</dt><dd>1,62 млн ₽/м² <span>(1,10–1,93)</span></dd></div>
+      <div><dt>Вход</dt><dd>от 139 млн ₽ <span>· 124–400 м²</span></dd></div>
+      <div><dt>В продаже, медиана</dt><dd>387 дн.</dd></div>
+   </dl>
+   <p class="hd-note"><b>На заметку:</b> Фасады из металла, камня и стекла — дом не спутать с соседями. Объявления висят больше года, в среднем 387 дней: продавцы ждут покупателя, а не наоборот.</p>
+   
+   <!-- С прогулки: -->
+  </article>
+  <article class="hd-cell" id="balres">
+   <div class="ph has" data-ar="3x2"><img src="../../img/zamoskvorechye/balres.jpg" alt="Balchug Residence" loading="lazy"></div>
+   <p class="hd-k"><span class="tag">Вторичка</span> Садовническая и Космодамианская</p>
+   <h3>Balchug Residence</h3>
+   <p class="hd-addr">Садовническая ул., 29</p>
+   <ul class="hd-facts"><li>пять корпусов по 4–7 этажей</li><li>квартиры 60–374 м²</li><li>паркинг на 194 места</li><li>архитектор Хади Тегерани</li></ul>
+   <dl class="hd-st">
+      <div><dt>На вторичке</dt><dd>9 лотов</dd></div>
+      <div><dt>Медиана метра</dt><dd>1,22 млн ₽/м² <span>(0,92–1,56)</span></dd></div>
+      <div><dt>Вход</dt><dd>от 60,0 млн ₽ <span>· 60–155 м²</span></dd></div>
+      <div><dt>В продаже, медиана</dt><dd>152 дн.</dd></div>
+   </dl>
+   <p class="hd-note"><b>На заметку:</b> Один из самых доступных метров острова — 1,22 млн. Вход — 60 млн за 60 м². У первых этажей отдельный вход: удобно, но шум улицы проверять на месте.</p>
+   
+   <!-- С прогулки: -->
+  </article>
+  <article class="hd-cell" id="wine">
+   <div class="ph has" data-ar="3x2"><img src="../../img/zamoskvorechye/wine.jpg" alt="Wine House" loading="lazy"></div>
+   <p class="hd-k"><span class="tag">Вторичка</span> Садовническая и Космодамианская</p>
+   <h3>Wine House</h3>
+   <p class="hd-addr">Садовническая ул., 57</p>
+   <ul class="hd-facts"><li>Галс-Девелопмент</li><li>на месте завода шампанских вин</li><li>3–7 этажей</li><li>160 квартир и 40 апартаментов</li></ul>
+   <dl class="hd-st">
+      <div><dt>На вторичке</dt><dd>1 лот</dd></div>
+      <div><dt>Медиана метра</dt><dd>1,39 млн ₽/м²</dd></div>
+      <div><dt>Вход</dt><dd>от 140 млн ₽ <span>· 101 м²</span></dd></div>
+      <div><dt>В продаже, медиана</dt><dd>3 дн.</dd></div>
+   </dl>
+   <p class="hd-note"><b>На заметку:</b> На ЦИАН одна квартира — 101 м² за 140 млн. Собственники продают редко: если нравится дом, следить за ним нужно заранее.</p>
+   
+   <!-- С прогулки: -->
+  </article>
+  <div class="hd-grp">Кадаши и Толмачи</div>
+  <article class="hd-cell" id="cloud9">
+   <div class="ph has" data-ar="3x2"><img src="../../img/zamoskvorechye/cloud9.jpg" alt="Cloud Nine" loading="lazy"></div>
+   <p class="hd-k"><span class="tag">Вторичка</span> Кадаши и Толмачи</p>
+   <h3>Cloud Nine</h3>
+   <p class="hd-addr">Б. Полянка, 9</p>
+   <ul class="hd-facts"><li>Vesper</li><li>реконструкция четырёх зданий XIX–XX веков</li><li>41 квартира</li><li>потолки до 8 м</li></ul>
+   <dl class="hd-st">
+      <div><dt>На вторичке</dt><dd>5 лотов</dd></div>
+      <div><dt>Медиана метра</dt><dd>2,30 млн ₽/м² <span>(1,80–2,83)</span></dd></div>
+      <div><dt>Вход</dt><dd>от 470 млн ₽ <span>· 195–261 м²</span></dd></div>
+      <div><dt>В продаже, медиана</dt><dd>166 дн.</dd></div>
+   </dl>
+   <p class="hd-note"><b>На заметку:</b> Квартиры от 195 м², вход — 470 млн. Медиана 2,30 млн за метр — почти как у собственников в Лаврушинском. Двусветные гостиные наверху: в объявлении площадь, а высоту смотреть вживую.</p>
+   
+   <!-- С прогулки: -->
+  </article>
+  <article class="hd-cell" id="bgallery">
+   <div class="ph has" data-ar="3x2"><img src="../../img/zamoskvorechye/bgallery.jpg" alt="Barkli Gallery" loading="lazy"></div>
+   <p class="hd-k"><span class="tag">Вторичка</span> Кадаши и Толмачи</p>
+   <h3>Barkli Gallery</h3>
+   <p class="hd-addr">Ордынский тупик, 4А</p>
+   <ul class="hd-facts"><li>Barkli</li><li>7 этажей</li><li>39 квартир и 4 пентхауса</li><li>дровяные камины на 5–7 этажах</li></ul>
+   <dl class="hd-st">
+      <div><dt>На вторичке</dt><dd>2 лота</dd></div>
+      <div><dt>Медиана метра</dt><dd>4,38 млн ₽/м²</dd></div>
+      <div><dt>Вход</dt><dd>от 399 млн ₽ <span>· 85–160 м²</span></dd></div>
+      <div><dt>В продаже, медиана</dt><dd>155 дн.</dd></div>
+   </dl>
+   <p class="hd-note"><b>На заметку:</b> Две квартиры на витрине и один из самых высоких метров района — 4,38 млн. На такой выборке цена — ориентир продавца, а не рынок.</p>
+   
+   <!-- С прогулки: -->
+  </article>
+  <article class="hd-cell" id="mecenat">
+   <div class="ph has" data-ar="3x2"><img src="../../img/zamoskvorechye/mecenat.jpg" alt="Меценат" loading="lazy"></div>
+   <p class="hd-k"><span class="tag">Вторичка</span> Кадаши и Толмачи</p>
+   <h3>Меценат</h3>
+   <p class="hd-addr">2-й Кадашёвский пер., 5</p>
+   <ul class="hd-facts"><li>«Студия Уткина»</li><li>3 этажа</li><li>двухуровневые квартиры</li><li>на месте бывшей колбасной фабрики</li></ul>
+   <dl class="hd-st">
+      <div><dt>На вторичке</dt><dd>3 лота</dd></div>
+      <div><dt>Метр</dt><dd>0,85–2,99 млн ₽/м²</dd></div>
+      <div><dt>Вход</dt><dd>от 500 млн ₽ <span>· 204–590 м²</span></dd></div>
+      <div><dt>В продаже, медиана</dt><dd>57 дн.</dd></div>
+   </dl>
+   <p class="hd-note"><b>На заметку:</b> Три объявления с разбросом от 0,85 до 2,99 млн за метр: цену делает формат, от квартиры 204 м² до объекта почти на 590 м². Среднее здесь ничего не говорит — сравнивать только похожие лоты.</p>
+   
+   <!-- С прогулки: -->
+  </article>
+  <div class="hd-grp">Ордынка и Казачьи переулки</div>
+  <article class="hd-cell" id="mo19">
+   <div class="ph has" data-ar="3x2"><img src="../../img/zamoskvorechye/mo19.jpg" alt="Малая Ордынка, 19" loading="lazy"></div>
+   <p class="hd-k"><span class="tag">Вторичка</span> Ордынка и Казачьи переулки</p>
+   <h3>Малая Ордынка, 19</h3>
+   <p class="hd-addr">Малая Ордынка, 19</p>
+   <ul class="hd-facts"><li>Sminex</li><li>ADM architects</li><li>6 этажей</li><li>67 квартир</li></ul>
+   <dl class="hd-st">
+      <div><dt>На вторичке</dt><dd>3 лота</dd></div>
+      <div><dt>Медиана метра</dt><dd>1,85 млн ₽/м² <span>(1,50–2,25)</span></dd></div>
+      <div><dt>Вход</dt><dd>от 185 млн ₽ <span>· 100–148 м²</span></dd></div>
+      <div><dt>В продаже, медиана</dt><dd>23 дн.</dd></div>
+   </dl>
+   <p class="hd-note"><b>На заметку:</b> Объявления здесь уходят быстро — медиана 23 дня. Вход — 185 млн за 100 м². Тихая непроездная часть Малой Ордынки.</p>
+   
+   <!-- С прогулки: -->
+  </article>
+  <article class="hd-cell" id="ordynka">
+   <div class="ph has" data-ar="3x2"><img src="../../img/zamoskvorechye/ordynka.jpg" alt="ORDYNKA" loading="lazy"></div>
+   <p class="hd-k"><span class="tag">Вторичка</span> Ордынка и Казачьи переулки</p>
+   <h3>ORDYNKA</h3>
+   <p class="hd-addr">Малая Ордынка, 25</p>
+   <ul class="hd-facts"><li>семь домов и усадьба</li><li>Architects of Invention</li><li>6 этажей</li><li>квартиры 73–294 м²</li></ul>
+   <dl class="hd-st">
+      <div><dt>На вторичке</dt><dd>1 лот</dd></div>
+      <div><dt>Медиана метра</dt><dd>1,47 млн ₽/м²</dd></div>
+      <div><dt>Вход</dt><dd>от 129 млн ₽ <span>· 88 м²</span></dd></div>
+      <div><dt>В продаже, медиана</dt><dd>82 дн.</dd></div>
+   </dl>
+   <p class="hd-note"><b>На заметку:</b> На витрине одно объявление — 88 м² свободной планировки за 129 млн. Для квартала из семи домов это очень мало: квартиры здесь продают без витрины.</p>
+   
+   <!-- С прогулки: -->
+  </article>
+  <div class="hd-grp">Татарская слобода и Павелецкая</div>
+  <article class="hd-cell" id="qdor">
+   <div class="ph has" data-ar="3x2"><img src="../../img/zamoskvorechye/qdor.jpg" alt="Quartier d&#x27;Or" loading="lazy"></div>
+   <p class="hd-k"><span class="tag">Вторичка</span> Татарская слобода и Павелецкая</p>
+   <h3>Quartier d&#x27;Or</h3>
+   <p class="hd-addr">Б. Татарская ул., 21</p>
+   <ul class="hd-facts"><li>RARITECO</li><li>сдан в 2026</li><li>три секции по 6–8 этажей</li><li>53 квартиры</li><li>на месте завода «Геоприбор»</li></ul>
+   <dl class="hd-st">
+      <div><dt>На вторичке</dt><dd>1 лот</dd></div>
+      <div><dt>Медиана метра</dt><dd>1,80 млн ₽/м²</dd></div>
+      <div><dt>Вход</dt><dd>от 180 млн ₽ <span>· 100 м²</span></dd></div>
+      <div><dt>В продаже, медиана</dt><dd>14 дн.</dd></div>
+   </dl>
+   <p class="hd-note"><b>На заметку:</b> Дом только сдан, на вторичке одна квартира — 100 м² за 180 млн. У застройщика, по нашей базе, вход от 97,9 млн: остаток спрашивать напрямую.</p>
+   <p class="hd-link"><a href="../../doma/quartier-d-or/">Карточка дома в базе NOTA</a></p>
+   <!-- С прогулки: -->
+  </article>
+  <article class="hd-cell noimg" id="sun4">
+   
+   <p class="hd-k"><span class="tag">Вторичка</span> Татарская слобода и Павелецкая</p>
+   <h3>Четыре солнца</h3>
+   <p class="hd-addr">Б. Татарская ул., 7</p>
+   <ul class="hd-facts"><li>4 корпуса</li><li>жилой ансамбль</li></ul>
+   <dl class="hd-st">
+      <div><dt>На вторичке</dt><dd>8 лотов</dd></div>
+      <div><dt>Медиана метра</dt><dd>1,57 млн ₽/м² <span>(1,26–2,00)</span></dd></div>
+      <div><dt>Вход</dt><dd>от 95,7 млн ₽ <span>· 63–221 м²</span></dd></div>
+      <div><dt>В продаже, медиана</dt><dd>167 дн.</dd></div>
+   </dl>
+   <p class="hd-note"><b>На заметку:</b> Восемь объявлений, вход — 95,7 млн за 63 м². Медиана 1,57 млн — близко к новым квартирам Татарской, 35 (1,74) при готовом доме и сложившемся дворе.</p>
+   
+   <!-- С прогулки: -->
+  </article>
+  <article class="hd-cell noimg" id="akva">
+   
+   <p class="hd-k"><span class="tag">Вторичка</span> Татарская слобода и Павелецкая</p>
+   <h3>Аквамарин</h3>
+   <p class="hd-addr">Озерковская наб., 26</p>
+   <ul class="hd-facts"><li>малоэтажный комплекс</li><li>у Водоотводного канала</li></ul>
+   <dl class="hd-st">
+      <div><dt>На вторичке</dt><dd>1 лот</dd></div>
+      <div><dt>Медиана метра</dt><dd>1,25 млн ₽/м²</dd></div>
+      <div><dt>Вход</dt><dd>от 90,0 млн ₽ <span>· 72 м²</span></dd></div>
+      <div><dt>В продаже, медиана</dt><dd>63 дн.</dd></div>
+   </dl>
+   <p class="hd-note"><b>На заметку:</b> Одна квартира на витрине — 72 м² за 90 млн, 1,25 млн за метр. Дом на канале, в стороне от туристического острова.</p>
+   
+   <!-- С прогулки: -->
+  </article>
+  <article class="hd-cell" id="bogen">
+   <div class="ph has" data-ar="3x2"><img src="../../img/zamoskvorechye/bogen.jpg" alt="Bogenhouse" loading="lazy"></div>
+   <p class="hd-k"><span class="tag">Вторичка</span> Татарская слобода и Павелецкая</p>
+   <h3>Bogenhouse</h3>
+   <p class="hd-addr">Озерковская наб., 6</p>
+   <ul class="hd-facts"><li>43 апартамента</li><li>5 этажей</li><li>террасы до 94 м²</li><li>потолки 3,4 м</li></ul>
+   <dl class="hd-st">
+      <div><dt>На вторичке</dt><dd>11 лотов</dd></div>
+      <div><dt>Медиана метра</dt><dd>1,30 млн ₽/м² <span>(1,16–1,99)</span></dd></div>
+      <div><dt>Вход</dt><dd>от 54,9 млн ₽ <span>· 44–355 м²</span></dd></div>
+      <div><dt>В продаже, медиана</dt><dd>194 дн.</dd></div>
+   </dl>
+   <p class="hd-note"><b>На заметку:</b> Самый живой рынок на Озерковской: 11 лотов, вход — 54,9 млн за 44,5 м². Но половина объявлений висит дольше полугода — цену можно обсуждать. Паркинг в доме маленький: уточнить, продаётся ли квартира с машиноместом.</p>
+   
+   <!-- С прогулки: -->
+  </article>
+  <div class="hd-grp">Якиманка</div>
+  <article class="hd-cell noimg" id="kopernik">
+   
+   <p class="hd-k"><span class="tag">Вторичка</span> Якиманка</p>
+   <h3>Коперник</h3>
+   <p class="hd-addr">Б. Якиманка, 22</p>
+   <ul class="hd-facts"><li>архитектор Сергей Ткаченко</li><li>15 этажей</li></ul>
+   <dl class="hd-st">
+      <div><dt>На вторичке</dt><dd>2 лота</dd></div>
+      <div><dt>Медиана метра</dt><dd>1,91 млн ₽/м²</dd></div>
+      <div><dt>Вход</dt><dd>от 299 млн ₽ <span>· 153–170 м²</span></dd></div>
+      <div><dt>В продаже, медиана</dt><dd>48 дн.</dd></div>
+   </dl>
+   <p class="hd-note"><b>На заметку:</b> Две квартиры, обе большие — от 153 м² за 299 млн. Метр около 1,9 млн — выше медианы Якиманки.</p>
+   
+   <!-- С прогулки: -->
+  </article>
+  <article class="hd-cell" id="moncher">
+   <div class="ph has" data-ar="3x2"><img src="../../img/zamoskvorechye/moncher.jpg" alt="Mon Cher" loading="lazy"></div>
+   <p class="hd-k"><span class="tag">Вторичка</span> Якиманка</p>
+   <h3>Mon Cher</h3>
+   <p class="hd-addr">Б. Якиманка, 15/20</p>
+   <ul class="hd-facts"><li>Capital Group</li><li>сдан в 2016</li><li>5 этажей</li><li>26 апартаментов</li></ul>
+   <dl class="hd-st">
+      <div><dt>На вторичке</dt><dd>3 лота</dd></div>
+      <div><dt>Медиана метра</dt><dd>1,78 млн ₽/м² <span>(1,51–1,84)</span></dd></div>
+      <div><dt>Вход</dt><dd>от 250 млн ₽ <span>· 136–500 м²</span></dd></div>
+      <div><dt>В продаже, медиана</dt><dd>175 дн.</dd></div>
+   </dl>
+   <p class="hd-note"><b>На заметку:</b> Колонны и скульптуры на фасаде — дом легко узнать на Якиманке. Три объявления, вход — 250 млн за 136 м².</p>
+   
+   <!-- С прогулки: -->
+  </article>
+  <article class="hd-cell noimg" id="parkres">
+   
+   <p class="hd-k"><span class="tag">Вторичка</span> Якиманка</p>
+   <h3>Park Residence</h3>
+   <p class="hd-addr">1-й Голутвинский пер., 7</p>
+   <ul class="hd-facts"><li>16 квартир</li><li>малоэтажный клубный дом</li></ul>
+   <dl class="hd-st">
+      <div><dt>На вторичке</dt><dd>1 лот</dd></div>
+      <div><dt>Медиана метра</dt><dd>3,01 млн ₽/м²</dd></div>
+      <div><dt>Вход</dt><dd>от 557 млн ₽ <span>· 185 м²</span></dd></div>
+      <div><dt>В продаже, медиана</dt><dd>71 дн.</dd></div>
+   </dl>
+   <p class="hd-note"><b>На заметку:</b> Одно объявление — 185 м² за 557 млн, 3 млн за метр: самая высокая цена на Якиманке. Одна квартира не делает рынок — это ориентир продавца.</p>
+   
+   <!-- С прогулки: -->
+  </article>
+  <article class="hd-cell noimg" id="imperskiy">
+   
+   <p class="hd-k"><span class="tag">Вторичка</span> Якиманка</p>
+   <h3>Имперский дом</h3>
+   <p class="hd-addr">Якиманский пер., 6</p>
+   <ul class="hd-facts"><li>17 этажей</li><li>три секции</li><li>потолки 3,7 м</li><li>два пентхауса с отдельным лифтом</li></ul>
+   <dl class="hd-st">
+      <div><dt>На вторичке</dt><dd>4 лота</dd></div>
+      <div><dt>Медиана метра</dt><dd>2,07 млн ₽/м² <span>(1,32–3,09)</span></dd></div>
+      <div><dt>Вход</dt><dd>от 230 млн ₽ <span>· 174–462 м²</span></dd></div>
+      <div><dt>В продаже, медиана</dt><dd>239 дн.</dd></div>
+   </dl>
+   <p class="hd-note"><b>На заметку:</b> Четыре объявления, вход — 230 млн за 174 м². Разброс от 1,3 до 3,1 млн за метр: цену делают этаж и вид.</p>
+   
+   <!-- С прогулки: -->
+  </article>
+  <article class="hd-cell noimg" id="onegin">
+   
+   <p class="hd-k"><span class="tag">Вторичка</span> Якиманка</p>
+   <h3>Онегин</h3>
+   <p class="hd-addr">Малая Полянка, 2</p>
+   <ul class="hd-facts"><li>пять корпусов</li><li>130 квартир</li><li>стилизация под особняки</li></ul>
+   <dl class="hd-st">
+      <div><dt>На вторичке</dt><dd>11 лотов</dd></div>
+      <div><dt>Медиана метра</dt><dd>1,35 млн ₽/м² <span>(1,16–1,52)</span></dd></div>
+      <div><dt>Вход</dt><dd>от 149 млн ₽ <span>· 101–355 м²</span></dd></div>
+      <div><dt>В продаже, медиана</dt><dd>231 дн.</dd></div>
+   </dl>
+   <p class="hd-note"><b>На заметку:</b> Одиннадцать квартир от 100 м² и 149 млн, медиана 1,35 млн. Объявления висят в среднем 231 день — у покупателя есть время договориться.</p>
+   
+   <!-- С прогулки: -->
+  </article>
+  <article class="hd-cell" id="titul">
+   <div class="ph has" data-ar="3x2"><img src="../../img/zamoskvorechye/titul.jpg" alt="TITUL на Якиманке" loading="lazy"></div>
+   <p class="hd-k"><span class="tag">Вторичка</span> Якиманка</p>
+   <h3>TITUL на Якиманке</h3>
+   <p class="hd-addr">2-й Хвостов пер., 8</p>
+   <ul class="hd-facts"><li>Центр-Инвест</li><li>6 этажей</li><li>18 квартир</li><li>потолки 3,5 м, в пентхаусах 4,2</li></ul>
+   <dl class="hd-st">
+      <div><dt>На вторичке</dt><dd>1 лот</dd></div>
+      <div><dt>Медиана метра</dt><dd>1,27 млн ₽/м²</dd></div>
+      <div><dt>Вход</dt><dd>от 80,0 млн ₽ <span>· 63 м²</span></dd></div>
+      <div><dt>В продаже, медиана</dt><dd>11 дн.</dd></div>
+   </dl>
+   <p class="hd-note"><b>На заметку:</b> Одна квартира на витрине — 63 м² за 80 млн, один из немногих небольших форматов на Якиманке.</p>
+   
+   <!-- С прогулки: -->
+  </article>
+  <div class="hd-grp">За Садовым кольцом</div>
+  <article class="hd-cell" id="sky">
+   <div class="ph has" data-ar="3x2"><img src="../../img/zamoskvorechye/sky.jpg" alt="Sky House" loading="lazy"></div>
+   <p class="hd-k"><span class="tag">Вторичка</span> За Садовым кольцом</p>
+   <h3>Sky House</h3>
+   <p class="hd-addr">Мытная ул., 40–44</p>
+   <ul class="hd-facts"><li>Capital Group</li><li>30 этажей</li><li>539 квартир</li><li>паркинг на 1 379 мест</li></ul>
+   <dl class="hd-st">
+      <div><dt>На вторичке</dt><dd>32 лота</dd></div>
+      <div><dt>Медиана метра</dt><dd>0,90 млн ₽/м² <span>(0,59–0,94)</span></dd></div>
+      <div><dt>Вход</dt><dd>от 49,2 млн ₽ <span>· 53–288 м²</span></dd></div>
+      <div><dt>В продаже, медиана</dt><dd>76 дн.</dd></div>
+   </dl>
+   <p class="hd-note"><b>На заметку:</b> Большой дом у Садового кольца с метром около 900 тысяч — меньше медианы Якиманки почти на треть. 32 объявления, вход — 49 млн за 53 м². В нашей проверке — красная линия по застройщику.</p>
+   <p class="hd-link"><a href="../../doma/sky-house/">Карточка дома в базе NOTA</a></p>
+   <!-- С прогулки: -->
+  </article>
+  <article class="hd-cell" id="voxhall">
+   <div class="ph has" data-ar="3x2"><img src="../../img/zamoskvorechye/voxhall.jpg" alt="Voxhall" loading="lazy"></div>
+   <p class="hd-k"><span class="tag">Вторичка</span> За Садовым кольцом</p>
+   <h3>Voxhall</h3>
+   <p class="hd-addr">Летниковская ул., 4</p>
+   <ul class="hd-facts"><li>Группа Эталон</li><li>до 27 этажей</li><li>3 776 квартир и апартаментов</li><li>бизнес-класс</li></ul>
+   <dl class="hd-st">
+      <div><dt>На вторичке</dt><dd>91 лот</dd></div>
+      <div><dt>Медиана метра</dt><dd>0,65 млн ₽/м² <span>(0,57–0,78)</span></dd></div>
+      <div><dt>Вход</dt><dd>от 16,0 млн ₽ <span>· 23–127 м²</span></dd></div>
+      <div><dt>В продаже, медиана</dt><dd>56 дн.</dd></div>
+   </dl>
+   <p class="hd-note"><b>На заметку:</b> Самый массовый рынок района: 91 объявление, студии от 16 млн, медиана 650 тысяч за метр. Квартал у Павелецкой — другой формат, чем тихие переулки.</p>
+   <p class="hd-link"><a href="../../doma/voxhall/">Карточка дома в базе NOTA</a></p>
+   <!-- С прогулки: -->
+  </article>
+ </div>
+</div></section>
+
+<section id="vopros"><div class="wrap">
+ <p class="ttl">Без витрины</p>
+ <h2>Где цену стоит спросить</h2>
+ <p class="lead">У этих домов витрина почти пустая: одно объявление или ни одного лота застройщика при непроданных квартирах. Мы запрашиваем цены напрямую и обновим таблицу.</p>
+ <div class="tablewrap" style="margin-top:26px"><table><tr><th>Дом</th><th>Застройщик</th><th>Что известно</th></tr><tr><td><b>Красный Октябрь</b></td><td>ГУТА-Девелопмент</td><td>29 квартир, на ЦИАН — один лот; остальное без витрины</td></tr><tr><td><b>Quartier d&#x27;Or</b></td><td>RARITECO</td><td>дом сдан; по нашей базе вход от 97,9 млн, на ЦИАН лотов застройщика нет</td></tr><tr><td><b>ORDYNKA</b></td><td>—</td><td>семь домов, на витрине одно объявление</td></tr><tr><td><b>Wine House</b></td><td>Галс-Девелопмент</td><td>200 квартир и апартаментов, на витрине одно объявление</td></tr><tr><td><b>Park Residence</b></td><td>—</td><td>16 квартир, одно объявление</td></tr></table></div>
+</div></section>
+
+<section class="method" id="skoro"><div class="wrap">
+ <p class="ttl">Скоро</p>
+ <h2>Анонсы и стройка без открытых продаж</h2>
+ <div class="grid g3" style="margin-top:26px;background:none;border:none;gap:34px"><div class="rl"><div class="ph has" data-ar="3x2" style="margin-bottom:14px"><img src="../../img/doma/la-belle-maison.jpg" alt="La Belle Maison" loading="lazy"></div><h3>La Belle Maison</h3><p class="hd-addr" style="margin-top:6px">GBK GROUP · Якиманка</p><p style="margin-top:10px;color:var(--ink-2);font-size:15px">17 квартир в семиэтажном доме, срок — III квартал 2028 года. Продаж пока нет.</p><p class="hd-link"><a href="../../doma/la-belle-maison/">Карточка дома в базе NOTA</a></p></div><div class="rl"><div class="ph has" data-ar="3x2" style="margin-bottom:14px"><img src="../../img/doma/malaya-polyanka-3.jpg" alt="Малая Полянка, 3" loading="lazy"></div><h3>Малая Полянка, 3</h3><p class="hd-addr" style="margin-top:6px">Aurix Development · Малая Полянка, 3</p><p style="margin-top:10px;color:var(--ink-2);font-size:15px">34 квартиры, девять этажей, срок — 2026–2027 годы. Старт продаж не объявлен.</p><p class="hd-link"><a href="../../doma/malaya-polyanka-3/">Карточка дома в базе NOTA</a></p></div><div class="rl"><div class="ph has" data-ar="3x2" style="margin-bottom:14px"><img src="../../img/doma/bolshaya-ordynka-25.jpg" alt="Большая Ордынка, 25" loading="lazy"></div><h3>Большая Ордынка, 25</h3><p class="hd-addr" style="margin-top:6px">Aurix Development · Б. Ордынка, 25</p><p style="margin-top:10px;color:var(--ink-2);font-size:15px">Семиэтажный дом. Число квартир застройщик пока не раскрыл.</p><p class="hd-link"><a href="../../doma/bolshaya-ordynka-25/">Карточка дома в базе NOTA</a></p></div><div class="rl"><div class="ph has" data-ar="3x2" style="margin-bottom:14px"><img src="../../img/doma/malaya-ordynka-14.jpg" alt="Малая Ордынка, 14" loading="lazy"></div><h3>Малая Ордынка, 14</h3><p class="hd-addr" style="margin-top:6px">ГУТА-Девелопмент · Малая Ордынка, 14</p><p style="margin-top:10px;color:var(--ink-2);font-size:15px">11 квартир в шестиэтажном доме того же застройщика, что и Красный Октябрь. Анонс.</p><p class="hd-link"><a href="../../doma/malaya-ordynka-14/">Карточка дома в базе NOTA</a></p></div><div class="rl"><div class="ph has" data-ar="3x2" style="margin-bottom:14px"><img src="../../img/doma/vernissage.jpg" alt="Vernissage" loading="lazy"></div><h3>Vernissage</h3><p class="hd-addr" style="margin-top:6px">Ziggurat · ул. Щипок, 26</p><p style="margin-top:10px;color:var(--ink-2);font-size:15px">Дом апартаментов строится, срок переносили: был II квартал 2024 года, теперь — III квартал 2026-го. На вторичке два объявления.</p><p class="hd-link"><a href="../../doma/vernissage/">Карточка дома в базе NOTA</a></p></div></div>
+ <p class="hint">До старта продаж цены нет ни у кого — ни у застройщика, ни у агентов. Любая «цена со старта» сейчас — оценка.</p>
+</div></section>
+
+<section id="cifry"><div class="wrap">
+ <p class="ttl">Красная линия</p>
+ <h2>Что видно по цифрам</h2>
+ <div class="grid g3" style="margin-top:26px"><div><div class="num">Один дом — две цены</div><h3>У собственника дешевле, чем у застройщика</h3><p style="margin-top:10px;color:var(--ink-2);font-size:15px">Лаврушинский: у застройщика медиана <b>3,20 млн ₽/м²</b>, у собственников 2,40. Космо 4/22 — 1,98 против 1,40, A.Residence — 1,42 против 1,21, Полянка/44 — 1,46 против 1,21. Исключение — Золотой, но там лоты застройщика висят полтора года. В сданном доме начинать со вторички.</p></div><div><div class="num">Адрес внутри района</div><h3>Пятнадцать минут пешком — почти вдвое по цене</h3><p style="margin-top:10px;color:var(--ink-2);font-size:15px">Медиана вторички по нашим группам: Кадаши и Толмачи — <b>2,40 млн</b>, набережные напротив Кремля — 1,69, Ордынка — 1,67, Садовническая и Татарская — по 1,40, Якиманка — 1,26. Вид на Кремль сам по себе цену не делает: Софийский на первой линии стоит 1,50.</p></div><div><div class="num">Долгая витрина</div><h3>Больше трети объявлений старше полугода</h3><p style="margin-top:10px;color:var(--ink-2);font-size:15px">В клубных домах района 37 % лотов вторички висят дольше шести месяцев, медиана — 114 дней. У застройщиков то же: Русские сезоны — 637 дней, Золотой — 554, A.Residence — 295. Быстро уходят только новые запуски с понятным входом, как Татарская, 35.</p></div></div>
+ <div class="btns" style="margin-top:34px"><a class="btn" href="../../podbor.html">Подобрать дом в Замоскворечье</a> <a class="btn btn-l" href="../../razbor-zamoskvorechye.html">Разбор района</a> <a class="btn btn-l" href="../../karta.html">Все дома на карте</a></div>
+</div></section>
+
+<section class="tight"><div class="wrap">
+ <p class="ttl">Источники</p>
+ <ul class="h-src">
+  <li>ЦИАН, поиск по районам Замоскворечье и Якиманка, новостройки: выгрузка 24 сентября 2026 — цены, площади, лоты застройщиков и вторичка</li>
+  <li>База NOTA: паспорт дома, девять проверок, стадия, сроки, паркинг — карточки домов по ссылкам в тексте</li>
+  <li>Элитное.ру, карточки жилых комплексов — характеристики домов; фотографии и визуализации в разборе — материалы застройщиков из этих карточек</li>
+ </ul>
+ <p class="hint">Разбор собран 24 сентября 2026. Цены на вторичке меняются каждую неделю — при следующей сверке обновим цифры и поставим новую дату.</p>
+</div></section>
+</main>
+<footer>
+ <div class="wrap foot">
+  <a class="brand" href="../../index.html">
+   <svg class="mark" viewBox="12 5 96 103" fill="none" aria-hidden="true">
+    <path d="M 90.57 28.35 A 44 44 0 1 1 72.13 17.70" stroke="currentColor" stroke-width="6.3"/>
+    <path d="M 60 60 L 89.04 9.70" stroke="#CE2029" stroke-width="6.3"/>
+   </svg>
+   <span class="rule"></span>
+   <span class="lk">
+    <span class="wm">NOT<i>A</i></span>
+    <span class="brandtag">NB: NOT A CHOICE. THE CHOICE.</span>
+   </span>
+  </a>
+  <div class="foot-r">
+   <div><a href="tel:+74950000000">+7 495 000-00-00</a> · <a href="https://t.me/nota_estate">Telegram</a> · <a href="#">MAX</a> · <a href="mailto:hello@nota.estate">hello@nota.estate</a></div>
+   <div class="foot-nav"><a href="../../index.html">Главная</a> · <a href="../../podbor.html">Подбор</a> · <a href="../../karta.html">Карта домов</a> · <a href="../../razbory.html">Разборы</a> · <a href="../../scenarii.html">Сценарии</a> · <a href="../../reytingi.html">Рейтинги</a> · <a href="../../metod.html">Метод</a></div>
+  </div>
+ </div>
+ <div class="wrap foot-legal">
+  <span>ИП — · ИНН — · ОГРНИП —</span>
+  <span><a href="../../politika.html">Политика конфиденциальности</a> · <a href="../../politika.html#soglasie">Согласие на обработку данных</a></span>
+ </div>
+</footer>
+<script src="../../js/nota.js"></script>
+</body>
+</html>

@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<title>Остоженка по домам — NOTA</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light only">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../css/nota.css">
+<link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+<meta name="description" content="Остоженка по домам: пять домов продаёт застройщик — с ценой входа по формату, одиннадцать живут на вторичке, у шести нет ни одного объявления. Сверка по ЦИАН 24 сентября 2026.">
+<meta property="og:title" content="Остоженка по домам — NOTA">
+<meta property="og:image" content="../../img/ostozhenka/ledome.jpg">
+<style>
+.hd-card{display:grid;grid-template-columns:minmax(0,.44fr) minmax(0,.56fr);gap:clamp(22px,3.4vw,52px);padding:clamp(28px,3.4vw,46px) 0;border-top:1px solid var(--line);align-items:start}
+.hd-card:first-of-type{border-top:0}
+.hd-card h3{font-size:clamp(24px,2.6vw,34px);font-weight:800;letter-spacing:-.03em;line-height:1.08;margin-top:10px}
+.hd-k{font-size:12.5px;color:var(--muted);display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center}
+.tag{font-weight:600;font-size:10px;letter-spacing:.16em;text-transform:uppercase;border:1px solid var(--hair);padding:3px 8px;color:var(--ink-2)}
+.tag.red{color:var(--red);border-color:var(--red)}
+.hd-facts{list-style:none;margin:14px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:6px 8px}
+.hd-facts li{font-size:13px;color:var(--ink-2);background:var(--paper-2);padding:4px 9px}
+.hd-t{margin-top:18px}
+.hd-t table{min-width:0}
+.hd-t td:nth-child(2),.hd-t td:nth-child(3){white-space:nowrap}
+.hd-sub{font-size:14px;color:var(--muted);margin-top:12px}
+.hd-note{margin-top:16px;border-left:2px solid var(--red);padding-left:16px;font-size:15.5px;line-height:1.55;color:var(--ink)}
+.hd-note b{font-weight:600}
+.hd-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin-top:34px}
+.hd-cell{background:var(--paper);padding:0 0 26px;display:flex;flex-direction:column}
+.hd-cell .ph{border:none;margin-bottom:18px}
+.hd-cell>*:not(.ph){padding:0 22px}
+.hd-cell h3{margin-top:10px;font-size:21px;font-weight:700}
+.hd-addr{font-size:13.5px;color:var(--muted);margin-top:4px}
+.hd-cell .hd-facts{padding:0 22px}
+.hd-st{margin:16px 22px 0;padding:0 !important;display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line)}
+.hd-st div{background:var(--paper);padding:10px 12px}
+.hd-st dt{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.hd-st dd{margin:4px 0 0;font-size:15px;font-weight:600;letter-spacing:-.01em}
+.hd-st dd span{font-weight:400;color:var(--muted);font-size:13px}
+.hd-cell .hd-note{margin:16px 22px 0;font-size:14.5px}
+.hd-strip{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,2vw,24px);margin-top:30px}
+.hd-strip figure{margin:0}
+.hd-strip figcaption{font-size:13px;color:var(--muted);margin-top:8px}
+.hd-toc{display:flex;flex-wrap:wrap;gap:8px;margin-top:26px}
+.hd-toc a{font-size:13.5px;text-decoration:none;border:1px solid var(--hair);padding:7px 12px;color:var(--ink-2)}
+.hd-toc a:hover{border-color:var(--ink);color:var(--ink)}
+@media(max-width:1000px){.hd-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:760px){.hd-card{grid-template-columns:1fr}.hd-grid{grid-template-columns:1fr}.hd-strip{grid-template-columns:1fr}.hd-cell>*:not(.ph),.hd-cell .hd-facts{padding:0 16px}.hd-st,.hd-cell .hd-note{margin-left:16px;margin-right:16px}}
+.hd-cell.noimg{padding-top:22px}
+.hd-link{margin-top:14px;font-size:14px}
+.hd-link a{color:var(--red);text-decoration:none;border-bottom:1px solid currentColor}
+.hd-grid{background:transparent!important;gap:0!important;border:0!important}
+.hd-cell,.hd-grp{box-shadow:0 0 0 .5px var(--line),inset 0 0 0 .5px var(--line)}
+.hd-grp{grid-column:1/-1;background:var(--paper-2);padding:14px 22px;font-weight:600;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2)}
+</style>
+</head>
+<body class="inner">
+<header class="top solid" id="top-bar">
+ <div class="top-in">
+  <a class="brand" href="../../index.html" aria-label="NOTA — на главную">
+   <svg class="mark" viewBox="12 5 96 103" fill="none" aria-hidden="true">
+    <path d="M 92.18 30.00 A 44 44 0 1 1 69.90 17.13" stroke="currentColor" stroke-width="8"/>
+    <path d="M 60 60 L 89.04 9.70" stroke="#CE2029" stroke-width="8"/>
+   </svg>
+   <span class="rule"></span>
+   <span class="lk">
+    <span class="wm">NOT<i>A</i></span>
+    <span class="brandtag">NB: NOT A CHOICE. THE CHOICE.</span>
+   </span>
+  </a>
+  <nav class="nav">
+      <a href="../../index.html" data-m="home">Главная</a>
+      <a href="../../podbor.html" data-m="podbor">Подбор</a>
+      <a href="../../karta.html" data-m="karta">Карта домов</a>
+      <a href="../../razbory.html" data-m="razbory" class="cur">Разборы</a>
+      <a href="../../reytingi.html" data-m="reytingi">Рейтинги</a>
+      <a href="../../metod.html" data-m="metod">Метод</a>
+      <a class="now" href="tel:+74950000000">+7 495 000-00-00</a>
+     </nav>
+   <button class="burger" id="burger" type="button" aria-label="Меню" aria-expanded="false"><span></span><span></span><span></span></button>
+ </div>
+</header>
+<main>
+<section class="first tight-b"><div class="wrap">
+ <p class="crumbs"><a href="../../razbory.html">Разборы</a> <span>/</span> <a href="../../razbor-ostozhenka.html">Остоженка</a> <span>/</span> По домам</p>
+ <p class="ttl">Разбор · сверка 24 сентября 2026</p>
+ <h1>Остоженка по домам</h1>
+ <p class="lead">На заметку: Остоженка — самый маленький и самый закрытый рынок центра. Формально это Хамовники, но считаем её отдельно: другая цена и другая публика, а жить все хотят в переулках, не на самой улице. Пять домов продаёт застройщик, одиннадцать готовых живут на вторичке, а у шести клубных домов нет ни одного открытого объявления. Цену здесь чаще узнают по телефону, чем на сайте.</p>
+ <div class="phwrap"><div class="ph has" data-ar="21x9"><img src="../../img/ostozhenka/ledome.jpg" alt="Лё Дом в Соймоновском проезде" loading="lazy"></div></div>
+</div></section>
+
+<section class="tight"><div class="wrap">
+ <div class="h-stats">
+  <div><b>5</b><span>домов продаёт застройщик — с ценой входа по формату</span></div>
+  <div><b>11</b><span>готовых домов только на вторичке, 31 лотов после склейки дублей</span></div>
+  <div><b>6</b><span>клубных домов без единого открытого объявления</span></div>
+ </div>
+ <div class="hd-toc"><a href="#zastroyshchik">Продаёт застройщик</a><a href="#vtorichka">Только вторичка</a><a href="#vopros">Без объявлений</a><a href="#skoro">Скоро</a><a href="#cifry">Что видно по цифрам</a></div>
+ <p class="hint">Цены — цены предложения на ЦИАН 24 сентября 2026, не сделок. Дубли одной квартиры у разных продавцов склеены. «В продаже, медиана» — сколько дней висят объявления дома. Заметки с прогулки по каждому дому добавим после обхода.</p>
+</div></section>
+
+<section id="zastroyshchik"><div class="wrap">
+ <p class="ttl">Первичка</p>
+ <h2>Продаёт застройщик</h2>
+ <p class="lead">Дома, где квартиру можно купить напрямую. В таблицах — самый дешёвый лот каждого формата: площадь и цена, с которых начинается вход.</p>
+ <div style="margin-top:20px">
+ <article class="hd-card" id="ledome">
+  <div class="ph has" data-ar="3x2"><img src="../../img/ostozhenka/ledome.jpg" alt="Лё Дом" loading="lazy"></div>
+  <div>
+   <p class="hd-k"><span class="tag red">Продаёт застройщик</span> Обыденские переулки у храма · Соймоновский пр., 3</p>
+   <h3>Лё Дом</h3>
+   <ul class="hd-facts"><li>Группа ЛСР</li><li>срок IV кв. 2026, сдвинут с IV кв. 2025</li><li>69 квартир</li><li>мезонеты с патио и отдельным входом</li><li>паркинг на 154 места</li></ul>
+   <div class="tablewrap hd-t"><table>
+    <tr><th>Формат</th><th>Площадь</th><th>Вход</th></tr>
+    <tr><td>1-комн.</td><td>от 126,8 м²</td><td><b>от 467,2 млн ₽</b></td></tr><tr><td>2-комн.</td><td>от 153,8 м²</td><td><b>от 696 млн ₽</b></td></tr><tr><td>3-комн.</td><td>от 217,9 м²</td><td><b>от 754,1 млн ₽</b></td></tr><tr><td>5 и больше</td><td>от 403 м²</td><td><b>от 2 575 млн ₽</b></td></tr>
+   </table></div>
+   <p class="hd-sub">Метр: 2,57–10,29 млн, медиана 4,53 млн. 9 лотов у застройщика.</p>
+   <p class="hd-note"><b>На заметку:</b> Один из самых дорогих новых метров Остоженки — медиана 4,53 млн, выше только у застройщика Обыденского № 1. Вход — однокомнатная 126,8 м² за 467 млн. Стройка идёт к финалу, но срок уже переносили на год: график сверить по проектной декларации.</p>
+   <p class="hd-link"><a href="../../doma/le-dom/">Карточка дома в базе NOTA</a></p>
+   <!-- С прогулки: -->
+  </div>
+ </article>
+ <article class="hd-card" id="obyd">
+  <div class="ph has" data-ar="3x2"><img src="../../img/ostozhenka/obyd.jpg" alt="Обыденский № 1" loading="lazy"></div>
+  <div>
+   <p class="hd-k"><span class="tag red">Продаёт застройщик</span> Обыденские переулки у храма · 3-й Обыденский пер., 1</p>
+   <h3>Обыденский № 1</h3>
+   <ul class="hd-facts"><li>Sminex</li><li>сдан в 2026</li><li>26 резиденций: квартиры, ситихаусы, виллы</li><li>двор-сад</li><li>паркинг на 41 место</li></ul>
+   <div class="tablewrap hd-t"><table>
+    <tr><th>Формат</th><th>Площадь</th><th>Вход</th></tr>
+    <tr><td>3-комн.</td><td>от 204 м²</td><td><b>от 650,6 млн ₽</b></td></tr><tr><td>4-комн.</td><td>от 233 м²</td><td><b>от 987,9 млн ₽</b></td></tr><tr><td>5 и больше</td><td>от 505 м²</td><td><b>от 1 423 млн ₽</b></td></tr>
+   </table></div>
+   <p class="hd-sub">Метр: 2,82–9,29 млн, медиана 4,74 млн. 8 лотов у застройщика, 6 на вторичке (медиана 3,52 млн).</p>
+   <p class="hd-note"><b>На заметку:</b> У собственников метр на четверть дешевле: 3,52 млн против 4,74 у застройщика. Вход у застройщика — 650,6 млн за 204 м², у собственников — от 289 млн. Начинать со вторички.</p>
+   <p class="hd-link"><a href="../../doma/obydenskiy-1/">Карточка дома в базе NOTA</a></p>
+   <!-- С прогулки: -->
+  </div>
+ </article>
+ <article class="hd-card" id="annabel">
+  <div class="ph has" data-ar="3x2"><img src="../../img/ostozhenka/annabel.jpg" alt="Аннабель" loading="lazy"></div>
+  <div>
+   <p class="hd-k"><span class="tag red">Продаёт застройщик</span> Зачатьевские переулки · Курсовой пер., 12/5, стр. 7</p>
+   <h3>Аннабель</h3>
+   <ul class="hd-facts"><li>9 квартир</li><li>до 7 этажей</li><li>фасад цвета слоновой кости</li><li>механизированный паркинг на 16 мест</li></ul>
+   <div class="tablewrap hd-t"><table>
+    <tr><th>Формат</th><th>Площадь</th><th>Вход</th></tr>
+    <tr><td>свободная</td><td>от 170,1 м²</td><td><b>от 323,2 млн ₽</b></td></tr>
+   </table></div>
+   <p class="hd-sub">Метр: 1,90–3,50 млн, медиана 2,40 млн. 5 лотов у застройщика.</p>
+   <p class="hd-note"><b>На заметку:</b> Пять лотов свободной планировки от 170 м² и 323 млн, медиана 2,40 млн за метр — заметно ниже, чем у домов у храма. Данные площадок о застройщике и готовности дома расходятся: документы смотреть первыми.</p>
+   <p class="hd-link"><a href="../../doma/annabel-s/">Карточка дома в базе NOTA</a></p>
+   <!-- С прогулки: -->
+  </div>
+ </article>
+ <article class="hd-card" id="lev19">
+  <div class="ph has" data-ar="3x2"><img src="../../img/ostozhenka/lev19.jpg" alt="Лёвшинский, 19" loading="lazy"></div>
+  <div>
+   <p class="hd-k"><span class="tag red">Продаёт застройщик</span> Пречистенка и Лёвшинские переулки · Б. Лёвшинский пер., 19</p>
+   <h3>Лёвшинский, 19</h3>
+   <ul class="hd-facts"><li>Трансстройинвест</li><li>срок II кв. 2028</li><li>16 квартир, по две на этаже</li><li>на месте доходного дома 1904 года</li><li>архитектура бюро Hadaa</li></ul>
+   <div class="tablewrap hd-t"><table>
+    <tr><th>Формат</th><th>Площадь</th><th>Вход</th></tr>
+    <tr><td>1-комн.</td><td>от 70,4 м²</td><td><b>от 217,5 млн ₽</b></td></tr><tr><td>2-комн.</td><td>от 70,4 м²</td><td><b>от 200,3 млн ₽</b></td></tr><tr><td>3-комн.</td><td>от 147,8 м²</td><td><b>от 368,1 млн ₽</b></td></tr>
+   </table></div>
+   <p class="hd-sub">Метр: 2,49–3,27 млн, медиана 2,84 млн. 5 лотов у застройщика.</p>
+   <p class="hd-note"><b>На заметку:</b> Старт продаж: 5 лотов, вход — 200,3 млн за 70,4 м², медиана 2,84 млн. Для Пречистенских переулков это ниже готовых домов по соседству: Пречистенка, 13 на вторичке — 3,49.</p>
+   <p class="hd-link"><a href="../../doma/levshinskiy-19/">Карточка дома в базе NOTA</a></p>
+   <!-- С прогулки: -->
+  </div>
+ </article>
+ <article class="hd-card" id="nabokov">
+  <div class="ph has" data-ar="3x2"><img src="../../img/ostozhenka/nabokov.jpg" alt="Nabokov" loading="lazy"></div>
+  <div>
+   <p class="hd-k"><span class="tag red">Продаёт застройщик</span> Зачатьевские переулки · Курсовой пер., 10/1</p>
+   <h3>Nabokov</h3>
+   <ul class="hd-facts"><li>Vesper</li><li>14 апартаментов и пентхаус</li><li>6 этажей</li><li>потолки до 3,95 м</li></ul>
+   <div class="tablewrap hd-t"><table>
+    <tr><th>Формат</th><th>Площадь</th><th>Вход</th></tr>
+    <tr><td>2-комн.</td><td>от 145,1 м²</td><td><b>от 362,8 млн ₽</b></td></tr>
+   </table></div>
+   <p class="hd-sub">Метр: 2,50 млн. 1 лот у застройщика, 1 на вторичке (медиана 2,50 млн).</p>
+   <p class="hd-note"><b>На заметку:</b> На витрине одна квартира — 145 м² за 362,8 млн, 2,5 млн за метр. Остальное — по запросу.</p>
+   
+   <!-- С прогулки: -->
+  </div>
+ </article>
+ </div>
+</div></section>
+
+<section class="method" id="vtorichka"><div class="wrap">
+ <p class="ttl">Вторичка</p>
+ <h2>Только вторичка: одиннадцать готовых домов</h2>
+ <p class="lead">Группы — наши: набережная, Зачатьевские переулки, сама Остоженка, Пречистенка. Внутри каждой дома сравнимы между собой.</p>
+ <div class="hd-grid">
+  <div class="hd-grp">Набережная и Коробейников переулок</div>
+  <article class="hd-cell noimg" id="klenovy">
+   
+   <p class="hd-k"><span class="tag">Вторичка</span> Набережная и Коробейников переулок</p>
+   <h3>Кленовый дом</h3>
+   <p class="hd-addr">Пречистенская наб., 5</p>
+   <ul class="hd-facts"><li>бюро «Остоженка», Александр Скокан</li><li>4–5 этажей</li><li>40 апартаментов</li><li>каштановая аллея во дворе</li></ul>
+   <dl class="hd-st">
+      <div><dt>На вторичке</dt><dd>3 лота</dd></div>
+      <div><dt>Медиана метра</dt><dd>2,23 млн ₽/м² <span>(1,37–2,70)</span></dd></div>
+      <div><dt>Вход</dt><dd>от 175,8 млн ₽ <span>· 128–219 м²</span></dd></div>
+      <div><dt>В продаже, медиана</dt><dd>65 дн.</dd></div>
+   </dl>
+   <p class="hd-note"><b>На заметку:</b> Первая линия набережной. Три объявления, вход — 128 м² за 175,8 млн, один из самых доступных на Остоженке. Шум набережной проверять на месте.</p>
+   
+   <!-- С прогулки: -->
+  </article>
+  <article class="hd-cell noimg" id="hilkov">
+   
+   <p class="hd-k"><span class="tag">Вторичка</span> Набережная и Коробейников переулок</p>
+   <h3>Хилков, 5</h3>
+   <p class="hd-addr">Хилков пер., 5</p>
+   <ul class="hd-facts"><li>27 квартир</li><li>два корпуса — 5 и 6 этажей</li><li>травертин</li><li>паркинг на 170 мест</li></ul>
+   <dl class="hd-st">
+      <div><dt>На вторичке</dt><dd>7 лотов</dd></div>
+      <div><dt>Медиана метра</dt><dd>2,06 млн ₽/м² <span>(1,50–2,18)</span></dd></div>
+      <div><dt>Вход</dt><dd>от 240 млн ₽ <span>· 110–374 м²</span></dd></div>
+      <div><dt>В продаже, медиана</dt><dd>117 дн.</dd></div>
+   </dl>
+   <p class="hd-note"><b>На заметку:</b> Семь объявлений — самый широкий выбор в этой части Остоженки. Вход — 240 млн за 110–120 м², медиана 2,06 млн.</p>
+   <p class="hd-link"><a href="../../doma/khilkov/">Карточка дома в базе NOTA</a></p>
+   <!-- С прогулки: -->
+  </article>
+  <article class="hd-cell noimg" id="crystal">
+   
+   <p class="hd-k"><span class="tag">Вторичка</span> Набережная и Коробейников переулок</p>
+   <h3>Crystal House</h3>
+   <p class="hd-addr">Коробейников пер., 1</p>
+   <ul class="hd-facts"><li>бюро «Меганом»</li><li>67 квартир</li><li>стеклянные эркеры</li></ul>
+   <dl class="hd-st">
+      <div><dt>На вторичке</dt><dd>4 лота</dd></div>
+      <div><dt>Медиана метра</dt><dd>1,99 млн ₽/м² <span>(1,80–2,11)</span></dd></div>
+      <div><dt>Вход</dt><dd>от 355 млн ₽ <span>· 197–213 м²</span></dd></div>
+      <div><dt>В продаже, медиана</dt><dd>130 дн.</dd></div>
+   </dl>
+   <p class="hd-note"><b>На заметку:</b> Четыре квартиры, все большие — от 197 м² и 355 млн. Метр около 2 млн — на уровне Хилкова через переулок.</p>
+   
+   <!-- С прогулки: -->
+  </article>
+  <article class="hd-cell" id="carre">
+   <div class="ph has" data-ar="3x2"><img src="../../img/ostozhenka/carre.jpg" alt="Carré Blanc" loading="lazy"></div>
+   <p class="hd-k"><span class="tag">Вторичка</span> Набережная и Коробейников переулок</p>
+   <h3>Carré Blanc</h3>
+   <p class="hd-addr">Пречистенская наб., 43</p>
+   <ul class="hd-facts"><li>46 апартаментов</li><li>5 этажей</li><li>потолки 3,6 м</li><li>резной камень на фасаде</li></ul>
+   <dl class="hd-st">
+      <div><dt>На вторичке</dt><dd>1 лот</dd></div>
+      <div><dt>Медиана метра</dt><dd>2,86 млн ₽/м²</dd></div>
+      <div><dt>Вход</dt><dd>от 420 млн ₽ <span>· 147 м²</span></dd></div>
+      <div><dt>В продаже, медиана</dt><dd>96 дн.</dd></div>
+   </dl>
+   <p class="hd-note"><b>На заметку:</b> Одна квартира — 147 м² за 420 млн. Статус апартаментов стоит учесть в расчёте: другой налог и нет постоянной регистрации. На месте проверить связь в квартире и выезд на набережную в час пик.</p>
+   
+   <!-- С прогулки: -->
+  </article>
+  <div class="hd-grp">Зачатьевские переулки</div>
+  <article class="hd-cell noimg" id="molochny">
+   
+   <p class="hd-k"><span class="tag">Вторичка</span> Зачатьевские переулки</p>
+   <h3>Молочный дом</h3>
+   <p class="hd-addr">Молочный пер., 1</p>
+   <ul class="hd-facts"><li>Rose Group</li><li>сдан в 2002</li><li>бюро «Меганом», Юрий Григорян</li><li>18 квартир, 250–1000 м²</li></ul>
+   <dl class="hd-st">
+      <div><dt>На вторичке</dt><dd>2 лота</dd></div>
+      <div><dt>Медиана метра</dt><dd>2,06 млн ₽/м²</dd></div>
+      <div><dt>Вход</dt><dd>от 1 093 млн ₽ <span>· 531 м²</span></dd></div>
+      <div><dt>В продаже, медиана</dt><dd>212 дн.</dd></div>
+   </dl>
+   <p class="hd-note"><b>На заметку:</b> Одному из самых известных домов Остоженки больше двадцати лет. На витрине — квартиры от 531 м² за 1,09 млрд, метр около 2 млн. Объявления висят больше полугода.</p>
+   
+   <!-- С прогулки: -->
+  </article>
+  <article class="hd-cell noimg" id="novost">
+   
+   <p class="hd-k"><span class="tag">Вторичка</span> Зачатьевские переулки</p>
+   <h3>Новая Остоженка</h3>
+   <p class="hd-addr">1-й Зачатьевский пер., 5</p>
+   <ul class="hd-facts"><li>бюро «ТРОМОС»</li><li>декор Юрия Вайса</li></ul>
+   <dl class="hd-st">
+      <div><dt>На вторичке</dt><dd>5 лотов</dd></div>
+      <div><dt>Медиана метра</dt><dd>1,42 млн ₽/м² <span>(1,42–1,98)</span></dd></div>
+      <div><dt>Вход</dt><dd>от 240 млн ₽ <span>· 169–245 м²</span></dd></div>
+      <div><dt>В продаже, медиана</dt><dd>65 дн.</dd></div>
+   </dl>
+   <p class="hd-note"><b>На заметку:</b> Самый доступный метр в подборке — 1,42 млн. Пять квартир от 169 м² и 240 млн.</p>
+   
+   <!-- С прогулки: -->
+  </article>
+  <article class="hd-cell" id="villa">
+   <div class="ph has" data-ar="3x2"><img src="../../img/ostozhenka/villa.jpg" alt="Villa Grace" loading="lazy"></div>
+   <p class="hd-k"><span class="tag">Вторичка</span> Зачатьевские переулки</p>
+   <h3>Villa Grace</h3>
+   <p class="hd-addr">Пожарский пер., 3</p>
+   <ul class="hd-facts"><li>20 квартир</li><li>6 этажей</li><li>интерьеры Nathalie Crinière</li></ul>
+   <dl class="hd-st">
+      <div><dt>На вторичке</dt><dd>1 лот</dd></div>
+      <div><dt>Медиана метра</dt><dd>2,64 млн ₽/м²</dd></div>
+      <div><dt>Вход</dt><dd>от 340 млн ₽ <span>· 129 м²</span></dd></div>
+      <div><dt>В продаже, медиана</dt><dd>492 дн.</dd></div>
+   </dl>
+   <p class="hd-note"><b>На заметку:</b> Одна квартира — 129 м² за 340 млн, висит больше 490 дней. Цена продавца пока не встретила покупателя.</p>
+   
+   <!-- С прогулки: -->
+  </article>
+  <article class="hd-cell" id="bvirgin">
+   <div class="ph has" data-ar="3x2"><img src="../../img/ostozhenka/bvirgin.jpg" alt="Barkli Virgin House" loading="lazy"></div>
+   <p class="hd-k"><span class="tag">Вторичка</span> Зачатьевские переулки</p>
+   <h3>Barkli Virgin House</h3>
+   <p class="hd-addr">1-й Зачатьевский пер., 8/9</p>
+   <ul class="hd-facts"><li>Barkli</li><li>сдан в 2012</li><li>две секции — классическая и современная</li><li>21 квартира, 120–359 м²</li></ul>
+   <dl class="hd-st">
+      <div><dt>На вторичке</dt><dd>2 лота</dd></div>
+      <div><dt>Медиана метра</dt><dd>2,90 млн ₽/м²</dd></div>
+      <div><dt>Вход</dt><dd>от 320 млн ₽ <span>· 167–178 м²</span></dd></div>
+      <div><dt>В продаже, медиана</dt><dd>10 дн.</dd></div>
+   </dl>
+   <p class="hd-note"><b>На заметку:</b> Две квартиры: 178 м² за 320 млн и 167 м² за 668 млн — разброс вдвое в одном доме. Сравнивать нужно секцию и этаж.</p>
+   
+   <!-- С прогулки: -->
+  </article>
+  <div class="hd-grp">Сама Остоженка</div>
+  <article class="hd-cell" id="allegoria">
+   <div class="ph has" data-ar="3x2"><img src="../../img/ostozhenka/allegoria.jpg" alt="Allegoria Mosca" loading="lazy"></div>
+   <p class="hd-k"><span class="tag">Вторичка</span> Сама Остоженка</p>
+   <h3>Allegoria Mosca</h3>
+   <p class="hd-addr">Остоженка, 4–6</p>
+   <ul class="hd-facts"><li>Kleinewelt Architekten</li><li>57 апартаментов</li><li>6 этажей</li><li>арки поверх сетки окон</li></ul>
+   <dl class="hd-st">
+      <div><dt>На вторичке</dt><dd>1 лот</dd></div>
+      <div><dt>Медиана метра</dt><dd>1,71 млн ₽/м²</dd></div>
+      <div><dt>Вход</dt><dd>от 130 млн ₽ <span>· 76 м²</span></dd></div>
+      <div><dt>В продаже, медиана</dt><dd>31 дн.</dd></div>
+   </dl>
+   <p class="hd-note"><b>На заметку:</b> Дом ещё не сдан, а на вторичке уже есть переуступка — 76 м² за 130 млн, 1,71 млн за метр. Своих лотов застройщик на витрине не показывает.</p>
+   
+   <!-- С прогулки: -->
+  </article>
+  <div class="hd-grp">Пречистенка и Лёвшинские переулки</div>
+  <article class="hd-cell noimg" id="prech13">
+   
+   <p class="hd-k"><span class="tag">Вторичка</span> Пречистенка и Лёвшинские переулки</p>
+   <h3>Пречистенка, 13</h3>
+   <p class="hd-addr">Пречистенка, 13</p>
+   <ul class="hd-facts"><li>доходный дом Якова Рекка, 1912 год</li><li>архитектор Густав Гельрих</li><li>15 квартир и пентхаус</li><li>потолки 3,8–5 м</li></ul>
+   <dl class="hd-st">
+      <div><dt>На вторичке</dt><dd>3 лота</dd></div>
+      <div><dt>Медиана метра</dt><dd>3,49 млн ₽/м² <span>(3,40–6,06)</span></dd></div>
+      <div><dt>Вход</dt><dd>от 1 000 млн ₽ <span>· 280–470 м²</span></dd></div>
+      <div><dt>В продаже, медиана</dt><dd>—</dd></div>
+   </dl>
+   <p class="hd-note"><b>На заметку:</b> Три объявления от 1 млрд за 286 м². Медиана 3,49 млн — на уровне домов у храма.</p>
+   
+   <!-- С прогулки: -->
+  </article>
+  <article class="hd-cell noimg" id="eropkin">
+   
+   <p class="hd-k"><span class="tag">Вторичка</span> Пречистенка и Лёвшинские переулки</p>
+   <h3>Еропкинский, 16</h3>
+   <p class="hd-addr">Еропкинский пер., 16</p>
+   <ul class="hd-facts"><li>43 квартиры</li><li>потолки 3,5 м</li><li>паркинг на 138 мест</li><li>зелёный двор</li></ul>
+   <dl class="hd-st">
+      <div><dt>На вторичке</dt><dd>2 лота</dd></div>
+      <div><dt>Медиана метра</dt><dd>2,54 млн ₽/м²</dd></div>
+      <div><dt>Вход</dt><dd>от 630 млн ₽ <span>· 270–350 м²</span></dd></div>
+      <div><dt>В продаже, медиана</dt><dd>135 дн.</dd></div>
+   </dl>
+   <p class="hd-note"><b>На заметку:</b> Два объявления, оба больших — от 350 м² и 630 млн.</p>
+   
+   <!-- С прогулки: -->
+  </article>
+ </div>
+</div></section>
+
+<section id="vopros"><div class="wrap">
+ <p class="ttl">Без витрины</p>
+ <h2>Дома без объявлений</h2>
+ <p class="lead">У шести домов на ЦИАН нет ни одного лота. Это не значит, что там ничего не продаётся: квартиры уходят через агентов и знакомых. Мы запрашиваем цены напрямую.</p>
+ <div class="tablewrap" style="margin-top:26px"><table><tr><th>Дом</th><th>Застройщик</th><th>Что известно</th></tr><tr><td><b>Noble Row</b></td><td>—</td><td>шесть городских особняков в Коробейниковом переулке, объявлений нет</td></tr><tr><td><b>Opera House</b></td><td>—</td><td>70 квартир, Остоженка, 25; объявлений нет</td></tr><tr><td><b>Copper House</b></td><td>—</td><td>20 квартир, Бутиковский пер., 3; объявлений нет</td></tr><tr><td><b>Остоженка, 11</b></td><td>—</td><td>36 апартаментов и 2 пентхауса; объявлений нет</td></tr><tr><td><b>Империум</b></td><td>VESTA Development</td><td>27 квартир, срок III кв. 2027; лотов на витрине нет</td></tr><tr><td><b>Резиденция на Всеволожском</b></td><td>—</td><td>21 квартира; объявлений нет</td></tr></table></div>
+</div></section>
+
+<section class="method" id="skoro"><div class="wrap">
+ <p class="ttl">Скоро</p>
+ <h2>Два проекта без открытых цен</h2>
+ <div class="grid g2" style="margin-top:26px;background:none;border:none;gap:34px"><div class="rl"><h3>Лёвшинский 7</h3><p class="hd-addr" style="margin-top:6px">КОЛДИ · Малый Лёвшинский пер.</p><p style="margin-top:10px;color:var(--ink-2);font-size:15px">Пятиэтажный дом, срок — I квартал 2029 года. Цен пока нет.</p></div><div class="rl"><h3>Golden Mile Private Residences</h3><p class="hd-addr" style="margin-top:6px">— · Остоженка, 9/14</p><p style="margin-top:10px;color:var(--ink-2);font-size:15px">Срок — IV квартал 2026 года. Открытых цен нет.</p></div></div>
+ <p class="hint">До старта продаж цены нет ни у кого — ни у застройщика, ни у агентов. Любая «цена со старта» сейчас — оценка.</p>
+</div></section>
+
+<section id="cifry"><div class="wrap">
+ <p class="ttl">Красная линия</p>
+ <h2>Что видно по цифрам</h2>
+ <div class="grid g3" style="margin-top:26px"><div><div class="num">Одна улица</div><h3>Два уровня цены</h3><p style="margin-top:10px;color:var(--ink-2);font-size:15px">Медиана вторички у храма, в Обыденских переулках — <b>3,52 млн ₽/м²</b>, на Пречистенке — 3,40. На набережной и в Коробейниковом — 2,06, в Зачатьевских переулках — 1,98. Почти двукратная разница на расстоянии семисот метров.</p></div><div><div class="num">Рынок без витрины</div><h3>38 лотов на 22 дома</h3><p style="margin-top:10px;color:var(--ink-2);font-size:15px">На вторичке всей Остоженки — 38 квартир после склейки дублей, у застройщиков — 28. У шести домов нет ни одного объявления. Открытые цены показывают меньшую часть рынка, поэтому здесь особенно важно спрашивать.</p></div><div><div class="num">Новое против готового</div><h3>Старт продаж ниже соседей</h3><p style="margin-top:10px;color:var(--ink-2);font-size:15px">Лёвшинский, 19 у застройщика — медиана 2,84 млн, Аннабель — 2,40. Готовый Обыденский № 1 у собственников — 3,52, у застройщика — 4,74. Новый дом в переулках пока дешевле клубного дома у храма.</p></div></div>
+ <div class="btns" style="margin-top:34px"><a class="btn" href="../../podbor.html">Подобрать дом на Остоженке</a> <a class="btn btn-l" href="../../razbor-ostozhenka.html">Разбор района</a> <a class="btn btn-l" href="../../karta.html">Все дома на карте</a></div>
+</div></section>
+
+<section class="tight"><div class="wrap">
+ <p class="ttl">Источники</p>
+ <ul class="h-src">
+  <li>ЦИАН, поиск по району Хамовники (Остоженка и Пречистенка), новостройки: выгрузка 24 сентября 2026 — цены, площади, лоты застройщиков и вторичка</li>
+  <li>База NOTA: паспорт дома, девять проверок, стадия, сроки, паркинг — карточки домов по ссылкам в тексте</li>
+  <li>Элитное.ру, карточки жилых комплексов — характеристики домов; фотографии и визуализации в разборе — материалы застройщиков из этих карточек</li>
+ </ul>
+ <p class="hint">Разбор собран 24 сентября 2026. Цены на вторичке меняются каждую неделю — при следующей сверке обновим цифры и поставим новую дату.</p>
+</div></section>
+</main>
+<footer>
+ <div class="wrap foot">
+  <a class="brand" href="../../index.html">
+   <svg class="mark" viewBox="12 5 96 103" fill="none" aria-hidden="true">
+    <path d="M 90.57 28.35 A 44 44 0 1 1 72.13 17.70" stroke="currentColor" stroke-width="6.3"/>
+    <path d="M 60 60 L 89.04 9.70" stroke="#CE2029" stroke-width="6.3"/>
+   </svg>
+   <span class="rule"></span>
+   <span class="lk">
+    <span class="wm">NOT<i>A</i></span>
+    <span class="brandtag">NB: NOT A CHOICE. THE CHOICE.</span>
+   </span>
+  </a>
+  <div class="foot-r">
+   <div><a href="tel:+74950000000">+7 495 000-00-00</a> · <a href="https://t.me/nota_estate">Telegram</a> · <a href="#">MAX</a> · <a href="mailto:hello@nota.estate">hello@nota.estate</a></div>
+   <div class="foot-nav"><a href="../../index.html">Главная</a> · <a href="../../podbor.html">Подбор</a> · <a href="../../karta.html">Карта домов</a> · <a href="../../razbory.html">Разборы</a> · <a href="../../scenarii.html">Сценарии</a> · <a href="../../reytingi.html">Рейтинги</a> · <a href="../../metod.html">Метод</a></div>
+  </div>
+ </div>
+ <div class="wrap foot-legal">
+  <span>ИП — · ИНН — · ОГРНИП —</span>
+  <span><a href="../../politika.html">Политика конфиденциальности</a> · <a href="../../politika.html#soglasie">Согласие на обработку данных</a></span>
+ </div>
+</footer>
+<script src="../../js/nota.js"></script>
+</body>
+</html>

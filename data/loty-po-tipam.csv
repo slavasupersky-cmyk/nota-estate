@@ -1076,10 +1076,6 @@ wellton-towers;4+;1;87.3;87.3;45657900;52380000;52380000;87.3;52380000;23;Кор
 west-garden;2;1;69.6;69.6;55490000;;55490000;69.6;55490000;14;корпус 14;;realty.yandex.ru (фид застройщика Sminex);https://realty.yandex.ru/moskva_i_moskovskaya_oblast/kupit/kvartira/zhk-west-garden-1574362/?primarySale=YES;2026-09-23
 west-tower;2;;48.1;;20100000;;;;;;;;novostroev;https://novostroev.ru/novostroyki/moskva/zao/ochakovo-matveevskoe/west-tower/;2026-09-18
 west-tower;3;;72.0;90.2;30100000;;37700000;;;;;;novostroev;https://novostroev.ru/novostroyki/moskva/zao/ochakovo-matveevskoe/west-tower/;2026-09-18
-will-towers;студия;5;25.6;26.4;14679991;;16064895;25.8;14679991;11;;без отделки;novostroev;https://novostroev.ru/flats/moskva/zao/ramenki/f214302/;2026-09-18
-will-towers;2;38;47.7;97.1;22794205;;52585515;51.3;22794205;10;;без отделки;novostroev;https://novostroev.ru/flats/moskva/zao/ramenki/f214382/;2026-09-18
-will-towers;3;76;71.8;97.7;31186505;;51589174;72.8;31186505;15;;без отделки;novostroev;https://novostroev.ru/flats/moskva/zao/ramenki/f214488/;2026-09-18
-will-towers;4+;18;107.0;116.5;42939023;;50197379;111.7;42939023;15;;без отделки;novostroev;https://novostroev.ru/flats/moskva/zao/ramenki/f217809/;2026-09-18
 wow;3;;75.6;;47800000;;;;;;;;novostroev;https://novostroev.ru/novostroyki/moskva/uao/danilovskiy/wow/;2026-09-17
 wow;4+;;91.4;118.5;50000000;;56200000;;;;;;novostroev;https://novostroev.ru/novostroyki/moskva/uao/danilovskiy/wow/;2026-09-17
 zareche-park;студия;4;25.6;32.4;9799090;11806132;15536474;29.1;11806132;2;корп. 4;без отделки;застройщик;https://samolet.ru/flats/?free=1&place=true&place_project=41;2026-09-23
@@ -1105,3 +1101,6 @@ zorge-9;1;18;36.1;56.1;21800000;;40300000;36.1;26200000;18;;;novostroev;https://
 zvezdy-arbata;1;;94.0;128.0;101400000;;191000000;;;;;;novostroev;https://novostroev.ru/novostroyki/moskva/cao/arbat/novyy-arbat-32-zvezdy-arbata/;2026-09-17
 zvezdy-arbata;2;;110.8;158.0;121900000;;216800000;;;;;;novostroev;https://novostroev.ru/novostroyki/moskva/cao/arbat/novyy-arbat-32-zvezdy-arbata/;2026-09-17
 zvezdy-arbata;4+;;223.0;415.8;355700000;;1000000000;;;;;;novostroev;https://novostroev.ru/novostroyki/moskva/cao/arbat/novyy-arbat-32-zvezdy-arbata/;2026-09-17
+will-towers;2;22;49;80.6;27415394;;;;;;;без отделки;ci.ru (API застройщика);https://ci.ru/choose;2026-09-24
+will-towers;3;61;73;85.8;35068340;;;;;;;без отделки;ci.ru (API застройщика);https://ci.ru/choose;2026-09-24
+will-towers;4;11;107;112.6;50023129;;;;;;;без отделки;ci.ru (API застройщика);https://ci.ru/choose;2026-09-24
