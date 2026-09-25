@@ -1286,3 +1286,10 @@ section .two.rz-h,section.tight .two.rz-h:has(h2){align-items:start}
 .mm text{fill:#fff;font-weight:700;font-family:inherit;pointer-events:none}.mm.biz text{fill:#101317}
 .mm:hover circle,.mm:focus circle{stroke:#101317;stroke-width:2.5}
 @media(max-width:700px){.mm{transform-box:fill-box;transform-origin:center;transform:scale(1.7)}}
+
+/* итог дома и школы — без плашки: красная галочка и слово (25.09) */
+.tag.mark,.tag.look,.tag.no{border:0;padding:0;border-radius:0;background:none;font-size:13px}
+.tag.mark{color:var(--ink)}
+.tag.mark:before{content:"";display:inline-block;width:.62em;height:.3em;border-left:2px solid var(--red);border-bottom:2px solid var(--red);transform:rotate(-45deg);margin:0 .5em 0 .1em;vertical-align:.28em}
+.tag.look{color:var(--ink-2)}
+.tag.no{color:var(--muted)}

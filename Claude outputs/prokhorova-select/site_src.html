@@ -1,0 +1,889 @@
+<title>Прохорова Select</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600&display=swap">
+<style>
+:root{
+  --bg:#E4DDD4; --bg2:#ECE6DE; --surface:#F3EFE9; --ink:#1F1B17; --ink2:#3E3731; --mute:#77706A; --line:#CFC6BB; --line2:#DCD5CC;
+  --bronze:#8A6B47; --bronze2:#B79A70; --bronze-soft:rgba(138,107,71,.12);
+  --new:#3F7D4E; --gone:#B8871E; --was:#9A928A; --park:#DCD9CB; --water:#CFC9C0;
+  --show-light:block; --show-dark:none;
+  --g1:#C9A97E; --g2:#8E6F4B; --g3:#5E4630;
+  --shadow:0 18px 50px rgba(50,40,30,.14);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#1A1917; --bg2:#1F1D1B; --surface:#26231F; --ink:#ECE5DB; --ink2:#CFC6BA; --mute:#9A9187; --line:#3A3631; --line2:#2E2B27;
+    --bronze:#C9AC80; --bronze2:#8E7451; --bronze-soft:rgba(201,172,128,.12);
+    --new:#7FBF8C; --gone:#D9AA45; --was:#6E675F; --park:#252A24; --water:#33302C;
+    --show-light:none; --show-dark:block;
+    --g1:#E2C89E; --g2:#B8976A; --g3:#8A6C48;
+    --shadow:0 18px 50px rgba(0,0,0,.45);
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#1A1917; --bg2:#1F1D1B; --surface:#26231F; --ink:#ECE5DB; --ink2:#CFC6BA; --mute:#9A9187; --line:#3A3631; --line2:#2E2B27;
+  --bronze:#C9AC80; --bronze2:#8E7451; --bronze-soft:rgba(201,172,128,.12);
+  --new:#7FBF8C; --gone:#D9AA45; --was:#6E675F; --park:#252A24; --water:#33302C;
+  --show-light:none; --show-dark:block;
+  --g1:#E2C89E; --g2:#B8976A; --g3:#8A6C48;
+  --shadow:0 18px 50px rgba(0,0,0,.45);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Manrope",-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-size:16px;line-height:1.55;font-weight:400;-webkit-font-smoothing:antialiased}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+a{color:inherit}
+h1,h2,h3{margin:0;font-weight:400;text-wrap:balance;letter-spacing:-.01em}
+h1{font-size:clamp(30px,4.6vw,54px);line-height:1.1;font-weight:300}
+h2{font-size:clamp(24px,3vw,36px);line-height:1.18;font-weight:300}
+h3{font-size:20px;line-height:1.3;font-weight:500}
+p{margin:0}
+.eyebrow{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--bronze);font-weight:600}
+.mute{color:var(--mute)}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:20px}
+@media(min-width:800px){.wrap{padding-inline:40px}}
+.only-light{display:var(--show-light)!important}.only-dark{display:var(--show-dark)!important}
+
+/* header */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--line2)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:64px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+.brand .mark{height:36px;width:27px;display:block;flex:none}
+.brand span{font-size:12px;letter-spacing:.22em;text-transform:uppercase;font-weight:600}
+.brand span b{display:block;font-weight:400;color:var(--bronze);letter-spacing:.3em;font-size:10px;margin-top:2px}
+nav.main{display:flex;gap:4px}
+nav.main a{text-decoration:none;font-size:13px;letter-spacing:.06em;padding:8px 12px;border-radius:2px;color:var(--ink2)}
+nav.main a[aria-current="page"]{color:var(--ink);box-shadow:inset 0 -1px 0 var(--bronze)}
+nav.main a:hover{color:var(--ink)}
+.top .call{display:none}
+@media(max-width:760px){nav.main{display:none}.top .call{display:inline-flex}}
+.burger{display:none;background:none;border:1px solid var(--line);border-radius:2px;color:var(--ink);padding:8px 10px;font:inherit;font-size:13px}
+@media(max-width:760px){.burger{display:inline-flex}}
+nav.mobile{display:none;border-top:1px solid var(--line2);background:var(--bg)}
+nav.mobile.open{display:block}
+nav.mobile a{display:block;padding:14px 20px;text-decoration:none;border-bottom:1px solid var(--line2);font-size:15px}
+nav.mobile a[aria-current="page"]{color:var(--bronze)}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 22px;border-radius:2px;border:1px solid var(--ink);background:var(--ink);color:var(--bg);text-decoration:none;font:inherit;font-size:14px;letter-spacing:.04em;cursor:pointer;transition:opacity .2s}
+.btn:hover{opacity:.85}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn.ghost:hover{border-color:var(--ink);opacity:1}
+.btn.bronze{background:var(--bronze);border-color:var(--bronze);color:#fff}
+.btn.sm{padding:10px 16px;font-size:13px}
+:focus-visible{outline:2px solid var(--bronze);outline-offset:3px}
+
+/* pages */
+.page{display:none}
+.page.active{display:block;animation:fade .35s ease}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+section{padding-block:56px}
+@media(min-width:800px){section{padding-block:88px}}
+.rule{border:0;border-top:1px solid var(--line2);margin:0}
+.grid2{display:grid;grid-template-columns:1fr;gap:32px}
+.grid3{display:grid;grid-template-columns:1fr;gap:28px}
+@media(min-width:800px){.grid2{grid-template-columns:1fr 1fr;gap:56px}.grid3{grid-template-columns:repeat(3,1fr)}}
+.lead{font-size:clamp(17px,1.6vw,20px);line-height:1.55;max-width:34em;color:var(--ink2);font-weight:300}
+.sec-head{display:grid;gap:14px;max-width:44em;margin-bottom:40px}
+
+/* hero */
+.hero{padding-block:48px 40px;text-align:center}
+.hero .logo{width:min(360px,66vw);height:auto;margin:0 auto 28px;display:block}
+.hero h1{max-width:18em;margin:18px auto 0}
+.hero .lead{margin:22px auto 0;text-align:center}
+.split{display:grid;grid-template-columns:1fr;gap:16px;margin-top:44px}
+@media(min-width:700px){.split{grid-template-columns:1fr 1fr;gap:20px}}
+.split a{display:grid;gap:12px;text-align:left;padding:28px;border:1px solid var(--line);border-radius:2px;text-decoration:none;background:var(--bg2);transition:border-color .2s,transform .2s}
+.split a:hover{border-color:var(--bronze);transform:translateY(-2px)}
+.split a h2{font-size:clamp(24px,2.6vw,32px)}
+.split a .go{color:var(--bronze);font-size:13px;letter-spacing:.08em;text-transform:uppercase;font-weight:600;margin-top:6px}
+.hero-notes{display:flex;flex-wrap:wrap;justify-content:center;gap:10px 28px;margin-top:36px;font-size:13px;color:var(--mute);letter-spacing:.04em}
+.hero-notes span::before{content:"";display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--bronze);margin-right:10px;vertical-align:middle}
+
+/* feature list */
+.feat{display:grid;gap:0}
+.feat > div{padding:22px 0;border-top:1px solid var(--line2);display:grid;grid-template-columns:1fr;gap:6px}
+@media(min-width:700px){.feat > div{grid-template-columns:220px 1fr;gap:24px}}
+.feat b{font-weight:500;font-size:16px}
+.feat p{color:var(--ink2);max-width:36em}
+.num{font-size:11px;letter-spacing:.2em;color:var(--bronze);font-weight:600}
+
+/* stat teaser */
+.teaser{display:grid;gap:28px;padding:36px;border:1px solid var(--line);background:var(--bg2);border-radius:2px}
+@media(min-width:800px){.teaser{grid-template-columns:1.2fr 1fr;align-items:center}}
+.stats{display:flex;gap:36px;flex-wrap:wrap}
+.stats div{display:grid;gap:2px}
+.stats b{font-size:34px;font-weight:300;line-height:1;font-variant-numeric:tabular-nums}
+.stats small{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
+.stats .n b{color:var(--new)}.stats .g b{color:var(--gone)}
+
+/* cases */
+.case{display:grid;gap:12px;padding-top:20px;border-top:1px solid var(--line)}
+.case .k{font-size:28px;font-weight:300;line-height:1.1;font-variant-numeric:tabular-nums}
+.case .k small{font-size:13px;color:var(--mute);display:block;margin-top:6px;letter-spacing:.06em;text-transform:uppercase}
+.case p{color:var(--ink2);font-size:15px}
+.demo{font-size:12px;color:var(--mute);margin-top:28px;letter-spacing:.02em}
+
+/* accordion (разборы) */
+details{border-top:1px solid var(--line2)}
+details:last-child{border-bottom:1px solid var(--line2)}
+summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:18px 0;font-size:17px;font-weight:500}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";color:var(--bronze);font-weight:300;font-size:24px;line-height:1;flex:none}
+details[open] summary::after{content:"–"}
+details .body{padding:0 0 22px;color:var(--ink2);max-width:40em;display:grid;gap:10px;font-size:15px}
+details .body ul{margin:0;padding-left:18px;display:grid;gap:6px}
+
+/* forms */
+.form{display:grid;gap:14px;max-width:520px}
+.form label{display:grid;gap:6px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
+.form input,.form select,.form textarea{font:inherit;font-size:16px;padding:12px 14px;border:1px solid var(--line);border-radius:2px;background:var(--surface);color:var(--ink);width:100%}
+.form input:focus,.form select:focus,.form textarea:focus{outline:none;border-color:var(--bronze)}
+.form select{appearance:none;-webkit-appearance:none;padding-right:44px;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9'><path d='M1 1l6 6 6-6' fill='none' stroke='%238A6B47' stroke-width='1.6'/></svg>");background-repeat:no-repeat;background-position:right 16px center}
+.form .row{display:grid;gap:14px}
+@media(min-width:600px){.form .row{grid-template-columns:1fr 1fr}}
+.form .fine{font-size:12px;color:var(--mute);line-height:1.5}
+.thanks{display:none;padding:20px;border:1px solid var(--bronze);border-radius:2px;background:var(--bronze-soft);max-width:520px}
+.form.sent{display:none}.form.sent + .thanks{display:block}
+
+/* contact strip */
+.strip{display:grid;gap:36px}
+.strip > div,.strip > form{align-content:start}
+@media(min-width:800px){.strip{grid-template-columns:1fr 1fr;gap:64px}}
+.phone{font-size:clamp(24px,3vw,34px);font-weight:300;letter-spacing:.02em;font-variant-numeric:tabular-nums;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.copy{font:inherit;font-size:12px;letter-spacing:.1em;text-transform:uppercase;background:none;border:1px solid var(--line);color:var(--mute);padding:6px 10px;border-radius:2px;cursor:pointer}
+.copy:hover{color:var(--ink);border-color:var(--ink)}
+
+/* map */
+.mapwrap{display:grid;gap:20px}
+@media(min-width:900px){.mapwrap{grid-template-columns:1.5fr 1fr;align-items:start}}
+.mapbox{border:1px solid var(--line);border-radius:2px;background:var(--bg2);overflow:hidden;position:relative}
+.mapbox svg{display:block;width:100%;height:auto;max-width:100%}
+.legend{display:flex;gap:18px;flex-wrap:wrap;padding:12px 16px;border-top:1px solid var(--line2);font-size:12px;color:var(--mute);letter-spacing:.04em}
+.legend i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:7px;vertical-align:middle}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.chip{font:inherit;font-size:13px;padding:8px 14px;border:1px solid var(--line);border-radius:100px;background:transparent;color:var(--ink2);cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.pt{cursor:pointer;transition:r .15s}
+.pt circle.h{fill:transparent}
+.pt.sel circle.d{stroke:var(--ink);stroke-width:2.5}
+.pt.hidden{display:none}
+.label{font-family:"Manrope",sans-serif;font-size:11px;fill:var(--mute);letter-spacing:.06em;text-transform:uppercase;pointer-events:none}
+.road{fill:none;stroke:var(--line);stroke-width:1.2}
+.road.mkad{stroke-width:2;stroke:var(--line)}
+.river{fill:none;stroke:var(--line);stroke-width:5;opacity:.8;stroke-linecap:round}
+.panel{border:1px solid var(--line);border-radius:2px;background:var(--surface);padding:24px;display:grid;gap:14px;min-height:320px}
+.panel .price{font-size:30px;font-weight:300;font-variant-numeric:tabular-nums;line-height:1}
+.panel .tag{display:inline-flex;align-items:center;gap:8px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+.panel .tag i{width:8px;height:8px;border-radius:50%}
+.panel .params{display:grid;grid-template-columns:repeat(3,auto);gap:12px 20px;font-size:14px}
+.panel .params small{display:block;color:var(--mute);font-size:11px;letter-spacing:.08em;text-transform:uppercase}
+.panel .acts{display:grid;gap:8px;margin-top:6px}
+.panel .acts .btn{width:100%}
+.objlist{display:grid;gap:0;margin-top:28px}
+.objlist button{display:grid;grid-template-columns:14px 1fr auto;gap:14px;align-items:center;text-align:left;font:inherit;background:none;border:0;border-top:1px solid var(--line2);padding:12px 0;color:var(--ink);cursor:pointer}
+.objlist button i{width:8px;height:8px;border-radius:50%}
+.objlist button small{color:var(--mute);display:block;font-size:12px}
+.objlist button b{font-weight:500;font-variant-numeric:tabular-nums;white-space:nowrap}
+.objlist button.hidden{display:none}
+.st-w{background:var(--was)}.st-n{background:var(--new)}.st-g{background:var(--gone)}
+
+/* modal */
+.modal{position:fixed;inset:0;z-index:50;display:none;align-items:flex-end;justify-content:center;background:rgba(20,16,12,.55);padding:0}
+.modal.open{display:flex}
+.modal .box{background:var(--bg);width:100%;max-width:560px;padding:28px 24px calc(28px + env(safe-area-inset-bottom,0px));border-radius:4px 4px 0 0;max-height:92vh;overflow:auto;display:grid;gap:18px}
+@media(min-width:640px){.modal{align-items:center;padding:20px}.modal .box{border-radius:2px;padding:36px}}
+.modal .x{position:absolute;right:16px;top:12px;background:none;border:0;font-size:26px;color:var(--mute);cursor:pointer;font-weight:300}
+.modal .box{position:relative}
+
+/* services */
+.svc{display:grid;grid-template-columns:1fr;gap:1px;background:var(--line2);border:1px solid var(--line2)}
+@media(min-width:640px){.svc{grid-template-columns:1fr 1fr}}
+@media(min-width:960px){.svc{grid-template-columns:repeat(3,1fr)}}
+.svc div{background:var(--bg);padding:24px;display:grid;gap:8px}
+.svc b{font-weight:500}
+.svc p{color:var(--ink2);font-size:14px}
+
+/* quote */
+.quote{font-size:clamp(22px,2.6vw,32px);font-weight:300;line-height:1.3;max-width:24em;letter-spacing:-.01em}
+.quote em{font-style:normal;color:var(--bronze)}
+
+
+/* логотип (вектор) */
+.lg-ink{fill:var(--ink)}.lg-br{fill:url(#lg-grad)}
+.lg-s1{stop-color:var(--g1)}.lg-s2{stop-color:var(--g2)}.lg-s3{stop-color:var(--g3)}
+/* подложка карты (геометрия NOTA) */
+.k-bg{fill:var(--bg2)}
+.k-d{fill:var(--surface);stroke:var(--line2);stroke-width:.8}
+.k-park{fill:var(--park);stroke:none}
+.k-river{fill:none;stroke:var(--water);stroke-width:7;stroke-linecap:round;stroke-linejoin:round}
+.k-yauza{stroke-width:3.5}
+.k-ring{fill:none;stroke:var(--line);stroke-width:1.1}
+.k-mkad{stroke-width:2}
+/* таблица объектов */
+.tablehead{display:grid;gap:8px;margin:44px 0 16px}
+.objtable{border-top:1px solid var(--line)}
+.objtable .thead,.rowbtn{display:grid;grid-template-columns:14px 1fr 56px 60px 64px 120px 84px;gap:12px;align-items:center;text-align:left}
+.objtable .thead{padding:10px 0;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute)}
+.rowbtn{width:100%;font:inherit;background:none;border:0;border-top:1px solid var(--line2);padding:12px 0;color:var(--ink);cursor:pointer}
+.rowbtn:hover{background:var(--bg2)}
+.rowbtn i{width:8px;height:8px;border-radius:50%;display:block}
+.rowbtn .c-name b{font-weight:500;display:block}
+.rowbtn .c-name small{color:var(--mute);display:block;font-size:12px}
+.rowbtn .c-area,.rowbtn .c-rooms,.rowbtn .c-floor,.rowbtn .c-m2,.rowbtn .c-price{font-variant-numeric:tabular-nums;white-space:nowrap}
+.rowbtn .c-price b{font-weight:500}
+.rowbtn .c-m2{color:var(--mute);font-size:13px}
+.orow.hidden{display:none}
+.orow.open .rowbtn{background:var(--bg2)}
+.odet{border-top:1px solid var(--line2);background:var(--bg2)}
+.odet-in{display:grid;gap:24px;padding:20px 0 28px}
+@media(min-width:900px){.odet-in{grid-template-columns:1.4fr 1fr}}
+.ogal{display:grid;gap:10px;grid-template-columns:1fr 1fr;align-items:start}
+.band{width:100%;aspect-ratio:21/9;object-fit:cover;display:block;border-radius:2px;max-width:100%}
+.ogal figure{margin:0;display:grid;gap:6px}
+.ogal img{width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:2px;display:block;max-width:100%}
+.ogal figcaption{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute)}
+.ogal figure.plan .plansvg{width:100%;height:auto;aspect-ratio:3/2;background:var(--surface);border-radius:2px;border:1px solid var(--line2)}
+.pl-out{fill:none;stroke:var(--ink);stroke-width:3}
+.pl-room{fill:none;stroke:var(--ink2);stroke-width:1.2}
+.pl-t{font-family:"Manrope",sans-serif;font-size:10px;fill:var(--ink)}
+.pl-a{font-family:"Manrope",sans-serif;font-size:9px;fill:var(--mute)}
+.oinfo{display:grid;gap:14px;align-content:start}
+.oinfo .price{font-size:28px;font-weight:300;font-variant-numeric:tabular-nums;line-height:1}
+.oinfo .tag,.panel .tag{display:inline-flex;align-items:center;gap:8px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+.oinfo .tag i,.panel .tag i{width:8px;height:8px;border-radius:50%}
+.oinfo .params{display:grid;grid-template-columns:repeat(3,auto);gap:12px 20px;font-size:14px}
+.oinfo .params small{display:block;color:var(--mute);font-size:11px;letter-spacing:.08em;text-transform:uppercase}
+.oinfo .acts{display:grid;gap:8px;margin-top:6px}
+.panel .pimg{width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:2px;display:block;max-width:100%}
+@media(max-width:760px){
+  .objtable .thead,.rowbtn{grid-template-columns:10px 1fr 96px;gap:10px}
+  .c-area,.c-rooms,.c-floor,.c-m2{display:none}
+  .rowbtn .c-price{text-align:right}
+  .ogal{grid-template-columns:1fr}
+}
+
+/* четыре слоя */
+.four{display:grid;grid-template-columns:1fr;gap:20px}
+@media(min-width:800px){.four{grid-template-columns:repeat(4,1fr);gap:32px}}
+.four > div{display:grid;gap:8px;padding-top:16px;border-top:1px solid var(--line);align-content:start}
+.four b{font-weight:500;font-size:17px}
+.four p{color:var(--ink2);font-size:15px}
+.feat.tight > div{grid-template-columns:1fr}
+@media(min-width:700px){.feat.tight > div{grid-template-columns:56px 1fr}}
+.feat p{max-width:46em}
+.feat.tight p b{font-weight:500}
+/* footer */
+footer{border-top:1px solid var(--line);padding-block:36px;font-size:13px;color:var(--mute)}
+footer .wrap{display:grid;gap:18px}
+@media(min-width:800px){footer .wrap{grid-template-columns:1fr 1fr 1fr}}
+footer a{text-decoration:none}
+footer a:hover{color:var(--ink)}
+.todo{color:var(--bronze);font-size:11px;letter-spacing:.06em}
+</style>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#glavnaya">
+      {{MARK_INLINE}}
+      <span>Прохорова<b>Select</b></span>
+    </a>
+    <nav class="main" aria-label="Разделы">
+      <a href="#kupit">Купить</a>
+      <a href="#prodat">Продать</a>
+      <a href="#karta">Карта объектов</a>
+      <a href="#kontakty">Контакты</a>
+    </nav>
+    <div style="display:flex;gap:8px;align-items:center">
+      <a class="btn ghost sm" href="#kontakty" style="display:none" id="deskcall">Написать</a>
+      <button class="burger" id="burger" aria-label="Меню">Меню</button>
+    </div>
+  </div>
+  <nav class="mobile" id="mnav" aria-label="Разделы">
+    <a href="#glavnaya">Главная</a>
+    <a href="#kupit">Помогаем купить</a>
+    <a href="#prodat">Помогаем продать</a>
+    <a href="#karta">Карта объектов</a>
+    <a href="#kontakty">Контакты</a>
+  </nav>
+</header>
+
+<!-- ============ ГЛАВНАЯ ============ -->
+<main>
+<div class="page" id="p-glavnaya">
+  <section class="hero wrap">
+    {{LOGO_INLINE}}
+    <p class="eyebrow">Вторичный рынок Москвы · бизнес и премиум</p>
+    <h1>Личный брокер для квартир, которые стоят от 50 миллионов</h1>
+    <p class="lead">Меня зовут Елена Прохорова. Я помогаю купить и продать квартиры бизнес- и премиум-класса в Москве: аналитика, проверка, упаковка и сопровождение до ключей. Вы общаетесь со мной лично, от первого разговора до ключей.</p>
+    <div class="split">
+      <a href="#kupit">
+        <span class="eyebrow">Сценарий 1</span>
+        <h2>Помогаем купить</h2>
+        <p class="mute">Для себя или как инвестицию. Объекты, которых нет на площадках, проверка до просмотра и честная оценка перспектив.</p>
+        <span class="go">Как это работает →</span>
+      </a>
+      <a href="#prodat">
+        <span class="eyebrow">Сценарий 2</span>
+        <h2>Помогаем продать</h2>
+        <p class="mute">По реальной цене и в реальный срок. Начинаем с аналитики: сколько объект стоит на самом деле и что повысит его привлекательность.</p>
+        <span class="go">Технология продажи →</span>
+      </a>
+    </div>
+    <div class="hero-notes">
+      <span>Объекты от 50 млн ₽</span>
+      <span>Личные встречи в Москве</span>
+      <span>Часть сделок полностью онлайн</span>
+    </div>
+  </section>
+
+  <hr class="rule">
+  <section class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Подход</p>
+      <h2>Аналитика, проверка, упаковка и сопровождение</h2>
+      <p class="lead">Сделка с квартирой за 50, 100 или 300 миллионов состоит из решений, каждое из которых стоит денег. Поэтому в каждой работе четыре слоя.</p>
+    </div>
+    <div class="four">
+      <div><b>Аналитика</b><p>Что реально продаётся рядом, по каким ценам, кто двигал цену и на сколько. Конкретные сделки вместо «средней по району».</p></div>
+      <div><b>Проверка</b><p>Документы, история, перепланировки, соседи, дом. До того, как вы потратите вечер на просмотр.</p></div>
+      <div><b>Упаковка</b><p>Подготовка, съёмка, материалы, размещение там, где смотрят ваши покупатели.</p></div>
+      <div><b>Сопровождение</b><p>Переговоры, торг, сделка, передача. И то, что после: ремонт, комплектация, аренда.</p></div>
+    </div>
+    <img class="band" style="margin-top:48px" src="{{PHOTO_FIRE}}" alt="">
+  </section>
+  <hr class="rule">
+  <section class="wrap">
+    <div class="grid2">
+      <div>
+        <p class="eyebrow">Один человек</p>
+        <h2 style="margin-top:14px">За мной стоят те, кто нужен под задачу</h2>
+      </div>
+      <div style="display:grid;gap:18px">
+        <p class="lead">Вы работаете со мной. Когда задача требует профильных рук, я подключаю аналитика, юриста, дизайнера, технадзор или маркетинг. Поиск и координация — моя работа, вы получаете результат.</p>
+        <p class="quote">«Больше, чем недвижимость. <em>Люди, места, возможности.</em>»</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule">
+  <section class="wrap">
+    <div class="teaser">
+      <div style="display:grid;gap:14px">
+        <p class="eyebrow">Карта объектов</p>
+        <h2>Отобранное и проверенное</h2>
+        <p class="mute" style="max-width:34em">Своя база на 200–300 проверенных квартир, которая обновляется из CRM. На карте видно, что появилось за неделю и что уже ушло. Массовым площадкам такое недоступно.</p>
+        <div><a class="btn" href="#karta">Открыть карту</a></div>
+      </div>
+      <div class="stats" id="home-stats">
+        <div><b data-stat="all">—</b><small>объектов сейчас</small></div>
+        <div class="n"><b data-stat="new">—</b><small>новых за неделю</small></div>
+        <div class="g"><b data-stat="gone">—</b><small>ушли за неделю</small></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Сделки</p>
+      <h2>Три истории вместо описания услуг</h2>
+    </div>
+    <div class="grid3">
+      <div class="case"><div class="k">+4%<small>к первой оценке покупателя</small></div><p>Хамовники, 168 м². Продали за 71 день. Сменили стратегию показов и материалы после второй недели без офферов.</p></div>
+      <div class="case"><div class="k">6,8%<small>годовых от аренды</small></div><p>Пресня, инвестиционная покупка. Объект нашли до выхода на площадки, через партнёрскую сеть. Ремонт и комплектация за 11 недель.</p></div>
+      <div class="case"><div class="k">23 → 4<small>вариантов до просмотров</small></div><p>Раменки, семья с двумя детьми. Отсеяли большую часть по документам и дому. Сделка за 5 недель, включая ипотеку.</p></div>
+    </div>
+    <p class="demo">Цифры в кейсах — примеры для прототипа. Заменим на реальные сделки и будем обновлять раз в месяц.</p>
+  </section>
+
+  <hr class="rule">
+  <section class="wrap">
+    <div class="sec-head" style="margin-bottom:28px"><p class="eyebrow">Начните с разговора</p><h2>Бесплатно и без обязательств</h2></div>
+    <div class="strip">
+      <div style="display:grid;gap:16px">
+        <p class="lead">Полчаса о ваших целях и возможностях. После него вы поймёте, что реально, а что нет, даже если решите действовать сами.</p>
+        <div class="phone"><span>+7 495 000-00-00</span><button class="copy" data-copy="+74950000000">Скопировать</button></div>
+        <p class="todo">Номер 495 с переадресацией и коллтрекингом — подставим после подключения</p>
+      </div>
+      <form class="form" data-form="home">
+        <div class="row">
+          <label>Имя<input id="h-name" type="text" required placeholder="Как к вам обращаться"></label>
+          <label>Телефон<input id="h-phone" type="tel" required placeholder="+7"></label>
+        </div>
+        <label>Что интересует<select id="h-kind"><option>Купить для себя</option><option>Купить как инвестицию</option><option>Продать</option><option>Пока просто поговорить</option></select></label>
+        <label>Пара слов о задаче<textarea id="h-msg" rows="3" placeholder="Район, бюджет, сроки — что угодно"></textarea></label>
+        <button class="btn" type="submit">Записаться на разговор</button>
+        <p class="fine">Нажимая кнопку, вы соглашаетесь с обработкой персональных данных. Отвечаю лично, обычно в течение дня.</p>
+      </form>
+      <div class="thanks">Спасибо. Я получила заявку и свяжусь с вами в ближайшее время. Елена.</div>
+    </div>
+  </section>
+</div>
+
+<!-- ============ КУПИТЬ ============ -->
+<div class="page" id="p-kupit">
+  <section class="wrap" style="padding-bottom:40px">
+    <p class="eyebrow">Помогаем купить</p>
+    <h1 style="margin-top:16px;max-width:16em">Квартиры до выхода на площадки</h1>
+    <p class="lead" style="margin-top:22px">Хорошие объекты в бизнес- и премиум-сегменте редко доходят до открытых сайтов, а если доходят, то уже с очередью. Моя работа — чтобы вы увидели их первыми и тратили время только на то, что стоит просмотра.</p>
+    <img class="band" style="margin-top:36px" src="{{KEYS}}" alt="">
+  </section>
+
+  <section class="wrap" style="padding-top:0">
+    <div class="split" style="margin-top:0">
+      <div style="display:grid;gap:12px;padding:28px;border:1px solid var(--line);background:var(--bg2);border-radius:2px">
+        <span class="eyebrow">Для себя</span>
+        <h2 style="font-size:26px">Квартира как изменение жизни</h2>
+        <p class="mute">Район, дом, планировка, школа, парковка, соседи. Оцениваем, как в этой квартире будет жить ваша семья через пять лет.</p>
+      </div>
+      <div style="display:grid;gap:12px;padding:28px;border:1px solid var(--line);background:var(--bg2);border-radius:2px">
+        <span class="eyebrow">Инвестиции и доход</span>
+        <h2 style="font-size:26px">Квартира как актив</h2>
+        <p class="mute">Цена входа, бюджет доведения до готовности, арендная ставка, ликвидность на выходе. Считаем доходность до покупки.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule">
+  <section class="wrap">
+    <div class="sec-head"><p class="eyebrow">За пределами площадок</p><h2>Четыре причины из тех, что я вижу каждую неделю</h2></div>
+      <div class="feat tight">
+        <div><span class="num">01</span><p><b>Фейки и «уже продано».</b> Заметная часть красивых объявлений в сегменте — приманка или давно проданные квартиры. Мы работаем с тем, что актуально сегодня.</p></div>
+        <div><span class="num">02</span><p><b>Новый объект надо увидеть в первые дни.</b> Правильно оценённая квартира уходит быстро. Мы узнаём о ней раньше, чем она появится на сайтах.</p></div>
+        <div><span class="num">03</span><p><b>Закрытые чаты и партнёрские предложения.</b> Часть рынка живёт между брокерами. Вход туда — по рекомендации.</p></div>
+        <div><span class="num">04</span><p><b>Проверка до просмотра.</b> Документы, история перехода прав, перепланировки, дом и управляющая компания. Вы едете смотреть только то, что прошло фильтр.</p></div>
+      </div>
+    <p class="mute" style="margin-top:28px;max-width:40em;font-size:14px">Остальное — как именно ищем, где и с кем — рассказываю на первой встрече. Это часть метода, которая работает при личном разговоре.</p>
+  </section>
+
+  <hr class="rule">
+  <section class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Как проходит покупка</p>
+      <h2>Шесть шагов, каждый со своим результатом</h2>
+    </div>
+    <div class="feat">
+      <div><span class="num">01 · Разговор</span><p>Цели, бюджет, сроки, ограничения. Что важно, а что можно отдать. На выходе — понятное задание на поиск.</p></div>
+      <div><span class="num">02 · Подборка</span><p>Несколько объектов вместо сотни ссылок, каждый с пояснением: почему он здесь и какие у него слабые места.</p></div>
+      <div><span class="num">03 · Просмотры</span><p>Только то, что прошло фильтр. Смотрим вместе, с вопросами, которые задаёт только профессионал.</p></div>
+      <div><span class="num">04 · Проверка и торг</span><p>Юридическая и техническая проверка, оценка реальной цены, переговоры. Здесь выигрываются миллионы.</p></div>
+      <div><span class="num">05 · Сделка</span><p>Структура сделки, расчёты, регистрация, передача. Часть сделок проходит полностью онлайн.</p></div>
+      <div><span class="num">06 · После сделки</span><p>Ремонт, подрядчики, надзор, комплектация, аренда. Если нужно — с теми же людьми, что делали проверку.</p></div>
+    </div>
+  </section>
+
+  <hr class="rule">
+  <section class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Вокруг объекта</p>
+      <h2>Квартира продолжается после сделки</h2>
+      <p class="lead">Самое полезное, что можно показать покупателю до покупки, — потенциал квартиры: что в ней можно изменить и сколько это будет стоить.</p>
+    </div>
+    <div class="svc">
+      <div><b>Оценка ремонта</b><p>Ориентировочный бюджет доведения квартиры до готового состояния до того, как вы её купили.</p></div>
+      <div><b>Планировка</b><p>Что можно изменить и в каких границах. Сценарии для семьи, для аренды, для перепродажи.</p></div>
+      <div><b>Подрядчики и надзор</b><p>Проверенные бригады, авторский или технический надзор, график и контроль смет.</p></div>
+      <div><b>Меблировка и комплектация</b><p>Варианты под бюджет и срок: от базовой до полной готовности «под ключ».</p></div>
+      <div><b>Визуализация сценариев</b><p>Как будет выглядеть квартира при разных решениях, до первого гвоздя.</p></div>
+      <div><b>Арендный потенциал</b><p>Реальная ставка, спрос, срок экспозиции и доходность по конкретному объекту.</p></div>
+    </div>
+  </section>
+
+  <hr class="rule">
+  <section class="wrap">
+    <div class="grid2">
+      <div>
+        <p class="eyebrow">Разборы</p>
+        <h2 style="margin-top:14px">Что полезно знать до первого просмотра</h2>
+        <p class="mute" style="margin-top:14px;max-width:30em">Короткие практические заметки. Обновляю по мере того, как меняется рынок.</p>
+      </div>
+      <div>
+        <details><summary>Как оценить реальную цену квартиры</summary><div class="body"><p>Цена в объявлении — это желание продавца. Реальную цену показывают три вещи:</p><ul><li>сделки в этом доме и соседних за последний год (текущие объявления — только ориентир);</li><li>сколько раз и на сколько объект уже снижали;</li><li>срок экспозиции: квартира, которая висит полгода, стоит меньше, чем написано.</li></ul><p>По каждому объекту из подборки я показываю эти три цифры до просмотра.</p></div></details>
+        <details><summary>Какие вопросы задавать по объекту</summary><div class="body"><ul><li>Кто собственник и как он получил квартиру. Сколько переходов прав за 10 лет.</li><li>Были ли перепланировки и узаконены ли они.</li><li>Что с домом: год, капремонт, управляющая компания, долги по дому.</li><li>Почему продают и как давно. Это определяет торг.</li><li>Кто соседи сверху, снизу и через стену.</li></ul></div></details>
+        <details><summary>Как посчитать бюджет ремонта и комплектации</summary><div class="body"><p>Для сегмента от 50 млн разумно закладывать отдельные строки: инженерия, черновая отделка, чистовая, мебель и техника, свет и текстиль, надзор. Ошибка большинства покупателей — считать только чистовую.</p><p>Ориентир на м² и порядок цифр по каждому объекту я даю на второй встрече, когда уже понятно, что именно вы покупаете.</p></div></details>
+        <details><summary>Как оценить будущую аренду</summary><div class="body"><p>Смотрим на закрытые договоры в доме и рядом, объявления об аренде — только для ориентира, срок простоя между арендаторами и тип арендатора, который ищет такие квартиры. Дальше доходность считается честно: от чистого дохода после налогов, простоя и износа.</p></div></details>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule">
+  <section class="wrap">
+    <div class="sec-head" style="margin-bottom:28px"><p class="eyebrow">Ищете что-то другое?</p><h2>Оставьте параметры — подберём варианты</h2></div>
+    <div class="strip">
+      <div style="display:grid;gap:16px">
+        <p class="lead">Часть объектов остаётся вне карты. Опишите, что ищете, и я покажу, что есть в верифицированной подборке под вашу задачу.</p>
+      </div>
+      <form class="form" data-form="buy">
+        <div class="row">
+          <label>Бюджет, млн ₽<input id="b-budget" type="text" placeholder="от 50"></label>
+          <label>Комнат / спален<input id="b-rooms" type="text" placeholder="3"></label>
+        </div>
+        <label>Район или дома<input id="b-area" type="text" placeholder="Хамовники, Пресня, Раменки…"></label>
+        <label>Цель<select id="b-goal"><option>Для себя</option><option>Инвестиции и доход</option><option>Пока выбираю</option></select></label>
+        <div class="row">
+          <label>Имя<input id="b-name" type="text" required></label>
+          <label>Телефон<input id="b-phone" type="tel" required placeholder="+7"></label>
+        </div>
+        <button class="btn" type="submit">Получить подборку</button>
+        <p class="fine">Подборка приходит лично от меня, без рассылок и без передачи контакта третьим лицам.</p>
+      </form>
+      <div class="thanks">Спасибо. Параметры получила, вернусь с подборкой в течение одного-двух дней. Елена.</div>
+    </div>
+  </section>
+</div>
+
+<!-- ============ ПРОДАТЬ ============ -->
+<div class="page" id="p-prodat">
+  <section class="wrap" style="padding-bottom:40px">
+    <p class="eyebrow">Помогаем продать</p>
+    <h1 style="margin-top:16px;max-width:16em">По реальной цене. В реальный срок.</h1>
+    <p class="lead" style="margin-top:22px">«Быстро» и «дорого» — одна цель, и она достижима. Условие одно: старт с честной аналитики и реальной цены, а красивая цифра в объявлении приходит следом.</p>
+  </section>
+
+  <section class="wrap" style="padding-top:0">
+    <div class="sec-head"><p class="eyebrow">Аналитика перед стартом</p><h2>Четыре ответа до того, как квартира выйдет на рынок</h2></div>
+      <div class="feat">
+        <div><b>Сколько объект стоит</b><p>По сделкам. Объявления — только ориентир. С учётом того, кто рядом продаёт и как двигал цену.</p></div>
+        <div><b>Какой срок реалистичен</b><p>Сколько сейчас экспонируются похожие квартиры в этом доме и районе. Без обещаний «за две недели».</p></div>
+        <div><b>Что повысит привлекательность</b><p>От уборки и света до частичной замены комплектации. Конкретный список действий с бюджетом.</p></div>
+        <div><b>Где вложения оправданы, а где нет</b><p>Ремонт перед продажей окупается редко. Хоумстейджинг — почти всегда. Считаем по вашей квартире.</p></div>
+      </div>
+    <p class="quote" style="margin-top:48px">Каждые 50 тысяч рублей в цене <em>имеют значение</em>. Но только если они реальные.</p>
+  </section>
+
+  <hr class="rule">
+  <section class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Технология продажи</p>
+      <h2>Шесть блоков, из которых складывается результат</h2>
+    </div>
+    <div class="feat">
+      <div><span class="num">01 · Подготовка объекта</span><p>Рекомендации по ремонту, комплектации, хоумстейджингу. Что убрать, что добавить, что оставить. С бюджетом и сроком.</p></div>
+      <div><span class="num">02 · Визуальная упаковка</span><p>Съёмка, планировки, презентация объекта, текст, который дочитывают до конца.</p></div>
+      <div><span class="num">03 · Размещение и продвижение</span><p>Площадки, закрытые каналы, партнёрская сеть, адресные показы. Там, где смотрят ваши покупатели.</p></div>
+      <div><span class="num">04 · Входящие обращения</span><p>Каждый звонок отвечен, каждый интересант квалифицирован. Вы получаете картину спроса: кто, откуда, с каким бюджетом.</p></div>
+      <div><span class="num">05 · Партнёрская сеть</span><p>Брокеры, которые ведут покупателей в вашем сегменте, узнают о квартире лично от меня.</p></div>
+      <div><span class="num">06 · Сопровождение сделки</span><p>Торг, структура сделки, документы, расчёты, передача. До ключей и подписанного акта.</p></div>
+    </div>
+  </section>
+
+  <hr class="rule">
+  <section class="wrap">
+    <div class="grid2">
+      <div>
+        <p class="eyebrow">Разборы</p>
+        <h2 style="margin-top:14px">Что полезно знать продавцу</h2>
+      </div>
+      <div>
+        <details><summary>Как подготовить квартиру к продаже</summary><div class="body"><ul><li>Убрать личное: фотографии, вещи, всё, что мешает покупателю представить себя здесь.</li><li>Свет: заменить лампы на тёплые одной температуры, снять тяжёлые шторы.</li><li>Мелкий ремонт: ручки, розетки, затирка, следы на стенах. Дешёво и заметно.</li><li>Запахи и воздух. Проветренная квартира продаётся лучше.</li><li>Стейджинг под аудиторию: семья, инвестор, одиночка — разная расстановка акцентов.</li></ul></div></details>
+        <details><summary>Что можно изменить в планировке</summary><div class="body"><p>Покупатель редко покупает то, что видит. Он покупает то, что сможет из этого сделать. Мы показываем два-три сценария перепланировки с оценкой стоимости и законности, и квартира начинает «стоить» больше в его голове.</p></div></details>
+        <details><summary>Как меняется предложение по районам</summary><div class="body"><p>Раз в месяц я смотрю, сколько объектов вашего класса вышло и ушло в вашем районе, и как двигались цены. Это определяет момент старта и стартовую цену. Иногда правильное решение — подождать три недели.</p></div></details>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule">
+  <section class="wrap">
+    <div class="sec-head" style="margin-bottom:28px"><p class="eyebrow">Первый шаг</p><h2>Оценить квартиру</h2></div>
+    <div class="strip">
+      <div style="display:grid;gap:16px">
+        <p class="lead">Пришлите адрес и метраж. Я посмотрю сделки по дому и рядом и скажу, в каком коридоре цена и какой срок реалистичен. Это бесплатно и без обязательств.</p>
+      </div>
+      <form class="form" data-form="sell">
+        <label>Адрес или ЖК<input id="s-addr" type="text" required placeholder="Улица, дом или название ЖК"></label>
+        <div class="row">
+          <label>Площадь, м²<input id="s-area" type="text" placeholder="120"></label>
+          <label>Этаж<input id="s-floor" type="text" placeholder="7 из 12"></label>
+        </div>
+        <div class="row">
+          <label>Имя<input id="s-name" type="text" required></label>
+          <label>Телефон<input id="s-phone" type="tel" required placeholder="+7"></label>
+        </div>
+        <button class="btn" type="submit">Получить оценку</button>
+        <p class="fine">Оценка приходит лично от меня, с пояснением, из чего она сложилась.</p>
+      </form>
+      <div class="thanks">Спасибо. Посмотрю сделки по вашему дому и напишу в течение одного-двух дней. Елена.</div>
+    </div>
+  </section>
+</div>
+
+<!-- ============ КАРТА ============ -->
+<div class="page" id="p-karta">
+  <section class="wrap" style="padding-bottom:32px">
+    <p class="eyebrow">Карта объектов</p>
+    <h1 style="margin-top:16px;max-width:16em">Только то, что мы проверили</h1>
+    <p class="lead" style="margin-top:22px">Своя база на 200–300 квартир, которая обновляется из CRM. Каждый объект проверен и актуален на сегодня. И видно, что появилось за неделю и что ушло, — и это самая полезная информация на рынке.</p>
+  </section>
+  <section class="wrap" style="padding-top:0">
+    <div class="chips" role="group" aria-label="Фильтр">
+      <button class="chip" data-f="all" aria-pressed="true">Все объекты</button>
+      <button class="chip" data-f="n" aria-pressed="false">Новые за неделю</button>
+      <button class="chip" data-f="g" aria-pressed="false">Ушли за неделю</button>
+      <button class="chip" data-f="w" aria-pressed="false">Были ранее</button>
+    </div>
+    <div class="mapwrap">
+      <div>
+        <div class="mapbox">
+          <svg id="map" viewBox="0 0 800 640" role="img" aria-label="Схема Москвы с объектами">
+            <path class="road mkad" d="M400 40 C 560 40, 700 150, 720 320 C 735 470, 620 600, 420 605 C 230 610, 80 500, 75 330 C 70 160, 230 40, 400 40 Z"/>
+            <path class="road" d="M400 200 C 480 200, 540 260, 540 330 C 540 410, 480 460, 400 460 C 320 460, 260 410, 260 330 C 260 260, 320 200, 400 200 Z"/>
+            <path class="road" d="M400 280 C 440 280, 470 305, 470 335 C 470 370, 440 395, 400 395 C 360 395, 330 370, 330 335 C 330 305, 360 280, 400 280 Z"/>
+            <path class="river" d="M110 250 C 180 300, 220 260, 260 300 C 300 340, 250 390, 300 420 C 360 460, 390 380, 440 400 C 500 425, 470 470, 530 500 C 580 525, 640 500, 690 540"/>
+            <text class="label" x="392" y="340">Арбат</text>
+            <text class="label" x="335" y="385">Хамовники</text>
+            <text class="label" x="350" y="300">Пресня</text>
+            <text class="label" x="405" y="310">Тверской</text>
+            <text class="label" x="395" y="415">Якиманка</text>
+            <text class="label" x="440" y="345">Таганский</text>
+            <text class="label" x="445" y="300">Басманный</text>
+            <text class="label" x="280" y="430">Раменки</text>
+            <text class="label" x="300" y="360">Дорогомилово</text>
+            <text class="label" x="200" y="330">Крылатское</text>
+            <text class="label" x="290" y="285">Хорошёво</text>
+            <text class="label" x="330" y="240">Сокол</text>
+            <text class="label" x="430" y="235">Останкино</text>
+            <text class="label" x="365" y="470">Гагаринский</text>
+            <text class="label" x="420" y="440">Донской</text>
+            <text class="label" x="490" y="270">Сокольники</text>
+            <text class="label" x="510" y="360">Лефортово</text>
+            <text class="label" x="240" y="520">Тропарёво</text>
+            <text class="label" x="640" y="90">МКАД</text>
+            <text class="label" x="545" y="215">ТТК</text>
+            <g id="pts"></g>
+          </svg>
+          <div class="legend">
+            <span><i class="st-w"></i>Был ранее</span>
+            <span><i class="st-n"></i>Новый за неделю</span>
+            <span><i class="st-g"></i>Ушёл за неделю</span>
+            <span style="margin-left:auto" id="map-count"></span>
+          </div>
+        </div>
+        <p class="todo" style="margin-top:12px">Схема районов — заглушка прототипа. В боевой версии здесь Яндекс Карта с точками из CRM (API), обновление раз в сутки.</p>
+      </div>
+      <div class="panel" id="panel"></div>
+    </div>
+    <div class="objlist" id="objlist"></div>
+  </section>
+</div>
+
+<!-- ============ КОНТАКТЫ ============ -->
+<div class="page" id="p-kontakty">
+  <section class="wrap">
+    <div class="sec-head" style="margin-bottom:28px"><p class="eyebrow">Контакты</p><h1>Елена Прохорова</h1></div>
+    <div class="strip">
+      <div style="display:grid;gap:18px">
+        <p class="lead">Личные встречи в Москве. Часть сделок проходит полностью онлайн: клиент решает всё по видео из любого города.</p>
+        <div class="phone"><span>+7 495 000-00-00</span><button class="copy" data-copy="+74950000000">Скопировать</button></div>
+        <p class="mute">Telegram: <b>@prokhorova_select</b> <span class="todo">· уточнить</span><br>Почта: <b>hello@prokhorova.select</b> <span class="todo">· после выбора домена</span></p>
+        <p class="mute" style="font-size:14px">Личный номер основательницы всегда указан нижней строчкой в договоре. Это правило.</p>
+        <div class="feat tight" style="margin-top:8px">
+          <div><span class="num">01</span><p><b>Первый разговор.</b> 30 минут по телефону или видео: цели, бюджет, сроки. К концу разговора у вас есть ответ, что реально.</p></div>
+          <div><span class="num">02</span><p><b>Встреча.</b> Личные встречи в Москве, место и время под вас. Онлайн — из любого города.</p></div>
+          <div><span class="num">03</span><p><b>Решение за вами.</b> Подборка или оценка приходит письмом. Дальше вы сами выбираете, продолжать ли.</p></div>
+        </div>
+      </div>
+      <form class="form" data-form="contact">
+        <div class="row">
+          <label>Имя<input id="c-name" type="text" required></label>
+          <label>Телефон<input id="c-phone" type="tel" required placeholder="+7"></label>
+        </div>
+        <label>Сообщение<textarea id="c-msg" rows="4" placeholder="Коротко о задаче"></textarea></label>
+        <button class="btn" type="submit">Написать Елене</button>
+        <p class="fine">Отвечаю лично, обычно в течение дня.</p>
+      </form>
+      <div class="thanks">Спасибо. Получила и отвечу в ближайшее время. Елена.</div>
+    </div>
+    <img class="band" style="margin-top:56px" src="{{PHOTO_BED}}" alt="">
+  </section>
+</div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <b style="color:var(--ink);font-weight:500;letter-spacing:.14em;text-transform:uppercase;font-size:12px">Прохорова Select</b><br>Private real estate · Москва<br><span class="todo">ИП Прохорова Е. В. · ИНН 000000000000 — подставить</span>
+    </div>
+    <div style="display:grid;gap:6px">
+      <a href="#kupit">Помогаем купить</a><a href="#prodat">Помогаем продать</a><a href="#karta">Карта объектов</a><a href="#kontakty">Контакты</a>
+    </div>
+    <div style="display:grid;gap:6px">
+      <a href="#glavnaya">Политика обработки персональных данных</a>
+      <span>© 2026 · Прототип, версия 0.3</span>
+    </div>
+  </div>
+</footer>
+
+<!-- лид-форма по объекту -->
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="m-title">
+  <div class="box">
+    <button class="x" id="m-close" aria-label="Закрыть">×</button>
+    <p class="eyebrow" id="m-kind">Запросить подробности</p>
+    <h2 id="m-title" style="font-size:24px">Объект</h2>
+    <form class="form" data-form="lead" style="max-width:none">
+      <div class="row">
+        <label>Имя<input id="m-name" type="text" required></label>
+        <label>Телефон<input id="m-phone" type="tel" required placeholder="+7"></label>
+      </div>
+      <label>Комментарий<textarea id="m-msg" rows="2" placeholder="Когда удобно связаться"></textarea></label>
+      <button class="btn" type="submit" id="m-btn">Отправить</button>
+      <p class="fine">Подробности, презентация и условия приходят лично от Елены. Контакт остаётся у неё.</p>
+    </form>
+    <div class="thanks">Спасибо. Запрос по объекту получен, свяжусь в ближайшее время. Елена.</div>
+  </div>
+</div>
+
+<script>
+/* ---------- объекты (демо-данные прототипа) ---------- */
+/* [район, адрес/ЖК, м², этаж, этажей, спален, цена млн, статус w/n/g, x, y] */
+const RAW = [
+["Хамовники","Пречистенка, 40/2",168,4,7,3,145,"w",352,372],
+["Хамовники","ЖК «Садовые кварталы»",142,6,9,3,132,"n",338,402],
+["Хамовники","Остоженка, 11",210,3,6,4,290,"w",372,362],
+["Хамовники","Ефремова, 19",96,12,17,2,74,"g",320,415],
+["Арбат","Малый Николопесковский",124,5,8,3,118,"w",378,335],
+["Арбат","Плотников пер., 21",88,2,6,2,69,"n",385,352],
+["Арбат","Новый Арбат, 27",155,14,26,3,121,"w",362,328],
+["Пресня","ЖК «Пресня Сити»",98,31,44,2,58,"w",345,290],
+["Пресня","Столярный пер., 3",176,7,9,3,164,"n",358,305],
+["Пресня","Шелепихинская наб.",134,18,32,3,92,"w",315,275],
+["Пресня","Красная Пресня, 9",112,6,8,2,86,"g",350,318],
+["Тверской","ЖК «Медный 3.14»",186,9,12,3,205,"n",412,312],
+["Тверской","Тверская, 19",147,7,9,3,151,"w",402,330],
+["Тверской","Долгоруковская, 25",104,10,14,2,79,"w",418,290],
+["Якиманка","ЖК «Полянка/44»",188,5,7,3,236,"w",398,398],
+["Якиманка","Большая Якиманка, 26",132,8,10,3,124,"n",408,412],
+["Якиманка","ЖК «Врубеля 4»",158,11,16,3,140,"g",388,428],
+["Замоскворечье","Пятницкая, 21",117,4,6,2,93,"w",432,378],
+["Таганский","ЖК «Царёв сад»",162,12,16,3,148,"w",458,352],
+["Таганский","Николоямская, 45",96,5,8,2,61,"n",470,365],
+["Басманный","ЖК «Резиденции Басманный»",128,7,12,3,89,"w",452,312],
+["Басманный","Покровка, 35",142,6,7,3,110,"g",445,338],
+["Раменки","ЖК «Минская 1 ГЭ»",172,9,20,3,102,"w",282,438],
+["Раменки","Мосфильмовская, 8",210,15,30,4,168,"n",298,448],
+["Раменки","ЖК «Дом на Мосфильмовской»",116,22,50,2,71,"w",302,425],
+["Дорогомилово","Кутузовский пр., 23",164,7,10,3,119,"w",318,368],
+["Дорогомилово","ЖК «Кутузовский XII»",142,10,14,3,127,"n",305,380],
+["Дорогомилово","Украинский бул., 7",108,5,8,2,64,"g",330,390],
+["Крылатское","Осенняя ул., 22",184,3,9,3,88,"w",212,340],
+["Хорошёво-Мнёвники","ЖК «Хорошёвский»",121,19,24,2,57,"w",300,296],
+["Сокол","ЖК «Дом на Соколе»",156,8,12,3,96,"n",338,255],
+["Аэропорт","Ленинградский пр., 75",132,9,11,3,82,"w",362,245],
+["Останкино","ЖК «Останкино Парк»",124,14,20,2,55,"g",440,250],
+["Гагаринский","Ленинский пр., 30",147,6,9,3,112,"w",372,455],
+["Гагаринский","Университетский пр., 5",198,4,8,4,176,"n",352,470],
+["Донской","ЖК «Донской Олимп»",118,17,24,2,66,"w",425,450],
+["Даниловский","ЖК «Данилов Plaza»",138,12,18,3,78,"n",448,428],
+["Лефортово","ЖК «Симфония 34»",104,26,35,2,52,"w",505,372],
+["Сокольники","Стромынка, 21",126,7,9,3,73,"w",492,282],
+["Крылатское","ЖК «Крылатские Холмы»",232,2,7,4,145,"w",232,318],
+["Тропарёво","ЖК «Огни»",166,20,35,3,69,"w",250,505],
+["Хамовники","Комсомольский пр., 32",128,9,14,2,98,"n",345,432]
+];
+const OBJ = RAW.map((r,i)=>({id:i,d:r[0],a:r[1],m:r[2],f:r[3],ff:r[4],r:r[5],p:r[6],s:r[7],x:r[8],y:r[9]}));
+const SN = {w:"Был ранее",n:"Новый за неделю",g:"Ушёл за неделю"};
+const fmt = n => n.toLocaleString("ru-RU");
+
+/* статистика на главной */
+const cnt = s => OBJ.filter(o=>o.s===s).length;
+document.querySelector('[data-stat=all]').textContent = OBJ.length - cnt('g');
+document.querySelector('[data-stat=new]').textContent = "+"+cnt('n');
+document.querySelector('[data-stat=gone]').textContent = "−"+cnt('g');
+
+/* точки */
+const pts = document.getElementById('pts');
+const list = document.getElementById('objlist');
+const panel = document.getElementById('panel');
+let sel = null, filter = 'all';
+const COL = {w:'var(--was)',n:'var(--new)',g:'var(--gone)'};
+OBJ.forEach(o=>{
+  const g = document.createElementNS('http://www.w3.org/2000/svg','g');
+  g.setAttribute('class','pt'); g.dataset.id=o.id;
+  g.innerHTML = `<circle class="h" cx="${o.x}" cy="${o.y}" r="14"/><circle class="d" cx="${o.x}" cy="${o.y}" r="${o.p>=150?7:5.5}" fill="${COL[o.s]}" stroke="var(--bg2)" stroke-width="1.5" ${o.s==='g'?'opacity=".85"':''}/>`;
+  g.addEventListener('click',()=>select(o.id));
+  pts.appendChild(g);
+  const b = document.createElement('button');
+  b.dataset.id=o.id; b.dataset.s=o.s;
+  b.innerHTML = `<i class="st-${o.s}"></i><span>${o.d} · ${o.a}<small>${o.m} м² · ${o.r} сп. · ${o.f}/${o.ff} эт.</small></span><b>${fmt(o.p)} млн ₽</b>`;
+  b.addEventListener('click',()=>{select(o.id);document.getElementById('panel').scrollIntoView({behavior:'smooth',block:'center'})});
+  list.appendChild(b);
+});
+
+function renderPanel(){
+  if(sel===null){
+    const n=cnt('n'),g=cnt('g');
+    panel.innerHTML = `<p class="eyebrow">За неделю</p>
+      <div class="stats"><div class="n"><b>+${n}</b><small>новых</small></div><div class="g"><b>−${g}</b><small>ушли</small></div><div><b>${OBJ.length-g}</b><small>в продаже</small></div></div>
+      <p class="mute">Нажмите на точку, чтобы увидеть объект. Точка покрупнее — от 150 млн ₽.</p>
+      <p class="mute" style="font-size:14px">Ушедшие объекты остаются на карте неделю: так видно, как двигается рынок в вашем районе.</p>
+      <div class="acts"><a class="btn ghost" href="#kupit">Нет подходящего? Оставьте параметры</a></div>`;
+    return;
+  }
+  const o = OBJ[sel];
+  const gone = o.s==='g';
+  panel.innerHTML = `<span class="tag"><i class="st-${o.s}"></i>${SN[o.s]}</span>
+    <div><p class="eyebrow">${o.d}</p><h3 style="margin-top:6px">${o.a}</h3></div>
+    <div class="price">${fmt(o.p)} млн ₽ <span class="mute" style="font-size:14px">· ${fmt(Math.round(o.p*1e6/o.m/1000))} тыс. ₽/м²</span></div>
+    <div class="params"><div><small>Площадь</small>${o.m} м²</div><div><small>Спален</small>${o.r}</div><div><small>Этаж</small>${o.f} из ${o.ff}</div></div>
+    <p class="mute" style="font-size:14px">${gone?'Объект ушёл с рынка на этой неделе. Могу показать похожие, которые ещё готовятся к выходу.':'Проверен: документы, история прав, перепланировки, дом. Презентация и адрес — после запроса.'}</p>
+    <div class="acts">
+      ${gone?`<a class="btn" href="#kupit">Подобрать похожие</a>`:`
+      <button class="btn" data-lead="Запросить подробности">Запросить подробности</button>
+      <button class="btn ghost" data-lead="Получить презентацию">Получить презентацию</button>
+      <button class="btn ghost" data-lead="Записаться на просмотр">Узнать условия / записаться на просмотр</button>`}
+    </div>`;
+  panel.querySelectorAll('[data-lead]').forEach(b=>b.addEventListener('click',()=>openLead(b.dataset.lead,o)));
+}
+function select(id){
+  sel = id;
+  document.querySelectorAll('.pt').forEach(p=>p.classList.toggle('sel',+p.dataset.id===id));
+  renderPanel();
+}
+function applyFilter(){
+  let shown=0;
+  document.querySelectorAll('.pt').forEach(p=>{const o=OBJ[+p.dataset.id];const h=filter!=='all'&&o.s!==filter;p.classList.toggle('hidden',h);if(!h)shown++});
+  list.querySelectorAll('button').forEach(b=>b.classList.toggle('hidden',filter!=='all'&&b.dataset.s!==filter));
+  document.getElementById('map-count').textContent = shown+' на карте';
+  if(sel!==null && filter!=='all' && OBJ[sel].s!==filter){sel=null;document.querySelectorAll('.pt').forEach(p=>p.classList.remove('sel'));renderPanel()}
+}
+document.querySelectorAll('.chip').forEach(c=>c.addEventListener('click',()=>{
+  filter=c.dataset.f;document.querySelectorAll('.chip').forEach(x=>x.setAttribute('aria-pressed',x===c));applyFilter();
+}));
+renderPanel(); applyFilter();
+
+/* модалка */
+const modal=document.getElementById('modal');
+function openLead(kind,o){
+  document.getElementById('m-kind').textContent=kind;
+  document.getElementById('m-title').textContent=`${o.d} · ${o.a} · ${fmt(o.p)} млн ₽`;
+  document.getElementById('m-btn').textContent=kind;
+  const f=modal.querySelector('form'); f.classList.remove('sent'); f.reset();
+  modal.classList.add('open'); document.getElementById('m-name').focus();
+}
+document.getElementById('m-close').addEventListener('click',()=>modal.classList.remove('open'));
+modal.addEventListener('click',e=>{if(e.target===modal)modal.classList.remove('open')});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')modal.classList.remove('open')});
+
+/* формы */
+document.querySelectorAll('form[data-form]').forEach(f=>f.addEventListener('submit',e=>{e.preventDefault();f.classList.add('sent')}));
+
+/* копирование */
+document.querySelectorAll('.copy').forEach(b=>b.addEventListener('click',()=>{
+  const t=b.dataset.copy;
+  const done=()=>{b.textContent='Скопировано';setTimeout(()=>b.textContent='Скопировать',1600)};
+  try{navigator.clipboard.writeText(t).then(done).catch(()=>{const r=document.createRange();r.selectNodeContents(b.previousElementSibling);getSelection().removeAllRanges();getSelection().addRange(r)})}catch(_){}
+}));
+
+/* роутер */
+const PAGES=['glavnaya','kupit','prodat','karta','kontakty'];
+function route(){
+  let h=(location.hash||'#glavnaya').slice(1);
+  if(!PAGES.includes(h))h='glavnaya';
+  document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id==='p-'+h));
+  document.querySelectorAll('nav a').forEach(a=>{ if(a.getAttribute('href')==='#'+h)a.setAttribute('aria-current','page'); else a.removeAttribute('aria-current')});
+  document.getElementById('mnav').classList.remove('open');
+  window.scrollTo({top:0,behavior:'instant'});
+}
+window.addEventListener('hashchange',route); route();
+document.getElementById('burger').addEventListener('click',()=>document.getElementById('mnav').classList.toggle('open'));
+</script>

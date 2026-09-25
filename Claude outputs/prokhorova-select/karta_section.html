@@ -1,0 +1,39 @@
+<!-- ============ КАРТА ============ -->
+<div class="page" id="p-karta">
+  <section class="wrap" style="padding-bottom:32px">
+    <p class="eyebrow">Карта объектов</p>
+    <h1 style="margin-top:16px;max-width:16em">Не всё подряд, а то, что мы проверили</h1>
+    <p class="lead" style="margin-top:22px">Своя база на 200–300 квартир, которая обновляется из CRM. Здесь нет фейков и «уже продано». Зато видно, что появилось за неделю и что ушло, — и это самая полезная информация на рынке.</p>
+  </section>
+  <section class="wrap" style="padding-top:0">
+    <div class="chips" role="group" aria-label="Фильтр">
+      <button class="chip" data-f="all" aria-pressed="true">Все объекты</button>
+      <button class="chip" data-f="n" aria-pressed="false">Новые за неделю</button>
+      <button class="chip" data-f="w" aria-pressed="false">Были ранее</button>
+      <button class="chip" data-f="g" aria-pressed="false">Ушли за неделю</button>
+    </div>
+    <div class="mapwrap">
+      <div>
+        <div class="mapbox">
+          {{MAP_SVG}}
+          <div class="legend">
+            <span><i class="st-n"></i>Новый за неделю</span>
+            <span><i class="st-w"></i>Был ранее</span>
+            <span><i class="st-g"></i>Ушёл за неделю</span>
+            <span style="margin-left:auto" id="map-count"></span>
+          </div>
+        </div>
+        <p class="todo" style="margin-top:12px">Подложка — схема Москвы из базы NOTA (районы, парки, кольца, река). Дома реальные, квартиры и цены — демо. В боевой версии точки идут из CRM по API.</p>
+      </div>
+      <div class="panel" id="panel"></div>
+    </div>
+
+    <div class="tablehead">
+      <h2 style="font-size:24px">Объекты</h2>
+      <p class="mute" style="font-size:14px">Сначала новые, потом те, что были, ушедшие внизу. Внутри группы — от меньшей цены. Нажмите на строку, чтобы раскрыть.</p>
+    </div>
+    <div class="objtable" id="objlist">
+      <div class="thead"><span></span><span>Объект</span><span class="c-area">м²</span><span class="c-rooms">Спален</span><span class="c-floor">Этаж</span><span class="c-price">Цена</span><span class="c-m2">₽/м²</span></div>
+    </div>
+  </section>
+</div>

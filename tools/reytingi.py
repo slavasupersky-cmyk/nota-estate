@@ -166,7 +166,7 @@ def shkoly(root):
         h15 = sum(1 for m, _ in hs if m <= 15)
         place = s['district'] or s['okrug'] or s['zone']
         sub = ' · '.join(v for v in (s['category'], place if place not in ('Уточнить',) else '') if v)
-        tag = f'<span class="tag {TIER_TAG[s["tier"]]}">{e(s["tier"])}</span>' if s['tier'] else ''
+        tag = f'<span class="tag {TIER_TAG[s["tier"]]}">{e("Отметка NOTA" if s["tier"] == "Отметка" else s["tier"])}</span>' if s['tier'] else ''
         score = str(idx) if idx else '—'
         near_txt = (f'{h15} {plural(h15, "дом", "дома", "домов")} за 15 мин' if h15 else
                     (f'ближайший дом — {int(hs[0][0])} мин' if hs else ''))
@@ -491,7 +491,7 @@ def penthausy(root):
 # ---------------------------------------------------------------- дома у парка и воды (постоянный рейтинг, пересчитывается со сборкой)
 PARK_R = 300  # по прямой, м
 OKR = [('cao', 'ЦАО'), ('zao', 'ЗАО'), ('szao', 'СЗАО'), ('sao', 'САО'), ('svao', 'СВАО'), ('vao', 'ВАО'), ('yuvao', 'ЮВАО'), ('yuao', 'ЮАО'), ('yuzao', 'ЮЗАО'), ('out', 'Сколково и Рублёвка')]
-ITOG_TAG = {'Отметка': ('mark', 'Отметка'), 'Присмотреться': ('look', 'Присмотреться'), 'Без отметки': ('no', 'Без отметки')}
+ITOG_TAG = {'Отметка': ('mark', 'Отметка NOTA'), 'Присмотреться': ('look', 'Присмотреться'), 'Без отметки': ('no', 'Без отметки')}
 
 def meters(m):
     return 'вплотную' if m < 20 else f'{fmt(m)} м'
@@ -638,7 +638,7 @@ def park(root):
   {chips('c', 'Класс', [('biz', 'Бизнес'), ('prem', 'Премиум'), ('elit', 'Элит'), ('dlx', 'Делюкс')])}
   {chips('o', 'Округ', OKR)}
   {chips('m', 'Соседство', [('clean', 'Без промзон и магистралей'), ('minus', 'Есть промзона или магистраль')])}
-  {chips('i', 'Наш итог', [('mark', 'Отметка'), ('look', 'Присмотреться'), ('no', 'Без отметки')])}
+  {chips('i', 'Наш итог', [('mark', 'Отметка NOTA'), ('look', 'Присмотреться'), ('no', 'Без отметки')])}
   <label class="ri-q"><span class="cg-l">Поиск</span><input type="search" placeholder="Дом, район или парк" autocomplete="off"></label>
  </div>
  <div class="hs-bar"><span class="ri-cnt"></span><button class="linkbtn" type="button" data-reset>Сбросить фильтры</button></div>

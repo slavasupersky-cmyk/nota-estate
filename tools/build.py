@@ -195,7 +195,7 @@ def itog_table(root):
     gen = lambda k: 'минуса' if k % 10 == 1 and k % 100 != 11 else 'минусов'
     name = {'бизнес': 'Бизнес', 'премиум': 'Премиум', 'элитный': 'Элит', 'делюкс': 'Делюкс'}
     out = ['  <div class="tablewrap"><table class="cls-t it-t">',
-           '   <tr><th>Класс</th><th><span class="tag mark">Отметка</span></th><th><span class="tag look">Присмотреться</span></th><th><span class="tag no">Без отметки</span></th><th>Сейчас в базе</th></tr>']
+           '   <tr><th>Класс</th><th><span class="tag mark">Отметка NOTA</span></th><th><span class="tag look">Присмотреться</span></th><th><span class="tag no">Без отметки</span></th><th>Сейчас в базе</th></tr>']
     for t in tol:
         o, b = int(t['otmetka_max_minus']), int(t['bez_otmetki_from_minus'])
         otm = 'без минусов' if o == 0 else f'до {o} {gen(o)}'

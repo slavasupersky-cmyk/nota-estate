@@ -229,7 +229,7 @@ def verdict(root, r):
         if minus: bits.append(f'{minus_word(len(minus))}: {", ".join(minus)} — больше, чем допускает отметка {CLASS_PREP[cls]}')
         if open_: bits.append('ещё проверяем: ' + ', '.join(open_))
         txt = 'Красных линий нет. ' + ('; '.join(bits)[:1].upper() + '; '.join(bits)[1:] + '.' if bits else '') + ' Закроем проверки — обновим итог.'
-    return vk, vt, txt
+    return vk, ('Отметка NOTA' if vt == 'Отметка' else vt), txt
 
 def passport_html(root, r, R):
     K = krit(root)
