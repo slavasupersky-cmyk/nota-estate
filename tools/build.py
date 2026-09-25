@@ -177,7 +177,12 @@ def kamin_list(root):
               ('Источник', (f'<a href="{esc(src)}" rel="nofollow noopener">{esc(host)}</a>' + (f' · {esc(k["checked"])}' if k.get('checked') else '')) if host else '')]
         name = h['name'].split(' (')[0]
         items.append(reytingi.house_ri(root, R, h, n, esc(k['tip']), 'камин', dl, f'{name} · камин'))
-    return ('  <div class="ri-list" data-rlist data-lim="50">\n' + '\n'.join(items) + '\n  </div>'
+    import karta
+    ck = {'бизнес': 'biz', 'премиум': 'prem', 'элитный': 'elit', 'делюкс': 'dlx'}
+    pts = [(doma[k['slug']]['lat'], doma[k['slug']]['lon'], ck.get(doma[k['slug']]['class'], 'biz'), f'#d-{k["slug"]}', n,
+            doma[k['slug']]['name'].split(' (')[0]) for n, k in enumerate(rows, 1) if doma[k['slug']].get('lat') and doma[k['slug']].get('lon')]
+    mm = karta.mini_map(pts, 'Дома с камином по проекту на карте Москвы')
+    return (mm + '\n  <div class="ri-list" data-rlist data-lim="50">\n' + '\n'.join(items) + '\n  </div>'
             + reytingi.lead_modal('Разбор «Живой огонь в городе»'))
 
 KAMIN_LIST = ''

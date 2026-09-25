@@ -114,7 +114,7 @@ def main(src):
 <link rel="icon" type="image/svg+xml" href="{R}favicon.svg">
 <meta name="description" content="{e(desc)}">
 <meta property="og:title" content="Школа как архитектура — NOTA">
-<meta property="og:image" content="{re.search(r'src="([^"]+)"', mimgs[0]).group(1) if mimgs else ''}">
+<meta property="og:image" content="../../img/22-shkola.jpg">
 <script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>
 </head>
 <body class="inner">

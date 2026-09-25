@@ -10,6 +10,7 @@ S = 15.0                                                    # px на км
 CLS = {'бизнес': 'Бизнес', 'премиум': 'Премиум', 'элитный': 'Элит', 'делюкс': 'Делюкс'}
 CKEY = {'бизнес': 'biz', 'премиум': 'prem', 'элитный': 'elit', 'делюкс': 'dlx'}
 BAND = ''
+MINI = {}  # подложка и проекция для мини-карт в разборах (заполняет build)
 R_DOT = {'biz': 3.4, 'prem': 4.0, 'elit': 4.6, 'dlx': 5.2}
 SIZES = {'biz': (45, 70, 100), 'prem': (60, 90, 130), 'elit': (90, 140, 200), 'dlx': (120, 180, 250)}
 OUT = {'Сколково', 'Рублёвка'}
@@ -265,6 +266,8 @@ def build(root):
         svg.append(f'<path d="{smooth_path(v, k != "Бульварное", P)}" class="k-ring"/>')
     svg.append(f'<path d="{smooth_path(M, True, P)}" class="k-ring k-mkad"/>')
     band = list(svg[2:])  # подложка без фона и подписей — для полосы-карты на главной
+    global MINI
+    MINI = {'P': P, 'base': ''.join(band)}
     bdots = []  # точки полосы: сверху — старшие классы
     t = P((max(p[0] for p in W['rings']['ТТК']) + .4, 0.2))
     svg.append(f'<text x="{t[0]:.0f}" y="{t[1]:.0f}" class="k-lbl">ТТК</text>')
@@ -490,3 +493,41 @@ def build(root):
     b = s.index('</main>') + len('</main>')
     kp.write_text(s[:a] + main + s[b:])
     print('карта: домов', n, '· с картинкой', sum(1 for d in data if d.get('img')), '· со срезом лотов', sum(1 for v in extra.values() if v['lots_count']))
+
+
+def mini_map(points, label='Дома из списка на карте'):
+    """Мини-карта для разборов и рейтингов: точки домов из списка на подложке Москвы, кадр — по точкам.
+    points: [(lat, lon, класс_ключ biz|prem|elit|dlx, href, номер, название)]. Номер в кружке совпадает с номером строки
+    в списке ниже, клик ведёт к строке (href, обычно #d-<slug>). Собирается в HTML заранее, без скрипта."""
+    if not MINI or not points: return ''
+    P = MINI['P']
+    pts = [(P(proj(float(la), float(lo))),) + tuple(rest) for la, lo, *rest in points]
+    xs, ys = [p[0][0] for p in pts], [p[0][1] for p in pts]
+    x0, x1, y0, y1 = min(xs), max(xs), min(ys), max(ys)
+    w, h = max(x1 - x0, 40), max(y1 - y0, 40)
+    w, h = w * 1.25 + 30, h * 1.25 + 30
+    A = 1.9  # ширина к высоте
+    if w / h < A: w = h * A
+    else: h = w / A
+    cx, cy = (x0 + x1) / 2, (y0 + y1) / 2
+    r = w / 95
+    # раздвигаем точки, которые легли друг на друга (соседние дома): номера должны читаться
+    xy = [list(q[0]) for q in pts]
+    for _ in range(40):
+        moved = False
+        for i in range(len(xy)):
+            for j in range(i + 1, len(xy)):
+                dx, dy = xy[j][0] - xy[i][0], xy[j][1] - xy[i][1]
+                d = (dx * dx + dy * dy) ** .5
+                if d < r * 2.3:
+                    if d < 1e-6: dx, dy, d = 1.0, 0.0, 1.0
+                    k = (r * 2.3 - d) / 2 / d
+                    xy[i][0] -= dx * k; xy[i][1] -= dy * k; xy[j][0] += dx * k; xy[j][1] += dy * k; moved = True
+        if not moved: break
+    pts = [(tuple(xy[i]),) + tuple(pts[i][1:]) for i in range(len(pts))]
+    dots = []
+    for (x, y), ck, href, n, t in sorted(pts, key=lambda q: -q[3]):
+        dots.append(f'<a href="{href}" class="mm {ck}"><title>{n}. {t}</title><circle cx="{x:.1f}" cy="{y:.1f}" r="{r:.2f}"/>'
+                    f'<text x="{x:.1f}" y="{y:.1f}" font-size="{r * 1.05:.2f}" text-anchor="middle" dominant-baseline="central">{n}</text></a>')
+    return (f'<div class="mmap"><svg viewBox="{cx - w / 2:.1f} {cy - h / 2:.1f} {w:.1f} {h:.1f}" role="img" aria-label="{label}">'
+            f'<rect x="{cx - w:.1f}" y="{cy - h:.1f}" width="{w * 2:.1f}" height="{h * 2:.1f}" class="k-bg"/>{MINI["base"]}{"".join(dots)}</svg></div>')

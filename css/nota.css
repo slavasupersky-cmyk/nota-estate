@@ -1276,3 +1276,13 @@ section .two.rz-h,section.tight .two.rz-h:has(h2){align-items:start}
 .btn:disabled:hover,body.dark .btn:disabled:hover{background:var(--ink);border-color:var(--ink);color:var(--paper)}
 .ri-home{margin:14px 0 0;font-size:14px;color:var(--ink-2)}
 .ri-home .k{display:block;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:4px}
+/* 25.09 мини-карта в разборах: дома из списка ниже, номер в кружке = номер строки */
+.mmap{margin:0 0 22px;border:1px solid var(--line);background:var(--surface);overflow:hidden}
+.mmap svg{display:block;width:100%;height:auto}
+.mmap .k-river{stroke-width:3}.mmap .k-ring{stroke-width:1}
+.mmap *{vector-effect:non-scaling-stroke}
+.mm circle{stroke:#fff;stroke-width:1.5;transition:r .15s}
+.mm.biz circle{fill:#B4BBC2}.mm.prem circle{fill:#6A727B}.mm.elit circle{fill:#101317}.mm.dlx circle{fill:#CE2029}
+.mm text{fill:#fff;font-weight:700;font-family:inherit;pointer-events:none}.mm.biz text{fill:#101317}
+.mm:hover circle,.mm:focus circle{stroke:#101317;stroke-width:2.5}
+@media(max-width:700px){.mm{transform-box:fill-box;transform-origin:center;transform:scale(1.7)}}
