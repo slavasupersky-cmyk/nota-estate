@@ -521,6 +521,30 @@ def lead_modal(src):
 '''
 
 
+def house_ri(root, R, h, i, val, lab, dl, lead, aid=None, attrs=''):
+    """Строка дома по общему образцу NOTA — для рейтингов и разборов со списком домов.
+    Строка: номер, название, «класс · район · застройщик», наш итог, значение справа (val, подпись lab).
+    Раскрытие: факты dl — пары (подпись, готовый HTML), фото дома, кнопки «Дом на карте», «Паспорт дома» (если есть карточка)
+    и «Получить предложение» — окно #lead на той же странице (lead_modal), в заявку уходит lead и название страницы.
+    Всё лежит в HTML (для поиска и нейросетей), скрипт только раскрывает строки. Обёртка списка — <div data-rlist>."""
+    s = h['slug']; name = h['name'].split(' (')[0]
+    cls = CLS.get(h['class'], h['class'])
+    sub = ' · '.join(v for v in (cls.capitalize(), h['district'], h['developer']) if v)
+    tg, tl = ITOG_TAG.get(h.get('pasport', ''), ('look', 'Проверяем'))
+    card = (root / 'doma' / s / 'index.html').exists()
+    pic = (f'<div class="ri-img"><img src="{R}img/doma/{s}.jpg" alt="{e(name)}" loading="lazy"></div>'
+           if (root / 'img' / 'doma' / f'{s}.jpg').exists() else '')
+    btns = (f'<a class="btn btn-l" href="{R}karta.html#h-{s}">Дом на карте</a>'
+            + (f' <a class="btn btn-l" href="{R}doma/{s}/">Паспорт дома</a>' if card else '')
+            + f' <button class="btn" type="button" data-lead="{e(lead)}">Получить предложение</button>')
+    dl_html = ''.join(f'<dt>{k}</dt><dd>{v}</dd>' for k, v in dl if v)
+    q = ' '.join([h['name'], h['developer'], h['district'], h['address']]).lower().replace('ё', 'е')
+    return f'''<article class="ri" id="{aid or 'd-' + s}"{attrs} data-q="{e(q)}">
+ <button class="ri-row" type="button" aria-expanded="false"><span class="ri-n">{i}</span><span class="ri-t"><b>{e(name)}</b><span>{e(sub)}</span></span><span class="ri-c"><span class="tag {tg}">{tl}</span></span><span class="ri-v">{val}<small>{lab}</small></span></button>
+ <div class="ri-body" hidden><div class="ri-main"><dl>{dl_html}</dl></div><div class="ri-side">{pic}</div><div class="btns ri-btns">{btns}</div></div>
+</article>'''
+
+
 def park(root):
     doma = read(root / 'data/doma.csv')
     if not doma or 'park_m' not in doma[0]: return None

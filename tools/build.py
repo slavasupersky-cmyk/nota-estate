@@ -153,24 +153,32 @@ APART_LIST = ''
 KAMIN_PAGE = 'razbory/kamin-v-kvartire/index.html'
 
 def kamin_list(root):
-    """Дома с камином по проекту для разбора «Камин в квартире» (между <!--kamin-l--> и <!--/kamin-l-->):
-    data/kaminy.csv + data/doma.csv. Таблица: дом (ссылка на карту), класс и район, какой камин, где в доме."""
+    """Дома с камином по проекту для разбора «Живой огонь в городе» (между <!--kamin-l--> и <!--/kamin-l-->):
+    data/kaminy.csv + data/doma.csv. Список по общему образцу домов (reytingi.house_ri): строка раскрывается —
+    какой камин и где он в доме, фото, «Дом на карте», «Паспорт дома», «Получить предложение» окном на странице."""
+    import reytingi
     rd = lambda p: list(csv.DictReader(p.open(encoding='utf-8-sig'), delimiter=';')) if p.exists() else []
     doma = {r['slug']: r for r in rd(root / 'data/doma.csv')}
     rows = [k for k in rd(root / 'data/kaminy.csv') if k['slug'] in doma]
     if not rows: return ''
     esc = lambda x: (x or '').replace('&', '&amp;').replace('<', '&lt;').replace('"', '&quot;')
-    cls = {'бизнес': 'Бизнес', 'премиум': 'Премиум', 'элитный': 'Элит', 'делюкс': 'Делюкс'}
     order = {'делюкс': 0, 'элитный': 1, 'премиум': 2, 'бизнес': 3}
     rows.sort(key=lambda k: (order.get(doma[k['slug']]['class'], 9), (doma[k['slug']].get('name_short') or doma[k['slug']]['name']).lower()))
-    out = ['  <div class="tablewrap"><table>', '   <tr><th>Дом</th><th>Класс и район</th><th>Камин</th><th>Где в доме</th></tr>']
-    for k in rows:
-        d = doma[k['slug']]; nm = d.get('name_short') or d['name'].split(' (')[0]
-        det = esc(k['gde']) + (f'<br><small>{esc(k["detali"])}</small>' if k['detali'] else '')
-        out.append(f'   <tr><td><b><a href="../../karta.html#h-{k["slug"]}">{esc(nm)}</a></b></td><td>{cls.get(d["class"], d["class"])} · {esc(d["district"])}</td>'
-                   f'<td>{esc(k["tip"])}</td><td>{det}</td></tr>')
-    out.append('  </table></div>')
-    return '\n'.join(out)
+    R = '../../'
+    items = []
+    for n, k in enumerate(rows, 1):
+        h = doma[k['slug']]
+        pf = (h.get('price_from_m2') or '').replace(' ', '')
+        price = f'от {int(float(pf) / 1000):,} тыс ₽ за м²'.replace(',', ' ') if pf.replace('.', '').isdigit() else 'по запросу'
+        src = k.get('source', '')
+        host = re.sub(r'^https?://(www\.)?', '', src).split('/')[0] if src.startswith('http') else ''
+        dl = [('Камин', esc(k['tip'])), ('Где в доме', esc(k['gde'])), ('Подробности', esc(k.get('detali', ''))),
+              ('Адрес', esc(h['address'])), ('Цена', price),
+              ('Источник', (f'<a href="{esc(src)}" rel="nofollow noopener">{esc(host)}</a>' + (f' · {esc(k["checked"])}' if k.get('checked') else '')) if host else '')]
+        name = h['name'].split(' (')[0]
+        items.append(reytingi.house_ri(root, R, h, n, esc(k['tip']), 'камин', dl, f'{name} · камин'))
+    return ('  <div class="ri-list" data-rlist data-lim="50">\n' + '\n'.join(items) + '\n  </div>'
+            + reytingi.lead_modal('Разбор «Живой огонь в городе»'))
 
 KAMIN_LIST = ''
 
