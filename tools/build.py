@@ -59,6 +59,8 @@ def apply_shell(path):
         s2 = re.sub(r'<!--itog-t-->[\s\S]*?<!--/itog-t-->', lambda m: '<!--itog-t-->\n' + ITOG_TABLE + '\n  <!--/itog-t-->', s2, count=1)
     if rel == APART_PAGE and APART_LIST:
         s2 = re.sub(r'<!--apart-l-->[\s\S]*?<!--/apart-l-->', lambda m: '<!--apart-l-->\n' + APART_LIST + '\n  <!--/apart-l-->', s2, count=1)
+    if rel == KAMIN_PAGE and KAMIN_LIST:
+        s2 = re.sub(r'<!--kamin-l-->[\s\S]*?<!--/kamin-l-->', lambda m: '<!--kamin-l-->\n' + KAMIN_LIST + '\n  <!--/kamin-l-->', s2, count=1)
     if rel == 'index.html' and KARTA_BAND:
         s2 = re.sub(r'<!--karta-band-->[\s\S]*?<!--/karta-band-->', lambda m: '<!--karta-band-->' + KARTA_BAND + '<!--/karta-band-->', s2, count=1)
     if rel == 'index.html' and HOME_TABLE:
@@ -107,6 +109,7 @@ def numbers(root, extra=None):
     for k, c in (('biz', 'бизнес'), ('prem', 'премиум'), ('elit', 'элитный'), ('dlx', 'делюкс')):
         v = [_num(r['price_from_m2']) for r in city if r['class'] == c and _num(r['price_from_m2'])]
         n['med_' + k] = _m2(statistics.median(v)) if v else '—'
+    n['kamin'] = len({r['slug'] for r in rd(root / 'data/kaminy.csv')})
     n['apart'] = len({r['slug'] for r in rd(root / 'data/proverki.csv')
                       if r['check'] == '08' and 'апартамент' in (r['value'] or '').lower()})
     # {srez} — дата среза базы (когда data/doma.csv последний раз менялся)
@@ -146,6 +149,30 @@ def apart_list(root):
     return '\n'.join(out)
 
 APART_LIST = ''
+
+KAMIN_PAGE = 'razbory/kamin-v-kvartire/index.html'
+
+def kamin_list(root):
+    """Дома с камином по проекту для разбора «Камин в квартире» (между <!--kamin-l--> и <!--/kamin-l-->):
+    data/kaminy.csv + data/doma.csv. Таблица: дом (ссылка на карту), класс и район, какой камин, где в доме."""
+    rd = lambda p: list(csv.DictReader(p.open(encoding='utf-8-sig'), delimiter=';')) if p.exists() else []
+    doma = {r['slug']: r for r in rd(root / 'data/doma.csv')}
+    rows = [k for k in rd(root / 'data/kaminy.csv') if k['slug'] in doma]
+    if not rows: return ''
+    esc = lambda x: (x or '').replace('&', '&amp;').replace('<', '&lt;').replace('"', '&quot;')
+    cls = {'бизнес': 'Бизнес', 'премиум': 'Премиум', 'элитный': 'Элит', 'делюкс': 'Делюкс'}
+    order = {'делюкс': 0, 'элитный': 1, 'премиум': 2, 'бизнес': 3}
+    rows.sort(key=lambda k: (order.get(doma[k['slug']]['class'], 9), (doma[k['slug']].get('name_short') or doma[k['slug']]['name']).lower()))
+    out = ['  <div class="tablewrap"><table>', '   <tr><th>Дом</th><th>Класс и район</th><th>Камин</th><th>Где в доме</th></tr>']
+    for k in rows:
+        d = doma[k['slug']]; nm = d.get('name_short') or d['name'].split(' (')[0]
+        det = esc(k['gde']) + (f'<br><small>{esc(k["detali"])}</small>' if k['detali'] else '')
+        out.append(f'   <tr><td><b><a href="../../karta.html#h-{k["slug"]}">{esc(nm)}</a></b></td><td>{cls.get(d["class"], d["class"])} · {esc(d["district"])}</td>'
+                   f'<td>{esc(k["tip"])}</td><td>{det}</td></tr>')
+    out.append('  </table></div>')
+    return '\n'.join(out)
+
+KAMIN_LIST = ''
 
 def itog_table(root):
     """Таблица допуска минусов по классам для metod.html (между <!--itog-t--> и <!--/itog-t-->): data/itog.csv + итоги по базе."""
@@ -249,6 +276,7 @@ if __name__ == '__main__':
     N = numbers(ROOT, rstats)
     ITOG_TABLE = itog_table(ROOT)
     APART_LIST = apart_list(ROOT)
+    KAMIN_LIST = kamin_list(ROOT)
     for old, new in MOVED.items():
         (ROOT / old).write_text(stub(old, new))
     pages = all_pages()

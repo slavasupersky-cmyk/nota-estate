@@ -35,6 +35,7 @@ PUBLIC = {
     'oplata-tipy.csv': None,
     'itog.csv': None,
     'otkrytost-cen.csv': None,
+    'kaminy.csv': None,  # дома с камином по проекту — разбор «Камин в квартире»
     'klastery.csv': None,  # кластеры районов из курса «Элитная Москва» — контуры и фильтр на карте
     'obnovleniya.csv': None,  # журнал еженедельных обновлений базы — строка «Обновлено …» на карте
 }
