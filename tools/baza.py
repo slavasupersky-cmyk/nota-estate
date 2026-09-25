@@ -29,7 +29,7 @@ PUBLIC = {
     'shkoly.csv': ['school_id', 'name', 'official_name', 'category', 'tier', 'marked', 'index', 'grant', 'raex_msk_compete', 'raex_rf', 'vsosh_w', 'vsosh_p',
                    'price', 'why', 'zone', 'okrug', 'district', 'address', 'site', 'korpusov', 'lat', 'lon', 'geo_precision'],
     'kriterii.csv': None,
-    'penthausy.csv': ['pent_id', 'slug', 'zhk', 'developer', 'okrug', 'district', 'address', 'count', 'area_m2', 'floor', 'price_total', 'price_m2', 'features', 'status', 'source', 'checked'],
+    'penthausy.csv': ['pent_id', 'slug', 'foto', 'zhk', 'developer', 'okrug', 'district', 'address', 'count', 'area_m2', 'floor', 'price_total', 'price_m2', 'features', 'status', 'source', 'checked'],
     'oplata-skhemy.csv': ['scheme_id', 'dev_id', 'developer', 'slug', 'zhk', 'klass', 'tip', 'opisanie', 'stavka', 'srok', 'pv', 'vvod', 'skidka_100', 'ogranicheniya', 'source', 'deystvuet', 'checked'],
     'oplata-banki.csv': None,
     'oplata-tipy.csv': None,

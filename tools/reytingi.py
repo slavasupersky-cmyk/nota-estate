@@ -417,6 +417,10 @@ def penthausy(root):
             if (root / 'img' / 'doma' / f'{sl}.jpg').exists():
                 pic = f'<div class="ri-img"><img src="{R}img/doma/{sl}.jpg" alt="{e(name)}" loading="lazy"></div>'
             btns = f'<a class="btn btn-l" href="{R}karta.html#h-{sl}">Дом на карте</a>' + (f' <a class="btn btn-l" href="{R}doma/{sl}/">Паспорт дома</a>' if card.exists() else '')
+        fk = r.get('foto') or ''
+        if not pic and fk and (root / 'img' / 'doma' / f'{fk}.jpg').exists():
+            # дом не в нашей базе: обложка лежит в nota-baza/foto/<foto>/cover.jpg
+            pic = f'<div class="ri-img"><img src="{R}img/doma/{fk}.jpg" alt="{e(name)}" loading="lazy"></div>'
         btns += f' <button class="btn" type="button" data-lead="Пентхаус · {e(name)}">Получить предложение</button>'
         q = ' '.join([r['zhk'], r['developer'], r['district'], r['features']]).lower().replace('ё', 'е')
         st_tag = f'<span class="tag look">{status}</span>' if status else ''
