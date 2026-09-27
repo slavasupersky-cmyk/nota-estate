@@ -5,11 +5,12 @@
  "tg": "nota_estate",
  "email": "hello@nota.expert",
  "office": "Москва, Николоямская, 40с1",
- "rekv": "ИНН 502019152710",
+ "rekv": "ИП Дзевицкая Анастасия Владимировна, ИНН 502019152710, ОГРНИП 326508100350881",
  "inn": "502019152710",
  "max_url": "#",
  "max_name": "NOTA",
  "site_url": "https://nota.expert",
  "yandex_verification": "",
- "google_verification": ""
+ "google_verification": "",
+ "ogrnip": "326508100350881"
 }
