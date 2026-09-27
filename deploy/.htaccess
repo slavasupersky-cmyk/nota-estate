@@ -1,0 +1,10 @@
+# Копия .htaccess с хостинга nic.ru (docs/.htaccess для nota.expert).
+# Кладётся в корень архива при сборке. При переходе на nota.estate — заменить домен и снять noindex.
+Header set X-Robots-Tag "noindex, nofollow"
+
+RewriteEngine On
+RewriteCond %{HTTP_HOST} ^www\. [NC]
+RewriteRule ^ https://nota.expert%{REQUEST_URI} [R=301,L]
+RewriteCond %{HTTP:X-Forwarded-Proto} !https
+RewriteCond %{HTTPS} off
+RewriteRule ^ https://nota.expert%{REQUEST_URI} [R=301,L]
