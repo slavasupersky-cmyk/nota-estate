@@ -1,0 +1,4 @@
+User-agent: *
+Disallow:
+
+Sitemap: https://nota.expert/sitemap.xml

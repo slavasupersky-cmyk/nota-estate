@@ -1,6 +1,13 @@
 # Копия .htaccess с хостинга nic.ru (docs/.htaccess для nota.expert).
-# Кладётся в корень архива при сборке. При переходе на nota.estate — заменить домен и снять noindex.
-Header set X-Robots-Tag "noindex, nofollow"
+# deploy.sh кладёт его в корень выкладки. Сайт открыт для поисковиков, кроме служебных и клиентских страниц ниже.
+
+# Закрыто от поисковиков: клиентские подборки и брифы (nota-*), черновик «Сценарии», рабочая карта маршрутов, старые адреса
+<FilesMatch "^(nota-.*|scenarii|shkoly-marshruty|index-2026-.*)\.html$">
+  Header set X-Robots-Tag "noindex, nofollow"
+</FilesMatch>
+<FilesMatch "\.csv$">
+  Header set X-Robots-Tag "noindex"
+</FilesMatch>
 
 RewriteEngine On
 RewriteCond %{HTTP_HOST} ^www\. [NC]

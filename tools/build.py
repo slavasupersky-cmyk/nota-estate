@@ -52,9 +52,10 @@ def apply_shell(path):
     s2 = re.sub(r'<section class="contact" id="kontakt">[\s\S]*?</section>', lambda m: fill(CONTACT, rel).rstrip('\n'), s2, count=1)
     # реквизиты внутри текста (политика): <!--rekv-->…<!--/rekv-->
     s2 = re.sub(r'<!--rekv-->[\s\S]*?<!--/rekv-->',
-                lambda m: '<!--rekv-->ИП {ip_name}, ИНН {inn}, ОГРНИП {ogrnip}<!--/rekv-->'.format(**site), s2)
+                lambda m: '<!--rekv-->' + site['rekv'] + '<!--/rekv-->', s2)
     s2 = apply_numbers(s2, N)
     s2 = faq_ld(s2)
+    s2 = seo(s2, rel)
     if rel == 'metod.html' and ITOG_TABLE:
         s2 = re.sub(r'<!--itog-t-->[\s\S]*?<!--/itog-t-->', lambda m: '<!--itog-t-->\n' + ITOG_TABLE + '\n  <!--/itog-t-->', s2, count=1)
     if rel == APART_PAGE and APART_LIST:
@@ -267,6 +268,62 @@ def stub(old, new):
 </html>
 '''
 
+# ---- адрес сайта для поисковиков (постоянный домен — site_url в site.json) ----
+SITE_URL = site.get('site_url', '').rstrip('/')
+NOINDEX_SITEMAP = {'scenarii.html'}   # не в карте сайта и закрыты на хостинге (deploy/.htaccess)
+PREVIEW = '<meta name="robots" content="noindex" data-preview>'
+
+def page_url(rel):
+    if rel == 'index.html': return SITE_URL + '/'
+    if rel.endswith('/index.html'): return SITE_URL + '/' + rel[:-len('index.html')]
+    return SITE_URL + '/' + rel
+
+def seo(s, rel):
+    """Канонический адрес, og:url и полные адреса картинок превью — на постоянный домен.
+    Метка data-preview закрывает копию на GitHub Pages; deploy/deploy.sh вырезает её при выкладке на хостинг."""
+    if not SITE_URL: return s
+    from urllib.parse import urljoin
+    url = page_url(rel)
+    s = re.sub(r'\s*<link rel="canonical"[^>]*>', '', s)
+    s = re.sub(r'\s*<meta property="og:url"[^>]*>', '', s)
+    s = re.sub(r'\s*<meta name="(?:yandex|google-site)-verification"[^>]*>', '', s)
+    s = s.replace('\n' + PREVIEW, '').replace(PREVIEW, '')
+    def absimg(m):
+        v = m.group(2)
+        return m.group(1) + (v if v.startswith('http') else urljoin(url, v)) + '"'
+    s = re.sub(r'(<meta (?:property="og:image"|name="twitter:image") content=")([^"]*)"', absimg, s)
+    if 'property="og:image"' not in s:
+        img = 'img/01-hero-maket-og.jpg'
+        m = re.match(r'doma/([^/]+)/index\.html$', rel)
+        if m and (ROOT / 'img/doma' / (m.group(1) + '.jpg')).exists():
+            img = 'img/doma/' + m.group(1) + '.jpg'
+        s = s.replace('</head>', f'<meta property="og:image" content="{SITE_URL}/{img}">\n</head>', 1)
+    # адреса внутри JSON-LD — полные
+    s = re.sub(r'("(?:url|image)":\s*")(?!https?:)([^"]*)"', lambda m: m.group(1) + urljoin(SITE_URL + '/', m.group(2)) + '"', s)
+    add = [f'<link rel="canonical" href="{url}">', f'<meta property="og:url" content="{url}">']
+    if 'name="robots"' not in s:
+        add.append(PREVIEW)
+    if rel == 'index.html':
+        if site.get('yandex_verification'): add.append(f'<meta name="yandex-verification" content="{site["yandex_verification"]}">')
+        if site.get('google_verification'): add.append(f'<meta name="google-site-verification" content="{site["google_verification"]}">')
+    return s.replace('</head>', '\n'.join(add) + '\n</head>', 1)
+
+def sitemap(pages):
+    """sitemap.xml и robots.txt в корне. Дата — последнее изменение файла страницы."""
+    import datetime
+    rows = []
+    for p in pages:
+        rel = p.relative_to(ROOT).as_posix()
+        if rel in NOINDEX_SITEMAP or 'name="robots"' in re.sub(re.escape(PREVIEW), '', p.read_text()): continue
+        d = datetime.date.fromtimestamp(p.stat().st_mtime).isoformat()
+        rows.append(f' <url><loc>{page_url(rel)}</loc><lastmod>{d}</lastmod></url>')
+    xml = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + '\n'.join(rows) + '\n</urlset>\n'
+    robots = f'User-agent: *\nDisallow:\n\nSitemap: {SITE_URL}/sitemap.xml\n'
+    for name, body in (('sitemap.xml', xml), ('robots.txt', robots)):
+        f = ROOT / name
+        if not f.exists() or f.read_text() != body: f.write_text(body)
+    return len(rows)
+
 if __name__ == '__main__':
     sys.path.insert(0, str(T))
     import baza, doma, karta, images, reytingi
@@ -298,3 +355,4 @@ if __name__ == '__main__':
     # считаем по итоговому содержимому: карточки и карта пересобираются каждый раз, но если текст тот же — это не изменение
     n = sum(1 for p in pages if before.get(p) != p.read_bytes())
     print(f'страницы: изменилось {n} из {len(pages)}')
+    print(f'карта сайта: {sitemap(pages)} страниц · {SITE_URL}')
