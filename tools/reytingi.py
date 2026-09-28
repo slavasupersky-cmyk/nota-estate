@@ -512,7 +512,7 @@ def lead_modal(src):
    <label class="fl-l">Как к вам обращаться<input type="text" name="name" autocomplete="name" placeholder="Имя"></label>
    <label class="fl-l">Телефон или ник в Telegram / MAX<input type="text" name="contact" placeholder="+7 … или @ник"></label>
    <label class="fl-l">Что важно<textarea name="note" placeholder="Площадь, этаж, бюджет — если хотите уточнить"></textarea></label>
-   <label class="consent"><input type="checkbox"><span>Согласен на обработку персональных данных и прочитал <a href="{R}politika.html">политику конфиденциальности</a>.</span></label>
+   <label class="consent"><input type="checkbox"><span>Даю <a href="{R}soglasie.html">согласие на обработку персональных данных</a>. Как мы их храним — в <a href="{R}politika.html">политике конфиденциальности</a>.</span></label>
    <p class="lead-src hint" style="margin:10px 0 0"></p>
    <div class="send"><button class="btn" type="button">Получить подборку</button></div>
   </form>

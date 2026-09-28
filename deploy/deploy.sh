@@ -95,7 +95,7 @@ if lftp -f "$CMDS" 2>&1 | grep -v "^$"; [ "${PIPESTATUS[0]}" -eq 0 ]; then
   if [ "$CLEAN" = "clean" ]; then cp "$NEW" "$MANIFEST"
   else
     # запоминаем новое состояние, но удалённые из репо файлы оставляем в списке — они ещё на хостинге
-    { cat "$NEW"; grep -F -f <(echo "$GONE" | grep -v '^$' | sed 's/^/  /;s/$//') "$MANIFEST" 2>/dev/null; } | sort -u -k2 > "$MANIFEST.tmp" && mv "$MANIFEST.tmp" "$MANIFEST"
+    { cat "$NEW"; grep -F -f <(echo "$GONE" | grep -v '^$' | sed 's/^/  /;s/$//') "$MANIFEST" 2>/dev/null || true; } | sort -u -k2 > "$MANIFEST.tmp" && mv "$MANIFEST.tmp" "$MANIFEST"
   fi
   echo "Готово. Проверка: $(curl -sI "$SITE_URL" | head -1)"
 else

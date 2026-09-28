@@ -473,7 +473,7 @@ def build(root):
    <label class="fl-l">Как к вам обращаться<input type="text" autocomplete="name" placeholder="Имя"></label>
    <label class="fl-l">Телефон или ник в Telegram / MAX<input type="text" placeholder="+7 … или @ник"></label>
    <label class="fl-l">Что важно<textarea placeholder="Площадь, этаж, бюджет — если хотите уточнить"></textarea></label>
-   <label class="consent"><input type="checkbox"><span>Согласен на обработку персональных данных и прочитал <a href="politika.html">политику конфиденциальности</a>.</span></label>
+   <label class="consent"><input type="checkbox"><span>Даю <a href="soglasie.html">согласие на обработку персональных данных</a>. Как мы их храним — в <a href="politika.html">политике конфиденциальности</a>.</span></label>
    <div class="send"><button class="btn" type="button">Получить подборку</button></div>
   </form>
  </div>
