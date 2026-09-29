@@ -1,7 +1,7 @@
 # Проверки паспорта 01, 04, 05, 09 по doma.csv. Запуск из nota-estate: python3 tools/checks.py [write]; после записи proverki.csv — CRLF
 import sys,csv,statistics as st,collections,io
 sys.path.insert(0,'tools'); import karta
-B='../nota-baza/'; TODAY='24.09.2026'
+B='../nota-baza/'; import datetime; TODAY=datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=3))).strftime('%d.%m.%Y')  # дата прогона по Москве (было вписано руками)
 W=karta.grab(open('nota-karta-zhk.html').read(),'W'); TTK=W['rings']['ТТК']
 def inpoly(x,y,P):
     c=False
