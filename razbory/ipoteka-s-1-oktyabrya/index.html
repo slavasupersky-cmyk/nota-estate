@@ -14,6 +14,123 @@
 <meta property="og:title" content="Ипотека с 1 октября — разбор NOTA">
 <meta property="og:image" content="https://nota.expert/img/07-terrasa.jpg">
 <script type="application/ld+json" id="ld-faq">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Какая ставка семейной ипотеки в Москве с 1 октября 2026?", "acceptedAnswer": {"@type": "Answer", "text": "Зависит от числа детей: один ребёнок — 12 %, два — 10 %, три — 8 %, четыре — 6 %, пять и больше — 4 %. Лимит — 12, 15 и 18 млн рублей. Хотя бы одному ребёнку на дату договора должно быть меньше семи лет."}}, {"@type": "Question", "name": "Можно ли сохранить ставку 6 %?", "acceptedAnswer": {"@type": "Answer", "text": "Да, если внести не меньше половины стоимости жилья: тогда ставка 6 % при любом числе детей. И у всех, кто заключил договор до 1 октября, ставка не меняется."}}, {"@type": "Question", "name": "Нужно ли прописываться в квартире, купленной по семейной ипотеке?", "acceptedAnswer": {"@type": "Answer", "text": "Да. Зарегистрироваться в купленном жилье нужно не позже 271-го дня после выдачи кредита и оставаться зарегистрированными пять лет, иначе банк повысит ставку."}}, {"@type": "Question", "name": "Сколько лет действует льготная ставка?", "acceptedAnswer": {"@type": "Answer", "text": "Первые 15 лет кредита. Потом ставка пересчитывается: ключевая ставка Банка России плюс 2 процентных пункта."}}, {"@type": "Question", "name": "Что с субсидированной ипотекой от застройщиков?", "acceptedAnswer": {"@type": "Answer", "text": "С 1 октября Сбербанк не выдаёт ипотеку с субсидией застройщика на 1–5 лет. Субсидии на весь срок остаются, в сентябре — около 12,5 % при кредите до 15 лет. Их стоимость обычно заложена в цену."}}, {"@type": "Question", "name": "Выгодно ли сейчас покупать в ипотеку под сдачу?", "acceptedAnswer": {"@type": "Answer", "text": "При рыночной ставке 17–19 % и субсидиях около 12,5 % аренда не покрывает платёж: в наших расчётах доплата из своих — от 24 до 115 тысяч рублей в месяц. Семейную ипотеку под сдачу использовать нельзя из-за обязательной регистрации."}}]}</script>
+<style>
+.ipc{--paper:#F2F3F4; --surface:#FFFFFF; --surface-2:#FAFBFB;
+  --ink:#101317; --ink-2:#39424C; --muted:#6A727B; --faint:#98A1AA;
+  --line:#DFE3E7; --line-2:#C9D0D6;
+  --red:#CE2029; --red-soft:#FAE7E6;
+  --green:#1C6B4A; --green-soft:#E6F0EA;
+  --orange:#B4610A; --orange-soft:#FBEEDF;
+  ;color:var(--ink);font-size:16px;line-height:1.55}
+.ipc :focus-visible{outline:2px solid var(--red); outline-offset:2px}
+.ipc button,.ipc input{font-family:inherit}
+.ipc a{color:var(--ink); text-decoration:none; border-bottom:1px solid var(--line-2)}
+.ipc a:hover{border-bottom-color:var(--red)}
+.ipc .ic-grid{display:grid; grid-template-columns:minmax(300px,370px) 1fr; gap:16px; align-items:start}
+@media (max-width:860px){.ipc .ic-grid{grid-template-columns:minmax(0,1fr)}}
+.ipc .ic-grid>div,.ipc .ic-res>div{min-width:0}
+.ipc .ic-card{background:var(--surface); border:1px solid var(--line); border-radius:6px; padding:20px}
+.ipc .ic-card + .ic-card{margin-top:14px}
+.ipc .ic-field{margin-bottom:20px}
+.ipc .ic-field:last-child{margin-bottom:0}
+.ipc .ic-lab{display:flex; align-items:baseline; justify-content:space-between; gap:12px; margin-bottom:8px}
+.ipc .ic-lab .ic-t{font-size:13px; color:var(--muted)}
+.ipc .ic-lab .ic-v{font-size:14px; font-weight:600; font-variant-numeric:tabular-nums}
+.ipc .ic-seg{display:flex; border:1px solid var(--line-2); border-radius:5px; overflow:hidden}
+.ipc .ic-seg button{appearance:none; border:0; background:var(--surface); color:var(--ink-2); cursor:pointer;
+  padding:9px 10px; font-size:13.5px; font-weight:500; flex:1; border-right:1px solid var(--line);
+  line-height:1.25; min-height:40px}
+.ipc .ic-seg button:last-child{border-right:0}
+.ipc .ic-seg button:hover{background:var(--surface-2); color:var(--ink)}
+.ipc .ic-seg button[aria-pressed="true"]{background:var(--ink); color:#fff}
+.ipc .ic-seg.ic-kids button{padding:9px 4px; font-size:14px}
+.ipc input[type="text"]{width:100%; border:1px solid var(--line-2); border-radius:5px; background:var(--surface-2);
+  color:var(--ink); padding:10px 12px; font-size:15px; font-variant-numeric:tabular-nums}
+.ipc input[type="text"]:focus{background:var(--surface); border-color:var(--ink-2)}
+.ipc input[type="range"]{-webkit-appearance:none; appearance:none; width:100%; height:22px; background:transparent; margin:0; display:block}
+.ipc input[type="range"]::-webkit-slider-runnable-track{height:3px; background:var(--line-2); border-radius:2px}
+.ipc input[type="range"]::-moz-range-track{height:3px; background:var(--line-2); border-radius:2px}
+.ipc input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none; appearance:none; width:18px; height:18px;
+  border-radius:50%; background:var(--surface); border:2px solid var(--red); margin-top:-7.5px; cursor:pointer;
+  box-shadow:0 1px 3px rgba(16,19,23,.16)}
+.ipc input[type="range"]::-moz-range-thumb{width:16px; height:16px; border-radius:50%; background:var(--surface);
+  border:2px solid var(--red); cursor:pointer}
+.ipc .ic-hint{font-size:12px; color:var(--faint); margin-top:7px}
+.ipc .ic-switch{display:flex; align-items:center; gap:10px; cursor:pointer; user-select:none}
+.ipc .ic-switch input{position:absolute; opacity:0; width:0; height:0}
+.ipc .ic-track{width:38px; height:22px; border-radius:999px; background:var(--line-2); position:relative; flex:none; transition:background .15s}
+.ipc .ic-track::after{content:""; position:absolute; top:2px; left:2px; width:18px; height:18px; border-radius:50%;
+  background:var(--surface); box-shadow:0 1px 2px rgba(16,19,23,.2); transition:transform .15s}
+.ipc .ic-switch input:checked + .ic-track{background:var(--ink)}
+.ipc .ic-switch input:checked + .ic-track::after{transform:translateX(16px)}
+.ipc .ic-switch input:focus-visible + .ic-track{outline:2px solid var(--red); outline-offset:2px}
+.ipc .ic-switch .ic-sl{font-size:13.5px; color:var(--ink-2)}
+.ipc .ic-bar-card{background:var(--surface); border:1px solid var(--line); border-radius:6px; padding:18px 20px; margin-bottom:14px}
+.ipc .ic-bar-top{display:flex; align-items:baseline; justify-content:space-between; gap:14px; flex-wrap:wrap; margin-bottom:12px}
+.ipc .ic-bar-top h2{margin:0; font-size:16px; font-weight:600}
+.ipc .ic-bar-top .ic-tot{font-size:13px; color:var(--muted); font-variant-numeric:tabular-nums}
+.ipc .ic-bar{display:flex; height:30px; border-radius:4px; overflow:hidden; background:var(--surface-2); border:1px solid var(--line)}
+.ipc .ic-bar span{display:block; height:100%; transition:width .18s ease}
+.ipc .ic-bar .ic-s-dp{background:var(--ink)}
+.ipc .ic-bar .ic-s-pref{background:var(--green)}
+.ipc .ic-bar .ic-s-gap{background:var(--orange)}
+.ipc .ic-legend{display:flex; gap:10px 22px; flex-wrap:wrap; margin-top:12px}
+.ipc .ic-leg{display:flex; gap:9px; align-items:flex-start; font-size:13px; min-width:150px}
+.ipc .ic-dot{width:10px; height:10px; border-radius:2px; margin-top:5px; flex:none}
+.ipc .ic-dot.ic-dp{background:var(--ink)}
+.ipc .ic-dot.ic-pref{background:var(--green)}
+.ipc .ic-dot.ic-gap{background:var(--orange)}
+.ipc .ic-leg .ic-lv{display:block; font-weight:600; font-variant-numeric:tabular-nums}
+.ipc .ic-leg .ic-lk{display:block; color:var(--muted); font-size:12px}
+.ipc .ic-cashline{margin-top:14px; padding-top:13px; border-top:1px solid var(--line); font-size:14.5px; color:var(--ink-2)}
+.ipc .ic-cashline b{color:var(--ink); font-weight:600}
+.ipc .ic-gapwarn{margin-top:12px; background:var(--orange-soft); border:1px solid var(--orange); border-radius:5px;
+  padding:12px 15px; font-size:13.5px; color:#5A3405}
+.ipc .ic-gapwarn b{color:#3D2303}
+.ipc .ic-res{display:grid; grid-template-columns:1fr 1fr; gap:14px}
+@media (max-width:660px){.ipc .ic-res{grid-template-columns:minmax(0,1fr)}}
+.ipc .ic-rcard{background:var(--surface); border:1px solid var(--line); border-radius:6px; padding:18px 20px}
+.ipc .ic-rcard.ic-after{border-color:var(--red); box-shadow:0 0 0 1px var(--red) inset}
+.ipc .ic-rcard .ic-tag{font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); font-weight:600; margin-bottom:4px}
+.ipc .ic-rcard.ic-after .ic-tag{color:var(--red)}
+.ipc .ic-rcard .ic-sub{font-size:12.5px; color:var(--faint); margin-bottom:14px}
+.ipc .ic-big{font-weight:800; font-size:clamp(25px,4.4vw,32px); line-height:1.05; letter-spacing:-.02em; font-variant-numeric:tabular-nums}
+.ipc .ic-big small{display:block; font-size:12.5px; font-weight:500; color:var(--muted); letter-spacing:0; margin-top:5px}
+.ipc .ic-rows{margin-top:16px; padding-top:14px; border-top:1px solid var(--line); display:flex; flex-direction:column; gap:8px}
+.ipc .ic-row{display:flex; justify-content:space-between; gap:12px; font-size:13.5px}
+.ipc .ic-row span:first-child{color:var(--muted)}
+.ipc .ic-row span:last-child{font-variant-numeric:tabular-nums; font-weight:500; text-align:right}
+.ipc .ic-row.ic-hl span:last-child{color:var(--orange)}
+.ipc .ic-delta{margin-top:14px; border-radius:6px; padding:16px 20px; display:flex; gap:16px 30px; flex-wrap:wrap;
+  background:var(--red-soft); border:1px solid var(--red)}
+.ipc .ic-delta .ic-d{font-weight:800; font-size:23px; font-variant-numeric:tabular-nums; line-height:1.1; color:var(--red)}
+.ipc .ic-delta .ic-k{font-size:12.5px; color:var(--ink-2); margin-top:3px}
+.ipc .ic-delta.ic-good{background:var(--green-soft); border-color:var(--green)}
+.ipc .ic-delta.ic-good .ic-d{color:var(--green)}
+.ipc .ic-delta .ic-unit{display:flex; flex-direction:column}
+.ipc .ic-delta .ic-unit.ic-pos .ic-d{color:var(--green)}
+.ipc .ic-delta .ic-unit.ic-neg .ic-d{color:var(--red)}
+.ipc .ic-verdict{margin-top:14px; background:var(--surface); border:1px solid var(--line); border-left:2px solid var(--red);
+  border-radius:6px; padding:16px 20px; font-size:14.5px; color:var(--ink-2)}
+.ipc .ic-verdict b{color:var(--ink); font-weight:600}
+.ipc .ic-tablewrap{overflow-x:auto; background:var(--surface); border:1px solid var(--line); border-radius:6px}
+.ipc table{border-collapse:collapse; width:100%; min-width:460px; font-size:14px}
+.ipc thead th{background:var(--surface-2); text-align:left; font-size:11px; letter-spacing:.08em; text-transform:uppercase;
+  color:var(--muted); font-weight:500; padding:9px 13px; border-bottom:1px solid var(--line-2); white-space:nowrap}
+.ipc tbody tr{border-bottom:1px solid var(--line)}
+.ipc tbody tr:last-child{border-bottom:0}
+.ipc tbody tr.ic-on{background:var(--red-soft)}
+.ipc td{padding:9px 13px; color:var(--ink-2); font-variant-numeric:tabular-nums}
+.ipc td:first-child{color:var(--ink); font-weight:500}
+.ipc h2.ic-sc{font-weight:600; font-size:17px; letter-spacing:-.01em; margin:0 0 10px}
+.ipc .ic-note{margin-top:14px; font-size:12.5px; color:var(--faint); line-height:1.5}
+.ipc .ic-note p{margin:0 0 7px}
+.ipc .ic-note p:last-child{margin:0}
+@media (prefers-reduced-motion: reduce){}
+.ipc .ic-seg button[aria-pressed="true"]{color:#fff}
+.ipc table{margin:0}
+.ipc .ic-rule50{margin-top:10px;font-size:12.5px;color:var(--green);font-weight:500}
+</style>
 <link rel="canonical" href="https://nota.expert/razbory/ipoteka-s-1-oktyabrya/">
 <meta property="og:url" content="https://nota.expert/razbory/ipoteka-s-1-oktyabrya/">
 <meta name="robots" content="noindex" data-preview>
@@ -128,7 +245,407 @@
  </div>
 </div></section>
 
-<section class="method"><div class="wrap">
+<section class="method" id="kalkulyator"><div class="wrap">
+ <p class="ttl">Калькулятор</p>
+ <h2>Посчитайте свою сделку</h2>
+ <p style="max-width:66ch;margin-top:14px">Льготный кредит выдают только в пределах лимита — всё, что выше, закрывается своими деньгами или вторым кредитом по рыночной ставке. Второй порог — взнос: от половины цены ставка остаётся 6 %. Подставьте свою сделку и сравните «было» и «стало».</p>
+ <div class="ipc" style="margin-top:26px">
+<div class="ic-grid">
+
+    <div>
+      <div class="ic-card">
+        <div class="ic-field">
+          <div class="ic-lab"><span class="ic-t">Регион покупки</span></div>
+          <div class="ic-seg" id="ic-seg-region">
+            <button type="button" data-v="capital" aria-pressed="true">Москва, область, Петербург</button>
+            <button type="button" data-v="region" aria-pressed="false">Другие регионы</button>
+          </div>
+        </div>
+
+        <div class="ic-field">
+          <div class="ic-lab"><span class="ic-t">Тип недвижимости</span></div>
+          <div class="ic-seg" id="ic-seg-type">
+            <button type="button" data-v="new" aria-pressed="true">Новостройка</button>
+            <button type="button" data-v="izhs" aria-pressed="false">Частный дом</button>
+            <button type="button" data-v="second" aria-pressed="false">Вторичка</button>
+          </div>
+          <div class="ic-hint" id="ic-type-hint">Договор долевого участия или покупка у застройщика.</div>
+        </div>
+
+        <div class="ic-field">
+          <div class="ic-lab"><span class="ic-t">Детей в семье</span><span class="ic-v">один до 7 лет</span></div>
+          <div class="ic-seg ic-kids" id="ic-seg-kids">
+            <button type="button" data-v="1" aria-pressed="true">1</button>
+            <button type="button" data-v="2" aria-pressed="false">2</button>
+            <button type="button" data-v="3" aria-pressed="false">3</button>
+            <button type="button" data-v="4" aria-pressed="false">4</button>
+            <button type="button" data-v="5" aria-pressed="false">5+</button>
+          </div>
+        </div>
+
+        <div class="ic-field">
+          <div class="ic-lab"><span class="ic-t">Стоимость недвижимости</span><span class="ic-v" id="ic-v-price">25 000 000 ₽</span></div>
+          <input type="range" id="ic-r-price" min="5000000" max="120000000" step="500000" value="25000000" aria-label="Стоимость недвижимости">
+          <input type="text" id="ic-i-price" inputmode="numeric" value="25 000 000" aria-label="Стоимость недвижимости, рублей" style="margin-top:10px">
+        </div>
+
+        <div class="ic-field">
+          <div class="ic-lab"><span class="ic-t">Первоначальный взнос</span><span class="ic-v" id="ic-v-dp">30% · 7 500 000 ₽</span></div>
+          <input type="range" id="ic-r-dp" min="20" max="90" step="1" value="30" aria-label="Первоначальный взнос, процентов">
+          <div class="ic-hint">Минимум по программе — 20 %. От 50 % ставка остаётся 6 % при любом числе детей.</div>
+        </div>
+
+        <div class="ic-field">
+          <div class="ic-lab"><span class="ic-t">Срок кредита</span><span class="ic-v" id="ic-v-term">30 лет</span></div>
+          <input type="range" id="ic-r-term" min="5" max="30" step="1" value="30" aria-label="Срок кредита, лет">
+        </div>
+
+        <div class="ic-field">
+          <div class="ic-lab"><span class="ic-t">Рыночная ставка</span><span class="ic-v" id="ic-v-mkt">18,5%</span></div>
+          <input type="range" id="ic-r-mkt" min="10" max="25" step="0.1" value="18.5" aria-label="Рыночная ставка, процентов">
+          <div class="ic-hint">Нужна для сверхлимитной части, если включить комбинированную схему.</div>
+        </div>
+
+        <div class="ic-field">
+          <div class="ic-lab"><span class="ic-t">Ставка после 15 лет</span><span class="ic-v" id="ic-v-aft">16%</span></div>
+          <input type="range" id="ic-r-aft" min="6" max="25" step="0.5" value="16" aria-label="Ставка после 15 лет, процентов">
+          <div class="ic-hint">По правилам программы — ключевая ставка ЦБ плюс 2 пункта. Сегодня это 16 %; какой будет ключевая через 15 лет, не знает никто.</div>
+        </div>
+
+        <div class="ic-field">
+          <label class="ic-switch" for="ic-c-combo">
+            <input type="checkbox" id="ic-c-combo">
+            <span class="ic-track"></span>
+            <span class="ic-sl">Считать сверхлимит как комбо-ипотеку</span>
+          </label>
+          <div class="ic-hint">По умолчанию превышение лимита считается деньгами покупателя. Включите, если конкретный банк готов оформить остаток вторым кредитом по рыночной ставке.</div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div id="ic-second-note" class="ic-verdict" style="margin-top:0" hidden>
+        <b>Вторичное жильё по семейной ипотеке доступно не везде.</b> С 2025 года программу распространили на готовые квартиры,
+        но только в городах с низким объёмом строительства. Москва, Московская область, Петербург и Ленинградская область
+        в этот перечень не входят — для столичного региона расчёт неприменим.
+        <br><br>
+        Если речь о другом городе, проверьте его в перечне у банка: к самой квартире там предъявляются требования по состоянию
+        дома и чистоте прав. Выберите «Новостройка» или «Частный дом», чтобы увидеть расчёт.
+      </div>
+
+      <div id="ic-results-main">
+
+        <div class="ic-bar-card">
+          <div class="ic-bar-top">
+            <h2>Из чего складывается сделка с 1 октября</h2>
+            <div class="ic-tot" id="ic-bar-total">25 000 000 ₽</div>
+          </div>
+          <div class="ic-bar" id="ic-bar">
+            <span class="ic-s-dp" id="ic-s-dp" style="width:30%"></span>
+            <span class="ic-s-pref" id="ic-s-pref" style="width:48%"></span>
+            <span class="ic-s-gap" id="ic-s-gap" style="width:22%"></span>
+          </div>
+          <div class="ic-legend">
+            <div class="ic-leg"><span class="ic-dot ic-dp"></span><span><span class="ic-lv" id="ic-l-dp">—</span><span class="ic-lk">первоначальный взнос</span></span></div>
+            <div class="ic-leg"><span class="ic-dot ic-pref"></span><span><span class="ic-lv" id="ic-l-pref">—</span><span class="ic-lk" id="ic-l-pref-k">льготный кредит в пределах лимита</span></span></div>
+            <div class="ic-leg" id="ic-leg-gap"><span class="ic-dot ic-gap"></span><span><span class="ic-lv" id="ic-l-gap">—</span><span class="ic-lk" id="ic-l-gap-k">сверх лимита — своими деньгами</span></span></div>
+          </div>
+          <div class="ic-cashline" id="ic-cashline">—</div>
+          <div class="ic-gapwarn" id="ic-gapwarn" hidden></div>
+        </div>
+
+        <div class="ic-res">
+          <div class="ic-rcard">
+            <div class="ic-tag">Было · договор до 1 октября</div>
+            <div class="ic-sub" id="ic-b-cond">6% · лимит 12 млн ₽</div>
+            <div class="ic-big" id="ic-b-pay">—<small>платёж в месяц</small></div>
+            <div class="ic-rows">
+              <div class="ic-row"><span>Льготный кредит</span><span id="ic-b-pref">—</span></div>
+              <div class="ic-row"><span id="ic-b-gap-k">Сверх лимита своими</span><span id="ic-b-gap">—</span></div>
+              <div class="ic-row"><span>Своих денег в сделку</span><span id="ic-b-cash">—</span></div>
+              <div class="ic-row"><span>Переплата за весь срок</span><span id="ic-b-over">—</span></div>
+            </div>
+          </div>
+
+          <div class="ic-rcard ic-after">
+            <div class="ic-tag">Стало · договор с 1 октября</div>
+            <div class="ic-sub" id="ic-a-cond">12% · лимит 12 млн ₽</div>
+            <div class="ic-rule50" id="ic-rule50" hidden>Взнос от 50 % — ставка 6 % при любом числе детей</div>
+            <div class="ic-big" id="ic-a-pay">—<small id="ic-a-pay-sub">платёж в месяц</small></div>
+            <div class="ic-rows">
+              <div class="ic-row"><span>Льготный кредит</span><span id="ic-a-pref">—</span></div>
+              <div class="ic-row ic-hl"><span id="ic-a-gap-k">Сверх лимита своими</span><span id="ic-a-gap">—</span></div>
+              <div class="ic-row"><span>Своих денег в сделку</span><span id="ic-a-cash">—</span></div>
+              <div class="ic-row" id="ic-a-row15" hidden><span>Платёж после 15 лет</span><span id="ic-a-pay2">—</span></div>
+              <div class="ic-row"><span>Переплата за весь срок</span><span id="ic-a-over">—</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ic-delta" id="ic-delta">
+          <div class="ic-unit"><div class="ic-d" id="ic-d-month">—</div><div class="ic-k">разница в ежемесячном платеже</div></div>
+          <div class="ic-unit" id="ic-u-cash"><div class="ic-d" id="ic-d-cash">—</div><div class="ic-k">разница в сумме своих денег</div></div>
+        </div>
+
+        <div class="ic-verdict" id="ic-verdict">—</div>
+      </div>
+
+      <div class="ic-card" style="margin-top:14px">
+        <h2 class="ic-sc" id="ic-scale-title">Шкала с 1 октября</h2>
+        <div class="ic-tablewrap">
+          <table>
+            <thead><tr><th>Детей</th><th>Ставка было</th><th>Ставка стало</th><th>Лимит было</th><th>Лимит стало</th></tr></thead>
+            <tbody id="ic-scale-body"></tbody>
+          </table>
+        </div>
+        <div class="ic-note">
+          <p>Хотя бы одному ребёнку на дату договора должно быть меньше 7 лет. Первоначальный взнос — от 20 %. При взносе от 50 % ставка 6 % сохраняется при любом числе детей и в любом регионе.</p>
+          <p>В купленном жилье нужно зарегистрироваться не позже 271-го дня после выдачи кредита и оставаться зарегистрированными пять лет, иначе банк повысит ставку. Под сдачу семейная ипотека не подходит.</p>
+          <p>Для строительства частного дома ставка 6 % при любом числе детей. Лимит по этому виду Минфин отдельно не назвал — расчёт берёт лимит шкалы, сумму уточняйте в банке.</p>
+          <p>Аннуитетный платёж без страховок и комиссий. После 15 лет остаток пересчитывается по ставке «после 15 лет» на оставшийся срок. Это модель для понимания порядка сумм, а не предложение банка.</p>
+          <p>Параметры — сообщение Минфина об изменениях программы «Семейная ипотека» от 24 сентября 2026 года; действуют для договоров с 1 октября 2026.</p>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+ </div>
+</div></section>
+<script>
+(function(){
+  var SCALE = {
+    capital: { 1:[12,12e6], 2:[10,15e6], 3:[8,18e6], 4:[6,18e6], 5:[4,18e6] },
+    region:  { 1:[10,6e6],  2:[8,8e6],   3:[6,10e6], 4:[4,10e6], 5:[2,10e6] }
+  };
+  var BEFORE = { capital:[6,12e6], region:[6,6e6] };
+  var CAP = 180;
+
+  var state = { region:'capital', type:'new', kids:1, price:25000000, dp:30, term:30, mkt:18.5, aft:16, combo:false };
+
+  var nf = new Intl.NumberFormat('ru-RU', {maximumFractionDigits:0});
+  function rub(v){ return nf.format(Math.round(v)) + ' ₽'; }
+  function mln(v){ return (Math.round(v/1e5)/10).toLocaleString('ru-RU') + ' млн ₽'; }
+  function pct(v){ return String(v).replace('.', ',') + '%'; }
+  function plural(n,a,b,c){ var t=n%10, h=n%100;
+    if(t===1&&h!==11) return a; if(t>=2&&t<=4&&(h<10||h>=20)) return b; return c; }
+  function $(id){ return document.getElementById(id); }
+
+  function annuity(P, ratePct, months){
+    if(P <= 0) return 0;
+    var r = ratePct/1200;
+    return r === 0 ? P/months : P*r/(1 - Math.pow(1+r, -months));
+  }
+  function balanceAfter(P, ratePct, months, paid){
+    var r = ratePct/1200, pay = annuity(P, ratePct, months);
+    if(r === 0) return Math.max(0, P - pay*paid);
+    return Math.max(0, P*Math.pow(1+r, paid) - pay*(Math.pow(1+r, paid)-1)/r);
+  }
+
+  // need — сколько не хватает поверх взноса; limit — предел льготного кредита
+  function scenario(need, rate, limit, months, mktRate, capMonths, combo, aftRate){
+    var pref = Math.min(need, limit);
+    var over = Math.max(0, need - pref);
+    var mktLoan = combo ? over : 0;
+    var cashGap = combo ? 0 : over;
+
+    var payPref = annuity(pref, rate, months);
+    var payMkt = annuity(mktLoan, mktRate, months);
+    var pay1 = payPref + payMkt, pay2 = null, totalPref;
+
+    if(capMonths && months > capMonths && pref > 0){
+      var bal = balanceAfter(pref, rate, months, capMonths);
+      var payPref2 = annuity(bal, aftRate, months - capMonths);
+      pay2 = payPref2 + payMkt;
+      totalPref = payPref*capMonths + payPref2*(months - capMonths);
+    } else {
+      totalPref = payPref*months;
+    }
+    var total = totalPref + payMkt*months;
+    return { pref:pref, gap:cashGap, mktLoan:mktLoan, pay1:pay1, pay2:pay2,
+             total:total, over:total - (pref + mktLoan) };
+  }
+
+  function seg(id, key, after){
+    var box = $(id);
+    box.addEventListener('click', function(e){
+      var b = e.target.closest('button'); if(!b) return;
+      Array.prototype.forEach.call(box.querySelectorAll('button'), function(o){
+        o.setAttribute('aria-pressed', o === b ? 'true' : 'false'); });
+      var v = b.getAttribute('data-v');
+      state[key] = key === 'kids' ? parseInt(v, 10) : v;
+      if(after) after();
+      render();
+    });
+  }
+  seg('ic-seg-region','region');
+  seg('ic-seg-type','type', function(){
+    $('ic-type-hint').textContent = state.type === 'new'
+      ? 'Договор долевого участия или покупка у застройщика.'
+      : state.type === 'izhs'
+        ? 'Строительство или завершение частного дома, покупка земли под строительство — ставка 6% при любом числе детей.'
+        : 'Программа работает только в городах с низким объёмом строительства. В столичных регионах не применяется.';
+  });
+  seg('ic-seg-kids','kids');
+
+  function bindRange(id, key, after){
+    $(id).addEventListener('input', function(){
+      state[key] = parseFloat(this.value); if(after) after(); render();
+    });
+  }
+  bindRange('ic-r-price','price', function(){ $('ic-i-price').value = nf.format(state.price); });
+  bindRange('ic-r-dp','dp');
+  bindRange('ic-r-term','term');
+  bindRange('ic-r-mkt','mkt');
+  bindRange('ic-r-aft','aft');
+  $('ic-c-combo').addEventListener('change', function(){ state.combo = this.checked; render(); });
+
+  $('ic-i-price').addEventListener('input', function(){
+    var digits = this.value.replace(/\D/g, ''), v = parseInt(digits || '0', 10);
+    this.value = digits ? nf.format(v) : '';
+    if(v > 0){ state.price = v; $('ic-r-price').value = Math.min(120000000, Math.max(5000000, v)); render(); }
+  });
+
+  function scaleTable(){
+    var before = BEFORE[state.region], scale = SCALE[state.region], rows = '';
+    for(var k = 1; k <= 5; k++){
+      var s = scale[k];
+      rows += '<tr class="' + (k === state.kids ? 'ic-on' : '') + '"><td>' + (k === 5 ? '5 и больше' : k) + '</td>'
+        + '<td>' + pct(before[0]) + '</td><td>' + pct(s[0]) + '</td>'
+        + '<td>' + mln(before[1]) + '</td><td>' + mln(s[1]) + '</td></tr>';
+    }
+    $('ic-scale-body').innerHTML = rows;
+    $('ic-scale-title').textContent = state.region === 'capital'
+      ? 'Шкала с 1 октября: Москва, область, Петербург и Ленинградская область'
+      : 'Шкала с 1 октября: остальные регионы России';
+  }
+
+  function render(){
+    var price = state.price, months = state.term*12;
+    var dpRub = price*state.dp/100;
+    var need = Math.max(0, price - dpRub);
+
+    $('ic-v-price').textContent = rub(price);
+    $('ic-v-dp').textContent = state.dp + '% · ' + rub(dpRub);
+    $('ic-v-term').textContent = state.term + ' ' + plural(state.term, 'год', 'года', 'лет');
+    $('ic-v-mkt').textContent = pct(state.mkt);
+    $('ic-v-aft').textContent = pct(state.aft);
+    scaleTable();
+
+    var isSecond = state.type === 'second';
+    $('ic-second-note').hidden = !isSecond;
+    $('ic-results-main').hidden = isSecond;
+    if(isSecond) return;
+
+    var bCfg = BEFORE[state.region];
+    var s = SCALE[state.region][state.kids];
+    var rule50 = state.type === 'new' && state.dp >= 50 && s[0] > 6;
+    var aRate = (state.type === 'izhs' || rule50) ? 6 : s[0];
+    $('ic-rule50').hidden = !rule50;
+    var aLimit = s[1];
+
+    var B = scenario(need, bCfg[0], bCfg[1], months, state.mkt, null, state.combo, state.aft);
+    var A = scenario(need, aRate, aLimit, months, state.mkt, CAP, state.combo, state.aft);
+
+    // полоса структуры сделки — по сценарию «с 1 октября»
+    var wDp = dpRub/price*100, wPref = A.pref/price*100, wGap = (A.gap + A.mktLoan)/price*100;
+    $('ic-s-dp').style.width = wDp + '%';
+    $('ic-s-pref').style.width = wPref + '%';
+    $('ic-s-gap').style.width = wGap + '%';
+    $('ic-bar-total').textContent = rub(price);
+    $('ic-l-dp').textContent = rub(dpRub) + ' · ' + Math.round(wDp) + '%';
+    $('ic-l-pref').textContent = rub(A.pref) + ' · ' + Math.round(wPref) + '%';
+    $('ic-l-pref-k').textContent = 'льготный кредит под ' + pct(aRate) + ', лимит ' + mln(aLimit);
+    $('ic-leg-gap').hidden = wGap <= 0;
+    $('ic-l-gap').textContent = rub(A.gap + A.mktLoan) + ' · ' + Math.round(wGap) + '%';
+    $('ic-l-gap-k').textContent = state.combo ? 'сверх лимита — вторым кредитом под ' + pct(state.mkt)
+                                           : 'сверх лимита — своими деньгами сразу';
+
+    var cashA = dpRub + A.gap, cashB = dpRub + B.gap;
+    $('ic-cashline').innerHTML = 'Своих денег в сделку: <b>' + rub(cashA) + '</b> — это '
+      + Math.round(cashA/price*100) + '% стоимости. Ипотекой закрывается ' + rub(A.pref + A.mktLoan) + '.';
+
+    var gw = $('ic-gapwarn');
+    if(A.gap > 0){
+      gw.hidden = false;
+      gw.innerHTML = '<b>Оранжевая часть — ' + rub(A.gap) + ' — это разрыв между ценой и лимитом программы.</b> '
+        + 'Льготный кредит выдаётся только в пределах лимита, поэтому эту сумму вносят сразу, вместе с первоначальным взносом. '
+        + 'Формально её можно добрать потребительским кредитом, но к такой схеме есть вопросы: ставка по нему заметно выше, '
+        + 'платёж войдёт в вашу долговую нагрузку и может помешать одобрению самой ипотеки. Если ваш банк готов оформить остаток '
+        + 'вторым кредитом — включите переключатель комбо-схемы и сравните.';
+    } else { gw.hidden = true; }
+
+    $('ic-b-cond').textContent = pct(bCfg[0]) + ' · лимит ' + mln(bCfg[1]) + ' · на весь срок';
+    $('ic-a-cond').textContent = pct(aRate) + ' · лимит ' + mln(aLimit) + ' · льгота 15 лет';
+
+    $('ic-b-pay').innerHTML = rub(B.pay1) + '<small>платёж в месяц</small>';
+    $('ic-b-pref').textContent = rub(B.pref) + ' · ' + pct(bCfg[0]);
+    $('ic-b-gap-k').textContent = state.combo ? 'Сверх лимита кредитом' : 'Сверх лимита своими';
+    $('ic-b-gap').textContent = (B.gap + B.mktLoan) > 0 ? rub(B.gap + B.mktLoan) : 'нет';
+    $('ic-b-cash').textContent = rub(cashB);
+    $('ic-b-over').textContent = rub(B.over);
+
+    $('ic-a-pay').innerHTML = rub(A.pay1) + '<small>' + (A.pay2 ? 'платёж первые 15 лет' : 'платёж в месяц') + '</small>';
+    $('ic-a-pref').textContent = rub(A.pref) + ' · ' + pct(aRate);
+    $('ic-a-gap-k').textContent = state.combo ? 'Сверх лимита кредитом' : 'Сверх лимита своими';
+    $('ic-a-gap').textContent = (A.gap + A.mktLoan) > 0 ? rub(A.gap + A.mktLoan) : 'нет';
+    $('ic-a-cash').textContent = rub(cashA);
+    $('ic-a-row15').hidden = !A.pay2;
+    if(A.pay2){ $('ic-a-pay2').textContent = rub(A.pay2) + ' · ' + pct(state.aft); }
+    $('ic-a-over').textContent = rub(A.over);
+
+    var dMonth = A.pay1 - B.pay1;
+    var dCash = cashA - cashB;
+    $('ic-d-month').textContent = (dMonth >= 0 ? '+' : '−') + rub(Math.abs(dMonth));
+    $('ic-u-cash').className = 'ic-unit ' + (dCash > 0 ? 'ic-neg' : dCash < 0 ? 'ic-pos' : '');
+    $('ic-d-cash').textContent = dCash === 0 ? 'без изменений' : (dCash > 0 ? '+' : '−') + rub(Math.abs(dCash));
+    $('ic-delta').className = 'ic-delta' + (dMonth <= 0 && dCash <= 0 ? ' ic-good' : '');
+
+    var v = '';
+    if(state.type === 'izhs'){
+      v = '<b>Для частного дома ставка остаётся 6 %.</b> Меняются лимит и срок льготы — теперь 15 лет. '
+        + 'Сумму льготной части по этому виду уточните в банке: в сообщении Минфина она не названа.';
+    } else if(rule50){
+      v = '<b>Взнос от половины сохраняет 6 %.</b> Для вашей семьи шкала дала бы ' + pct(s[0])
+        + ', но при взносе от 50 % ставка 6 % при любом числе детей. Меняются лимит и срок льготы — 15 лет вместо всего срока.';
+    } else if(dCash < 0){
+      v = '<b>С октября вам нужно на ' + rub(Math.abs(dCash)) + ' меньше своих денег.</b> Лимит по вашей семье вырос до ' + mln(aLimit)
+        + ', и часть цены, которую раньше вносили наличными, уходит в льготный кредит. '
+        + 'Платёж при этом ' + (dMonth > 0 ? 'выше на ' + rub(dMonth) : 'ниже на ' + rub(Math.abs(dMonth)))
+        + ' — выбор между деньгами сейчас и платежом потом.';
+    } else if(dMonth > 0){
+      v = '<b>С 1 октября платёж выше на ' + rub(dMonth) + ' в месяц.</b> Своих денег в сделку нужно столько же. '
+        + 'Кто подписал договор до 1 октября, остаётся на 6 %.';
+    } else {
+      v = '<b>Для вашей семьи ставка не выросла.</b> Меняется срок льготы: 15 лет вместо всего срока.';
+    }
+    if(state.type === 'new' && !rule50 && aRate > 6 && state.dp < 50){
+      var dp50 = price*0.5, S50 = scenario(price - dp50, 6, aLimit, months, state.mkt, CAP, state.combo, state.aft);
+      var cash50 = dp50 + S50.gap;
+      var extra = cash50 - cashA;
+      v += '<br><br><b>Второй порог — взнос 50 %.</b> Если внести первым взносом ' + rub(dp50)
+        + (extra > 0 ? ' — на ' + rub(extra) + ' больше своих денег, — '
+                     : ' — своих денег столько же: сверхлимитную часть вы и так вносите сами, — ')
+        + 'ставка будет 6 %, а платёж — ' + rub(S50.pay1) + ' в месяц вместо ' + rub(A.pay1) + '.';
+    }
+    if(A.gap > 0 && !state.combo){
+      v += '<br><br>В вашей сделке разрыв с лимитом — ' + rub(A.gap) + '. Это та часть, где работают скидка за полную оплату '
+        + 'и рассрочка застройщика: иногда дешевле взять лот со скидкой в другом доме, чем искать эту сумму.';
+    }
+    if(months > CAP){
+      v += '<br><br>Срок больше 15 лет: после пятнадцатого года льготная ставка заканчивается, и при ставке ' + pct(state.aft)
+        + ' платёж станет ' + rub(A.pay2) + '. Раньше льгота действовала весь срок — это новое правило.';
+    }
+    $('ic-verdict').innerHTML = v;
+  }
+
+  $('ic-i-price').value = nf.format(state.price);
+  render();
+})();
+</script>
+
+
+<section><div class="wrap">
  <p class="ttl">Субсидии застройщиков</p>
  <h2>Короткая низкая ставка закончилась</h2>
  <div class="two" style="margin-top:26px">
@@ -143,7 +660,7 @@
  </div>
 </div></section>
 
-<section><div class="wrap">
+<section class="method"><div class="wrap">
  <p class="ttl">Под сдачу</p>
  <h2>«Купил и сдаю» больше не сходится</h2>
  <div class="two" style="margin-top:26px">
@@ -159,7 +676,7 @@
  </div>
 </div></section>
 
-<section class="method"><div class="wrap">
+<section><div class="wrap">
  <p class="ttl">Кому что</p>
  <h2>Кому стало выгоднее, кому дороже</h2>
  <div class="tablewrap" style="margin-top:26px"><table>
@@ -174,7 +691,7 @@
  </table></div>
 </div></section>
 
-<section><div class="wrap">
+<section class="method"><div class="wrap">
  <p class="ttl">До брони</p>
  <h2>Что спросить у банка и застройщика</h2>
  <div class="tablewrap" style="margin-top:26px"><table>
@@ -188,7 +705,7 @@
  </table></div>
 </div></section>
 
-<section class="method"><div class="wrap">
+<section><div class="wrap">
  <p class="ttl">Вопросы</p>
  <h2>Коротко</h2>
  <div style="margin-top:26px"><div class="faq">
