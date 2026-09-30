@@ -56,6 +56,7 @@ def apply_shell(path):
     s2 = apply_numbers(s2, N)
     s2 = faq_ld(s2)
     s2 = seo(s2, rel)
+    s2 = bust(s2)
     if rel == 'metod.html' and ITOG_TABLE:
         s2 = re.sub(r'<!--itog-t-->[\s\S]*?<!--/itog-t-->', lambda m: '<!--itog-t-->\n' + ITOG_TABLE + '\n  <!--/itog-t-->', s2, count=1)
     if rel == APART_PAGE and APART_LIST:
@@ -277,6 +278,22 @@ def page_url(rel):
     if rel == 'index.html': return SITE_URL + '/'
     if rel.endswith('/index.html'): return SITE_URL + '/' + rel[:-len('index.html')]
     return SITE_URL + '/' + rel
+
+# ---- версия статики: css/js и фото команды отдаёт nginx хостинга без правил кэша из .htaccess,
+# поэтому к адресу дописываем ?v=<хеш содержимого> — браузер сам возьмёт новый файл после правки ----
+import hashlib
+_VER = {}
+def ver(rel):
+    if rel not in _VER:
+        f = ROOT / rel
+        _VER[rel] = hashlib.md5(f.read_bytes()).hexdigest()[:8] if f.exists() else ''
+    return _VER[rel]
+
+def bust(s):
+    def rep(m):
+        v = ver(m.group(2))
+        return m.group(1) + m.group(2) + ('?v=' + v if v else '') + '"'
+    return re.sub(r'((?:src|href)="(?:\.\./)*)((?:css/nota\.css|js/nota\.js|img/team/[\w-]+\.jpg))(?:\?v=[0-9a-f]*)?"', rep, s)
 
 def seo(s, rel):
     """Канонический адрес, og:url и полные адреса картинок превью — на постоянный домен.
