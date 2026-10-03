@@ -65,6 +65,8 @@ def apply_shell(path):
         s2 = re.sub(r'<!--kamin-l-->[\s\S]*?<!--/kamin-l-->', lambda m: '<!--kamin-l-->\n' + KAMIN_LIST + '\n  <!--/kamin-l-->', s2, count=1)
     if rel == 'index.html' and KARTA_BAND:
         s2 = re.sub(r'<!--karta-band-->[\s\S]*?<!--/karta-band-->', lambda m: '<!--karta-band-->' + KARTA_BAND + '<!--/karta-band-->', s2, count=1)
+    if rel == 'index.html' and HOME_RAZBORY:
+        s2 = re.sub(r'<!--home-razbory-->[\s\S]*?<!--/home-razbory-->', lambda m: '<!--home-razbory-->\n' + HOME_RAZBORY + '\n  <!--/home-razbory-->', s2, count=1)
     if rel == 'index.html' and HOME_TABLE:
         s2 = re.sub(r'<!--baza-t-->[\s\S]*?<!--/baza-t-->', lambda m: '<!--baza-t-->\n' + HOME_TABLE + '\n   <!--/baza-t-->', s2, count=1)
     if s2 != s:
@@ -212,6 +214,40 @@ def itog_table(root):
     return '\n'.join(out)
 
 ITOG_TABLE = ''
+
+HOME_RAZBORY = ''
+MES_I = {m: i for i, m in enumerate(['января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'], 1)}
+
+def home_razbory(root, n=3):
+    """Три самых свежих разбора на главной (между <!--home-razbory--> и <!--/home-razbory-->).
+    Берёт карточки из razbory.html (решения и районы; карточки домов — нет), дата — самая поздняя «Д месяц» в строке над заголовком
+    («10 сентября · обновлено 23 сентября» → 23 сентября). Без даты карточка на главную не попадает.
+    Новый разбор достаточно добавить в razbory.html — главная обновится при сборке."""
+    import datetime
+    s = (root / 'razbory.html').read_text()
+    today = datetime.date.today()
+    cards = []
+    for i, m in enumerate(re.finditer(r'<a class="art" href="((?:razbory/|razbor-)[^"]*)">([\s\S]*?)</a>', s)):
+        href, body = m.groups()
+        img = re.search(r'<img [^>]*>', body)
+        k = re.search(r'<div class="k">([\s\S]*?)</div>', body)
+        h3 = re.search(r'<h3>([\s\S]*?)</h3>', body)
+        txt = re.search(r'<p>([\s\S]*?)</p>', body)
+        if not (img and k and h3 and txt): continue
+        dates = []
+        for d, mon in re.findall(r'(\d{1,2}) (' + '|'.join(MES_I) + r')', k.group(1)):
+            y = today.year - (1 if MES_I[mon] > today.month + 1 else 0)
+            dates.append((datetime.date(y, MES_I[mon], int(d)), f'{d} {mon}'))
+        if not dates: continue
+        dt, label = max(dates)
+        kind = 'Район' if 0 <= s.find('id="rayony"') < m.start() else 'Разбор'  # раздел «Разбор района» в razbory.html
+        cards.append((dt, -i, href, img.group(0), f'{kind} · сверка {label}', h3.group(1), txt.group(1)))
+    cards.sort(reverse=True)
+    out = []
+    for dt, _, href, img, k, h3, txt in cards[:n]:
+        out.append(f'   <a class="art" href="{href}">\n    <div class="ph has" data-ar="16x9">{img}</div>\n'
+                   f'    <div class="k">{k}</div><h3>{h3}</h3>\n    <p>{txt}</p>\n   </a>')
+    return '\n'.join(out)
 
 def render_n(tpl, nums):
     def rep(m):
@@ -364,6 +400,7 @@ if __name__ == '__main__':
     ITOG_TABLE = itog_table(ROOT)
     APART_LIST = apart_list(ROOT)
     KAMIN_LIST = kamin_list(ROOT)
+    HOME_RAZBORY = home_razbory(ROOT)
     for old, new in MOVED.items():
         (ROOT / old).write_text(stub(old, new))
     pages = all_pages()
