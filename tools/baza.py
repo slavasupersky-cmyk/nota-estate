@@ -90,10 +90,15 @@ RED_MARKED = {'02', '06', '08'}  # 06 «нет» без пометки = рей�
 CHECK_NAMES = {}
 
 
+def is_red(note):
+    """Пометка «красная линия» в note. «Минус, не красная линия» — не она (решение 23.09 по 08: сданные апартаменты и старые ДДУ)."""
+    return bool(re.search(r'(?<![Нн]е )красная линия', note or ''))
+
+
 def pasport(ans, notes, cls, tol):
     """Итог паспорта (метод 23.09): красная линия → «Без отметки»; иначе считаем минусы («нет»)
     среди проверок с данными и сравниваем с допуском класса из nota-baza/itog.csv."""
-    red = [c for c in CHECKS_PASPORT if ans.get(c) == 'нет' and (c in RED or (c in RED_MARKED and 'красная линия' in notes.get(c, '')))]
+    red = [c for c in CHECKS_PASPORT if ans.get(c) == 'нет' and (c in RED or (c in RED_MARKED and is_red(notes.get(c, ''))))]
     if red:
         return 'Без отметки', 'красная линия: ' + ', '.join(CHECK_NAMES.get(c, c) for c in red)
     known = [c for c in CHECKS_PASPORT if ans.get(c) in ('да', 'нет')]

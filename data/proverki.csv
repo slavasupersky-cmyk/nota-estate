@@ -274,6 +274,9 @@ bolshaya-nikitskaya-45;02;да;плюсы: парк 463 м;"OpenStreetMap (bbbik
 bolshaya-nikitskaya-45;03;да;"Баррикадная (метро) — 14 мин; школа с отметкой NOTA — Школа № 2123 им. Мигеля Эрнандеса, 330 м";"OpenStreetMap, пешеходный граф (Дейкстра, 4,5 км/ч): метро, МЦК, МЦД, ж/д; marshruty.csv, shkoly.csv";25.09.2026
 bolshaya-nikitskaya-45;04;нет данных;;;24.09.2026
 bolshaya-nikitskaya-45;05;нет данных;;;24.09.2026
+bolshaya-nikitskaya-45;06;нет данных;"застройщик по агрегаторам — Concord Development (юрлицо не подтверждено; ООО «Конкорд Девелопмент», ИНН 7704835305, зарегистрировано в 2013 — позже дома, ликвидировано после банкротства 26.05.2023) · рейтинга ЕРЗ нет";https://stroiki.ru/novostroyki/zhk-dom-na-bolshoj-nikitskoj-45/ · https://zhk-bolshaya-nikitskaya-45-i.cian.ru/;02.10.2026
+bolshaya-nikitskaya-45;07;да;сдан: 2005–2006 · реконструкция особняка 1897 года;https://moskvadeluxe.ru/zhk-bolshaya-nikitskaya-45-ulitsa-b-nikitskaya-dom-45/ · https://stroiki.ru/novostroyki/zhk-dom-na-bolshoj-nikitskoj-45/;02.10.2026
+bolshaya-nikitskaya-45;08;не применяется;дом сдан — покупка по ДКП, эскроу не нужен · квартиры;https://zhk-bolshaya-nikitskaya-45-i.cian.ru/;02.10.2026
 bolshaya-nikitskaya-45;09;нет данных;;;24.09.2026
 bolshaya-ordynka-25;01;да;ЦАО;"координаты базы; кольцо — схема из nota-karta-zhk";23.09.2026
 bolshaya-ordynka-25;02;да;ТЭЦ, промзон и крупных магистралей в 150 м нет;"OpenStreetMap (bbbike 22.09.2026 + Overpass): ТЭЦ, МСЗ, полигоны отходов, промзоны от 2 га, магистрали; парки от 1 га и вода — 500 м";23.09.2026
@@ -361,6 +364,9 @@ chetyre-solntsa;02;да;плюсы: вода 51 м;"OpenStreetMap (bbbike 22.09.
 chetyre-solntsa;03;да;"Новокузнецкая (метро) — 8 мин; школа с отметкой NOTA — Лицей НИУ ВШЭ, 1519 м";"OpenStreetMap, пешеходный граф (Дейкстра, 4,5 км/ч): метро, МЦК, МЦД, ж/д; marshruty.csv, shkoly.csv";25.09.2026
 chetyre-solntsa;04;нет;214 квартир;каталоги, декларации, сайты застройщиков (база NOTA);24.09.2026
 chetyre-solntsa;05;нет данных;;;24.09.2026
+chetyre-solntsa;06;нет данных;ЗАО «Легион Девелопмент» (ИНН 7706296955): рейтинга ЕРЗ нет · признано банкротом в 01.2018 (долг 14,6 млрд ₽, история БЦ «Легион I»), сейчас в стадии ликвидации · идёт ли процедура после 23.09.2023 — не проверено (ЕФРСБ не открылся);https://realty.ria.ru/20180628/1523545955.html · https://www.kommersant.ru/doc/3670290 · https://mskguru.ru/companies/658-legion-development;02.10.2026
+chetyre-solntsa;07;да;сдан: 2010–2011 (агрегаторы расходятся);https://mskguru.ru/novostroyki/1125-zhk-chetyre-solntsa · https://homehunter.ru/moscow/complex/chetyre-solnca;02.10.2026
+chetyre-solntsa;08;не применяется;дом сдан — покупка по ДКП, эскроу не нужен · квартиры;https://mskguru.ru/novostroyki/1125-zhk-chetyre-solntsa;02.10.2026
 chetyre-solntsa;09;нет данных;;;24.09.2026
 chkalov;01;да;внутри Третьего кольца;"координаты базы; кольцо — схема из nota-karta-zhk";23.09.2026
 chkalov;02;да;ТЭЦ, промзон и крупных магистралей в 150 м нет;"OpenStreetMap (bbbike 22.09.2026 + Overpass): ТЭЦ, МСЗ, полигоны отходов, промзоны от 2 га, магистрали; парки от 1 га и вода — 500 м";23.09.2026
@@ -385,6 +391,9 @@ cloud-nine;02;да;плюсы: парк 401 м (Репинский сквер), 
 cloud-nine;03;да;"Полянка (метро) — 6 мин; школа с отметкой NOTA — Пятьдесят седьмая школа, 1616 м";"OpenStreetMap, пешеходный граф (Дейкстра, 4,5 км/ч): метро, МЦК, МЦД, ж/д; marshruty.csv, shkoly.csv";25.09.2026
 cloud-nine;04;да;45 квартир;каталоги, декларации, сайты застройщиков (база NOTA);24.09.2026
 cloud-nine;05;нет;1.58 м/м на квартиру (71 на 45);каталоги, декларации, сайты застройщиков (база NOTA);24.09.2026
+cloud-nine;06;нет данных;ЕРЗ: рейтинг не присвоен · сдано 2 дома за 3 года (Москва и МО, на 23.09) · остановок нет · банкротств у застройщика дома нет (в группе — 2: см. zastroyshchiki.csv);ЕРЗ.РФ https://erzrf.ru/zastroyschiki/brand/vesper-3717405001 · zastroyshchiki.csv (проверка 23.09);02.10.2026
+cloud-nine;07;да;"сдан: 1 кв. 2022 (агрегаторы; блог 10.03.2022 о разрешении на ввод)";https://homehunter.ru/moscow/complex/cloud-nine · https://alex-starnik.livejournal.com/890182.html;02.10.2026
+cloud-nine;08;не применяется;дом сдан — покупка по ДКП, эскроу не нужен · квартиры;https://novostroev.ru/novostroyki/moskva/cao/yakimanka/na-ul-bolshaya-polyanka-d-9/;02.10.2026
 cloud-nine;09;нет данных;;;24.09.2026
 crystal-trilogiya;01;да;СЗАО;"координаты базы; кольцо — схема из nota-karta-zhk";23.09.2026
 crystal-trilogiya;02;да;плюсы: парк 332 м;"OpenStreetMap (bbbike 22.09.2026 + Overpass): ТЭЦ, МСЗ, полигоны отходов, промзоны от 2 га, магистрали; парки от 1 га и вода — 500 м";23.09.2026
@@ -418,6 +427,9 @@ d1;02;нет;магистраль 42 м (Дмитровское шоссе);"Ope
 d1;03;да;"Дмитровская (МЦК/МЦД/ж/д) — 7 мин; школа с отметкой NOTA — Школа № 218, 374 м";"OpenStreetMap, пешеходный граф (Дейкстра, 4,5 км/ч): метро, МЦК, МЦД, ж/д; marshruty.csv, shkoly.csv";25.09.2026
 d1;04;нет;1099 квартир;каталоги, декларации, сайты застройщиков (база NOTA);24.09.2026
 d1;05;нет;0.45 м/м на квартиру (491 на 1099);каталоги, декларации, сайты застройщиков (база NOTA);24.09.2026
+d1;06;да;ЕРЗ 5 · сдано 13 домов за 3 года (Москва и МО, на 23.09) · остановок нет · банкротств нет;ЕРЗ.РФ https://erzrf.ru/zastroyschiki/brand/mr-group-430836001 · zastroyshchiki.csv (проверка 23.09);02.10.2026
+d1;07;да;сдан: разрешение на ввод 16.09.2021;https://novostroycity.ru/journals/novosti-kompanij/zhk-d1-poluchil-razreshenie-na-vvod-v-ekspluataciju;02.10.2026
+d1;08;не применяется;дом сдан — покупка по ДКП, эскроу не нужен · квартиры;https://www.novostroy-m.ru/baza/jiloy_kvartal_d1;02.10.2026
 d1;09;нет данных;;;24.09.2026
 danilovskiy-ot-granel;01;да;ЮАО;"координаты базы; кольцо — схема из nota-karta-zhk";23.09.2026
 danilovskiy-ot-granel;02;нет;магистраль 61 м (Третье транспортное кольцо);"OpenStreetMap (bbbike 22.09.2026 + Overpass): ТЭЦ, МСЗ, полигоны отходов, промзоны от 2 га, магистрали; парки от 1 га и вода — 500 м";23.09.2026
@@ -469,6 +481,9 @@ dolina-setun;02;да;плюсы: парк 87 м, вода 235 м (Мосфиль
 dolina-setun;03;нет;"Минская (метро) — 17 мин; школы с отметкой NOTA в 30 минутах нет";"OpenStreetMap, пешеходный граф (Дейкстра, 4,5 км/ч): метро, МЦК, МЦД, ж/д; marshruty.csv, shkoly.csv";25.09.2026
 dolina-setun;04;да;458 квартир;каталоги, декларации, сайты застройщиков (база NOTA);24.09.2026
 dolina-setun;05;нет данных;;;24.09.2026
+dolina-setun;06;да;ЕРЗ 4,5 · сдано 53 дома за 3 года (Москва и МО, на 23.09) · остановок нет · банкротств нет;ЕРЗ.РФ https://erzrf.ru/zastroyschiki/brand/donstroj-430278001 · zastroyshchiki.csv (проверка 23.09);02.10.2026
+dolina-setun;07;да;сдан: 2017;https://m2.ru/moskva/novostroyki/zhk-dolina-setun-435/;02.10.2026
+dolina-setun;08;не применяется;дом сдан — покупка по ДКП, эскроу не нужен · квартиры;https://m2.ru/moskva/novostroyki/zhk-dolina-setun-435/;02.10.2026
 dolina-setun;09;нет данных;;;24.09.2026
 dom-56;01;да;внутри Третьего кольца;"координаты базы; кольцо — схема из nota-karta-zhk";23.09.2026
 dom-56;02;да;ТЭЦ, промзон и крупных магистралей в 150 м нет;"OpenStreetMap (bbbike 22.09.2026 + Overpass): ТЭЦ, МСЗ, полигоны отходов, промзоны от 2 га, магистрали; парки от 1 га и вода — 500 м";23.09.2026
@@ -718,6 +733,9 @@ fairmont-vesper-residences;02;да;плюсы: парк 116 м (Садово-т�
 fairmont-vesper-residences;03;да;"Маяковская (метро) — 2 мин; школа с отметкой NOTA — Школа № 1501, 1878 м";"OpenStreetMap, пешеходный граф (Дейкстра, 4,5 км/ч): метро, МЦК, МЦД, ж/д; marshruty.csv, shkoly.csv";25.09.2026
 fairmont-vesper-residences;04;да;36 квартир;каталоги, декларации, сайты застройщиков (база NOTA);24.09.2026
 fairmont-vesper-residences;05;да;2.69 м/м на квартиру (97 на 36);каталоги, декларации, сайты застройщиков (база NOTA);24.09.2026
+fairmont-vesper-residences;06;нет данных;ЕРЗ: рейтинг не присвоен · сдано 2 дома за 3 года (Москва и МО, на 23.09) · остановок нет · банкротств у застройщика дома нет (в группе — 2: см. zastroyshchiki.csv);ЕРЗ.РФ https://erzrf.ru/zastroyschiki/brand/vesper-3717405001 · zastroyshchiki.csv (проверка 23.09);02.10.2026
+fairmont-vesper-residences;07;да;сдан: ввод 04.2023 (разрешение 03.04.2023 по novostroy-m);https://moskvichmag.ru/gorod/gostinitsu-s-apartamentami-vesper-tverskaya-na-mayakovskoj-vveli-v-ekspluatatsiyu/ · https://www.novostroy-m.ru/baza/fairmont_vesper_residences;02.10.2026
+fairmont-vesper-residences;08;нет;апартаменты (дом сдан): другой налог, нет постоянной регистрации · гостиница Fairmont и сервисные апартаменты;https://www.vespermoscow.com/projects/fairmont/ · https://uznai.mos.ru/catalog/10021_vesper_tverskaya;02.10.2026
 fairmont-vesper-residences;09;нет данных;;;24.09.2026
 famous;01;да;ЗАО;"координаты базы; кольцо — схема из nota-karta-zhk";23.09.2026
 famous;02;да;плюсы: парк 418 м (Детский парк Фили);"OpenStreetMap (bbbike 22.09.2026 + Overpass): ТЭЦ, МСЗ, полигоны отходов, промзоны от 2 га, магистрали; парки от 1 га и вода — 500 м";23.09.2026
@@ -841,6 +859,9 @@ gorod-yakht;02;да;плюсы: парк 125 м, вода 0 м (Химкинск
 gorod-yakht;03;нет;"Водный стадион (метро) — 18 мин; школы с отметкой NOTA в 30 минутах нет";"OpenStreetMap, пешеходный граф (Дейкстра, 4,5 км/ч): метро, МЦК, МЦД, ж/д; marshruty.csv, shkoly.csv";25.09.2026
 gorod-yakht;04;нет данных;;;24.09.2026
 gorod-yakht;05;нет данных;;;24.09.2026
+gorod-yakht;06;нет;ЕРЗ 1,5 · сдано 2 дома за 3 года (Москва и МО, на 23.09) · остановок нет · банкротств нет;ЕРЗ.РФ https://erzrf.ru/zastroyschiki/brand/capital-group-430410001 · zastroyshchiki.csv (проверка 23.09);02.10.2026
+gorod-yakht;07;да;"сдан: 2007–2010 (источники расходятся; строительство 2003–2008 по archi.ru)";https://archi.ru/projects/russia/317/mnogofunkcionalnyi-sportivno-razvlekatelnyi-kompleks-s-apartamentami-gorod-yakht · https://homehunter.ru/moscow/complex/gorod-yakht;02.10.2026
+gorod-yakht;08;нет данных;тип не установлен: archi.ru и Циан — апартаменты, остальные — квартиры · нужен ЕГРН;https://archi.ru/projects/russia/317/mnogofunkcionalnyi-sportivno-razvlekatelnyi-kompleks-s-apartamentami-gorod-yakht · https://zhk-gorod-yaht-i.cian.ru/;02.10.2026
 gorod-yakht;09;нет данных;;;24.09.2026
 gorodskaya-usadba-v-orlovo-davydovskom;01;да;ЦАО;"координаты базы; кольцо — схема из nota-karta-zhk";23.09.2026
 gorodskaya-usadba-v-orlovo-davydovskom;02;да;плюсы: парк 367 м;"OpenStreetMap (bbbike 22.09.2026 + Overpass): ТЭЦ, МСЗ, полигоны отходов, промзоны от 2 га, магистрали; парки от 1 га и вода — 500 м";23.09.2026
@@ -1108,6 +1129,9 @@ knightsbridge-private-park;02;да;плюсы: парк 482 м;"OpenStreetMap (b
 knightsbridge-private-park;03;да;"Спортивная (метро) — 8 мин; школа с отметкой NOTA — Пятьдесят седьмая школа, 375 м";"OpenStreetMap, пешеходный граф (Дейкстра, 4,5 км/ч): метро, МЦК, МЦД, ж/д; marshruty.csv, shkoly.csv";25.09.2026
 knightsbridge-private-park;04;нет;163 квартир;каталоги, декларации, сайты застройщиков (база NOTA);24.09.2026
 knightsbridge-private-park;05;да;2.91 м/м на квартиру (475 на 163);каталоги, декларации, сайты застройщиков (база NOTA);24.09.2026
+knightsbridge-private-park;06;нет;ЕРЗ: рейтинг не присвоен · банкротство застройщика: ООО «Хлебозавод №6» (ИНН 7704854386), дело А40-9127/2020, конкурсное производство с 13.02.2021, в 2025 — в процессе ликвидации · «Реставрация Н» — fee-девелопер;https://erzrf.ru/zastroyschiki/brand/15739697001 · https://reputation.ru/ogrn/1147746010477 · https://pravo.ru/story/223796/ · https://www.kommersant.ru/doc/3415520;02.10.2026
+knightsbridge-private-park;07;да;сдан: 2016;https://homehunter.ru/moscow/complex/knightsbridge-private-park · https://pravo.ru/story/223796/;02.10.2026
+knightsbridge-private-park;08;не применяется;дом сдан — покупка по ДКП, эскроу не нужен · квартиры · справка: иски покупателей о расхождении с буклетом (Право.ру, 2020);https://www.novostroy-m.ru/baza/knightsbridge_private_park · https://pravo.ru/story/223796/;02.10.2026
 knightsbridge-private-park;09;нет данных;;;24.09.2026
 kod-sokolniki;01;да;ВАО;"координаты базы; кольцо — схема из nota-karta-zhk";23.09.2026
 kod-sokolniki;02;да;ТЭЦ, промзон и крупных магистралей в 150 м нет;"OpenStreetMap (bbbike 22.09.2026 + Overpass): ТЭЦ, МСЗ, полигоны отходов, промзоны от 2 га, магистрали; парки от 1 га и вода — 500 м";23.09.2026
@@ -1195,12 +1219,18 @@ kutuzovskaya-rivera;02;да;"плюсы: парк 49 м (Природный за
 kutuzovskaya-rivera;03;нет;"Славянский бульвар (МЦК/МЦД/ж/д) — 21 мин; школа с отметкой NOTA — СУНЦ МГУ (школа-интернат им. А.Н. Колмогорова), 1467 м";"OpenStreetMap, пешеходный граф (Дейкстра, 4,5 км/ч): метро, МЦК, МЦД, ж/д; marshruty.csv, shkoly.csv";25.09.2026
 kutuzovskaya-rivera;04;нет данных;;;24.09.2026
 kutuzovskaya-rivera;05;нет данных;;;24.09.2026
+kutuzovskaya-rivera;06;нет данных;"Mirax Group (ныне Potok8 / ЗАО «Башня Федерация»): рейтинга ЕРЗ нет · ООО «МГ Групп» (бывш. «Миракс Групп») — банкротство 2013, завершено 10.09.2015 (вне 3 лет; застройщиком дома не доказано)";https://www.kommersant.ru/doc/1974798 · https://ria.ru/20150910/1241551495.html;02.10.2026
+kutuzovskaya-rivera;07;да;сдан: 4 кв. 2008 (4 башни);https://stroiki.ru/novostroyki/zhk-kutuzovskaya-rivera/ · https://moskvadeluxe.ru/kutuzovskaya-rivera/;02.10.2026
+kutuzovskaya-rivera;08;не применяется;дом сдан — покупка по ДКП, эскроу не нужен · квартиры;https://stroiki.ru/novostroyki/zhk-kutuzovskaya-rivera/;02.10.2026
 kutuzovskaya-rivera;09;нет данных;;;24.09.2026
 kutuzovskiy-12;01;да;внутри Третьего кольца;"координаты базы; кольцо — схема из nota-karta-zhk";24.09.2026
 kutuzovskiy-12;02;да;плюсы: парк 418 м, вода 277 м;"OpenStreetMap (bbbike 22.09.2026 + Overpass): ТЭЦ, МСЗ, полигоны отходов, промзоны от 2 га, магистрали; парки от 1 га и вода — 500 м";25.09.2026
 kutuzovskiy-12;03;нет;"Киевская (метро) — 19 мин; школа с отметкой NOTA — Частная школа «Золотое сечение», 2219 м";"OpenStreetMap, пешеходный граф (Дейкстра, 4,5 км/ч): метро, МЦК, МЦД, ж/д; marshruty.csv, shkoly.csv";25.09.2026
 kutuzovskiy-12;04;да;81 квартир;каталоги, декларации, сайты застройщиков (база NOTA);24.09.2026
 kutuzovskiy-12;05;да;1.59 м/м на квартиру (129 на 81);каталоги, декларации, сайты застройщиков (база NOTA);24.09.2026
+kutuzovskiy-12;06;нет;ЕРЗ 1,5 · сдано 2 дома за 3 года (Москва и МО, на 23.09) · остановок нет · банкротств нет;ЕРЗ.РФ https://erzrf.ru/zastroyschiki/brand/capital-group-430410001 · zastroyshchiki.csv (проверка 23.09);02.10.2026
+kutuzovskiy-12;07;да;сдан: разрешение на ввод 19.03.2020 (план — 1 кв. 2020);https://novostroycity.ru/journals/novosti-kompanij/capital-group-vvela-v-ekspluataciju-klubnyj-dom-kutuzovskij-12;02.10.2026
+kutuzovskiy-12;08;не применяется;дом сдан — покупка по ДКП, эскроу не нужен · квартиры;https://novostroycity.ru/journals/novosti-kompanij/capital-group-vvela-v-ekspluataciju-klubnyj-dom-kutuzovskij-12;02.10.2026
 kutuzovskiy-12;09;нет данных;;;24.09.2026
 kutuzovskiy-kvartal;01;да;ЗАО;"координаты базы; кольцо — схема из nota-karta-zhk";23.09.2026
 kutuzovskiy-kvartal;02;да;плюсы: парк 229 м;"OpenStreetMap (bbbike 22.09.2026 + Overpass): ТЭЦ, МСЗ, полигоны отходов, промзоны от 2 га, магистрали; парки от 1 га и вода — 500 м";23.09.2026
@@ -1468,6 +1498,9 @@ lucky;02;да;плюсы: парк 190 м (Парк Декабрьского в�
 lucky;03;да;"Улица 1905 года (метро) — 12 мин; школы с отметкой NOTA в 30 минутах нет";"OpenStreetMap, пешеходный граф (Дейкстра, 4,5 км/ч): метро, МЦК, МЦД, ж/д; marshruty.csv, shkoly.csv";25.09.2026
 lucky;04;да;654 квартир;каталоги, декларации, сайты застройщиков (база NOTA);24.09.2026
 lucky;05;нет;1.50 м/м на квартиру (980 на 654);каталоги, декларации, сайты застройщиков (база NOTA);24.09.2026
+lucky;06;нет данных;ЕРЗ: рейтинг не присвоен · сдано 2 дома за 3 года (Москва и МО, на 23.09) · остановок нет · банкротств у застройщика дома нет (в группе — 2: см. zastroyshchiki.csv);ЕРЗ.РФ https://erzrf.ru/zastroyschiki/brand/vesper-3717405001 · zastroyshchiki.csv (проверка 23.09);02.10.2026
+lucky;07;да;сдан: 4 кв. 2023 (агрегаторы);https://www.novostroy-m.ru/baza/jk_lucky · https://homehunter.ru/moscow/complex/lucky;02.10.2026
+lucky;08;не применяется;дом сдан — покупка по ДКП, эскроу не нужен · квартиры;https://www.novostroy-m.ru/baza/jk_lucky;02.10.2026
 lucky;09;нет данных;;;24.09.2026
 lumin;01;да;ЦАО;"координаты базы; кольцо — схема из nota-karta-zhk";23.09.2026
 lumin;02;да;плюсы: парк 198 м (парк «Зарядье»), вода 416 м;"OpenStreetMap (bbbike 22.09.2026 + Overpass): ТЭЦ, МСЗ, полигоны отходов, промзоны от 2 га, магистрали; парки от 1 га и вода — 500 м";23.09.2026
@@ -1501,6 +1534,9 @@ magnum-khamovniki;02;да;плюсы: парк 143 м (Усадьба Трубе
 magnum-khamovniki;03;да;"Фрунзенская (метро) — 9 мин; школа с отметкой NOTA — Школа № 1535, 577 м";"OpenStreetMap, пешеходный граф (Дейкстра, 4,5 км/ч): метро, МЦК, МЦД, ж/д; marshruty.csv, shkoly.csv";25.09.2026
 magnum-khamovniki;04;да;44 квартир;каталоги, декларации, сайты застройщиков (база NOTA);24.09.2026
 magnum-khamovniki;05;нет;1.11 м/м на квартиру (49 на 44);каталоги, декларации, сайты застройщиков (база NOTA);24.09.2026
+magnum-khamovniki;06;нет данных;"Magnum Development (бренд; ООО «Магнум Девелопмент», ИНН 7703729664): ЕРЗ — рейтинг не присвоен · застройщик по разрешению на ввод — ООО «УК КРОНОС» (ИНН 7725308959) · банкротств не нашли (ЕФРСБ не открылся)";https://erzrf.ru/zastroyschiki/brand/magnum-development-9574748001 · https://cdn.mskguru.ru/uploads/docs/4184/%D0%92%D0%B2%D0%BE%D0%B4-%D0%B2-%D1%8D%D0%BA%D1%81%D0%BF%D0%BB%D1%83%D0%B0%D1%82%D0%B0%D1%86%D0%B8%D1%8E.pdf;02.10.2026
+magnum-khamovniki;07;да;сдан: разрешение на ввод №77-210000-009977-2021 от 26.03.2021;https://cdn.mskguru.ru/uploads/docs/4184/%D0%92%D0%B2%D0%BE%D0%B4-%D0%B2-%D1%8D%D0%BA%D1%81%D0%BF%D0%BB%D1%83%D0%B0%D1%82%D0%B0%D1%86%D0%B8%D1%8E.pdf;02.10.2026
+magnum-khamovniki;08;нет;апартаменты (дом сдан): другой налог, нет постоянной регистрации · по разрешению — многофункциональный комплекс, жилых помещений нет;https://cdn.mskguru.ru/uploads/docs/4184/%D0%92%D0%B2%D0%BE%D0%B4-%D0%B2-%D1%8D%D0%BA%D1%81%D0%BF%D0%BB%D1%83%D0%B0%D1%82%D0%B0%D1%86%D0%B8%D1%8E.pdf;02.10.2026
 magnum-khamovniki;09;нет данных;;;24.09.2026
 magnum-solo;01;да;ЦАО;"координаты базы; кольцо — схема из nota-karta-zhk";23.09.2026
 magnum-solo;02;да;плюсы: парк 293 м (Детский Таганский парк), вода 387 м;"OpenStreetMap (bbbike 22.09.2026 + Overpass): ТЭЦ, МСЗ, полигоны отходов, промзоны от 2 га, магистрали; парки от 1 га и вода — 500 м";23.09.2026
@@ -1669,6 +1705,9 @@ molochnyy-7;02;да;плюсы: парк 453 м (Парк Горького), в�
 molochnyy-7;03;да;"Кропоткинская (метро) — 12 мин; школа с отметкой NOTA — Школа № 1253, 978 м";"OpenStreetMap, пешеходный граф (Дейкстра, 4,5 км/ч): метро, МЦК, МЦД, ж/д; marshruty.csv, shkoly.csv";25.09.2026
 molochnyy-7;04;нет данных;;;24.09.2026
 molochnyy-7;05;нет данных;;;24.09.2026
+molochnyy-7;06;нет данных;застройщик не раскрыт ни в одном найденном источнике;https://homehunter.ru/moscow/complex/molochnyy-pereulok-7 · https://www.slrealty.ru/elite/building/molochnyy-per-7/;02.10.2026
+molochnyy-7;07;да;сдан: 2007 – 1 кв. 2008;https://www.cian.ru/dom/moskva-molochnyy-pereulok-dom-7-1697369/ · https://www.slrealty.ru/elite/building/molochnyy-per-7/;02.10.2026
+molochnyy-7;08;не применяется;дом сдан — покупка по ДКП, эскроу не нужен · квартиры;https://homehunter.ru/moscow/complex/molochnyy-pereulok-7;02.10.2026
 molochnyy-7;09;нет данных;;;24.09.2026
 molodogvardeyskaya-54;01;да;ЗАО;"координаты базы; кольцо — схема из nota-karta-zhk";23.09.2026
 molodogvardeyskaya-54;02;да;плюсы: парк 459 м;"OpenStreetMap (bbbike 22.09.2026 + Overpass): ТЭЦ, МСЗ, полигоны отходов, промзоны от 2 га, магистрали; парки от 1 га и вода — 500 м";23.09.2026
@@ -1810,6 +1849,9 @@ nebo;02;да;плюсы: парк 94 м, вода 253 м (пруд Раменк�
 nebo;03;нет;"Мичуринский проспект (метро) — 15 мин; школы с отметкой NOTA в 30 минутах нет";"OpenStreetMap, пешеходный граф (Дейкстра, 4,5 км/ч): метро, МЦК, МЦД, ж/д; marshruty.csv, shkoly.csv";25.09.2026
 nebo;04;нет;1303 квартир;каталоги, декларации, сайты застройщиков (база NOTA);24.09.2026
 nebo;05;нет;0.72 м/м на квартиру (940 на 1303);каталоги, декларации, сайты застройщиков (база NOTA);24.09.2026
+nebo;06;нет;ЕРЗ 1,5 · сдано 2 дома за 3 года (Москва и МО, на 23.09) · остановок нет · банкротств нет;ЕРЗ.РФ https://erzrf.ru/zastroyschiki/brand/capital-group-430410001 · zastroyshchiki.csv (проверка 23.09);02.10.2026
+nebo;07;да;сдан: 12.2020;https://www.mos.ru/news/item/83582073/;02.10.2026
+nebo;08;не применяется;дом сдан — покупка по ДКП, эскроу не нужен · квартиры;https://www.mos.ru/news/item/83582073/;02.10.2026
 nebo;09;нет данных;;;24.09.2026
 neva-towers;01;да;внутри Третьего кольца;"координаты базы; кольцо — схема из nota-karta-zhk";23.09.2026
 neva-towers;02;да;плюсы: парк 424 м (Ботанический сад Первого МГМУ имени И. М. Сеченова);"OpenStreetMap (bbbike 22.09.2026 + Overpass): ТЭЦ, МСЗ, полигоны отходов, промзоны от 2 га, магистрали; парки от 1 га и вода — 500 м";23.09.2026
@@ -2050,6 +2092,9 @@ poklonnaya-9;02;да;плюсы: парк 60 м;"OpenStreetMap (bbbike 22.09.202
 poklonnaya-9;03;да;"Поклонная (МЦК/МЦД/ж/д) — 7 мин; школы с отметкой NOTA в 30 минутах нет";"OpenStreetMap, пешеходный граф (Дейкстра, 4,5 км/ч): метро, МЦК, МЦД, ж/д; marshruty.csv, shkoly.csv";25.09.2026
 poklonnaya-9;04;да;521 квартир;каталоги, декларации, сайты застройщиков (база NOTA);24.09.2026
 poklonnaya-9;05;нет;0.55 м/м на квартиру (288 на 521);каталоги, декларации, сайты застройщиков (база NOTA);24.09.2026
+poklonnaya-9;06;нет;ЕРЗ 1 · сдано 3 дома за 3 года (Москва и МО, на 23.09) · остановок нет · банкротств нет;ЕРЗ.РФ https://erzrf.ru/zastroyschiki/brand/ant-development-12919696001 · zastroyshchiki.csv (проверка 23.09);02.10.2026
+poklonnaya-9;07;да;сдан: ввод 21.02.2024 · справка: в СМИ ввод обещали в конце 2022, затем в 2023;https://www.realty.ru/new/premial-nii-kompleks-apartamentov-poklonnaya-9-vveden-v-ekspluatatsiyu · https://www.novostroy-m.ru/baza/jk_poklonnaya_9;02.10.2026
+poklonnaya-9;08;нет;апартаменты (дом сдан): другой налог, нет постоянной регистрации;https://www.novostroy-m.ru/baza/jk_poklonnaya_9;02.10.2026
 poklonnaya-9;09;нет данных;;;24.09.2026
 polar;01;да;СВАО;"координаты базы; кольцо — схема из nota-karta-zhk";23.09.2026
 polar;02;да;плюсы: парк 130 м (Медведковский лесопарк);"OpenStreetMap (bbbike 22.09.2026 + Overpass): ТЭЦ, МСЗ, полигоны отходов, промзоны от 2 га, магистрали; парки от 1 га и вода — 500 м";23.09.2026
@@ -2081,6 +2126,9 @@ portlend;09;да;от 598 059 ₽/м²;каталоги, декларации, �
 pravda-dars;01;да;внутри Третьего кольца;"координаты базы; кольцо — схема из nota-karta-zhk";24.09.2026
 pravda-dars;04;да;425 квартир;каталоги, декларации, сайты застройщиков (база NOTA);24.09.2026
 pravda-dars;05;нет данных;;;24.09.2026
+pravda-dars;06;нет данных;"DARS Development: рейтинг ЕРЗ не получен (страница бренда не отдаёт балл); страница бренда — «нет рейтинга ЕРЗ», новость ЕРЗ 05.03.2024 — 4,5 · ИНН головной ООО «ДАРС-Девелопмент» 7328079149 · банкротств и остановок не нашли (СМИ; ЕФРСБ не открылся) · участок купило ООО «СЗ Добрый дом» (Коммерсантъ)";https://erzrf.ru/zastroyschiki/brand/dars-development-7537722001 · https://erzrf.ru/news/v-2023-godu-dars-development-uvelichil-vyruchku-na-78-a-obyem-prodazh-v-kvadratnykh-metrakh--na-67 · https://www.kommersant.ru/doc/8097513;02.10.2026
+pravda-dars;07;нет данных;анонс: облик одобрен 23.09.2026, проектной декларации и срока ввода нет;https://www.mskagency.ru/materials/3567196 · наш.дом.рф недоступен (403), декларации и разрешения по ЕИСЖС не сверены;02.10.2026
+pravda-dars;08;нет данных;"декларации нет; Dars заявляет 439 квартир (не апартаменты) — юридически не подтверждено; прежний проект ПСН на участке был апартаментами";https://lettmag.ru/real_estate/gk-dars-postroit-premialnyy-zhiloy-kompleks-na-ulitse-pravdy-v-moskve/ · наш.дом.рф недоступен (403), декларации и разрешения по ЕИСЖС не сверены;02.10.2026
 pravda-dars;09;нет данных;;;24.09.2026
 praym-park;01;да;САО;"координаты базы; кольцо — схема из nota-karta-zhk";23.09.2026
 praym-park;02;да;плюсы: парк 293 м (Петровский парк);"OpenStreetMap (bbbike 22.09.2026 + Overpass): ТЭЦ, МСЗ, полигоны отходов, промзоны от 2 га, магистрали; парки от 1 га и вода — 500 м";23.09.2026
@@ -2105,6 +2153,9 @@ presnya-siti;02;нет;промзона 105 м (Электродепо Крас�
 presnya-siti;03;да;"Улица 1905 года (метро) — 14 мин; школы с отметкой NOTA в 30 минутах нет";"OpenStreetMap, пешеходный граф (Дейкстра, 4,5 км/ч): метро, МЦК, МЦД, ж/д; marshruty.csv, shkoly.csv";25.09.2026
 presnya-siti;04;нет;1218 квартир;каталоги, декларации, сайты застройщиков (база NOTA);24.09.2026
 presnya-siti;05;да;1.04 м/м на квартиру (1265 на 1218);каталоги, декларации, сайты застройщиков (база NOTA);24.09.2026
+presnya-siti;06;нет данных;Coalco (ООО «Коалко Девелопмент», ИНН 7710708954, действует): рейтинг ЕРЗ не получен (страница бренда не отдаёт балл) · девелопер проекта — MR Group (ЕРЗ 5), Coalco — собственник земли и заказчик · банкротств не нашли (ЕФРСБ не открылся);https://erzrf.ru/zastroyschiki/brand/coalco-3937288001 · https://saby.ru/profile/7710708954-771001001 · https://novostroev.ru/zhk-reviews/obzor-mfk-presnya-siti-ot-zastroyshchika-mr-group/;02.10.2026
+presnya-siti;07;да;сдан: 4 кв. 2018;https://homehunter.ru/moscow/complex/presnya-siti · https://novostroycity.ru/journals/novosti-kompanij/mr-group-prodazhi-v-zhk-presnja-siti-zaversheny;02.10.2026
+presnya-siti;08;нет данных;"строились апартаменты; по mskguru переведены в жилые с 01.07.2017, в 04.2017 застройщик писал, что перевод не начат · нужен ЕГРН";https://mskguru.ru/novostroyki/843-zhk-presnja-siti · https://pronovostroy.ru/company/hotline/q-1227/;02.10.2026
 presnya-siti;09;нет данных;;;24.09.2026
 pride;01;да;СВАО;"координаты базы; кольцо — схема из nota-karta-zhk";23.09.2026
 pride;02;да;ТЭЦ, промзон и крупных магистралей в 150 м нет;"OpenStreetMap (bbbike 22.09.2026 + Overpass): ТЭЦ, МСЗ, полигоны отходов, промзоны от 2 га, магистрали; парки от 1 га и вода — 500 м";23.09.2026
@@ -2372,6 +2423,9 @@ sadovye-kvartaly;02;да;плюсы: парк 185 м (Усадьба Трубе�
 sadovye-kvartaly;03;да;"Фрунзенская (метро) — 12 мин; школа с отметкой NOTA — Школа № 1535, 617 м";"OpenStreetMap, пешеходный граф (Дейкстра, 4,5 км/ч): метро, МЦК, МЦД, ж/д; marshruty.csv, shkoly.csv";25.09.2026
 sadovye-kvartaly;04;нет данных;;;24.09.2026
 sadovye-kvartaly;05;нет данных;;;24.09.2026
+sadovye-kvartaly;06;да;ЕРЗ 4 · сдано 34 дома за 3 года (Москва и МО, на 23.09) · остановок нет · банкротств нет;ЕРЗ.РФ https://erzrf.ru/zastroyschiki/brand/sminex-4354668001 · zastroyshchiki.csv (проверка 23.09);02.10.2026
+sadovye-kvartaly;07;да;сдан: ввод корпусов 4 кв. 2020 – 2 кв. 2022 · справка: у квартала 2 первоначальный срок 4 кв. 2019 (urbanus);https://efremova12.ru/ · https://www.urbanus.ru/d-sminex/sadovye-kvartaly;02.10.2026
+sadovye-kvartaly;08;не применяется;дом сдан — покупка по ДКП, эскроу не нужен;https://novostroev.ru/novostroyki/moskva/cao/khamovniki/sadovye-kvartaly/;02.10.2026
 sadovye-kvartaly;09;нет данных;;;24.09.2026
 savvinskaya-17;01;да;ЦАО;"координаты базы; кольцо — схема из nota-karta-zhk";23.09.2026
 savvinskaya-17;02;да;плюсы: парк 148 м, вода 69 м;"OpenStreetMap (bbbike 22.09.2026 + Overpass): ТЭЦ, МСЗ, полигоны отходов, промзоны от 2 га, магистрали; парки от 1 га и вода — 500 м";23.09.2026
@@ -2621,6 +2675,9 @@ sky-view;02;да;плюсы: парк 238 м (Пресненский парк), 
 sky-view;03;да;"Краснопресненская (метро) — 6 мин; школа с отметкой NOTA — Школа № 2123 им. Мигеля Эрнандеса, 1662 м";"OpenStreetMap, пешеходный граф (Дейкстра, 4,5 км/ч): метро, МЦК, МЦД, ж/д; marshruty.csv, shkoly.csv";25.09.2026
 sky-view;04;да;304 квартир;каталоги, декларации, сайты застройщиков (база NOTA);24.09.2026
 sky-view;05;нет;1.22 м/м на квартиру (371 на 304);каталоги, декларации, сайты застройщиков (база NOTA);24.09.2026
+sky-view;06;нет данных;Киноцентр (АО «СЗ Киноцентр», ИНН 7703058776): рейтинг ЕРЗ не получен (страница бренда не отдаёт балл) · банкротств и остановок не нашли;https://erzrf.ru/zastroyschiki/brand/kinocentr-15053941001;02.10.2026
+sky-view;07;да;сдан: ввод 08.2024 (раньше заявленного срока — май 2026);https://topnovostroek.ru/item/3107-zhk-sky-view.html;02.10.2026
+sky-view;08;нет;апартаменты (дом сдан): другой налог, нет постоянной регистрации;https://m2.ru/moskva/novostroyki/zhk-sky-view-6700/;02.10.2026
 sky-view;09;нет данных;;;24.09.2026
 slava;01;нет;за Третьим кольцом;"координаты базы; кольцо — схема из nota-karta-zhk";23.09.2026
 slava;02;нет;промзона 92 м (АО «РСК „МиГ“», ПК-2);"OpenStreetMap (bbbike 22.09.2026 + Overpass): ТЭЦ, МСЗ, полигоны отходов, промзоны от 2 га, магистрали; парки от 1 га и вода — 500 м";23.09.2026
@@ -2690,6 +2747,9 @@ st-nickolas;02;да;плюсы: парк 392 м (Ильинский сквер);
 st-nickolas;03;да;"Лубянка (метро) — 5 мин; школа с отметкой NOTA — Школа № 179, 931 м";"OpenStreetMap, пешеходный граф (Дейкстра, 4,5 км/ч): метро, МЦК, МЦД, ж/д; marshruty.csv, shkoly.csv";25.09.2026
 st-nickolas;04;да;41 квартир;каталоги, декларации, сайты застройщиков (база NOTA);24.09.2026
 st-nickolas;05;нет данных;;;24.09.2026
+st-nickolas;06;нет данных;ЕРЗ: рейтинг не присвоен · сдано 2 дома за 3 года (Москва и МО, на 23.09) · остановок нет · банкротств у застройщика дома нет (в группе — 2: см. zastroyshchiki.csv);ЕРЗ.РФ https://erzrf.ru/zastroyschiki/brand/vesper-3717405001 · zastroyshchiki.csv (проверка 23.09);02.10.2026
+st-nickolas;07;да;сдан: 2015 · реставрация особняка, Никольская, 10/2;https://vespermoscow.com/projects/stnikolas/;02.10.2026
+st-nickolas;08;нет;апартаменты (дом сдан): другой налог, нет постоянной регистрации;https://vespermoscow.com/projects/stnikolas/ · https://mskguru.ru/novostroyki/1124-zhk-st-nickolas-zhk-svnikolas;02.10.2026
 st-nickolas;09;нет данных;;;24.09.2026
 stella-di-mosca;01;да;ЦАО;"координаты базы; кольцо — схема из nota-karta-zhk";23.09.2026
 stella-di-mosca;02;да;плюсы: парк 458 м (Александровский сад);"OpenStreetMap (bbbike 22.09.2026 + Overpass): ТЭЦ, МСЗ, полигоны отходов, промзоны от 2 га, магистрали; парки от 1 га и вода — 500 м";23.09.2026
@@ -2957,6 +3017,9 @@ usadba-trubetskih;02;да;плюсы: парк 36 м (Усадьба Трубе�
 usadba-trubetskih;03;да;"Фрунзенская (метро) — 9 мин; школа с отметкой NOTA — Пятьдесят седьмая школа, 511 м";"OpenStreetMap, пешеходный граф (Дейкстра, 4,5 км/ч): метро, МЦК, МЦД, ж/д; marshruty.csv, shkoly.csv";25.09.2026
 usadba-trubetskih;04;нет данных;;;24.09.2026
 usadba-trubetskih;05;нет данных;;;24.09.2026
+usadba-trubetskih;06;нет данных;застройщик по агрегаторам — «Реставрация Н» (вероятное юрлицо ООО «Реставрация-Н+», ИНН 7704240107, действует) · рейтинга ЕРЗ нет · банкротств не нашли;https://www.novostroyki.org/zhk_usadba_trubeckih_394/ · https://saby.ru/profile/7704240107;02.10.2026
+usadba-trubetskih;07;да;сдан: 2002–2004 (источники расходятся);https://www.novostroyki.org/zhk_usadba_trubeckih_394/ · https://moskvadeluxe.ru/zhk-usadba-trubeckih-ulica-usacheva-dom-3/;02.10.2026
+usadba-trubetskih;08;не применяется;дом сдан — покупка по ДКП, эскроу не нужен · квартиры и таунхаусы;https://homehunter.ru/moscow/complex/usadba-trubeckikh;02.10.2026
 usadba-trubetskih;09;нет данных;;;24.09.2026
 uzory;01;да;ЦАО;"координаты базы; кольцо — схема из nota-karta-zhk";23.09.2026
 uzory;02;да;плюсы: парк 257 м (Сквер Девичьего поля), вода 229 м;"OpenStreetMap (bbbike 22.09.2026 + Overpass): ТЭЦ, МСЗ, полигоны отходов, промзоны от 2 га, магистрали; парки от 1 га и вода — 500 м";23.09.2026
@@ -2988,6 +3051,9 @@ varshavskie-vorota;09;да;от 378 482 ₽/м²;каталоги, деклар�
 vavilova-64;01;да;ЮЗАО;"координаты базы; кольцо — схема из nota-karta-zhk";24.09.2026
 vavilova-64;04;да;505 квартир;каталоги, декларации, сайты застройщиков (база NOTA);24.09.2026
 vavilova-64;05;нет;0.36 м/м на квартиру (180 на 505);каталоги, декларации, сайты застройщиков (база NOTA);24.09.2026
+vavilova-64;06;нет данных;Сити21 (АО «Сити-XXI век», ИНН 7709231603): рейтинг ЕРЗ не получен (страница бренда не отдаёт балл) · сданы «Краски жизни» (05.2023) и «Восемь Кленов» (03.2026) по novostroy-m · банкротства нет (СПАРК, 208 арбитражных дел) · остановок не нашли;https://erzrf.ru/zastroyschiki/brand/1153755001 · https://www.novostroy-m.ru/kompanii/siti_xxi_vek · https://spark-interfax.ru/moskva-ostankinski/ao-siti-xxi-vek-inn-7709231603-ogrn-1027700345661-4ccc464ef7f44136b97ed3ac7bccd5b2;02.10.2026
+vavilova-64;07;да;ввод: III кв. 2029 по декларации от 22.09.2026 (первая декларация, без переноса) · котлован;https://www.novostroy-m.ru/baza/arhitekturnyy_proekt_ul_vavilova · https://zhk-vavilova-64-i.cian.ru/;02.10.2026
+vavilova-64;08;да;квартиры · ДДУ с эскроу · разрешение на строительство 09.2026 (РИА 21.09.2026);https://www.novostroy-m.ru/baza/arhitekturnyy_proekt_ul_vavilova · https://realty.ria.ru/20260921/siti21-2119226313.html;02.10.2026
 vavilova-64;09;нет данных;;;24.09.2026
 veer;01;да;ЗАО;"координаты базы; кольцо — схема из nota-karta-zhk";23.09.2026
 veer;02;нет;промзона 20 м;"OpenStreetMap (bbbike 22.09.2026 + Overpass): ТЭЦ, МСЗ, полигоны отходов, промзоны от 2 га, магистрали; парки от 1 га и вода — 500 м";23.09.2026
@@ -3093,6 +3159,9 @@ vishnevyy-sad;02;нет;промзона 29 м (Киноконцерн «Мос�
 vishnevyy-sad;03;нет;"Поклонная (МЦК/МЦД/ж/д) — 30 мин; школы с отметкой NOTA в 30 минутах нет";"OpenStreetMap, пешеходный граф (Дейкстра, 4,5 км/ч): метро, МЦК, МЦД, ж/д; marshruty.csv, shkoly.csv";25.09.2026
 vishnevyy-sad;04;да;336 квартир;каталоги, декларации, сайты застройщиков (база NOTA);24.09.2026
 vishnevyy-sad;05;нет;1.35 м/м на квартиру (452 на 336);каталоги, декларации, сайты застройщиков (база NOTA);24.09.2026
+vishnevyy-sad;06;нет данных;AB Development (СЗ «Альтера Парк», ИНН 7714934369): рейтинг ЕРЗ не получен (страница бренда не отдаёт балл) · сданы корпуса Вишнёвого сада и WOODS (stroiki.ru) · банкротств и остановок не нашли;https://erzrf.ru/zastroyschiki/brand/ab-development-8852848001 · https://stroiki.ru/zastroyshiki/ab-development/;02.10.2026
+vishnevyy-sad;07;нет данных;"1-я очередь введена 28.02.2020, 2-я — 02.11.2021; 3-я очередь (корп. Y, P, T): срок 2 кв. → 4 кв. 2025 по агрегаторам, дата ввода не подтверждена";https://www.irn.ru/news/133633-pyat-zhilyh-korpusov-zhk-vishnevyy-sad-vveli-v.html · https://stroi.mos.ru/news/tri-korpusa-na-106-kvartir-vviedieny-v-zhk-vishniovyi-sad · https://zhk-vishnevyy-sad-i.cian.ru/hod-stroitelstva/;02.10.2026
+vishnevyy-sad;08;нет данных;"квартиры · ДДУ с эскроу (mskguru, novostroy-m); статус 3-й очереди не подтверждён";https://mskguru.ru/novostroyki/1242-zhk-vishnevyj-sad1 · https://www.novostroy-m.ru/baza/jk_vishnevyy_sad_ramenki;02.10.2026
 vishnevyy-sad;09;нет данных;;;24.09.2026
 voice;01;да;ЮВАО;"координаты базы; кольцо — схема из nota-karta-zhk";23.09.2026
 voice;02;нет данных;;"OpenStreetMap (bbbike 22.09.2026 + Overpass): ТЭЦ, МСЗ, полигоны отходов, промзоны от 2 га, магистрали; парки от 1 га и вода — 500 м";23.09.2026
@@ -3108,6 +3177,9 @@ vorobev-dom;02;нет;"промзона 106 м (Химический завод)
 vorobev-dom;03;нет;"Поклонная (МЦК/МЦД/ж/д) — 20 мин; школы с отметкой NOTA в 30 минутах нет";"OpenStreetMap, пешеходный граф (Дейкстра, 4,5 км/ч): метро, МЦК, МЦД, ж/д; marshruty.csv, shkoly.csv";25.09.2026
 vorobev-dom;04;да;135 квартир;каталоги, декларации, сайты застройщиков (база NOTA);24.09.2026
 vorobev-dom;05;да;2.11 м/м на квартиру (285 на 135);каталоги, декларации, сайты застройщиков (база NOTA);24.09.2026
+vorobev-dom;06;да;ЕРЗ 5 · сдано 13 домов за 3 года (Москва и МО, на 23.09) · остановок нет · банкротств нет;ЕРЗ.РФ https://erzrf.ru/zastroyschiki/brand/mr-group-430836001 · zastroyshchiki.csv (проверка 23.09);02.10.2026
+vorobev-dom;07;да;сдан: 2–3 кв. 2017 (агрегаторы расходятся);https://www.urbanus.ru/d-mr-group/vorobev-dom · https://mskguru.ru/novostroyki/753-vorobev-dom;02.10.2026
+vorobev-dom;08;не применяется;дом сдан — покупка по ДКП, эскроу не нужен · квартиры;https://mskguru.ru/novostroyki/753-vorobev-dom;02.10.2026
 vorobev-dom;09;нет данных;;;24.09.2026
 voxhall;01;да;ЦАО;"координаты базы; кольцо — схема из nota-karta-zhk";23.09.2026
 voxhall;02;да;плюсы: парк 118 м, вода 454 м;"OpenStreetMap (bbbike 22.09.2026 + Overpass): ТЭЦ, МСЗ, полигоны отходов, промзоны от 2 га, магистрали; парки от 1 га и вода — 500 м";23.09.2026

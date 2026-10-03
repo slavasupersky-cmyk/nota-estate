@@ -61,6 +61,8 @@
 
 ## Данные
 
+Как устроена база, класс NOTA, проверки, итог паспорта, сборка, выкладка, журнал решений и открытые вопросы — `data/BAZA-I-LOGIKA.md`.
+
 | Файл | Что это |
 |---|---|
 | `data/doma.csv`, `data/proverki.csv`, `data/kriterii.csv`, `data/shkoly.csv`, `data/marshruty.csv`, `data/penthausy.csv`, `data/oplata-*.csv`, `data/zastroyshchiki.csv`, `data/loty-po-tipam.csv`, `data/otkrytost-cen.csv` | Выгрузка публичных полей из мастер-базы `nota-baza` (`tools/baza.py`) — руками не править, при сборке перезапишутся |
