@@ -736,7 +736,7 @@ fairmont-vesper-residences;05;да;2.69 м/м на квартиру (97 на 36)
 fairmont-vesper-residences;06;нет данных;ЕРЗ: рейтинг не присвоен · сдано 2 дома за 3 года (Москва и МО, на 23.09) · остановок нет · банкротств у застройщика дома нет (в группе — 2: см. zastroyshchiki.csv);ЕРЗ.РФ https://erzrf.ru/zastroyschiki/brand/vesper-3717405001 · zastroyshchiki.csv (проверка 23.09);02.10.2026
 fairmont-vesper-residences;07;да;сдан: ввод 04.2023 (разрешение 03.04.2023 по novostroy-m);https://moskvichmag.ru/gorod/gostinitsu-s-apartamentami-vesper-tverskaya-na-mayakovskoj-vveli-v-ekspluatatsiyu/ · https://www.novostroy-m.ru/baza/fairmont_vesper_residences;02.10.2026
 fairmont-vesper-residences;08;нет;апартаменты (дом сдан): другой налог, нет постоянной регистрации · гостиница Fairmont и сервисные апартаменты;https://www.vespermoscow.com/projects/fairmont/ · https://uznai.mos.ru/catalog/10021_vesper_tverskaya;02.10.2026
-fairmont-vesper-residences;09;нет данных;;;24.09.2026
+fairmont-vesper-residences;09;да;от 1 497 504 ₽/м²;каталоги, декларации, сайты застройщиков (база NOTA);03.10.2026
 famous;01;да;ЗАО;"координаты базы; кольцо — схема из nota-karta-zhk";23.09.2026
 famous;02;да;плюсы: парк 418 м (Детский парк Фили);"OpenStreetMap (bbbike 22.09.2026 + Overpass): ТЭЦ, МСЗ, полигоны отходов, промзоны от 2 га, магистрали; парки от 1 га и вода — 500 м";23.09.2026
 famous;03;да;"Фили (метро) — 9 мин; школы с отметкой NOTA в 30 минутах нет";"OpenStreetMap, пешеходный граф (Дейкстра, 4,5 км/ч): метро, МЦК, МЦД, ж/д; marshruty.csv, shkoly.csv";23.09.2026
