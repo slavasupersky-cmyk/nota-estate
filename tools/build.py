@@ -55,6 +55,9 @@ def apply_shell(path):
                 lambda m: '<!--rekv-->' + site['rekv'] + '<!--/rekv-->', s2)
     if is_article(rel):
         s2 = article_lead(article_body(article_tables(s2)), rel)
+    elif rel.startswith('test/'):
+        # тестовые страницы (test/<slug>/): шапка, подвал и таблицы как в разборах; закрыты своей меткой robots, в карту сайта не попадают
+        s2 = article_body(article_tables(s2))
     s2 = apply_numbers(s2, N)
     s2 = faq_ld(s2)
     s2 = seo(s2, rel)
@@ -97,6 +100,8 @@ def article_tables(s):
         cells = [_cell_txt(x) for r in rows[1:] for x in re.findall(r'<td[^>]*>([\s\S]*?)</td>', r)]
         avg = sum(map(len, cells)) / len(cells) if cells else 0
         cards = len(heads) >= 4 or avg > 28
+        if 'data-scroll' in re.match(r'<table[^>]*>', t).group(0):
+            cards = False  # таблица цифр: на телефоне листается вбок внутри .tablewrap, а не разваливается на карточки
         def row(rm):
             i = [-1]
             def td(cm):
@@ -442,6 +447,7 @@ if __name__ == '__main__':
         ps += sorted((ROOT / 'doma').glob('**/index.html'))
         ps += sorted((ROOT / 'razbory').glob('**/index.html'))
         ps += sorted((ROOT / 'reytingi').glob('**/index.html'))
+        ps += sorted((ROOT / 'test').glob('**/index.html'))
         return ps
 
     before = {p: p.read_bytes() for p in all_pages()}
