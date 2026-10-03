@@ -496,25 +496,27 @@ ITOG_TAG = {'Отметка': ('mark', 'Отметка NOTA'), 'Присмотр
 def meters(m):
     return 'вплотную' if m < 20 else f'{fmt(m)} м'
 
-def lead_modal(src):
-    """Окно «Актуальная подборка» по дому прямо на странице рейтинга. src — откуда заявка: уходит вместе с формой."""
+def lead_modal(src, ttl='Актуальная подборка', text='Пришлём, что в продаже в этом доме сейчас: лоты, планировки, цены и условия оплаты. Обычно в тот же день.',
+               btn='Получить подборку', note_ph='Площадь, этаж, бюджет — если хотите уточнить'):
+    """Окно заявки прямо на странице (по умолчанию — «Актуальная подборка» по дому в рейтинге). src — откуда заявка: уходит вместе с формой.
+    Разборы зовут его с ttl/text/btn консультации (build.py → article_lead)."""
     return f'''
 <div class="modal" id="lead" hidden data-src="{e(src)}">
  <div class="modal-bg" data-close></div>
  <div class="modal-in" role="dialog" aria-modal="true" aria-labelledby="lead-h">
   <button class="modal-x" type="button" data-close aria-label="Закрыть">×</button>
-  <p class="ttl">Актуальная подборка</p>
+  <p class="ttl">{e(ttl)}</p>
   <h3 id="lead-h">Дом</h3>
-  <p style="margin-top:12px;color:var(--ink-2);font-size:15px">Пришлём, что в продаже в этом доме сейчас: лоты, планировки, цены и условия оплаты. Обычно в тот же день.</p>
+  <p style="margin-top:12px;color:var(--ink-2);font-size:15px">{e(text)}</p>
   <form novalidate class="cform" style="margin-top:14px;box-shadow:none">
    <input type="hidden" name="source" value="">
    <input type="hidden" name="house" value="">
    <label class="fl-l">Как к вам обращаться<input type="text" name="name" autocomplete="name" placeholder="Имя"></label>
    <label class="fl-l">Телефон или ник в Telegram / MAX<input type="text" name="contact" placeholder="+7 … или @ник"></label>
-   <label class="fl-l">Что важно<textarea name="note" placeholder="Площадь, этаж, бюджет — если хотите уточнить"></textarea></label>
+   <label class="fl-l">Что важно<textarea name="note" placeholder="{e(note_ph)}"></textarea></label>
    <label class="consent"><input type="checkbox"><span>Даю <a href="{R}soglasie.html">согласие на обработку персональных данных</a>. Как мы их храним — в <a href="{R}politika.html">политике конфиденциальности</a>.</span></label>
    <p class="lead-src hint" style="margin:10px 0 0"></p>
-   <div class="send"><button class="btn" type="button">Получить подборку</button></div>
+   <div class="send"><button class="btn" type="button">{e(btn)}</button></div>
   </form>
  </div>
 </div>

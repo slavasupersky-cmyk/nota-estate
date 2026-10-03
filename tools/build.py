@@ -53,6 +53,8 @@ def apply_shell(path):
     # реквизиты внутри текста (политика): <!--rekv-->…<!--/rekv-->
     s2 = re.sub(r'<!--rekv-->[\s\S]*?<!--/rekv-->',
                 lambda m: '<!--rekv-->' + site['rekv'] + '<!--/rekv-->', s2)
+    if is_article(rel):
+        s2 = article_lead(article_body(article_tables(s2)), rel)
     s2 = apply_numbers(s2, N)
     s2 = faq_ld(s2)
     s2 = seo(s2, rel)
@@ -72,6 +74,60 @@ def apply_shell(path):
     if s2 != s:
         path.write_text(s2); return True
     return False
+
+
+# ---------------------------------------------------------------- читаемость разборов
+def is_article(rel):
+    """Статьи-разборы: razbory/<slug>/ и razbor-<район>.html (хаб razbory.html — не статья)."""
+    return (rel.startswith('razbory/') or rel.startswith('razbor-')) and rel != 'razbory.html'
+
+def _cell_txt(h):
+    return re.sub(r'\s+', ' ', re.sub(r'<[^>]+>', '', h)).strip()
+
+def article_tables(s):
+    """Таблицы в разборах. Каждой ячейке — data-label с названием колонки. Таблицам из 4+ колонок или с длинным текстом
+    в ячейках — класс t-cards: на телефоне строка становится карточкой (css/nota.css, раздел «разборы: читаемость»).
+    Короткие таблицы (формат · площадь · вход) остаются таблицами, просто без минимальной ширины."""
+    def one(m):
+        t = m.group(0)
+        rows = re.findall(r'<tr[^>]*>([\s\S]*?)</tr>', t)
+        if not rows: return t
+        heads = [_cell_txt(x) for x in re.findall(r'<th[^>]*>([\s\S]*?)</th>', rows[0])]
+        if not heads: return t
+        cells = [_cell_txt(x) for r in rows[1:] for x in re.findall(r'<td[^>]*>([\s\S]*?)</td>', r)]
+        avg = sum(map(len, cells)) / len(cells) if cells else 0
+        cards = len(heads) >= 4 or avg > 28
+        def row(rm):
+            i = [-1]
+            def td(cm):
+                i[0] += 1
+                attrs = re.sub(r'\s*data-label="[^"]*"', '', cm.group(1))
+                lab = heads[i[0]] if i[0] < len(heads) else ''
+                return f'<td{attrs} data-label="{lab}">' if lab else f'<td{attrs}>'
+            return re.sub(r'<td([^>]*)>', td, rm.group(0))
+        t = re.sub(r'<tr[^>]*>[\s\S]*?</tr>', row, t)
+        open_tag = re.match(r'<table[^>]*>', t).group(0)
+        tag = re.sub(r'\s*class="t-cards"', '', open_tag)
+        if cards: tag = tag.replace('<table', '<table class="t-cards"', 1)
+        return tag + t[len(open_tag):]
+    return re.sub(r'<table[^>]*>[\s\S]*?</table>', one, s)
+
+
+def article_lead(s, rel):
+    """Окно консультации в разборе: если на странице есть кнопка [data-lead], сборка кладёт окно #lead перед </main>
+    (между <!--lead-m--> и <!--/lead-m-->, пересобирается каждый раз). Кнопка: <button class="btn" type="button" data-lead="Тема заявки">."""
+    s = re.sub(r'\n?<!--lead-m-->[\s\S]*?<!--/lead-m-->', '', s)
+    if 'data-lead=' not in s or 'id="lead"' in s: return s
+    import reytingi
+    title = re.search(r'<h1>([\s\S]*?)</h1>', s)
+    m = reytingi.lead_modal('Разбор «' + (_cell_txt(title.group(1)) if title else rel) + '»', ttl='Консультация',
+                            text='Расскажите, какой дом у вас или какой смотрите. Сверим его с новыми домами рядом: метр, число объявлений, срок экспозиции — и ответим, обычно в тот же день.',
+                            btn='Записаться на консультацию', note_ph='Адрес или название дома, что хотите понять')
+    m = m.replace('../../', '../' * rel.count('/'))
+    return s.replace('</main>', '<!--lead-m-->' + m + '<!--/lead-m-->\n</main>', 1)
+
+def article_body(s):
+    return re.sub(r'<body class="inner(?: article)?"', '<body class="inner article"', s, count=1)
 
 HOME_TABLE = ''
 KARTA_BAND = ''

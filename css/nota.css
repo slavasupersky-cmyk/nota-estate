@@ -1295,3 +1295,45 @@ section .two.rz-h,section.tight .two.rz-h:has(h2){align-items:start}
 .tag.no{color:var(--muted)}
 
 .tm-ph:has(img):before,.tm-ph:has(img):after{content:none}
+
+/* ---- разборы: читаемость (класс article у body ставит tools/build.py) ---- */
+/* колонки начинаются на одной линии: без «ступеньки» главной */
+.article .two{align-items:start}
+@media(min-width:901px){.article .two>*+*{padding-top:0}}
+.article .two:has(h2){align-items:start}
+/* абзацы не слипаются */
+.article main p{line-height:1.65}
+.article main p+p,.article main p+ul,.article main ul+p,.article main p+.quote{margin-top:14px}
+.article main .two>div>p:not(.hint):not(.quote):not(.lede):not(.ttl),.article main .wrap>p:not(.ttl):not(.hint):not(.crumbs):not(.lead):not(.quote){font-size:16.5px;color:var(--ink)}
+.article main ul:not(.h-src){margin:0;padding-left:20px}
+.article main ul:not(.h-src) li{font-size:16.5px;line-height:1.6;color:var(--ink)}
+.article main ul:not(.h-src) li+li{margin-top:8px}
+.article .hint{margin-top:12px;max-width:72ch}
+.article .quote{margin-top:22px}
+.article .rl p+p{margin-top:10px}
+.article main h3+p{margin-top:6px}
+/* короткие таблицы без минимальной ширины — переносят строки, а не уезжают вбок */
+.article table:not(.t-cards){min-width:0}
+@media(max-width:900px){
+ .article .big{gap:10px}
+ .article .big .fig{font-size:clamp(64px,18vw,96px)}
+ .article .h-stats b{font-size:clamp(34px,10vw,44px)}
+}
+@media(max-width:640px){
+ .article .two{grid-template-columns:minmax(0,1fr)}
+ .article th{white-space:normal}
+ .article .quote{margin-top:22px!important}
+ .article main .two>div>p:not(.hint):not(.quote):not(.lede):not(.ttl),.article main ul:not(.h-src) li{font-size:16px}
+ .article .lead{font-size:17px}
+ .article th,.article td{padding:10px 10px}
+ .article table:not(.t-cards){font-size:14.5px}
+ /* широкие таблицы — карточками: строка = карточка, подпись колонки над значением */
+ .article .tablewrap:has(.t-cards){overflow:visible;border:0;background:none}
+ .article table.t-cards{min-width:0!important;font-size:15px}
+ .article table.t-cards tr:has(th){display:none}
+ .article table.t-cards tr{display:block;border:1px solid var(--line);background:var(--surface);padding:14px 16px;margin-bottom:10px}
+ .article table.t-cards td{display:block;border:0;padding:0}
+ .article table.t-cards td+td{margin-top:10px}
+ .article table.t-cards td:first-child{font-size:16px;color:var(--ink)}
+ .article table.t-cards td+td[data-label]::before{content:attr(data-label);display:block;font-weight:600;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:3px}
+}
