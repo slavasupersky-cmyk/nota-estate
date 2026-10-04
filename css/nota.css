@@ -147,8 +147,9 @@ tr:last-child td{border-bottom:none}
 @media(max-width:900px){.split{grid-template-columns:1fr;gap:24px}}
 .steps{margin-top:34px}
 .steps .step{display:flex;gap:24px;padding:24px 0;border-bottom:1px solid var(--line)}
+.steps .step{align-items:flex-start;border-width:0 0 1px;border-style:solid;border-color:var(--line);background:none}  /* сильнее чужого .step-степпера (планировки) */
 .steps .step:last-child{border-bottom:none}
-.steps .n{flex:0 0 46px;font-weight:600;color:var(--red);font-size:11px;letter-spacing:.16em;padding-top:6px}
+.steps .n{flex:0 0 52px;font-weight:600;color:var(--red);font-size:20px;line-height:1.25;letter-spacing:-.01em;font-variant-numeric:tabular-nums}
 .steps p{margin:0;color:var(--ink-2);font-size:15px}
 /* dark analytics */
 .analytics{position:relative;overflow:hidden;background:#101317;color:#fff}
