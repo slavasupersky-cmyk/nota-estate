@@ -9,7 +9,7 @@
   var DEF = {
     space: 1, adults: 2, pairs: 1, kidsSmall: 0, kidsBig: 0, elders: 0, nanny: false,
     guests: 0, party: 0, wfh: 0, cook: 0, dog: 0, cat: false, stroller: false, bikes: 0, sport: false,
-    extra: {}, budget: 0, klass: ''
+    extra: {}, budget: 0, klass: '', off: {}, shower: {}
   };
   var EXTRAS = ['study', 'lib', 'wardrobe', 'play', 'gym', 'cinema', 'hobby', 'guest', 'wine', 'spa'];
 
@@ -36,6 +36,10 @@
     var ex = {}; EXTRAS.forEach(function (x) { if (o.extra && o.extra[x]) ex[x] = 1; }); o.extra = ex;
     o.budget = Math.max(0, parseInt(o.budget, 10) || 0);
     o.klass = o.klass || '';
+    var off = {}, sh = {}, k2;
+    for (k2 in (o.off || {})) if (o.off[k2]) off[k2] = 1;
+    for (k2 in (o.shower || {})) if (o.shower[k2]) sh[k2] = 1;
+    o.off = off; o.shower = sh;
     return o;
   }
 
@@ -54,11 +58,21 @@
 
     /* kind: bed — спальня, room — другая закрытая комната (считается в комнатности),
        wet — санузел, open — общая зона, aux — хозяйственное */
+    /* Состав можно поправить руками: s.off — убранные помещения, s.shower — душевая вместо ванны.
+       Ключ помещения — название (+ #2, #3 для повторов). Спальни, кухню, гостиную и прихожую не убираем: они следуют из состава семьи. */
+    var seenKey = {}, firstWet = true;
     function add(name, lo, hi, why, kind, opt) {
       if (opt && SP === 0) return null;      // компактно: необязательное не закладываем
       if (SP === 2) opt = false;             // просторно: закладываем всё
-      var r = { n: name, lo: Math.round(lo * LO * 10) / 10, hi: Math.round(hi * HI * 10) / 10, w: why || '', kind: kind, o: !!opt };
+      var key = name; seenKey[name] = (seenKey[name] || 0) + 1; if (seenKey[name] > 1) key = name + ' #' + seenKey[name];
+      var can = kind === 'room' || (kind === 'aux' && name !== 'Прихожая') || (kind === 'wet' && !firstWet);
+      var canSh = kind === 'wet' && /^(Ванная|Детская ванная)/.test(name);
+      if (kind === 'wet') firstWet = false;
+      var sh = canSh && s.shower[key];
+      if (sh) { name = name.replace(/^Ванная/, 'Душевая').replace(/^Детская ванная/, 'Детский душ'); lo = Math.max(3, lo - 1.5); hi = Math.max(lo + 1, hi - 1.5); why = 'душ вместо ванны'; }
+      var r = { k: key, n: name, lo: Math.round(lo * LO * 10) / 10, hi: Math.round(hi * HI * 10) / 10, w: why || '', kind: kind, o: !!opt, can: can, canSh: canSh, sh: !!sh, off: !!(can && s.off[key]) };
       rooms.push(r);
+      if (r.off) return null;
       if (kind === 'bed') { bedrooms++; closed++; }
       if (kind === 'room') closed++;
       return r;
@@ -110,15 +124,16 @@
     }
     /* кабинет и библиотека */
     var studyN = Math.max(s.wfh, EX.study ? 1 : 0);
-    if (studyN === 1) add(EX.lib ? 'Кабинет-библиотека' : 'Кабинет', EX.lib ? 16 : 10, EX.lib ? 20 : 12, EX.lib ? 'стол у окна, стеллажи на 6–8 м погонных, кресло для чтения' : 'дверь, которая закрывается, и не в спальном крыле', 'room');
-    if (studyN === 2) add(EX.lib ? 'Кабинет-библиотека на двоих' : 'Кабинет на двоих', EX.lib ? 19 : 13, EX.lib ? 24 : 15, 'два рабочих места' + (EX.lib ? ', стеллажи по длинной стене' : ' или второе место в другом конце квартиры'), 'room');
+    var studyR = null;
+    if (studyN === 1) studyR = add(EX.lib ? 'Кабинет-библиотека' : 'Кабинет', EX.lib ? 16 : 10, EX.lib ? 20 : 12, EX.lib ? 'стол у окна, стеллажи на 6–8 м погонных, кресло для чтения' : 'дверь, которая закрывается, и не в спальном крыле', 'room');
+    if (studyN === 2) studyR = add(EX.lib ? 'Кабинет-библиотека на двоих' : 'Кабинет на двоих', EX.lib ? 19 : 13, EX.lib ? 24 : 15, 'два рабочих места' + (EX.lib ? ', стеллажи по длинной стене' : ' или второе место в другом конце квартиры'), 'room');
     if (!studyN && EX.lib) add('Библиотека', 12, 16, 'стеллажи на 6–8 м погонных, кресло и свет для чтения', 'room');
     /* гости */
     if (s.guests === 2 || EX.guest) {
       add('Гостевая спальня', 11, 13, s.guests === 2 ? 'гости раз в месяц — уже отдельная комната' : 'отдельная комната для гостей и родственников', 'room');
       add('Душ при гостевой', 3, 4, 'гости не ходят в ванную хозяев', 'wet', true);
     } else if (s.guests === 1) {
-      facts.push(studyN ? 'кабинет с диваном — он же гостевая' : 'гостям — диван в гостиной');
+      facts.push(studyR ? 'кабинет с диваном — он же гостевая' : 'гостям — диван в гостиной');
     }
     /* дополнительные комнаты */
     if (EX.play) add('Игровая', 14, 20, kids ? 'рядом с детскими, пол без ковра, место для игр на полу' : 'комната для игр и хобби всей семьи', 'room');
@@ -161,14 +176,14 @@
 
     /* сумма */
     var lo = 0, hi = 0, req = 0;
-    rooms.forEach(function (r) { lo += r.lo; hi += r.hi; if (!r.o) req += r.lo; });
+    rooms.forEach(function (r) { if (r.off) return; lo += r.lo; hi += r.hi; if (!r.o) req += r.lo; });
     var CF = [[1.06, 1.10], [1.08, 1.14], [1.12, 1.18]][SP];
     var tLo = r5(lo * CF[0]), tHi = r5(hi * CF[1]), tMin = Math.min(tLo, r5(req * CF[0]));
 
     /* формат */
-    var studio = (A === 1 && onlyAdults && studyN === 0 && closed === 1 && s.guests < 2);
+    var studio = (A === 1 && onlyAdults && !studyR && closed === 1 && s.guests < 2);
     var mr = closed + 1;                      // закрытые комнаты + гостиная (или кухня-гостиная)
-    var others = rooms.filter(function (r) { return r.kind === 'room'; }).map(function (r) { return r.n.toLowerCase().replace('гостевая спальня', 'гостевая').replace('домашний спортзал', 'спортзал'); });
+    var others = rooms.filter(function (r) { return r.kind === 'room' && !r.off; }).map(function (r) { return r.n.toLowerCase().replace('гостевая спальня', 'гостевая').replace('домашний спортзал', 'спортзал'); });
     if (N) others.unshift('комната персонала');
     var bedOnly = bedrooms - (N ? 1 : 0);
     var fmt;
@@ -179,7 +194,7 @@
         (mr >= 5 ? ' — в объявлениях «многокомнатная», ' + mr + ' комнат' :
           ' — в объявлениях «' + mr + '-комнатная»' + (kitchenMode === 'closed' ? '' : ' или «евро-' + mr + '»'));
     }
-    var wets = rooms.filter(function (r) { return r.kind === 'wet' && !/сауна/i.test(r.n); });
+    var wets = rooms.filter(function (r) { return r.kind === 'wet' && !r.off && !/сауна/i.test(r.n); });
     var baths = wets.length, bathsReq = wets.filter(function (r) { return !r.o; }).length;
     facts.unshift((bathsReq < baths ? bathsReq + '–' + baths : baths) + ' ' + plural(baths, 'санузел', 'санузла', 'санузлов'));
     var twoWings = P >= 2 || (P >= 1 && (E > 0 || extraAdults > 0));
@@ -217,9 +232,17 @@
     return parseInt(tip, 10) + (e ? 1 : 0);
   }
 
+  /* апартаменты: 2 — только апартаменты, 1 — квартиры и апартаменты, 0 — квартиры */
+  function isAp(h) { var t = (h && h.ty) || ''; if (!/апартамент/i.test(t)) return 0; return /квартир/i.test(t) ? 1 : 2; }
+  function passH(h, kl, st) {
+    if (kl) { if (kl === 'элит') { if (h.c !== 'элитный' && h.c !== 'делюкс') return false; } else if (h.c !== kl) return false; }
+    if (st === 'kv' && isAp(h) === 2) return false;
+    if (st === 'ap' && !isAp(h)) return false;
+    return true;
+  }
   function match(res, data, f) {
     f = f || {};
-    var budget = parseInt(f.budget, 10) || 0, kl = f.klass || '';
+    var budget = parseInt(f.budget, 10) || 0, kl = f.klass || '', st = f.st || '';
     var need = res.lo, needHi = res.hi;
     var want = res.studio ? [1, 2] : [res.mr];
     var rows = [], seen = {}, overBudget = 0, cheapest = null, overSeen = {}, noPrice = {};
@@ -229,7 +252,7 @@
       var rr = lotRooms(tip, e);
       var ok = want.some(function (w) { return w >= 4 ? (tip === '4+' || rr === w) : rr === w; });
       if (!ok) return;
-      if (kl) { if (kl === 'элит') { if (h.c !== 'элитный' && h.c !== 'делюкс') return; } else if (h.c !== kl) return; }
+      if (!passH(h, kl, st)) return;
       if (b < need * 0.92 || a > needHi * 1.05) return;
       /* какую площадь этого формата здесь можно купить и за сколько:
          от цены метра самого дешёвого лота × нужная площадь до цены метра самого дорогого × верх нужной площади (не дороже самого дорогого лота) */
@@ -285,8 +308,8 @@
   /* Рынок для нужной квартиры: оценки цены по домам базы (без фильтра бюджета).
      Зоны вилки: red — дешевле самого доступного дома, yellow — до первой четверти (выбор узкий), green — дальше. */
   function q(arr, p) { if (!arr.length) return null; return arr[Math.min(arr.length - 1, Math.max(0, Math.round(p * (arr.length - 1))))]; }
-  function market(res, data, klass) {
-    var m = match(res, data, { klass: klass || '' });
+  function market(res, data, klass, st) {
+    var m = match(res, data, { klass: klass || '', st: st || '' });
     var priced = m.rows.filter(function (x) { return x.est != null; }).sort(function (a, b) { return a.est - b.est; });
     var e = priced.map(function (x) { return x.est; });
     return { rows: m.rows, priced: priced, n: m.rows.length, np: priced.length,
@@ -319,11 +342,11 @@
   }
 
   /* дома, где хоть какой-то лот стоит в пределах вилки: для бюджета выше цен на нужную квартиру */
-  function budgetHouses(data, a, b, klass) {
+  function budgetHouses(data, a, b, klass, st) {
     var by = {}, out = [];
     (data.l || []).forEach(function (x) {
       var slug = x[0], h = data.h[slug], c = x[4], cmax = x[6] || x[4]; if (!h || !c) return;
-      if (klass) { if (klass === 'элит') { if (h.c !== 'элитный' && h.c !== 'делюкс') return; } else if (h.c !== klass) return; }
+      if (!passH(h, klass, st)) return;
       if (b != null && c > b) return; if (cmax < a) return;
       var r = by[slug]; if (!r) { r = by[slug] = { slug: slug, h: h, a: x[2], b: x[3], pmin: c, pmax: cmax, tips: [] }; out.push(r); }
       r.a = Math.min(r.a, x[2]); r.b = Math.max(r.b, x[3]); r.pmin = Math.min(r.pmin, c); r.pmax = Math.max(r.pmax, cmax);
@@ -332,6 +355,6 @@
     return out.sort(function (p, q) { return q.pmax - p.pmax; });
   }
 
-  var API = { DEF: DEF, EXTRAS: EXTRAS, normalize: normalize, calc: calc, match: match, market: market, zone: zone, fork: fork, budgetHouses: budgetHouses, plans: plans, PLANS: PLANS, lotRooms: lotRooms, plural: plural };
+  var API = { DEF: DEF, EXTRAS: EXTRAS, normalize: normalize, calc: calc, match: match, market: market, zone: zone, fork: fork, budgetHouses: budgetHouses, isAp: isAp, plans: plans, PLANS: PLANS, lotRooms: lotRooms, plural: plural };
   if (typeof module !== 'undefined' && module.exports) module.exports = API; else root.NotaKonf = API;
 })(this);

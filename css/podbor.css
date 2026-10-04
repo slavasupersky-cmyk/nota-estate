@@ -36,7 +36,7 @@
 .kv-tab td,.kv-tab th{padding:8px 10px}
 .kv-tab td:nth-child(2){white-space:nowrap;text-align:right;font-variant-numeric:tabular-nums}
 .kv-tab td:first-child{font-weight:600}
-.kv-tab td:last-child{color:var(--ink-2)}
+.kv-tab td:nth-child(3){color:var(--ink-2)}
 .kv-tab tr.opt td{color:var(--muted)}
 .kv-tab tr.opt td:first-child::after{content:" · можно без";font-weight:400;font-size:12px}
 .kv-tab tr.sum td{border-top:1px solid var(--ink);font-weight:600;color:var(--ink)}
@@ -99,8 +99,37 @@
 #kbar .btn{background:var(--paper);border-color:var(--paper);color:var(--ink)}
 #kbar #bFmt{opacity:.75}
 
+
+/* числа: на десктопе — ползунок сайта, на телефоне и сенсорных экранах — кнопки «+ / −» (новый элемент: ползунок на пальце соскальзывает) */
+.kv-step{display:none;align-items:center;border:1px solid var(--hair);background:var(--surface);flex:none}
+.kv-step button{width:44px;height:44px;border:0;background:var(--paper-2);font:500 22px/1 "Onest","Helvetica Neue",Arial,sans-serif;color:var(--ink);cursor:pointer;padding:0}
+.kv-step button:hover:not(:disabled){background:var(--line)}
+.kv-step button:disabled{color:var(--hair);cursor:default}
+.kv-step button:focus-visible{outline:2px solid var(--red);outline-offset:2px}
+.kv-step b{min-width:46px;text-align:center;font-size:17px;font-weight:600;font-variant-numeric:tabular-nums}
+.kv-bstep{display:none;flex-direction:column;gap:8px;margin:12px 0 6px;font-size:14.5px;color:var(--ink-2)}
+.kv-bstep>div{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.kv-bstep .kv-step b{min-width:56px;color:var(--ink)}
+.kv-need{margin-top:10px;max-width:66ch}
+/* шаг 3: сначала отправка, приоритеты — по желанию */
+.kv-send{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px 24px;align-items:end;margin-top:24px;padding:20px 24px;border:1px solid var(--line);background:var(--surface)}
+.kv-send .btns{margin-top:0;flex-wrap:nowrap}
+.kv-send .res-note textarea{height:62px;min-height:62px;resize:none}
+.kv-send .btn{height:62px;justify-content:center}
+.kv-prio{margin-top:22px}
+.kv-prio .ank{margin-top:6px}
+@media (max-width:700px),(pointer:coarse){
+ .kv-num input[type=range],.kv-num output,#sliders .row input[type=range],#sliders .row output{display:none}
+ .kv-num .kv-step,#sliders .kv-step,.kv-bstep .kv-step{display:inline-flex}
+ .kv-calc .row.kv-num,.ank #sliders .row{flex-wrap:nowrap;justify-content:space-between;gap:12px}
+ .kv-calc .row.kv-num label,.ank #sliders .row label{flex:1 1 0;min-width:0}
+ .bud-r,.kv-budget .bud-in{display:none}
+ .kv-bstep{display:flex}
+}
+@media(max-width:900px){.kv-send{grid-template-columns:1fr}.kv-send .btns{flex-wrap:wrap}}
+
 @media(max-width:900px){
- .kv-calc,.kv-budget,.kv-detail{grid-template-columns:1fr}
+ .kv-calc,.kv-budget,.kv-detail{grid-template-columns:minmax(0,1fr)}
  .kv-card{position:static}
  .kv-call{grid-template-columns:1fr}
  .kv-call .btns{flex-wrap:wrap}
@@ -108,5 +137,80 @@
 @media(min-width:901px){#kbar{display:none!important}}
 @media(max-width:600px){
  .kv-plans{grid-template-columns:repeat(2,minmax(0,1fr))}
- .kv-tab td:last-child,.kv-tab th:last-child{display:none}
+}
+
+/* правка состава квартиры: «убрать», «вернуть», «душ вместо ванны» — текстовые кнопки, как .linkbtn сайта */
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.kv-edit-h{margin-top:6px}
+.kv-tab td.kv-edc{white-space:nowrap;text-align:right;padding-left:4px}
+.kv-ed{all:unset;cursor:pointer;font-size:13px;color:var(--ink-2);text-decoration:underline;text-decoration-color:var(--hair);text-underline-offset:3px;margin-left:10px}
+.kv-ed:hover{color:var(--ink);text-decoration-color:var(--red)}
+.kv-ed:focus-visible{outline:2px solid var(--red);outline-offset:2px}
+.kv-tab tr.off td{color:var(--muted)}
+.kv-tab tr.off td:first-child{text-decoration:line-through;font-weight:400}
+
+/* статус дома: апартаменты */
+.kv-aphint{margin-top:-4px}
+.kv-ap{display:block;margin-top:3px;font-size:12px;font-weight:400;color:var(--muted);letter-spacing:.02em}
+
+/* лестница по классам — те же цвета зон, что на шкале */
+.kv-ladder{--z-red:#F2C3C5;--z-yel:#F4DC8C;--z-grn:#CDE7A2;margin-top:34px}
+.kv-ladder:empty{display:none}
+.kv-lad-h{font-size:15px;color:var(--ink-2);margin-top:8px;max-width:72ch}
+.kv-lad{margin-top:14px}
+.kv-lad table{width:100%;min-width:0;table-layout:fixed;border-collapse:collapse}
+.kv-lad th,.kv-lad td{border:1px solid var(--line);padding:0;text-align:left;vertical-align:middle}
+.kv-lad thead th{padding:10px 12px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600;background:var(--surface)}
+.kv-lad thead th small{display:block;margin-top:3px;font-size:13px;letter-spacing:0;text-transform:none;color:var(--ink-2);font-weight:500}
+.kv-lad thead th.on{color:var(--ink)}
+.kv-lad tbody th{padding:10px 12px;font-size:15px;font-weight:600;background:var(--surface);text-transform:none;letter-spacing:0;color:var(--ink);white-space:normal}
+.kv-lad thead th:first-child{width:22%}
+.kv-lad td{background:var(--surface)}
+.kv-lad td.z-red{background:var(--z-red)} .kv-lad td.z-yel{background:var(--z-yel)} .kv-lad td.z-grn{background:var(--z-grn)}
+.kv-lad td.z-top{background:repeating-linear-gradient(135deg,var(--line) 0 4px,var(--surface) 4px 7px)}
+.kv-lad td.na{padding:10px 12px;font-size:13px;color:var(--muted)}
+.kv-lad td button{all:unset;box-sizing:border-box;display:block;width:100%;padding:10px 12px;cursor:pointer}
+.kv-lad td button b{display:block;font-size:16px;font-weight:700;letter-spacing:-.01em;font-variant-numeric:tabular-nums;color:var(--ink)}
+.kv-lad td button span{display:block;font-size:13px;color:var(--ink-2);margin-top:2px}
+.kv-lad td button:hover b{text-decoration:underline;text-decoration-color:var(--red);text-underline-offset:3px}
+.kv-lad td button:focus-visible{outline:2px solid var(--red);outline-offset:-3px}
+.kv-lad td.on{box-shadow:inset 0 0 0 2px var(--ink)}
+
+/* заголовок списка домов и порядок по цене */
+.kv-hhead{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 20px;margin-top:34px}
+.kv-sort{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:14px;color:var(--ink-2)}
+.kv-hhead+.kv-houses{margin-top:14px}
+
+/* карточка дома */
+.kv-hmeta{margin-top:8px;font-size:15px;color:var(--ink-2)}
+.kv-hap{margin-top:12px;padding:10px 14px;border-left:3px solid var(--red);background:var(--paper-2);font-size:14.5px;color:var(--ink)}
+.kv-hap[hidden]{display:none}
+.kv-hneed{margin-top:14px;font-size:15.5px}
+.kv-htab{margin-top:14px}
+.kv-htab table{min-width:0;width:100%;font-size:14px}
+.kv-htab td,.kv-htab th{padding:8px 10px}
+.kv-htab td:nth-child(2),.kv-htab td:nth-child(3),.kv-htab th:nth-child(2),.kv-htab th:nth-child(3){text-align:right;white-space:nowrap}
+.kv-htab tr.on,.kv-htab tr.on td{background:var(--paper-2);font-weight:600}
+.kv-your{display:inline-block;margin-left:8px;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--red)}
+#hBtns{flex-wrap:wrap;justify-content:flex-start}
+#hBtns .btn{flex:0 1 auto}
+@media(max-width:600px){
+ .kv-lad tbody th,.kv-lad thead th{padding:8px 6px;font-size:12.5px}
+ .kv-lad thead th:first-child{width:25%}
+ .kv-lad thead th{font-size:10px;letter-spacing:.02em}
+ .kv-lad thead th small{font-size:11.5px}
+ .kv-lad td button{padding:8px 6px}
+ .kv-lad td button b{font-size:14px}
+ .kv-lad td button span{font-size:11.5px}
+ .kv-tab td:nth-child(3),.kv-tab th:nth-child(3){display:none}
+ .kv-tab td.kv-edc{white-space:normal;padding-left:2px}
+ .kv-sort>span{display:none}
+ .kv-sort .chip{padding:8px 12px;font-size:13.5px}
+ .kv-htab thead{display:none}
+ .kv-htab table,.kv-htab tbody{display:block}
+ .kv-htab tr{display:grid;grid-template-columns:auto auto;justify-content:space-between;gap:2px 12px;padding:9px 10px;border-bottom:1px solid var(--line)}
+ .kv-htab td,.kv-htab tr.on td{padding:0;border:0;background:none}
+ .kv-htab td:first-child{grid-column:1/-1}
+ .kv-htab td:nth-child(2){text-align:left;color:var(--ink-2)}
+ .kv-ed{display:block;margin:2px 0 4px auto;text-align:right;line-height:1.3}
 }

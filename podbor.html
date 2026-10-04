@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/nota.css?v=5db32095">
-<link rel="stylesheet" href="css/podbor.css?v=b8e29b9a">
+<link rel="stylesheet" href="css/podbor.css?v=6df278fc">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <meta name="description" content="Подбор квартиры в новых домах Москвы: кто будет жить — какая квартира нужна — что помещается в бюджет и в каких домах нашей базы она продаётся. Можно не заполнять и рассказать по телефону.">
 <meta property="og:title" content="Подбор — NOTA">
@@ -62,6 +62,7 @@
 <section class="tight" id="kto"><div class="wrap">
  <p class="ttl">Шаг 1 из 3 · Кто будет жить</p>
  <h2>Сначала люди, потом метры</h2>
+ <p class="lead kv-need">Достаточно отметить, кто будет жить, — или выбрать похожую семью. Остальное можно не трогать: расчёт работает и без него.</p>
  <div class="chipgrp" id="presets"><span class="lb">Начать с похожей семьи</span><div class="chips">
   <button type="button" class="chip" data-preset="solo" aria-pressed="false">Один</button>
   <button type="button" class="chip" data-preset="pair" aria-pressed="false">Пара</button>
@@ -77,11 +78,11 @@
 
  <div class="calc kv-calc">
   <div class="calc-in" id="kf">
-   <div class="row"><label for="adults">Взрослые</label><input type="range" id="adults" min="1" max="6" value="2"><output for="adults">2</output></div>
-   <div class="row"><label for="pairs">Из них пар</label><input type="range" id="pairs" min="0" max="1" value="1"><output for="pairs">1</output></div>
-   <div class="row"><label for="kidsSmall">Дети до 6 лет</label><input type="range" id="kidsSmall" min="0" max="4" value="1"><output for="kidsSmall">1</output></div>
-   <div class="row"><label for="kidsBig">Дети 6–17 лет</label><input type="range" id="kidsBig" min="0" max="4" value="0"><output for="kidsBig">0</output></div>
-   <div class="row"><label for="elders">Бабушки и дедушки</label><input type="range" id="elders" min="0" max="2" value="0"><output for="elders">0</output></div>
+   <div class="row kv-num"><label for="adults">Взрослые</label><input type="range" id="adults" min="1" max="6" value="2"><output for="adults">2</output><span class="kv-step" data-for="adults"><button type="button" data-d="-1" aria-label="Меньше: Взрослые">−</button><b>2</b><button type="button" data-d="1" aria-label="Больше: Взрослые">+</button></span></div>
+   <div class="row kv-num"><label for="pairs">Из них пар (спят в одной спальне)</label><input type="range" id="pairs" min="0" max="1" value="1"><output for="pairs">1</output><span class="kv-step" data-for="pairs"><button type="button" data-d="-1" aria-label="Меньше: Из них пар">−</button><b>1</b><button type="button" data-d="1" aria-label="Больше: Из них пар">+</button></span></div>
+   <div class="row kv-num"><label for="kidsSmall">Дети до 6 лет</label><input type="range" id="kidsSmall" min="0" max="4" value="1"><output for="kidsSmall">1</output><span class="kv-step" data-for="kidsSmall"><button type="button" data-d="-1" aria-label="Меньше: Дети до 6 лет">−</button><b>1</b><button type="button" data-d="1" aria-label="Больше: Дети до 6 лет">+</button></span></div>
+   <div class="row kv-num"><label for="kidsBig">Дети 6–17 лет</label><input type="range" id="kidsBig" min="0" max="4" value="0"><output for="kidsBig">0</output><span class="kv-step" data-for="kidsBig"><button type="button" data-d="-1" aria-label="Меньше: Дети 6–17 лет">−</button><b>0</b><button type="button" data-d="1" aria-label="Больше: Дети 6–17 лет">+</button></span></div>
+   <div class="row kv-num"><label for="elders">Бабушки и дедушки</label><input type="range" id="elders" min="0" max="2" value="0"><output for="elders">0</output><span class="kv-step" data-for="elders"><button type="button" data-d="-1" aria-label="Меньше: Бабушки и дедушки">−</button><b>0</b><button type="button" data-d="1" aria-label="Больше: Бабушки и дедушки">+</button></span></div>
    <div class="chipgrp" data-many><span class="lb">Ещё в доме</span><div class="chips">
     <button type="button" class="chip" data-flag="nanny" aria-pressed="false">няня или помощница живёт с нами</button>
    </div></div>
@@ -133,7 +134,7 @@
       <button type="button" class="chip" data-flag="stroller" aria-pressed="true">коляска</button>
       <button type="button" class="chip" data-flag="sport" aria-pressed="false">лыжи, сноуборд, сап, гольф</button>
      </div></div>
-     <div class="row"><label for="bikes">Велосипеды и самокаты</label><input type="range" id="bikes" min="0" max="8" value="0"><output for="bikes">0</output></div>
+     <div class="row kv-num"><label for="bikes">Велосипеды и самокаты</label><input type="range" id="bikes" min="0" max="8" value="0"><output for="bikes">0</output><span class="kv-step" data-for="bikes"><button type="button" data-d="-1" aria-label="Меньше: Велосипеды и самокаты">−</button><b>0</b><button type="button" data-d="1" aria-label="Больше: Велосипеды и самокаты">+</button></span></div>
     </details>
    </div>
   </div>
@@ -153,7 +154,8 @@
  <div class="kv-detail">
   <div class="kv-d-rooms">
    <p class="ttl">Из чего складывается</p>
-   <div class="tablewrap kv-tab"><table><thead><tr><th>Помещение</th><th>м²</th><th>Зачем</th></tr></thead><tbody id="rRooms"></tbody></table></div>
+   <p class="hint kv-edit-h">Лишнее можно убрать, площадь пересчитается. Спальни зависят от состава семьи выше.</p>
+   <div class="tablewrap kv-tab"><table><thead><tr><th>Помещение</th><th>м²</th><th>Зачем</th><th><span class="vh">Правка</span></th></tr></thead><tbody id="rRooms"></tbody></table></div>
   </div>
   <div class="kv-d-side">
    <div>
@@ -172,31 +174,46 @@
 <section class="method" id="byudzhet"><div class="wrap">
  <p class="ttl">Шаг 2 из 3 · Бюджет</p>
  <h2 id="bTitle">Что помещается в ваш бюджет</h2>
+ <p class="lead kv-need">Укажите вилку в миллионах — или нажмите «Пока не считали»: покажем, сколько стоит такая квартира.</p>
  <div class="kv-budget">
   <div class="kv-bctl">
    <div class="bud" data-name="budget" data-value="Бюджет от 30 до 60 млн">
     <div class="bud-h"><span class="bud-l">Бюджет, млн ₽</span><span class="bud-in"><input type="number" class="bud-a" min="15" step="1" value="30" inputmode="numeric" aria-label="Бюджет от, млн ₽"><i>—</i><input type="number" class="bud-b" min="15" step="1" value="60" placeholder="∞" inputmode="numeric" aria-label="Бюджет до, млн ₽; пусто — без ограничения"></span></div>
     <div class="bud-r"><input type="range" class="r-a" min="0" max="22" step="1" value="3" aria-label="Бюджет от"><input type="range" class="r-b" min="0" max="22" step="1" value="9" aria-label="Бюджет до"></div>
+    <div class="kv-bstep"><div><span>от, млн ₽</span><span class="kv-step" data-bud="a"><button type="button" data-d="-1" aria-label="Меньше нижняя граница">−</button><b>30</b><button type="button" data-d="1" aria-label="Больше нижняя граница">+</button></span></div><div><span>до, млн ₽</span><span class="kv-step" data-bud="b"><button type="button" data-d="-1" aria-label="Меньше верхняя граница">−</button><b>60</b><button type="button" data-d="1" aria-label="Больше верхняя граница">+</button></span></div></div>
     <div class="bud-f"><span>от 15</span><button class="linkbtn bud-x" type="button">Пока не считали</button><span>без ограничения</span></div>
    </div>
    <div class="sel" data-name="klass"><button type="button" class="sel-btn">Любой класс дома</button>
     <ul class="sel-list"><li data-v="">Любой класс дома</li><li data-v="бизнес">Бизнес</li><li data-v="премиум">Премиум</li><li data-v="элит">Элитный и делюкс</li></ul></div>
+   <div class="sel" data-name="status"><button type="button" class="sel-btn">Квартиры и апартаменты</button>
+    <ul class="sel-list"><li data-v="">Квартиры и апартаменты</li><li data-v="kv">Только квартиры</li><li data-v="ap">Только апартаменты</li></ul></div>
+   <p class="hint kv-aphint">Апартаменты — нежилой статус: без постоянной прописки, налог и коммунальные платежи выше, семейная ипотека не действует.</p>
   </div>
   <div class="kv-bout">
    <div class="kv-scale" id="kvScale"></div>
    <div class="kv-advice" id="kvAdvice"><p class="kv-verdict">Загружаем цены из базы…</p></div>
   </div>
  </div>
+ <div class="kv-ladder" id="kvLadder"></div>
+ <div class="kv-hhead"><p class="ttl" id="mTitle">Дома из базы</p>
+  <div class="kv-sort" role="group" aria-label="Порядок по цене"><span>По цене:</span><button type="button" class="chip" data-sort="desc" aria-pressed="true">сначала дорогие</button><button type="button" class="chip" data-sort="asc" aria-pressed="false">сначала доступные</button></div></div>
  <div class="tablewrap kv-houses"><table><thead><tr><th>Дом</th><th>Класс</th><th>Район</th><th>Площади этого формата</th><th>Цена нужной квартиры</th></tr></thead><tbody id="mRows"></tbody></table></div>
  <div class="btns btns-c"><button type="button" class="btn btn-l" id="mMore" hidden>Показать все</button></div>
- <p class="hint" id="mNote">Цена нужной квартиры в доме: от цены метра самого доступного лота этого формата до цены метра самого дорогого, умноженных на нужную площадь, и не дороже самого дорогого лота. Когда задана вилка, сначала идут дома, где из неё можно потратить больше. Дома и цены — база NOTA, срез 23 сентября 2026; у конкретной квартиры цена будет другой.</p>
+ <p class="hint" id="mNote">Цена нужной квартиры в доме: от цены метра самого доступного лота этого формата до цены метра самого дорогого, умноженных на нужную площадь, и не дороже самого дорогого лота. Нажмите на дом — откроется его карточка: что там продаётся и по какой цене. Дома и цены — база NOTA, срез 23 сентября 2026; у конкретной квартиры цена будет другой.</p>
 </div></section>
 
-<section class="tight" id="vesa"><div class="wrap">
- <p class="ttl">Шаг 3 из 3 · По желанию</p>
- <h2>Что для вас весит больше</h2>
- <p class="lead">Ползунки помогают выбрать между домами одного бюджета. Шаг можно пропустить и сразу отправить запрос: всё, что вы отметили выше, придёт к нам вместе с ним.</p>
- <div class="ank compact" id="anketa">
+<section class="tight" id="anketa"><div class="wrap">
+ <p class="ttl">Шаг 3 из 3 · Отправить</p>
+ <h2>Соберём подборку под ваш расчёт</h2>
+ <p class="lead kv-need">Всё, что вы отметили выше, придёт к нам вместе с запросом. Ответим в тот же день: пять домов под вашу семью и бюджет и отдельный список тех, что не подошли, с причиной.</p>
+ <div class="kv-send">
+  <label class="res-note"><span class="ttl">Что ещё важно</span><textarea id="anote" rows="2" placeholder="Своими словами: этаж, вид, школа рядом, срок въезда — всё, чего нет выше"></textarea></label>
+  <div class="btns"><button class="btn btn-l" type="button" id="callme2">Лучше позвоните</button><button class="btn" type="button" id="ask">Соберите мне подборку</button></div>
+ </div>
+ <div class="faq kv-more kv-prio">
+  <details>
+   <summary>Точнее, по желанию: что важнее — место, вид, дом, двор</summary>
+   <div class="ank compact">
   <div class="ank-l">
    <p class="ttl" style="margin-bottom:16px">Что для вас весит больше</p>
    <div id="sliders"></div>
@@ -210,17 +227,14 @@
    <div class="sel" data-name="srok"><button type="button" class="sel-btn">Хочу въехать сразу</button>
     <ul class="sel-list"><li>Хочу въехать сразу</li><li>Готов подождать до двух лет</li><li>Не тороплюсь</li><li>Зависит от объекта</li></ul></div>
   </div>
-  <div class="result">
-   <p class="ttl" style="margin-bottom:14px">Что для вас важно</p>
-   <div class="rank" id="rank"></div>
-   <p id="verdict" style="color:var(--ink-2)"></p>
-   <div class="res-row">
-    <label class="res-note"><span class="ttl">Что ещё важно</span><textarea id="anote" rows="2" placeholder="Своими словами: этаж, вид, школа рядом, срок въезда — всё, чего нет выше"></textarea></label>
-    <button class="btn" type="button" id="ask">Соберите мне подборку</button>
+    <div class="result">
+     <p class="ttl" style="margin-bottom:14px">Что для вас важно</p>
+     <div class="rank" id="rank"></div>
+     <p id="verdict" style="color:var(--ink-2)"></p>
+    </div>
    </div>
-  </div>
+  </details>
  </div>
- <p class="hint">После отправки запрос придёт к нам, а вам — подборка: пять домов под состав семьи, бюджет и веса и отдельный список тех, что не подошли, с причиной по каждому.</p>
 </div></section>
 
 <section class="method">
@@ -363,6 +377,21 @@
  </div>
 </div>
 
+<div class="modal" id="kvHouse" hidden>
+ <div class="modal-bg" data-close></div>
+ <div class="modal-in kv-wide" role="dialog" aria-modal="true" aria-labelledby="hTitle">
+  <button class="modal-x" type="button" data-close aria-label="Закрыть">×</button>
+  <p class="ttl">Дом из базы NOTA</p>
+  <h3 id="hTitle"></h3>
+  <p class="kv-hmeta" id="hMeta"></p>
+  <p class="kv-hap" id="hAp" hidden></p>
+  <div class="kv-hneed" id="hNeed"></div>
+  <div class="tablewrap kv-htab"><table><thead><tr><th>Что продаётся</th><th>Площади</th><th>Цены</th></tr></thead><tbody id="hRows"></tbody></table></div>
+  <div class="btns" id="hBtns"></div>
+  <p class="hint">Цены и площади — база NOTA, срез 23 сентября 2026. Планировки конкретных квартир пришлём после разговора: что есть в продаже, у застройщика меняется каждую неделю.</p>
+ </div>
+</div>
+
 <div class="pickbar" id="kbar" hidden>
  <span><b id="bArea">—</b> <span id="bFmt"></span></span>
  <a class="btn" href="#res">К расчёту</a>
@@ -392,7 +421,7 @@
  </div>
 </footer>
 <script src="js/nota.js?v=dd52641e"></script>
-<script src="js/konf-core.js?v=8f419d90"></script>
-<script src="js/podbor.js?v=0fd2a74f"></script>
+<script src="js/konf-core.js?v=ec1487d9"></script>
+<script src="js/podbor.js?v=e8cde494"></script>
 </body>
 </html>
