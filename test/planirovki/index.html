@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<title>Планировки от 16 до 2 371 м²: сколько комнат, санузлов и метров нужно семье — NOTA</title>
+<title>Какие бывают планировки: от 16 до 2 371 м² — NOTA</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="color-scheme" content="light only">
@@ -10,65 +10,10 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../css/nota.css?v=7b772149">
+<link rel="stylesheet" href="planirovki.css">
 <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
-<meta name="description" content="Планировки в новостройках Москвы бизнес-класса и выше: от 16,4 до 2 371 м². Посчитайте квартиру по составу семьи — помещения с метрами, формат в объявлениях и дома из базы NOTA, где такие квартиры продаются сейчас.">
-<meta property="og:title" content="Планировки от 16 до 2 371 м² — разбор NOTA">
-<style>
-/* Только то, чего нет в css/nota.css: конфигуратор (группы, липкий результат, тёмная карточка), планы лотов, шкала */
-.calc-in .kgrp+.kgrp{margin-top:22px;padding-top:20px;border-top:1px solid var(--line)}
-.calc-in .kgrp>.ttl{margin-bottom:4px}
-.calc-in .calc-rem{padding:12px 0 2px}
-.calc-in .fields{margin-top:12px}
-.calc .row output{flex:0 0 40px;text-align:right;font-weight:600}
-.kstick>*{flex:none}
-.kstick{position:sticky;top:90px;max-height:calc(100vh - 106px);overflow:auto;display:flex;flex-direction:column;gap:18px}
-.kcard{padding:clamp(20px,2.2vw,26px)}
-.kcard .karea{display:block;font-size:clamp(40px,4.6vw,58px);font-weight:800;letter-spacing:-.04em;line-height:1;margin-top:10px;font-variant-numeric:tabular-nums}
-.kcard .karea small{font-size:.4em;font-weight:600;letter-spacing:-.01em}
-.kcard .kfmt{font-size:16.5px;font-weight:600;line-height:1.4;margin-top:12px;letter-spacing:-.015em}
-.kcard .kmin{font-size:13.5px;color:rgba(255,255,255,.66);margin-top:6px}
-.kcard .kfacts{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
-.kcard .kfacts span{font-size:12.5px;border:1px solid rgba(255,255,255,.28);padding:3px 9px;border-radius:2px;color:rgba(255,255,255,.88)}
-.ktab{font-size:14px}
-.ktab td{padding:8px 10px}
-.ktab td:nth-child(2){white-space:nowrap}
-.ktab tr.opt td{color:var(--muted)}
-.ktab .kopt{font-size:12px;color:var(--muted);font-weight:400}
-.kplans{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:12px}
-.kplans a{text-decoration:none;font-size:13px;line-height:1.35;color:var(--ink-2);display:flex;flex-direction:column;gap:6px}
-.kplans img{width:100%;aspect-ratio:3/2;object-fit:contain;background:#fff;border:1px solid var(--line);display:block;padding:4px}
-.kplans a:hover span{color:var(--ink)}
-.kshare{display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px;margin-top:22px}
-.kshare .hint{margin:0;max-width:56ch}
-.kmatch-more{margin-top:14px}
-.vh{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
-.plan .ph img{object-fit:contain;background:#fff;cursor:zoom-in;padding:10px;filter:none}
-.plan .ph{border-bottom:1px solid var(--line)}
-.plan h3 b{font-weight:800}
-.steps .step p+p{margin-top:8px}
-.scn p{font-size:15px;line-height:1.5;color:var(--ink-2);margin-top:8px}
-.scn p b{color:var(--ink);font-weight:600}
-.kscale{display:block;width:100%;min-width:640px;height:auto}
-.kscale .ax{stroke:var(--ink);stroke-width:1.2}
-.kscale .tick{stroke:var(--muted)}
-.kscale .tl{font:500 11px Onest,Arial,sans-serif;fill:var(--muted);text-anchor:middle}
-.kscale .dot{fill:var(--ink)}.kscale .dot.big{fill:var(--red)}
-.kscale .ld{stroke:var(--hair)}
-.kscale .v{font:800 15px Onest,Arial,sans-serif;fill:var(--ink)}
-.kscale .n{font:400 11.5px Onest,Arial,sans-serif;fill:var(--ink-2)}
-#zoom .modal-in{width:min(1100px,100%);padding:clamp(18px,2.4vw,28px)}
-#zoom img{display:block;max-width:100%;max-height:76vh;margin:22px auto 0}
-@media(max-width:900px){.kstick{position:static;max-height:none;overflow:visible}}
-@media(max-width:600px){
- .kplans{grid-template-columns:repeat(2,minmax(0,1fr))}
- .kshare .btn{width:100%;justify-content:center}
- .ktab thead{display:none}
- .ktab tr{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:12px;padding:10px 12px;border-bottom:1px solid var(--line)}
- .ktab td{border:0;padding:0}
- .ktab td:nth-child(3){grid-column:1/-1;font-size:13px;line-height:1.45;color:var(--muted);margin-top:2px}
- .ktab td:nth-child(3):empty{display:none}
-}
-</style>
+<meta name="description" content="Планировки в новостройках Москвы бизнес-класса и выше: от 16,4 до 2 371 м². Двенадцать настоящих лотов в одном масштабе, площади по классам, пять принципов хорошей планировки и девять сценариев: кому сколько комнат, санузлов и метров.">
+<meta property="og:title" content="Какие бывают планировки — NOTA">
 <meta property="og:image" content="https://nota.expert/img/01-hero-maket-og.jpg">
 <link rel="canonical" href="https://nota.expert/test/planirovki/">
 <meta property="og:url" content="https://nota.expert/test/planirovki/">
@@ -102,274 +47,197 @@
 <main>
 <section class="first tight-b"><div class="wrap">
  <p class="crumbs"><a href="../../razbory.html">Разборы</a> <span>/</span> Планировки</p>
- <p class="ttl">Разбор · сверка 3 октября 2026</p>
- <h1>Планировки от 16 до 2&nbsp;371&nbsp;м²</h1>
- <p class="lead">На заметку: в одном и том же доме бизнес-класса продаются квартиры от 28 до 540&nbsp;м², так что класс дома ничего не говорит о планировке. Квартиру выбирают по числу взрослых, которым нужна своя дверь и свой санузел, а не по числу комнат. Евроформат экономит метры для одного-двух человек и начинает мешать, когда в доме появляется третий взрослый, ребёнок старше пяти лет или гость с ночёвкой.</p>
- <div class="btns" style="justify-content:flex-start"><a class="btn" href="#podbor">Посчитать планировку под свою семью</a></div>
+ <p class="ttl">Планировки · аналитика NOTA</p>
+ <h1>Какие бывают планировки: от 16 до 2&nbsp;371&nbsp;м²</h1>
+ <p class="lead">Что продаётся в новых домах бизнес-класса и выше, какие решения делают планировку удобной и кому что подходит: паре, семье с детьми и коляской, трём поколениям, собаке, велосипедам и друзьям, которые остаются ночевать.</p>
+ <p class="quote">В одном и том же доме бизнес-класса продаются квартиры от 28 до 540&nbsp;м², так что класс дома ничего не говорит о планировке. Квартиру выбирают по числу взрослых, которым нужна своя дверь и свой санузел, а не по числу комнат. Евроформат экономит метры для одного-двух человек и начинает мешать, когда в доме появляется третий взрослый, ребёнок старше пяти лет или гость с ночёвкой.</p>
+ <div class="btns" style="justify-content:flex-start"><a class="btn" href="podbor.html">Подобрать планировку под свою семью</a> <a class="btn btn-l" href="#plany">Смотреть 12 планировок</a></div>
+ <nav class="chips pl-tabs" aria-label="Разделы"><a class="chip" href="index.html" aria-current="page">Как бывает</a><a class="chip" href="podbor.html">Подбор</a></nav>
 </div></section>
 
 <section class="tight"><div class="wrap">
- <div class="h-stats">
-  <div><b>16,4 м²</b><span>самый маленький лот в нашей базе: апартамент-студия в «Зорге 9», бизнес</span></div>
-  <div><b>2&nbsp;371 м²</b><span>самый большой: «приватная вилла» в «Лё Доме», делюкс, 7,5&nbsp;млрд&nbsp;₽</span></div>
-  <div><b>19×</b><span>разброс площадей внутри одного дома: «Остров», от 28 до 539,6&nbsp;м²</span></div>
- </div>
- <p class="hint">Ещё одна цифра: квартиры на четыре комнаты и больше — 4&nbsp;% лотов бизнес-класса в нашей базе, в элите — 22&nbsp;%. База NOTA, срез предложения по комнатности от 23 сентября 2026: 1&nbsp;149 строк по 314 домам. Остальные источники — в конце разбора.</p>
-</div></section>
-
-<section class="method" id="podbor"><div class="wrap">
- <p class="ttl">Подбор наоборот</p>
- <h2>Расскажите, кто будет жить, — посчитаем квартиру</h2>
- <p class="lede" style="margin-top:18px">Не «сколько комнат хотите», а кто живёт, как часто остаются гости и где хранить велосипеды. Ответ — список помещений с метрами, формат в объявлениях и дома из нашей базы, где такие квартиры продаются сейчас.</p>
-
- <div class="chipgrp">
-  <span class="lb">Начать со сценария</span>
-  <div class="chips" id="kpre">
-   <button class="chip" type="button" data-preset="solo" aria-pressed="false">Один</button>
-   <button class="chip" type="button" data-preset="pair" aria-pressed="false">Пара</button>
-   <button class="chip" type="button" data-preset="baby" aria-pressed="true">Пара и малыш</button>
-   <button class="chip" type="button" data-preset="family" aria-pressed="false">Семья, двое школьников</button>
-   <button class="chip" type="button" data-preset="gen3" aria-pressed="false">Три поколения</button>
-   <button class="chip" type="button" data-preset="twopairs" aria-pressed="false">Две пары</button>
-   <button class="chip" type="button" data-preset="active" aria-pressed="false">Собака и велосипеды</button>
-   <button class="chip" type="button" data-preset="party" aria-pressed="false">Друзья каждую неделю</button>
-  </div>
- </div>
-
- <div class="calc" id="konf" style="margin-top:22px">
-  <form class="calc-in" id="kf" autocomplete="off" novalidate>
-   <div class="kgrp">
-    <p class="ttl">Сколько простора</p>
-    <div class="calc-rem">
-     <div class="chips" data-seg="space"><button class="chip" type="button" data-v="0" aria-pressed="false">компактно</button><button class="chip" type="button" data-v="1" aria-pressed="true">комфортно</button><button class="chip" type="button" data-v="2" aria-pressed="false">просторно</button></div>
-     <p class="hint" id="spaceHint" style="margin-top:10px">Комнаты по нормальным размерам, необязательное — помечено.</p>
-    </div>
-   </div>
-
-   <div class="kgrp">
-    <p class="ttl">Кто живёт</p>
-    <div class="row"><label for="adults">Взрослые: вы, партнёр, взрослые дети</label><input type="range" id="adults" min="1" max="6" step="1" value="2"><output for="adults"></output></div>
-    <div class="row"><label for="pairs">Из них пар, которые спят вместе</label><input type="range" id="pairs" min="0" max="3" step="1" value="1"><output for="pairs"></output></div>
-    <div class="row"><label for="kidsSmall">Дети до 6 лет</label><input type="range" id="kidsSmall" min="0" max="4" step="1" value="1"><output for="kidsSmall"></output></div>
-    <div class="row"><label for="kidsBig">Дети 6–17 лет</label><input type="range" id="kidsBig" min="0" max="4" step="1" value="0"><output for="kidsBig"></output></div>
-    <div class="row"><label for="elders">Бабушки и дедушки</label><input type="range" id="elders" min="0" max="2" step="1" value="0"><output for="elders"></output></div>
-    <div class="calc-rem"><div class="chips"><button class="chip" type="button" data-flag="nanny" aria-pressed="false">Няня или помощница живёт с вами</button></div></div>
-   </div>
-
-   <div class="kgrp">
-    <p class="ttl">Как живёте</p>
-    <div class="calc-rem"><span class="lbl">Гости с ночёвкой</span>
-     <div class="chips" data-seg="guests"><button class="chip" type="button" data-v="0" aria-pressed="true">почти никогда</button><button class="chip" type="button" data-v="1" aria-pressed="false">пару раз в год</button><button class="chip" type="button" data-v="2" aria-pressed="false">каждый месяц</button></div></div>
-    <div class="calc-rem"><span class="lbl">Друзья в гостях, ужины, вечеринки</span>
-     <div class="chips" data-seg="party"><button class="chip" type="button" data-v="0" aria-pressed="true">редко</button><button class="chip" type="button" data-v="1" aria-pressed="false">раз в месяц</button><button class="chip" type="button" data-v="2" aria-pressed="false">каждую неделю</button></div></div>
-    <div class="calc-rem"><span class="lbl">Работают из дома</span>
-     <div class="chips" data-seg="wfh"><button class="chip" type="button" data-v="0" aria-pressed="true">никто</button><button class="chip" type="button" data-v="1" aria-pressed="false">один</button><button class="chip" type="button" data-v="2" aria-pressed="false">двое</button></div></div>
-    <div class="calc-rem"><span class="lbl">Кухня</span>
-     <div class="chips" data-seg="cook"><button class="chip" type="button" data-v="0" aria-pressed="true">готовим редко</button><button class="chip" type="button" data-v="1" aria-pressed="false">каждый день</button><button class="chip" type="button" data-v="2" aria-pressed="false">много, с запахами</button></div></div>
-   </div>
-
-   <div class="kgrp">
-    <p class="ttl">Ещё комнаты</p>
-    <div class="calc-rem"><div class="chips" role="group" aria-label="Дополнительные комнаты"><button class="chip" type="button" data-extra="study" aria-pressed="false">кабинет</button><button class="chip" type="button" data-extra="lib" aria-pressed="false">библиотека</button><button class="chip" type="button" data-extra="wardrobe" aria-pressed="false">гардеробная-комната</button><button class="chip" type="button" data-extra="play" aria-pressed="false">игровая</button><button class="chip" type="button" data-extra="gym" aria-pressed="false">спортзал</button><button class="chip" type="button" data-extra="cinema" aria-pressed="false">кинозал</button><button class="chip" type="button" data-extra="hobby" aria-pressed="false">мастерская</button><button class="chip" type="button" data-extra="guest" aria-pressed="false">гостевая</button><button class="chip" type="button" data-extra="wine" aria-pressed="false">винная комната</button><button class="chip" type="button" data-extra="spa" aria-pressed="false">сауна или хаммам</button></div></div>
-   </div>
-
-   <div class="kgrp">
-    <p class="ttl">Животные и вещи</p>
-    <div class="calc-rem"><span class="lbl">Собака</span>
-     <div class="chips" data-seg="dog"><button class="chip" type="button" data-v="0" aria-pressed="true">нет</button><button class="chip" type="button" data-v="1" aria-pressed="false">небольшая</button><button class="chip" type="button" data-v="2" aria-pressed="false">крупная</button></div></div>
-    <div class="calc-rem"><span class="lbl">Ещё в доме</span>
-     <div class="chips"><button class="chip" type="button" data-flag="cat" aria-pressed="false">Кошка</button><button class="chip" type="button" data-flag="stroller" aria-pressed="true">Коляска</button><button class="chip" type="button" data-flag="sport" aria-pressed="false">Лыжи, сноуборд, сап, гольф</button></div></div>
-    <div class="row"><label for="bikes">Велосипеды и самокаты</label><input type="range" id="bikes" min="0" max="8" step="1" value="0"><output for="bikes"></output></div>
-   </div>
-
-   <div class="kgrp">
-    <p class="ttl">Рамки</p>
-    <div class="fields">
-     <div><span class="calc-rem"><span class="lbl">Бюджет до</span></span>
-      <div class="sel" data-name="budget"><button type="button" class="sel-btn">не важно</button>
-       <ul class="sel-list"><li data-v="0">не важно</li><li data-v="30">30 млн ₽</li><li data-v="50">50 млн ₽</li><li data-v="80">80 млн ₽</li><li data-v="120">120 млн ₽</li><li data-v="200">200 млн ₽</li><li data-v="400">400 млн ₽</li><li data-v="1000">1 млрд ₽</li></ul></div></div>
-     <div><span class="calc-rem"><span class="lbl">Класс дома</span></span>
-      <div class="sel" data-name="klass"><button type="button" class="sel-btn">любой</button>
-       <ul class="sel-list"><li data-v="">любой</li><li data-v="бизнес">бизнес</li><li data-v="премиум">премиум</li><li data-v="элит">элитный и делюкс</li></ul></div></div>
-    </div>
-   </div>
-  </form>
-
-  <div class="calc-out" aria-live="polite">
-   <div class="kstick">
-    <div class="analytics kcard">
-     <p class="ttl">Вам нужна квартира</p>
-     <b class="karea"><span id="rArea">—</span><small> м²</small></b>
-     <p class="kfmt" id="rFormat">—</p>
-     <p class="kmin" id="rMin"></p>
-     <div class="kfacts" id="rFacts"></div>
-    </div>
-    <div class="co">
-     <span class="k">Из чего складывается</span>
-     <div class="tablewrap" style="margin-top:10px"><table class="ktab"><thead><tr><th>Помещение</th><th>м²</th><th>Зачем</th></tr></thead><tbody id="rRooms"></tbody></table></div>
-    </div>
-   </div>
-  </div>
- </div>
-
- <div class="grid g2" style="margin-top:22px">
-  <div>
-   <h3>Что проверить в доме</h3>
-   <ul id="rHouse" style="margin-top:12px"></ul>
-  </div>
-  <div>
-   <h3>Похоже по планировке</h3>
-   <div class="kplans" id="rPlans"></div>
-  </div>
- </div>
-
- <h3 id="mTitle" style="margin-top:42px">Где такие квартиры продаются сейчас</h3>
- <p class="hint" id="mNote" style="margin-top:8px"></p>
- <div class="tablewrap" style="margin-top:14px"><table class="t-cards" id="mTab"><thead><tr><th>Дом</th><th>Класс</th><th>Район</th><th>Площади этого формата</th><th>Оценка за нужные метры</th></tr></thead><tbody id="mRows"></tbody></table></div>
- <button type="button" id="mMore" class="btn btn-l kmatch-more" hidden>Показать все</button>
- <div class="kshare">
-  <button type="button" class="btn" id="kCopy">Скопировать расчёт</button>
-  <p class="hint">и пришлите нам в <a href="https://t.me/nota_estate">Telegram</a> или по телефону <a href="tel:+74950216039">+7 495 021-60-39</a> — соберём подборку из пяти домов под этот расчёт.</p>
-  <textarea id="kText" class="vh" readonly aria-hidden="true" tabindex="-1"></textarea>
- </div>
- <p class="hint">Расчёт — ориентир NOTA, а не норматив: метры помещений взяты из рекомендаций архитекторов и девелоперов (РБК, МК, Коммерсантъ, Sminex) и наших правил «у каждого взрослого своя дверь, у каждой пары свой санузел». Дома — база NOTA, срез 23 сентября 2026. Цена — оценка: цена метра самого дешёвого лота этого формата, умноженная на нужную площадь; у конкретной квартиры будет другой.</p>
+ <div class="h-stats"><div><b>16,4 м²</b><span>самый маленький лот в нашей базе: апартамент-студия в «Зорге 9», бизнес</span></div><div><b>2&nbsp;371 м²</b><span>самый большой: «приватная вилла» в «Лё Доме», делюкс, 7,5&nbsp;млрд&nbsp;₽</span></div><div><b>19×</b><span>разброс площадей внутри одного дома: «Остров», от 28 до 539,6&nbsp;м²</span></div></div>
+ <p class="hint">Квартиры на 4+ комнаты — 4&nbsp;% лотов бизнес-класса в нашей базе, в элите — 22&nbsp;%. База NOTA, срез предложения по комнатности от 23 сентября 2026: 1&nbsp;149 строк по 314 домам. Рыночные цифры — у каждой источник в конце страницы.</p>
 </div></section>
 
 <section><div class="wrap">
  <p class="ttl">Шкала</p>
  <h2>От кладовки с кроватью до особняка на этаже</h2>
  <p class="lede" style="margin-top:18px">Лоты, о которых пойдёт речь, на одной логарифмической шкале. Красным — лоты больше 1&nbsp;000&nbsp;м².</p>
- <div class="tablewrap" style="margin-top:26px;padding:10px 12px"><svg viewBox="0 0 1000 170" role="img" aria-label="Шкала площадей от 16,4 до 2 371 м², логарифмическая" class="kscale">
+ <div class="tablewrap" style="margin-top:26px;padding:10px 12px"><svg viewBox="0 0 1000 170" role="img" aria-label="Шкала площадей от 16,4 до 2371 м², логарифмическая" class="kscale">
 <line x1="30" y1="96" x2="970" y2="96" class="ax"/>
-<line x1="117" y1="90" x2="117" y2="102" class="tick"/><text x="117" y="122" class="tl">20 м²</text>
-<line x1="273" y1="90" x2="273" y2="102" class="tick"/><text x="273" y="122" class="tl">50 м²</text>
-<line x1="391" y1="90" x2="391" y2="102" class="tick"/><text x="391" y="122" class="tl">100 м²</text>
-<line x1="509" y1="90" x2="509" y2="102" class="tick"/><text x="509" y="122" class="tl">200 м²</text>
-<line x1="665" y1="90" x2="665" y2="102" class="tick"/><text x="665" y="122" class="tl">500 м²</text>
-<line x1="783" y1="90" x2="783" y2="102" class="tick"/><text x="783" y="122" class="tl">1000 м²</text>
-<line x1="901" y1="90" x2="901" y2="102" class="tick"/><text x="901" y="122" class="tl">2000 м²</text>
-<circle cx="83.2" cy="96" r="6" class="dot"/><line x1="83.2" y1="88" x2="83.2" y2="52" class="ld"/>
-<text x="83.2" y="30" class="v" text-anchor="start">16,4</text><text x="83.2" y="46" class="n" text-anchor="start">Зорге 9</text>
-<circle cx="148.7" cy="96" r="6" class="dot"/><line x1="148.7" y1="104" x2="148.7" y2="124" class="ld"/>
-<text x="148.7" y="138" class="v" text-anchor="middle">24,1</text><text x="148.7" y="154" class="n" text-anchor="middle">Хай Лайф</text>
-<circle cx="176.7" cy="96" r="6" class="dot"/><line x1="176.7" y1="88" x2="176.7" y2="52" class="ld"/>
-<text x="176.7" y="30" class="v" text-anchor="middle">28,4</text><text x="176.7" y="46" class="n" text-anchor="middle">Остров</text>
-<circle cx="301.1" cy="96" r="6" class="dot"/><line x1="301.1" y1="104" x2="301.1" y2="124" class="ld"/>
-<text x="301.1" y="138" class="v" text-anchor="middle">59</text><text x="301.1" y="154" class="n" text-anchor="middle">Крылатская 33</text>
-<circle cx="405.5" cy="96" r="6" class="dot"/><line x1="405.5" y1="88" x2="405.5" y2="52" class="ld"/>
-<text x="405.5" y="30" class="v" text-anchor="middle">108,9</text><text x="405.5" y="46" class="n" text-anchor="middle">Крылатская 33</text>
-<circle cx="535.3" cy="96" r="6" class="dot"/><line x1="535.3" y1="104" x2="535.3" y2="124" class="ld"/>
-<text x="535.3" y="138" class="v" text-anchor="middle">233,4</text><text x="535.3" y="154" class="n" text-anchor="middle">Остров</text>
-<circle cx="628.2" cy="96" r="6" class="dot"/><line x1="628.2" y1="88" x2="628.2" y2="52" class="ld"/>
-<text x="628.2" y="30" class="v" text-anchor="middle">403</text><text x="628.2" y="46" class="n" text-anchor="middle">Лё Дом</text>
-<circle cx="786.7" cy="96" r="6" class="dot big"/><line x1="786.7" y1="104" x2="786.7" y2="124" class="ld"/>
-<text x="786.7" y="138" class="v" text-anchor="middle">1 022</text><text x="786.7" y="154" class="n" text-anchor="middle">Дом спорта</text>
-<circle cx="929.9" cy="96" r="6" class="dot big"/><line x1="929.9" y1="88" x2="929.9" y2="52" class="ld"/>
-<text x="929.9" y="30" class="v" text-anchor="end">2 371</text><text x="929.9" y="46" class="n" text-anchor="end">Лё Дом</text>
+<line x1="117.0" y1="90" x2="117.0" y2="102" class="tick"/><text x="117.0" y="122" class="tl">20 м²</text>
+<line x1="273.0" y1="90" x2="273.0" y2="102" class="tick"/><text x="273.0" y="122" class="tl">50 м²</text>
+<line x1="391.0" y1="90" x2="391.0" y2="102" class="tick"/><text x="391.0" y="122" class="tl">100 м²</text>
+<line x1="509.0" y1="90" x2="509.0" y2="102" class="tick"/><text x="509.0" y="122" class="tl">200 м²</text>
+<line x1="665.0" y1="90" x2="665.0" y2="102" class="tick"/><text x="665.0" y="122" class="tl">500 м²</text>
+<line x1="783.0" y1="90" x2="783.0" y2="102" class="tick"/><text x="783.0" y="122" class="tl">1000 м²</text>
+<line x1="901.0" y1="90" x2="901.0" y2="102" class="tick"/><text x="901.0" y="122" class="tl">2000 м²</text>
+<circle cx="83.2" cy="96" r="6" class="dot"/>
+<line x1="83.2" y1="88" x2="83.2" y2="52" class="ld"/>
+<text x="83.2" y="30" class="v" text-anchor="start">16,4</text><text x="83.2" y="46" class="nm" text-anchor="start">Зорге 9</text>
+<circle cx="148.7" cy="96" r="6" class="dot"/>
+<line x1="148.7" y1="104" x2="148.7" y2="124" class="ld"/>
+<text x="148.7" y="138" class="v" text-anchor="middle">24,1</text><text x="148.7" y="154" class="nm" text-anchor="middle">Хай Лайф</text>
+<circle cx="177.3" cy="96" r="6" class="dot"/>
+<line x1="177.3" y1="88" x2="177.3" y2="52" class="ld"/>
+<text x="177.3" y="30" class="v" text-anchor="middle">28,4</text><text x="177.3" y="46" class="nm" text-anchor="middle">Остров</text>
+<circle cx="301.1" cy="96" r="6" class="dot"/>
+<line x1="301.1" y1="104" x2="301.1" y2="124" class="ld"/>
+<text x="301.1" y="138" class="v" text-anchor="middle">59</text><text x="301.1" y="154" class="nm" text-anchor="middle">Крылатская 33</text>
+<circle cx="405.5" cy="96" r="6" class="dot"/>
+<line x1="405.5" y1="88" x2="405.5" y2="52" class="ld"/>
+<text x="405.5" y="30" class="v" text-anchor="middle">108,9</text><text x="405.5" y="46" class="nm" text-anchor="middle">Крылатская 33</text>
+<circle cx="535.3" cy="96" r="6" class="dot"/>
+<line x1="535.3" y1="104" x2="535.3" y2="124" class="ld"/>
+<text x="535.3" y="138" class="v" text-anchor="middle">233,4</text><text x="535.3" y="154" class="nm" text-anchor="middle">Остров</text>
+<circle cx="628.2" cy="96" r="6" class="dot"/>
+<line x1="628.2" y1="88" x2="628.2" y2="52" class="ld"/>
+<text x="628.2" y="30" class="v" text-anchor="middle">403</text><text x="628.2" y="46" class="nm" text-anchor="middle">Лё Дом</text>
+<circle cx="786.7" cy="96" r="6" class="dot big"/>
+<line x1="786.7" y1="104" x2="786.7" y2="124" class="ld"/>
+<text x="786.7" y="138" class="v" text-anchor="middle">1 022</text><text x="786.7" y="154" class="nm" text-anchor="middle">Дом спорта</text>
+<circle cx="929.9" cy="96" r="6" class="dot big"/>
+<line x1="929.9" y1="88" x2="929.9" y2="52" class="ld"/>
+<text x="929.9" y="30" class="v" text-anchor="end">2 371</text><text x="929.9" y="46" class="nm" text-anchor="end">Лё Дом</text>
 </svg></div>
- <p class="hint">Площади — база NOTA (23 сентября 2026), карточки лотов на novostroev.ru, сайте Донстроя и ЦИАН (3 октября 2026); «Дом спорта» — сделка, NF Group в пересказе РИА Недвижимость, 29 июля 2026.</p>
+ <p class="hint">Площади — база NOTA (23 сентября 2026), карточки лотов на сайтах застройщиков, novostroev.ru и ЦИАН (3 октября 2026); «Дом спорта» — сделка, NF Group в пересказе РИА Недвижимость, 29 июля 2026.</p>
  <div class="two" style="margin-top:34px">
-  <div class="rl"><h3>Нижняя граница в Москве — правило 28 и 44</h3><p style="margin-top:8px;color:var(--ink-2);font-size:15px">С 1 августа 2024 года новые однокомнатные квартиры и студии в Москве — не меньше 28&nbsp;м², двухкомнатные — не меньше 44&nbsp;м² (без балконов, лоджий, террас и холодных кладовых). На апартаменты правило не распространяется, на проекты с разрешениями до этой даты — тоже. Поэтому в нашей базе ещё 73 строки студий и «однушек» в домах с квартирами, где площадь начинается меньше 28&nbsp;м²: Level Мичуринский — от 18,4, ЗИЛАРТ — от 17,8.</p></div>
-  <div class="rl"><h3>Верхняя — целый этаж</h3><p style="margin-top:8px;color:var(--ink-2);font-size:15px">Пентхаусы на весь этаж — в 15 из 35 строящихся элитных проектов, 42 лота от 256 до 2&nbsp;371&nbsp;м² (Whitewill, август 2026). Средний пентхаус в продаже — 315&nbsp;м² и 1,6&nbsp;млрд&nbsp;₽, крупнейший — 1&nbsp;721&nbsp;м² (Sminex, июль 2026). У других источников максимум другой: Коммерсантъ называет 2&nbsp;250&nbsp;м², «Московская перспектива» — 2&nbsp;371&nbsp;м²; по нашей базе это лот «Лё Дома».</p></div>
+  <div class="rl"><h3>Нижняя граница в Москве — правило 28 и 44</h3><p style="margin-top:8px;color:var(--ink-2);font-size:15px">С 1 августа 2024 года новые однокомнатные квартиры и студии в Москве — не меньше 28&nbsp;м², двухкомнатные — не меньше 44&nbsp;м² (без балконов, лоджий, террас и холодных кладовых). На апартаменты правило не распространяется, на проекты с разрешениями до этой даты — тоже. Поэтому в нашей базе ещё 73 строки студий и «однушек» в домах с квартирами (не апартаментами), где площадь начинается меньше 28&nbsp;м²: Level Мичуринский — от 18,4, ЗИЛАРТ — от 17,8.</p></div>
+  <div class="rl"><h3>Верхняя — целый этаж</h3><p style="margin-top:8px;color:var(--ink-2);font-size:15px">Пентхаусы на весь этаж — в 15 из 35 строящихся элитных проектов, 42 лота от 256 до 2&nbsp;371&nbsp;м² (Whitewill, август 2026). Средний пентхаус в продаже — 315&nbsp;м² и 1,6&nbsp;млрд&nbsp;₽, крупнейший — 1&nbsp;721&nbsp;м² (Sminex, июль 2026). У других источников максимум другой: Коммерсантъ называет максимум 2&nbsp;250&nbsp;м², «Московская перспектива» — 2&nbsp;371&nbsp;м²; по нашей базе это лот «Лё Дома».</p></div>
  </div>
 </div></section>
 
 <section class="method"><div class="wrap">
  <p class="ttl">В нашей базе</p>
  <h2>Чем выше класс, тем больше комнат и тем меньше студий</h2>
- <p class="lede" style="margin-top:18px">Своя таблица: из чего состоит предложение по классам. Доли считаем по числу лотов там, где источник его показывает.</p>
+ <p class="lede" style="margin-top:18px">Из чего состоит предложение по классам в базе NOTA. Доли считаем по числу лотов там, где источник его показывает.</p>
  <div class="tablewrap" style="margin-top:26px"><table data-scroll style="min-width:760px">
-  <tr><th>Класс</th><th>Домов с данными</th><th>Лотов</th><th>Студии</th><th>1 спальня</th><th>2</th><th>3</th><th>4+</th><th>Квартир на этаже</th><th>Потолки</th></tr>
-  <tr><td data-label="Класс"><b>Бизнес</b></td><td data-label="Домов с данными">107</td><td data-label="Лотов">17&nbsp;818</td><td data-label="Студии">13 %</td><td data-label="1 спальня">33 %</td><td data-label="2">34 %</td><td data-label="3">16 %</td><td data-label="4+">4 %</td><td data-label="Квартир на этаже">9</td><td data-label="Потолки">3,0 м</td></tr>
-  <tr><td data-label="Класс"><b>Премиум</b></td><td data-label="Домов с данными">16</td><td data-label="Лотов">1&nbsp;589</td><td data-label="Студии">7 %</td><td data-label="1 спальня">21 %</td><td data-label="2">30 %</td><td data-label="3">26 %</td><td data-label="4+">16 %</td><td data-label="Квартир на этаже">5</td><td data-label="Потолки">3,2 м</td></tr>
+ <tr><th>Класс</th><th>Домов с данными</th><th>Лотов</th><th>Студии</th><th>1 спальня</th><th>2</th><th>3</th><th>4+</th><th>Квартир на этаже</th><th>Потолки</th></tr>
+  <tr><td data-label="Класс"><b>Бизнес</b></td><td data-label="Домов с данными">107</td><td data-label="Лотов">17 818</td><td data-label="Студии">13 %</td><td data-label="1 спальня">33 %</td><td data-label="2">34 %</td><td data-label="3">16 %</td><td data-label="4+">4 %</td><td data-label="Квартир на этаже">9</td><td data-label="Потолки">3,0 м</td></tr>
+  <tr><td data-label="Класс"><b>Премиум</b></td><td data-label="Домов с данными">16</td><td data-label="Лотов">1 589</td><td data-label="Студии">7 %</td><td data-label="1 спальня">21 %</td><td data-label="2">30 %</td><td data-label="3">26 %</td><td data-label="4+">16 %</td><td data-label="Квартир на этаже">5</td><td data-label="Потолки">3,2 м</td></tr>
   <tr><td data-label="Класс"><b>Элитный</b></td><td data-label="Домов с данными">17</td><td data-label="Лотов">790</td><td data-label="Студии">1 %</td><td data-label="1 спальня">20 %</td><td data-label="2">27 %</td><td data-label="3">30 %</td><td data-label="4+">22 %</td><td data-label="Квартир на этаже">4</td><td data-label="Потолки">3,33 м</td></tr>
   <tr><td data-label="Класс"><b>Делюкс</b></td><td data-label="Домов с данными">10</td><td data-label="Лотов">287</td><td data-label="Студии">0 %</td><td data-label="1 спальня">25 %</td><td data-label="2">31 %</td><td data-label="3">28 %</td><td data-label="4+">15 %</td><td data-label="Квартир на этаже">4</td><td data-label="Потолки">3,33 м</td></tr>
  </table></div>
- <p class="hint">База NOTA, срез 23 сентября 2026. «Квартир на этаже» и «потолки» — медиана по всем домам класса, где поле заполнено (у делюкса — 3–4 дома, это наблюдение, а не закономерность). Для сверки «Метриум» (май 2026): квартир на этаже в бизнесе 9, в премиуме 7,6; потолки (июль 2024): бизнес 3,0 м, элит 3,33 м — совпадает с нашей базой.</p>
-
+ <p class="hint">База NOTA, срез 23 сентября 2026. «Квартир на этаже» и «потолки» — по всем домам класса, где поле заполнено (у делюкса — 3–4 дома, это наблюдение, а не закономерность). Для сверки «Метриум» (май 2026): квартир на этаже в бизнесе 9, в премиуме 7,6; потолки (июль 2024): бизнес 3,0 м, элит 3,33 м — совпадает с нашей базой.</p>
  <h3 style="margin-top:42px">Площади по классам и комнатности</h3>
  <div class="tablewrap" style="margin-top:14px"><table data-scroll style="min-width:600px">
-  <tr><th>Класс</th><th>Студия</th><th>1</th><th>2</th><th>3</th><th>4+</th></tr>
+ <tr><th>Класс</th><th>Студия</th><th>1</th><th>2</th><th>3</th><th>4+</th></tr>
   <tr><td data-label="Класс"><b>Бизнес</b></td><td data-label="Студия">16,4 · 26,6–31,7</td><td data-label="1">21,8 · 36,5–50,1</td><td data-label="2">34,6 · 53,5–76,8</td><td data-label="3">35,9 · 74,9–102,8</td><td data-label="4+">72,6 · 106–131</td></tr>
   <tr><td data-label="Класс"><b>Премиум</b></td><td data-label="Студия">26,7 · 29,9–34,2</td><td data-label="1">26,6 · 47–64,7</td><td data-label="2">36,2 · 67,3–111,4</td><td data-label="3">55,2 · 107,5–146</td><td data-label="4+">77,5 · 152,5–186,7</td></tr>
   <tr><td data-label="Класс"><b>Элитный</b></td><td data-label="Студия">41 · 41–54</td><td data-label="1">44,9 · 57,6–84,1</td><td data-label="2">44,5 · 83,9–146,5</td><td data-label="3">96,2 · 134–173</td><td data-label="4+">90 · 178–400</td></tr>
   <tr><td data-label="Класс"><b>Делюкс</b></td><td data-label="Студия">—</td><td data-label="1">47,6 · 66–105,8</td><td data-label="2">76,6 · 128,7–154,1</td><td data-label="3">101,6 · 168–227</td><td data-label="4+">110 · 237–466</td></tr>
  </table></div>
  <p class="hint">Площадь, м²: первое число — минимум по классу, дальше — типичный диапазон (медиана «от» и медиана «до» по домам). У застройщиков элиты и делюкса комнатность считается по спальням, поэтому «1» там часто означает евроформат на 60–100&nbsp;м². Студии в премиуме и выше есть только в 7 домах из 147.</p>
-
  <h3 style="margin-top:42px">Самый широкий разброс внутри одного дома</h3>
  <div class="tablewrap" style="margin-top:14px"><table data-scroll style="min-width:560px">
-  <tr><th>Дом</th><th>Класс в базе</th><th>От, м²</th><th>До, м²</th><th>Разница</th></tr>
+ <tr><th>Дом</th><th>Класс в базе</th><th>От, м²</th><th>До, м²</th><th>Разница</th></tr>
   <tr><td data-label="Дом"><a href="../../karta.html#h-ostrov">Остров</a> (Донстрой)</td><td data-label="Класс в базе">бизнес</td><td data-label="От, м²">28,0</td><td data-label="До, м²">539,6</td><td data-label="Разница">19×</td></tr>
-  <tr><td data-label="Дом"><a href="../../doma/le-dom/">Лё Дом</a> (ЛСР)</td><td data-label="Класс в базе">делюкс</td><td data-label="От, м²">126,8</td><td data-label="До, м²">2&nbsp;371</td><td data-label="Разница">19×</td></tr>
+  <tr><td data-label="Дом"><a href="../../doma/le-dom/">Лё Дом</a> (ЛСР)</td><td data-label="Класс в базе">делюкс</td><td data-label="От, м²">126,8</td><td data-label="До, м²">2 371</td><td data-label="Разница">19×</td></tr>
   <tr><td data-label="Дом"><a href="../../doma/lavrushinskiy/">Лаврушинский</a> (Sminex)</td><td data-label="Класс в базе">элитный</td><td data-label="От, м²">66,4</td><td data-label="До, м²">979,5</td><td data-label="Разница">15×</td></tr>
   <tr><td data-label="Дом"><a href="../../karta.html#h-capital-towers">Capital Towers</a></td><td data-label="Класс в базе">бизнес</td><td data-label="От, м²">49,4</td><td data-label="До, м²">693,7</td><td data-label="Разница">14×</td></tr>
   <tr><td data-label="Дом"><a href="../../karta.html#h-level-michurinskiy">Level Мичуринский</a></td><td data-label="Класс в базе">бизнес</td><td data-label="От, м²">18,4</td><td data-label="До, м²">248,4</td><td data-label="Разница">13×</td></tr>
   <tr><td data-label="Дом"><a href="../../karta.html#h-khay-layf">Хай Лайф</a> (Пионер)</td><td data-label="Класс в базе">бизнес</td><td data-label="От, м²">23,9</td><td data-label="До, м²">321,4</td><td data-label="Разница">13×</td></tr>
   <tr><td data-label="Дом"><a href="../../karta.html#h-krylatskaya-33">Крылатская 33</a></td><td data-label="Класс в базе">бизнес</td><td data-label="От, м²">30,2</td><td data-label="До, м²">388,2</td><td data-label="Разница">13×</td></tr>
-  <tr><td data-label="Дом"><a href="../../doma/rezidentsiya-1864/">Резиденция 1864</a></td><td data-label="Класс в базе">делюкс</td><td data-label="От, м²">290</td><td data-label="До, м²">1&nbsp;063</td><td data-label="Разница">4×</td></tr>
+  <tr><td data-label="Дом"><a href="../../doma/rezidentsiya-1864/">Резиденция 1864</a></td><td data-label="Класс в базе">делюкс</td><td data-label="От, м²">290</td><td data-label="До, м²">1 063</td><td data-label="Разница">4×</td></tr>
  </table></div>
- <p class="hint">База NOTA, 23 сентября 2026.</p>
+ <p class="hint">База NOTA, 23 сентября 2026. Дома без отдельной страницы открываются на карте.</p>
 </div></section>
 
-<section><div class="wrap">
+<section id="plany"><div class="wrap">
  <p class="ttl">Что бывает</p>
  <h2>Двенадцать планировок из домов нашей базы</h2>
- <p class="lede" style="margin-top:18px">Реальные лоты в продаже на 3 октября 2026. Нажмите на план, чтобы открыть его крупно. Планы «Острова» и «Крылатской 33» перерисованы для NOTA по планам застройщиков, остальные — карточки застройщиков с агрегаторов; источник — под каждым планом.</p>
- <div class="arts">
-  <div class="art plan" id="p-16"><div class="ph" data-ar="3x2"><img src="img/zorge9-studio-16.jpg" alt="План апартамента-студии 16,4 м² в «Зорге 9»: кровать у окна, мини-кухня, ванная" loading="lazy"></div>
-   <span class="k">Апартаменты · бизнес</span><h3><b>16,4 м²</b> · Микростудия</h3>
+ <p class="lede" style="margin-top:18px">Реальные лоты в продаже на 3 октября 2026, от апартамента на 16 м² до резиденции на 403 м². Все планы перерисованы в одном стиле и одном масштабе: под каждым шкала 0–1–2 м. Нажмите на план, чтобы открыть крупно.</p>
+ <div class="types">
+  <article class="type" id="p-16">
+   <figure><button type="button" data-zoom><img src="img/zorge-9-016.svg" alt="План апартамента-студии 16,4 м² в «Зорге 9»: кровать у окна, стол, кухонный модуль, ванная" loading="lazy"></button></figure>
+   <div class="meta"><span class="area">16,4 м²</span><span class="tag">апартаменты</span><span class="tag">бизнес</span></div>
+   <h3>Микростудия</h3>
    <p>Кровать, стол на двоих, кухонный модуль и ванная. Такие лоты бывают только в апартаментах или в домах с разрешением до августа 2024 года. Покупают под сдачу или как городской ночлег.</p>
-   <p class="hint">«Зорге 9» (St Michael), 14 эт., 14,5 млн ₽ · <a href="https://novostroev.ru/novostroyki/moskva/sao/khoroshyevskiy/zorge-9/studii/" rel="nofollow noopener">источник</a></p></div>
-  <div class="art plan" id="p-24"><div class="ph" data-ar="3x2"><img src="img/khaylife-1k-24.jpg" alt="Однокомнатная квартира 24,1 м² в «Хай Лайф»: комната 13,1 м², кухонная ниша, санузел" loading="lazy"></div>
-   <span class="k">Квартира · бизнес</span><h3><b>24,1 м²</b> · «Однушка» на 24 метра</h3>
+   <p class="hint">«Зорге 9» (St Michael), 14 эт., 14,5 млн ₽ · <a href="https://novostroev.ru/novostroyki/moskva/sao/khoroshyevskiy/zorge-9/studii/" rel="nofollow noopener">источник</a></p>
+  </article>
+  <article class="type" id="p-24">
+   <figure><button type="button" data-zoom><img src="img/khay-layf-024.svg" alt="Однокомнатная квартира 24,1 м² в «Хай Лайф»: комната 13,1 м², кухня в нише 2,6 м², прихожая, санузел 3,1 м²" loading="lazy"></button></figure>
+   <div class="meta"><span class="area">24,1 м²</span><span class="tag">квартира</span><span class="tag">бизнес</span></div>
+   <h3>«Однушка» на 24 метра</h3>
    <p>Комната 13,1&nbsp;м² с кухней в нише, санузел 3,1&nbsp;м². Агрегатор называет её однокомнатной, по сути это студия с прихожей. 33&nbsp;млн&nbsp;₽ — около 1,37&nbsp;млн за метр.</p>
-   <p class="hint">«Хай Лайф» (Пионер), 3 эт. · <a href="https://novostroev.ru/novostroyki/moskva/uao/danilovskiy/high-life-khay-layf/1-komnatnye/" rel="nofollow noopener">источник</a></p></div>
-  <div class="art plan" id="p-28"><div class="ph" data-ar="3x2"><img src="img/ostrov-028.svg" alt="Студия 28,4 м² в «Острове»: кухня-гостиная 19,4 м², коридор 5,3 м², санузел 3,7 м²" loading="lazy"></div>
-   <span class="k">Квартира · бизнес</span><h3><b>28,4 м²</b> · Студия по новому минимуму</h3>
-   <p>Кухня-гостиная 19,4&nbsp;м², коридор 5,3&nbsp;м², санузел 3,7&nbsp;м². Ровно на границе московского правила 28&nbsp;м². Коридор — почти пятая часть площади.</p>
-   <p class="hint">«Остров» (Донстрой), 2 эт., 24,5 млн ₽ · <a href="https://donstroy.moscow/objects/ostrov/" rel="nofollow noopener">план — donstroy.moscow</a></p></div>
-  <div class="art plan" id="p-59"><div class="ph" data-ar="3x2"><img src="img/krylatskaya-33-059.svg" alt="Евродвушка 59 м² в «Крылатской 33»: кухня-гостиная 28,6 м², спальня 17,3 м², санузел, прихожая" loading="lazy"></div>
-   <span class="k">Евро-2 · бизнес</span><h3><b>59 м²</b> · Евродвушка</h3>
-   <p>Кухня-гостиная 28,6&nbsp;м² на два окна, спальня 17,3&nbsp;м², один санузел. Удобно одному или паре. Гостя положить некуда, второй санузел не предусмотрен. Вопрос архитектору: можно ли отрезать от кухни-гостиной комнату 10–12&nbsp;м² с окном.</p>
-   <p class="hint">«Крылатская 33», 29 эт., 49,6 млн ₽ · <a href="https://novostroev.ru/novostroyki/moskva/zao/krylatskoe/krylatskaya-33/2-komnatnye/" rel="nofollow noopener">источник</a></p></div>
-  <div class="art plan" id="p-77"><div class="ph" data-ar="3x2"><img src="img/krylatskaya-33-077.svg" alt="Классическая двушка 77,2 м²: отдельная кухня 13 м², гостиная 24,8 м², спальня 14,1 м², два санузла, постирочная, две гардеробные" loading="lazy"></div>
-   <span class="k">Классика · бизнес</span><h3><b>77,2 м²</b> · Классическая двушка</h3>
-   <p>Отдельная кухня 13&nbsp;м², гостиная 24,8&nbsp;м², спальня 14,1&nbsp;м². Санузел 3,5&nbsp;м² у входа и второй, 3,6&nbsp;м², ближе к спальне; постирочная 2,2&nbsp;м² и две гардеробные — 2,5 и 2,3&nbsp;м². На 18&nbsp;м² больше евродвушки, зато запахи кухни остаются на кухне, и у гостя есть свой санузел.</p>
-   <p class="hint">«Крылатская 33», 3 эт., 40,2 млн ₽ · <a href="https://novostroev.ru/novostroyki/moskva/zao/krylatskoe/krylatskaya-33/2-komnatnye/" rel="nofollow noopener">источник</a></p></div>
-  <div class="art plan" id="p-109"><div class="ph" data-ar="3x2"><img src="img/krylatskaya-33-109.svg" alt="Трёхкомнатная 108,9 м²: две спальни 17,8 и 17,3 м² в разных крыльях, у каждой свой санузел и гардеробная" loading="lazy"></div>
-   <span class="k">Две мастер-спальни · бизнес</span><h3><b>108,9 м²</b> · Две спальни в разных крыльях</h3>
-   <p>Спальни 17,8 и 17,3&nbsp;м² смотрят на разные стороны (двор и церковь). У каждой свой санузел (4,7 и 5,0&nbsp;м²) и гардеробная, а между ними — общая зона: кухня 14,4, гостиная 17,9 и гостевой санузел 4,0&nbsp;м². Подходит двум парам, взрослому ребёнку, бабушке, супругам с разным режимом.</p>
-   <p class="hint">«Крылатская 33», 4 эт., 56,5 млн ₽ · <a href="https://novostroev.ru/novostroyki/moskva/zao/krylatskoe/krylatskaya-33/studii/" rel="nofollow noopener">источник</a> (на агрегаторе ошибочно в разделе «студии»)</p></div>
-  <div class="art plan" id="p-106"><div class="ph" data-ar="3x2"><img src="img/ostrov-106.svg" alt="Евро-4 105,8 м² в «Острове»: три спальни, кухня-гостиная 36,6 м², два санузла" loading="lazy"></div>
-   <span class="k">Евро-4 · бизнес</span><h3><b>105,8 м²</b> · Компактная семейная</h3>
-   <p>Три спальни — 18,1, 19,7 и 11,2&nbsp;м² — и кухня-гостиная 36,6&nbsp;м², два санузла (5,2 и 5,4&nbsp;м²). В бизнес-классе 4-комнатные начинаются с 72,6&nbsp;м² (Level Мичуринский), евро-3 — с 47,8&nbsp;м² (Evopark Измайлово).</p>
-   <p class="hint">«Остров», 11 эт., 113,3 млн ₽ · <a href="https://donstroy.moscow/objects/ostrov/" rel="nofollow noopener">план — donstroy.moscow</a></p></div>
-  <div class="art plan" id="p-144"><div class="ph" data-ar="3x2"><img src="img/ostrov-144.svg" alt="Пятикомнатная квартира 144,1 м² в «Острове»: гостиная, отдельная кухня, четыре спальни, три санузла" loading="lazy"></div>
-   <span class="k">5 комнат · бизнес</span><h3><b>144,1 м²</b> · Семья с двумя-тремя детьми</h3>
-   <p>Гостиная 28,9&nbsp;м² и отдельная кухня 14,1&nbsp;м², четыре спальни — 12,8, 20,9, 20,9 и 14,4&nbsp;м², три санузла (7,3, 4,8 и 6,6&nbsp;м²), коридор 13,4&nbsp;м². Похожих лотов на 143,7–145,2&nbsp;м² в «Острове» несколько — типовой семейный формат дома.</p>
-   <p class="hint">«Остров», 8 эт., 133,2 млн ₽ · <a href="https://donstroy.moscow/objects/ostrov/" rel="nofollow noopener">план — donstroy.moscow</a></p></div>
-  <div class="art plan" id="p-182"><div class="ph" data-ar="3x2"><img src="img/ostrov-183.svg" alt="Квартира 182,8 м² в клубном корпусе «Острова»: мастер-спальня с ванной и гардеробной, кухня-гостиная 47,7 м² с камином, терраса 61,3 м²" loading="lazy"></div>
-   <span class="k">Клубный корпус · бизнес</span><h3><b>182,8 м²</b> · Квартира-вилла в низком корпусе</h3>
-   <p>Мастер-спальня 18,2&nbsp;м² с ванной 12,0 и гардеробной 16,6&nbsp;м², детская 12,0, спальня 13,4, кухня-гостиная 47,7&nbsp;м² с камином, ещё две ванные (6,7 и 6,8&nbsp;м²), санузел 4,4 и постирочная 2,7&nbsp;м². Терраса 61,3&nbsp;м², 4-й этаж шестиэтажного корпуса. За метр — 2,17&nbsp;млн&nbsp;₽, примерно вдвое дороже евро-4 на 105,8&nbsp;м² в башне того же квартала (1,07&nbsp;млн). Платят за соседей по этажу и террасу.</p>
-   <p class="hint">«Остров», 4/6 эт., 395,8 млн ₽ · <a href="https://donstroy.moscow/objects/ostrov/" rel="nofollow noopener">план — donstroy.moscow</a></p></div>
-  <div class="art plan" id="p-233"><div class="ph" data-ar="3x2"><img src="img/ostrov-233.svg" alt="Пентхаус 233,4 м² на 22-м этаже: гостиная 62,7 м², игровая 22,9 м², кабинет, постирочная, терраса 37 м²" loading="lazy"></div>
-   <span class="k">Пентхаус · бизнес</span><h3><b>233,4 м²</b> · Пентхаус с игровой и кабинетом</h3>
-   <p>Гостиная 62,7&nbsp;м² с местом под камин, игровая 22,9&nbsp;м², кабинет 10,0&nbsp;м², кухня 7,0 и постирочная 7,8&nbsp;м², спальни 13,6, 12,4 и 5,3&nbsp;м², терраса 37,0&nbsp;м². Комнату под детей и комнату под работу здесь заложили сразу.</p>
-   <p class="hint">«Остров», 22/22 эт., 367,1 млн ₽ · <a href="https://donstroy.moscow/objects/ostrov/" rel="nofollow noopener">план — donstroy.moscow</a></p></div>
-  <div class="art plan" id="p-262"><div class="ph" data-ar="3x2"><img src="img/ostrov-262.svg" alt="Шестикомнатная квартира 262,4 м² на 3-м этаже клубного корпуса «Острова»: кухня-гостиная 81,4 м², мастер-спальня, две детские, кабинет, комната персонала, терраса" loading="lazy"></div>
-   <span class="k">6 комнат · бизнес</span><h3><b>262,4 м²</b> · Шесть комнат вдоль фасада</h3>
-   <p>Вытянута вдоль фасада, с полукруглой террасой 44,0&nbsp;м². Кухня-гостиная 81,4&nbsp;м² с камином, мастер-спальня 20,3&nbsp;м² с гардеробной 9,9 и ванной 10,1, две детские (20,4 и 21,7&nbsp;м²), кабинет 15,0 и комната персонала 6,9&nbsp;м². Шестикомнатных в доме пять; три видимых — 215–262&nbsp;м², 337–546&nbsp;млн&nbsp;₽.</p>
-   <p class="hint">«Остров», 3 эт., 545,5 млн ₽ · <a href="https://donstroy.moscow/objects/ostrov/" rel="nofollow noopener">план — donstroy.moscow</a></p></div>
-  <div class="art plan" id="p-403"><div class="ph" data-ar="3x2"><img src="img/ledom-6k-403.jpg" alt="Резиденция № 28 в «Лё Доме», 403 м²: пять спален, кабинет, столовая 47,6 м², прачечная, коридоры 54 м²" loading="lazy"></div>
-   <span class="k">Резиденция · делюкс</span><h3><b>403 м²</b> · Резиденция с прачечной и столовой</h3>
-   <p>Пять спален (самая большая — 47,5&nbsp;м² с ванной 10,3&nbsp;м²), кабинет 19,2, столовая 47,6, гостиная 33,7, комната 22,6&nbsp;м² (ЦИАН называет её кухней), прачечная 6,9 и три гардеробных до 17,2&nbsp;м². Коридоры — 54,3&nbsp;м², 13&nbsp;% площади: в резиденции метры тратят и на то, чтобы маршруты хозяев, детей и персонала не пересекались. Потолки до 3,5&nbsp;м.</p>
-   <p class="hint">«Лё Дом» (ЛСР), 3/5 эт., 2,57 млрд ₽ · <a href="https://www.cian.ru/sale/flat/333564417/" rel="nofollow noopener">ЦИАН</a> · <a href="../../doma/le-dom/">страница дома</a></p></div>
+   <p class="hint">«Хай Лайф» (Пионер), 3 эт. · <a href="https://novostroev.ru/novostroyki/moskva/uao/danilovskiy/high-life-khay-layf/1-komnatnye/" rel="nofollow noopener">источник</a></p>
+  </article>
+  <article class="type" id="p-28">
+   <figure><button type="button" data-zoom><img src="img/ostrov-028.svg" alt="Студия 28,4 м² в «Острове»: кухня-гостиная 19,4 м², коридор 5,3 м², санузел 3,7 м²" loading="lazy"></button></figure>
+   <div class="meta"><span class="area">28,4 м²</span><span class="tag">квартира</span><span class="tag">бизнес</span></div>
+   <h3>Студия по новому минимуму</h3>
+   <p>Кухня-гостиная 19,4&nbsp;м², коридор 5,3&nbsp;м², санузел 3,7&nbsp;м². Чуть больше московского минимума в 28&nbsp;м², и почти пятую часть площади занимает коридор.</p>
+   <p class="hint">«Остров» (Донстрой), 2 эт., 24,5 млн ₽ · <a href="https://donstroy.moscow/objects/ostrov/" rel="nofollow noopener">застройщик</a></p>
+  </article>
+  <article class="type" id="p-59">
+   <figure><button type="button" data-zoom><img src="img/krylatskaya-33-059.svg" alt="Евродвушка 59 м² в «Крылатской 33»: кухня-гостиная 28,6 м², спальня 17,3 м², санузел 5,2 м², холл и коридор" loading="lazy"></button></figure>
+   <div class="meta"><span class="area">59 м²</span><span class="tag">евро-2</span><span class="tag">бизнес</span></div>
+   <h3>Евродвушка</h3>
+   <p>Кухня-гостиная 28,6&nbsp;м² на два окна, спальня 17,3&nbsp;м², один санузел. Удобно одному или паре. Гостя положить некуда, второго санузла нет. Вопрос архитектору: можно ли отрезать от кухни-гостиной комнату 10–12&nbsp;м² с окном.</p>
+   <p class="hint">«Крылатская 33», 29 эт., 49,6 млн ₽ · <a href="https://novostroev.ru/novostroyki/moskva/zao/krylatskoe/krylatskaya-33/2-komnatnye/" rel="nofollow noopener">источник</a></p>
+  </article>
+  <article class="type" id="p-77">
+   <figure><button type="button" data-zoom><img src="img/krylatskaya-33-077.svg" alt="Классическая двушка 77,2 м²: кухня 13 м², гостиная 24,8 м², спальня 14,1 м², два санузла, постирочная, две гардеробные" loading="lazy"></button></figure>
+   <div class="meta"><span class="area">77,2 м²</span><span class="tag">классика</span><span class="tag">бизнес</span></div>
+   <h3>Классическая двушка</h3>
+   <p>Отдельная кухня 13&nbsp;м², гостиная 24,8&nbsp;м², спальня 14,1&nbsp;м² с гардеробной 2,3&nbsp;м². Санузлов два: 3,5&nbsp;м² у входа и 3,6&nbsp;м² ближе к спальне, ещё постирочная 2,2&nbsp;м² и гардеробная в холле. На 18&nbsp;м² больше евродвушки, зато запахи кухни остаются на кухне, а у гостя есть свой санузел.</p>
+   <p class="hint">«Крылатская 33», 3 эт., 40,2 млн ₽ · <a href="https://novostroev.ru/novostroyki/moskva/zao/krylatskoe/krylatskaya-33/2-komnatnye/" rel="nofollow noopener">источник</a></p>
+  </article>
+  <article class="type" id="p-109">
+   <figure><button type="button" data-zoom><img src="img/krylatskaya-33-109.svg" alt="Трёхкомнатная 108,9 м²: две спальни 17,8 и 17,3 м² в разных крыльях, у каждой свой санузел и гардеробная" loading="lazy"></button></figure>
+   <div class="meta"><span class="area">108,9 м²</span><span class="tag hl">две мастер-спальни</span><span class="tag">бизнес</span></div>
+   <h3>Две спальни в разных крыльях</h3>
+   <p>Спальни 17,8 и 17,3&nbsp;м² смотрят на разные стороны. У каждой свой санузел (4,7 и 5,0&nbsp;м²) и гардеробная, а между ними — общая зона: кухня 14,4, гостиная 17,9 и гостевой санузел 4,0&nbsp;м². Подходит двум парам, взрослому ребёнку, бабушке, супругам с разным режимом.</p>
+   <p class="hint">«Крылатская 33», 4 эт., 56,5 млн ₽ · <a href="https://novostroev.ru/novostroyki/moskva/zao/krylatskoe/krylatskaya-33/studii/" rel="nofollow noopener">источник</a></p>
+  </article>
+  <article class="type" id="p-106">
+   <figure><button type="button" data-zoom><img src="img/ostrov-106.svg" alt="Евро-4 105,8 м² в «Острове»: три спальни 18,1, 19,7 и 11,2 м², кухня-гостиная 36,6 м², два санузла" loading="lazy"></button></figure>
+   <div class="meta"><span class="area">105,8 м²</span><span class="tag">евро-4</span><span class="tag">бизнес</span></div>
+   <h3>Компактная семейная</h3>
+   <p>Три спальни (18,1, 19,7 и 11,2&nbsp;м²), кухня-гостиная 36,6&nbsp;м² и два санузла по 5&nbsp;с небольшим метров. Детские помещаются, а на мастер-блок родителей площади уже не хватает. В бизнес-классе 4-комнатные начинаются с 72,6&nbsp;м² (Level Мичуринский), евро-3 — с 47,8&nbsp;м² (Evopark Измайлово).</p>
+   <p class="hint">«Остров», 11 эт., 113,3 млн ₽ · <a href="https://donstroy.moscow/objects/ostrov/" rel="nofollow noopener">застройщик</a></p>
+  </article>
+  <article class="type" id="p-144">
+   <figure><button type="button" data-zoom><img src="img/ostrov-144.svg" alt="Пятикомнатная 144,1 м² в «Острове»: четыре спальни, гостиная 28,9 м², отдельная кухня 14,1 м², три санузла" loading="lazy"></button></figure>
+   <div class="meta"><span class="area">144,1 м²</span><span class="tag">5 комнат</span><span class="tag">бизнес</span></div>
+   <h3>Семья с двумя-тремя детьми</h3>
+   <p>Четыре спальни (12,8, 20,9, 20,9 и 14,4&nbsp;м²), гостиная 28,9&nbsp;м² и отдельная кухня 14,1&nbsp;м², три санузла, коридор 13,4&nbsp;м². В «Острове» несколько таких лотов на 143,7–145,2&nbsp;м² — типовой семейный формат дома.</p>
+   <p class="hint">«Остров», 8 эт., 133,2 млн ₽ · <a href="https://donstroy.moscow/objects/ostrov/" rel="nofollow noopener">застройщик</a></p>
+  </article>
+  <article class="type" id="p-182">
+   <figure><button type="button" data-zoom><img src="img/ostrov-183.svg" alt="Квартира 182,8 м² в клубном корпусе «Острова»: мастер-спальня с ванной и гардеробной, кухня-гостиная 47,7 м² с камином, терраса 61,3 м²" loading="lazy"></button></figure>
+   <div class="meta"><span class="area">182,8 м²</span><span class="tag">клубный корпус</span><span class="tag">бизнес</span></div>
+   <h3>Квартира-вилла в низком корпусе</h3>
+   <p>Мастер-спальня 18,2&nbsp;м² с ванной 12&nbsp;м² и гардеробной 16,6&nbsp;м², ещё две спальни, кухня-гостиная 47,7&nbsp;м² с камином, постирочная и терраса 61,3&nbsp;м². 4-й этаж шестиэтажного корпуса. За метр — 2,17&nbsp;млн&nbsp;₽, примерно вдвое дороже 4-комнатной на 106&nbsp;м² в башне того же квартала. Платят за соседей по этажу и террасу.</p>
+   <p class="hint">«Остров», 4/6 эт., 395,8 млн ₽ · <a href="https://donstroy.moscow/objects/ostrov/" rel="nofollow noopener">застройщик</a></p>
+  </article>
+  <article class="type" id="p-233">
+   <figure><button type="button" data-zoom><img src="img/ostrov-233.svg" alt="Пентхаус 233,4 м²: гостиная 62,7 м², игровая 22,9 м², кабинет 10 м², постирочная 7,8 м², терраса 37 м²" loading="lazy"></button></figure>
+   <div class="meta"><span class="area">233,4 м²</span><span class="tag">пентхаус</span><span class="tag">бизнес</span></div>
+   <h3>Пентхаус с игровой и кабинетом</h3>
+   <p>Гостиная 62,7&nbsp;м² с местом под камин, игровая 22,9&nbsp;м², кабинет 10&nbsp;м², постирочная 7,8&nbsp;м², спальни и терраса 37&nbsp;м². Комнату под детей и комнату под работу здесь заложили сразу.</p>
+   <p class="hint">«Остров», 22/22 эт., 367,1 млн ₽ · <a href="https://donstroy.moscow/objects/ostrov/" rel="nofollow noopener">застройщик</a></p>
+  </article>
+  <article class="type" id="p-262">
+   <figure><button type="button" data-zoom><img src="img/ostrov-262.svg" alt="Шестикомнатная 262,4 м²: кухня-гостиная 81,4 м² с камином, мастер-спальня с гардеробной и ванной, две детские, кабинет, комната персонала, терраса" loading="lazy"></button></figure>
+   <div class="meta"><span class="area">262,4 м²</span><span class="tag">6 комнат</span><span class="tag">бизнес</span></div>
+   <h3>Шесть комнат вдоль фасада</h3>
+   <p>Кухня-гостиная 81,4&nbsp;м² с камином, мастер-спальня 20,3&nbsp;м² с гардеробной 9,9 и ванной 10,1&nbsp;м², две детские по 20–22&nbsp;м², кабинет 15&nbsp;м², комната персонала 6,9&nbsp;м² и полукруглая терраса 44&nbsp;м². Шестикомнатных в доме пять, площадью от 215 до 262&nbsp;м².</p>
+   <p class="hint">«Остров», 3 эт., 545,5 млн ₽ · <a href="https://donstroy.moscow/objects/ostrov/" rel="nofollow noopener">застройщик</a></p>
+  </article>
+  <article class="type" id="p-403">
+   <figure><button type="button" data-zoom><img src="img/le-dom-403.svg" alt="Резиденция № 28 в «Лё Доме», 403 м²: пять спален, кабинет, две гостиные, столовая 47,6 м², прачечная, три гардеробные" loading="lazy"></button></figure>
+   <div class="meta"><span class="area">403 м²</span><span class="tag hl">резиденция</span><span class="tag">делюкс</span></div>
+   <h3>Резиденция с прачечной и столовой</h3>
+   <p>Пять спален (самая большая — 47,5&nbsp;м² с ванной 10,3&nbsp;м²), кабинет 19,2, столовая 47,6, гостиная 33,7 и ещё одна гостиная 22,6&nbsp;м² с кухней вдоль стены, прачечная 6,9 и три гардеробные до 17,2&nbsp;м². Коридоры — 54,3&nbsp;м², 13&nbsp;% площади: в резиденции метры тратят и на то, чтобы маршруты хозяев, детей и персонала не пересекались. Потолки до 3,5&nbsp;м.</p>
+   <p class="hint">«Лё Дом» (ЛСР), 3/5 эт., 2,57 млрд ₽ · <a href="https://www.cian.ru/sale/flat/333564417/" rel="nofollow noopener">ЦИАН</a> · <a href="../../doma/le-dom/">страница дома</a></p>
+  </article>
  </div>
-
+ <p class="hint">Планы перерисованы NOTA по планировкам застройщиков. Масштаб «Крылатской 33» снят с исходника; у остальных восстановлен по площади квартиры, погрешность шкалы до 5–10&nbsp;%. Мебель — как на исходных планах.</p>
  <h3 style="margin-top:42px">Чего нет на картинках</h3>
  <div class="tablewrap" style="margin-top:14px"><table class="t-cards">
-  <tr><th>Формат</th><th>Цифры</th><th>Где посмотреть</th></tr>
+ <tr><th>Формат</th><th>Цифры</th><th>Где посмотреть</th></tr>
   <tr><td data-label="Формат"><b>Двухуровневые</b></td><td data-label="Цифры">315 лотов, 0,8 % предложения; бизнес — в среднем 126,8 м², элит и делюкс — 195 м². Лидер — ФСК (35 лотов, 97,5–252 м²)</td><td data-label="Где посмотреть">Level Мичуринский: 8 комнат, 248,4 м², 151,9 млн ₽; «Архитектор» (ФСК): пентхаус 252 м²</td></tr>
   <tr><td data-label="Формат"><b>С террасой</b></td><td data-label="Цифры">2–3 % предложения, 390 лотов; терраса в среднем 50–60 м², квартира — 180 м², наценка до 30 %</td><td data-label="Где посмотреть">«Остров» — 10 лотов с террасами; «Тишинский бульвар» — 13; «Фрунзенский» — 16</td></tr>
   <tr><td data-label="Формат"><b>Этаж целиком</b></td><td data-label="Цифры">42 лота в 15 элитных проектах, 256–2 371 м², 2,7–12,6 млн ₽ за метр</td><td data-label="Где посмотреть">Brusov — 546 м², лифт в квартиру и блок персонала с сервисным лифтом</td></tr>
@@ -381,37 +249,61 @@
  <p class="hint">Мир Квартир / «Метриум» (июль 2026), Мир Квартир (май 2026), Московская перспектива / Whitewill (август 2026), РБК (январь и май 2026), Коммерсантъ / ГК «Основа» (ноябрь 2025), badaevsky.com; лоты Level и «Архитектора» — база NOTA.</p>
 </div></section>
 
-<section class="method"><div class="wrap">
+<section class="analytics pl-cta" style="padding:0"><div class="an-in">
+ <div>
+  <p class="ttl">Подбор планировки</p>
+  <h2>Сколько комнат и метров нужно вашей семье</h2>
+  <p class="lede">Отметьте, кто будет жить и как вы живёте. Подбор покажет список комнат с метрами, как такая квартира называется в объявлениях и в каких домах из нашей базы она продаётся сейчас.</p>
+  <div class="btns"><a class="btn" href="podbor.html">Открыть подбор</a> <a class="btn btn-l" href="podbor.html#gen3">Пример: три поколения</a></div>
+ </div>
+ <ul>
+  <li>состав семьи, гости, собака, работа из дома</li>
+  <li>компактно, комфортно или просторно</li>
+  <li>кабинет, библиотека, игровая, спортзал</li>
+  <li>285 домов из базы NOTA с оценкой цены</li>
+ </ul>
+</div></section>
+
+<section id="printsipy" class="method"><div class="wrap">
  <p class="ttl">Принципы</p>
  <h2>Хорошую планировку делают пять решений, а не метры</h2>
  <div class="steps">
   <div class="step"><span class="n">01</span><div><h3>День и ночь отдельно</h3>
-   <p style="margin-top:8px">Общая часть — прихожая, кухня-гостиная, столовая, гостевой санузел — у входа, спальни в глубине. Через спальни и гостиную нет сквозных проходов (стандарт Sminex на 120+ страницах).</p>
-   <p>Две спальни в разных крыльях — когда в квартире две пары или два взрослых с разным режимом.</p></div></div>
+   <ul style="margin-top:10px">
+        <li>Общая часть (прихожая, кухня-гостиная, столовая, гостевой санузел) у входа, спальни в глубине. Через спальни и гостиную нет сквозных проходов (стандарт Sminex на 120+ страницах).</li>
+        <li>Две спальни в разных крыльях — когда в квартире две пары или два взрослых с разным режимом.</li>
+   </ul></div></div>
   <div class="step"><span class="n">02</span><div><h3>Мастер-блок</h3>
-   <p style="margin-top:8px">Спальня, гардеробная и ванная за одной дверью. Минимум — 20–25 м² (спальня 14–16, ванная 3–4, гардеробная 2–3), оптимум — 30–40 м² (РБК, июль 2024).</p>
-   <p>В премиуме ванная мастер-спальни — 10–12 м², гостевой санузел — 5–7 м² (МК, октябрь 2025). Квартиры с мастер-спальней продаются на 12–15 % дороже той же площади без неё (ЦИАН, 2025).</p></div></div>
+   <ul style="margin-top:10px">
+        <li>Спальня, гардеробная и ванная за одной дверью. Минимум — 20–25 м² (спальня 14–16, ванная 3–4, гардеробная 2–3), оптимум — 30–40 м² (РБК, июль 2024).</li>
+        <li>В премиуме: ванная мастер-спальни 10–12 м², гостевой санузел 5–7 м² (МК, октябрь 2025).</li>
+        <li>Квартиры с мастер-спальней продаются на 12–15 % дороже той же площади без неё (ЦИАН, 2025).</li>
+   </ul></div></div>
   <div class="step"><span class="n">03</span><div><h3>Санузлы по числу взрослых</h3>
-   <p style="margin-top:8px">Студия и «однушка» — один санузел; с двух комнат — основной и гостевой; в премиальных трёшках — три и больше («Московская перспектива», 2024).</p>
-   <p>Окна в ванной: бизнес — 24 % проектов, премиум — 38 %, элит — 67 %, делюкс — 74 % («Метриум», сентябрь 2024).</p></div></div>
+   <ul style="margin-top:10px">
+        <li>Студия и «однушка» — один санузел; с двух комнат — основной и гостевой; в премиальных трёшках — три и больше («Московская перспектива», 2024).</li>
+        <li>Окна в ванной: бизнес — 24 % проектов, премиум — 38 %, элит — 67 %, делюкс — 74 % («Метриум», сентябрь 2024).</li>
+   </ul></div></div>
   <div class="step"><span class="n">04</span><div><h3>Хранение и хозяйство</h3>
-   <p style="margin-top:8px">Постирочная — отдельная комната под стиральную и сушильную машины. Она важна для 18 % покупателей элитного жилья (Sminex, июль 2026).</p>
-   <p>Келлер в доме — в среднем около 4 м², бывают от 1 до 38,7 м². В квартирах от 500 м² — черновая кухня 10–18 м² (Коммерсантъ, май 2026).</p></div></div>
+   <ul style="margin-top:10px">
+        <li>Постирочная — отдельная комната под стиральную и сушильную машины. Важна для 18 % покупателей элитного жилья (Sminex, июль 2026).</li>
+        <li>Келлер в доме — в среднем около 4 м², бывают от 1 до 38,7 м².</li>
+        <li>В квартирах от 500 м² — черновая кухня 10–18 м² (Коммерсантъ, май 2026).</li>
+   </ul></div></div>
   <div class="step"><span class="n">05</span><div><h3>Кухня: открыть или закрыть</h3>
-   <p style="margin-top:8px">40 % покупателей элитного жилья хотят, чтобы кухня-гостиная была самой большой комнатой; встречаются запросы на остров длиной 3 м (Sminex, июль 2026).</p>
-   <p>При этом больше 60 % квартир в премиальных новостройках — с отдельной кухней (Regions Development, август 2025).</p></div></div>
+   <ul style="margin-top:10px">
+        <li>40 % покупателей элитного жилья хотят, чтобы кухня-гостиная была самой большой комнатой; встречаются запросы на остров длиной 3 м (Sminex, июль 2026).</li>
+        <li>При этом больше 60 % квартир в премиальных новостройках — с отдельной кухней (Regions Development, август 2025).</li>
+   </ul></div></div>
  </div>
- <div class="rl" style="margin-top:34px;max-width:72ch"><h3>Что нельзя переделать потом</h3>
-  <p style="margin-top:8px;color:var(--ink-2);font-size:15px">Санузел над чужой жилой комнатой, несущие стены и диафрагмы, вентканалы, радиаторы на лоджии (постановление Москвы 508-ПП).</p>
-  <p style="margin-top:8px;color:var(--ink-2);font-size:15px">Минимумы СП 54: общая комната 16 м² (в «однушке» 14), спальня 8 м² (на двоих 10), кухня 8 м². Отрезая спальню от кухни-гостиной, проверьте оба минимума и окно.</p>
-  <p style="margin-top:8px;color:var(--ink-2);font-size:15px">Бизнес-класс продаётся в основном без отделки: 73,8 % лотов, white box — 20,6 % (STONE, ноябрь 2025). Перегородки ещё можно сдвинуть в пределах проекта.</p></div>
+ <div class="rl" style="margin-top:34px"><h3>Что нельзя переделать потом</h3><p style="margin-top:8px;color:var(--ink-2);font-size:15px">Санузел над чужой жилой комнатой, несущие стены и диафрагмы, вентканалы, радиаторы на лоджии (постановление Москвы 508-ПП).</p><p style="margin-top:8px;color:var(--ink-2);font-size:15px">Минимумы СП 54: общая комната 16 м² (в «однушке» 14), спальня 8 м² (на двоих 10), кухня 8 м². Отрезая спальню от кухни-гостиной, проверьте оба минимума и окно.</p><p style="margin-top:8px;color:var(--ink-2);font-size:15px">Бизнес-класс продаётся в основном без отделки: 73,8 % лотов, white box — 20,6 % (STONE, ноябрь 2025). Перегородки ещё можно сдвинуть в пределах проекта.</p></div>
 </div></section>
 
 <section><div class="wrap">
  <p class="ttl">Рынок</p>
  <h2>Квартиры мельчают, а спрос уходит в семейные</h2>
  <div class="tablewrap" style="margin-top:26px"><table class="t-cards">
-  <tr><th>Что</th><th>Было</th><th>Стало</th><th>Источник</th></tr>
+ <tr><th>Что</th><th>Было</th><th>Стало</th><th>Источник</th></tr>
   <tr><td data-label="Что"><b>Средняя площадь, бизнес</b></td><td data-label="Было">73 м² (2020)</td><td data-label="Стало">57 м² (лето 2025) → 60,6 м² (итог 2025)</td><td data-label="Источник">«Метриум» в пересказе РБК и metrium.ru</td></tr>
   <tr><td data-label="Что"><b>Средняя площадь, премиум</b></td><td data-label="Было">114,4 м² (2016)</td><td data-label="Стало">77,9 м² (2026)</td><td data-label="Источник">«Метриум», июль 2026</td></tr>
   <tr><td data-label="Что"><b>Доля 4+ комнат в премиуме</b></td><td data-label="Было">18,5 %</td><td data-label="Стало">7,2 %</td><td data-label="Источник">«Метриум», июль 2026</td></tr>
@@ -423,115 +315,100 @@
  <p class="hint">Всё — цены и структура предложения, не сделок, кроме строки STONE. Номинальные цифры, без поправки на инфляцию. Застройщики режут площади, а покупатели премиума всё чаще ищут семейные форматы — отсюда объединение соседних лотов.</p>
 </div></section>
 
-<section class="method"><div class="wrap">
+<section id="stsenarii" class="method"><div class="wrap">
  <p class="ttl">Кому что подходит</p>
  <h2>Девять сценариев: сколько комнат, санузлов и метров хранения</h2>
- <p class="lede" style="margin-top:18px">Цифры в строках «Сколько» — наш ориентир, а не норматив. Собрали их из источников ниже и логики «у каждого взрослого своя дверь».</p>
+ <p class="lede" style="margin-top:18px">Цифры в строках «Сколько» — наш ориентир, а не норматив: собраны из источников ниже и правила «у каждого взрослого своя дверь». Под каждым сценарием — ссылка на подбор с таким составом семьи.</p>
  <div class="grid g3">
   <div class="scn"><h3>Один человек или пара</h3>
    <p><b>Формат.</b> Студия 28–35 м², евро-2 45–60 м²</p>
    <p><b>Сколько.</b> 1 санузел; гардеробная или шкаф 2–3 м пог.; место под стиральную машину не в кухне</p>
    <p><b>В доме.</b> Коворкинг, фитнес, мейлрум — дом компенсирует метры квартиры</p>
-   <p><b>Пример.</b> <a href="#p-28">Студия 28,4 м²</a> в «Острове», <a href="#p-59">евро-2 59 м²</a> в «Крылатской 33»</p></div>
+   <p><b>Пример.</b> Студия 28,4 м² в «Острове», евро-2 59 м² в «Крылатской 33»</p>
+   <p class="go"><a href="podbor.html#solo">Подобрать для такой семьи →</a></p></div>
   <div class="scn"><h3>Пара с малышом</h3>
    <p><b>Формат.</b> Евро-3 или классическая двушка с детской от 10 м²</p>
    <p><b>Сколько.</b> 2 санузла (ванна, не только душ); прихожая под коляску 1,5–2 м²; постирочная или ниша</p>
    <p><b>В доме.</b> Колясочная в лобби (часто совмещена с велокомнатой, до 30 м²), лифт без ступенек от входа, грузовой лифт</p>
-   <p><b>Нет данных.</b> Цифр по безбарьерным входам в бизнес-классе не нашли</p></div>
+   <p><b>Нет данных.</b> Цифр по безбарьерным входам в бизнес-классе не нашли</p>
+   <p class="go"><a href="podbor.html#baby">Подобрать для такой семьи →</a></p></div>
   <div class="scn"><h3>Семья с 2–3 детьми</h3>
    <p><b>Формат.</b> 4–5 комнат, 105–145 м²</p>
    <p><b>Сколько.</b> Мастер-блок родителей + детская на каждого ребёнка + 2–3 санузла; кладовая в квартире 2–4 м² или келлер</p>
    <p><b>В доме.</b> Школа и сад рядом пешком (в проектах бизнеса — у 44 %, премиума — у 15 %)</p>
-   <p><b>Пример.</b> <a href="#p-144">5 комнат 144 м²</a> в «Острове»; <a href="#p-233">пентхаус 233 м²</a> с игровой</p></div>
+   <p><b>Пример.</b> 5 комнат 144 м² в «Острове»; пентхаус 233 м² с игровой</p>
+   <p class="go"><a href="podbor.html#family">Подобрать для такой семьи →</a></p></div>
   <div class="scn"><h3>Три поколения</h3>
    <p><b>Формат.</b> Две мастер-спальни в разных крыльях, 105–130 м²; или две соседние квартиры</p>
    <p><b>Сколько.</b> Свой санузел у старшего поколения, без порогов, с поручнями; комната ближе к входу</p>
    <p><b>В доме.</b> Лифт, лавочки во дворе, поликлиника и аптека рядом</p>
-   <p><b>Пример.</b> <a href="#p-109">108,9 м²</a> в «Крылатской 33»; там же покупают этажи целиком под несколько поколений</p></div>
+   <p><b>Пример.</b> 108,9 м² в «Крылатской 33»; там же покупают этажи целиком под несколько поколений</p>
+   <p class="go"><a href="podbor.html#gen3">Подобрать для такой семьи →</a></p></div>
   <div class="scn"><h3>Няня или помощница</h3>
    <p><b>Формат.</b> От 200–250 м², где есть комната персонала</p>
    <p><b>Сколько.</b> Комната около 15 м² и свой душ — обязательно; под персонал уходит до 10 % площади; в больших квартирах — отдельный вход</p>
    <p><b>В доме.</b> Сервисный лифт (Brusov)</p>
-   <p><b>Пример.</b> <a href="#p-403">«Лё Дом» 403 м²</a>: прачечная, кабинет, разведённые коридоры</p></div>
+   <p><b>Пример.</b> «Лё Дом» 403 м²: прачечная, кабинет, разведённые коридоры</p>
+   <p class="go"><a href="podbor.html#nanny">Подобрать для такой семьи →</a></p></div>
   <div class="scn"><h3>Собака</h3>
    <p><b>Формат.</b> Любой, но прихожая от 4 м² и пол без ковров</p>
    <p><b>Сколько.</b> Место под лежанку вне прохода; душевой трап или поддон в санузле — мыть лапы дома</p>
    <p><b>В доме.</b> Лапомойка в лобби: ÁLIA, «Остров», Lucky, «Первый Нагатинский», «Ривер Парк Кутузовский». Площадка для выгула или дрессировки: «Остров» — около 720 м²</p>
-   <p><b>Рынок.</b> Опции для животных есть в 50 % проектов бизнеса (НДВ, 2025)</p></div>
+   <p><b>Рынок.</b> Опции для животных есть в 50 % проектов бизнеса (НДВ, 2025)</p>
+   <p class="go"><a href="podbor.html#active">Подобрать для такой семьи →</a></p></div>
   <div class="scn"><h3>Велосипеды, самокаты, лыжи, сап</h3>
    <p><b>Формат.</b> Не в квартире: ни евро-2, ни 150 м² не рассчитаны на 4 велосипеда</p>
    <p><b>Сколько.</b> Келлер 4–6 м² на семью или место для малого транспорта в паркинге</p>
-   <p><b>В доме.</b> EVER: 348 кладовых и 183 места для малого транспорта на 1&nbsp;097 квартир. Велокомната у входа с рампой</p>
-   <p><b>Нет данных.</b> Веломастерских и ски-румов в Москве не нашли</p></div>
-  <div class="scn"><h3>Друзья, которые приезжают тусить</h3>
+   <p><b>В доме.</b> EVER: 348 кладовых и 183 места для малого транспорта на 1 097 квартир. Велокомната у входа с рампой</p>
+   <p><b>Нет данных.</b> Веломастерских и ски-румов в Москве не нашли</p>
+   <p class="go"><a href="podbor.html#active">Подобрать для такой семьи →</a></p></div>
+  <div class="scn"><h3>Друзья, которые приезжают в гости</h3>
    <p><b>Формат.</b> Кухня-гостиная от 35 м², остров</p>
    <p><b>Сколько.</b> Гостевой санузел у входа обязательно; гостевая спальня с душем, если гости остаются ночевать</p>
    <p><b>В доме.</b> Лаунж или зал для приёмов, терраса на крыше, звукоизоляция между квартирами (данных в дБ застройщики не раскрывают)</p>
-   <p><b>Тренд.</b> Гостевую спальню считают лишней и отдают под кабинет или гардеробную (Sminex, 2026)</p></div>
+   <p><b>Тренд.</b> Гостевую спальню считают лишней и отдают под кабинет или гардеробную (Sminex, 2026)</p>
+   <p class="go"><a href="podbor.html#party">Подобрать для такой семьи →</a></p></div>
   <div class="scn"><h3>Работа из дома</h3>
    <p><b>Формат.</b> Кабинет 10–17 м² с дверью, лучше у входа, не в спальном крыле</p>
    <p><b>Сколько.</b> 91 % покупателей элитного жилья хотят кабинет (Sminex, 2026); в бизнесе его заменяет коворкинг в доме</p>
-   <p><b>Пример.</b> Кабинет 19,2 м² в «Лё Доме», 10 м² в пентхаусе «Острова»</p></div>
+   <p><b>Пример.</b> Кабинет 19,2 м² в «Лё Доме», 10 м² в пентхаусе «Острова»</p>
+   <p class="go"><a href="podbor.html#wfh">Подобрать для такой семьи →</a></p></div>
  </div>
 </div></section>
 
-<section><div class="wrap">
- <p class="ttl">Дома из разбора</p>
- <h2>Где искать крайние форматы</h2>
- <div class="arts">
-  <a class="art" href="../../karta.html#h-zorge-9"><div class="ph" data-ar="3x2"><img src="../../img/doma/zorge-9.jpg" alt="«Зорге 9»" loading="lazy"></div><span class="k">Бизнес</span><h3>Зорге 9</h3><p>От 16,4&nbsp;м²</p></a>
-  <a class="art" href="../../karta.html#h-khay-layf"><div class="ph" data-ar="3x2"><img src="../../img/doma/khay-layf.jpg" alt="«Хай Лайф»" loading="lazy"></div><span class="k">Бизнес</span><h3>Хай Лайф</h3><p>От 23,9&nbsp;м²</p></a>
-  <a class="art" href="../../karta.html#h-level-michurinskiy"><div class="ph" data-ar="3x2"><img src="../../img/doma/level-michurinskiy.jpg" alt="Level Мичуринский" loading="lazy"></div><span class="k">Бизнес</span><h3>Level Мичуринский</h3><p>18,4–248,4&nbsp;м²</p></a>
-  <a class="art" href="../../karta.html#h-krylatskaya-33"><div class="ph" data-ar="3x2"><img src="../../img/doma/krylatskaya-33.jpg" alt="«Крылатская 33»" loading="lazy"></div><span class="k">Бизнес</span><h3>Крылатская 33</h3><p>30,2–388,2&nbsp;м²</p></a>
-  <a class="art" href="../../karta.html#h-ostrov"><div class="ph" data-ar="3x2"><img src="../../img/doma/ostrov.jpg" alt="«Остров»" loading="lazy"></div><span class="k">Бизнес</span><h3>Остров</h3><p>28–539,6&nbsp;м²</p></a>
-  <a class="art" href="../../karta.html#h-capital-towers"><div class="ph" data-ar="3x2"><img src="../../img/doma/capital-towers.jpg" alt="Capital Towers" loading="lazy"></div><span class="k">Бизнес</span><h3>Capital Towers</h3><p>До 693,7&nbsp;м²</p></a>
-  <a class="art" href="../../doma/lavrushinskiy/"><div class="ph" data-ar="3x2"><img src="../../img/doma/lavrushinskiy.jpg" alt="«Лаврушинский»" loading="lazy"></div><span class="k">Элитный</span><h3>Лаврушинский</h3><p>До 979,5&nbsp;м²</p></a>
-  <a class="art" href="../../doma/obydenskiy-1/"><div class="ph" data-ar="3x2"><img src="../../img/doma/obydenskiy-1.jpg" alt="«Обыденский № 1»" loading="lazy"></div><span class="k">Делюкс</span><h3>Обыденский № 1</h3><p>До 781,3&nbsp;м²</p></a>
-  <a class="art" href="../../karta.html#h-dom-sporta"><div class="ph" data-ar="3x2"><img src="../../img/doma/dom-sporta.jpg" alt="«Дом спорта»" loading="lazy"></div><span class="k">Пентхаус</span><h3>Дом спорта</h3><p>45,8 и 1&nbsp;022&nbsp;м²</p></a>
-  <a class="art" href="../../karta.html#h-stella-di-mosca"><div class="ph" data-ar="3x2"><img src="../../img/doma/stella-di-mosca.jpg" alt="Stella di Mosca" loading="lazy"></div><span class="k">Таунхаус</span><h3>Stella di Mosca</h3><p>Таунхаус 1&nbsp;000&nbsp;м²</p></a>
-  <a class="art" href="../../doma/rezidentsiya-1864/"><div class="ph" data-ar="3x2"><img src="../../img/doma/rezidentsiya-1864.jpg" alt="«Резиденция 1864»" loading="lazy"></div><span class="k">Делюкс</span><h3>Резиденция 1864</h3><p>Вилла 1&nbsp;063&nbsp;м²</p></a>
-  <a class="art" href="../../doma/le-dom/"><div class="ph" data-ar="3x2"><img src="../../img/doma/le-dom.jpg" alt="«Лё Дом»" loading="lazy"></div><span class="k">Делюкс</span><h3>Лё Дом</h3><p>До 2&nbsp;371&nbsp;м²</p></a>
- </div>
- <div class="btns" style="margin-top:34px"><a class="btn btn-l" href="../../reytingi/penthausy-moskvy/">Рейтинг пентхаусов</a> <a class="btn btn-l" href="../../razbory.html">Все разборы</a> <a class="btn" href="#podbor">Посчитать свою планировку</a></div>
-</div></section>
-
-<section class="tight"><div class="wrap">
+<section class="tight" id="istochniki"><div class="wrap">
  <p class="ttl">Источники</p>
  <ul class="h-src">
   <li>База NOTA: лоты по типам (срез 23 сентября 2026), дома и пентхаусы — выгрузка 3 октября 2026</li>
-  <li>Карточки лотов: donstroy.moscow — «Остров»; novostroev.ru — «Крылатская 33», «Зорге 9», «Хай Лайф»; ЦИАН — «Лё Дом», объявление 333564417 — 3 октября 2026</li>
-  <li><a href="https://www.vedomosti.ru/kp/money/article/2026/07/24/1216245-lichnoe-prostranstvo-kak-ustroena-idealnaya-kvartira-segodnya" rel="nofollow noopener">Ведомости / Sminex: опрос покупателей элитного жилья, 24 июля 2026</a></li>
-  <li><a href="https://realty.ria.ru/20260729/moskva-2107779128.html" rel="nofollow noopener">РИА Недвижимость / NF Group: пентхаус 1 022 м² в «Доме спорта», 29 июля 2026</a></li>
-  <li><a href="https://mperspektiva.ru/topics/raznitsa-mezhdu-samym-bolshim-i-malenkim-predlozheniem-na-elitnom-rynke-moskvy-prevyshaet-1000-kvadr/" rel="nofollow noopener">Московская перспектива: самые большие и маленькие лоты элиты, 7 августа 2026</a></li>
-  <li><a href="https://mperspektiva.ru/topics/v-moskve-zakanchivayutsya-pentkhausy-zanimayushchie-tselyy-etazh/" rel="nofollow noopener">Московская перспектива / Whitewill: пентхаусы на целый этаж, 4 августа 2026</a></li>
-  <li><a href="https://www.mirkvartir.ru/journal/news/2026/07/22/na-elitnye-penthausy/" rel="nofollow noopener">Мир Квартир / Sminex: пентхаусы в продаже, 22 июля 2026</a></li>
-  <li><a href="https://www.mirkvartir.ru/journal/news/2026/07/29/ten-years/" rel="nofollow noopener">Мир Квартир / «Метриум»: премиум за 10 лет, 29 июля 2026</a></li>
-  <li><a href="https://www.mirkvartir.ru/journal/news/2026/07/06/two-levels/" rel="nofollow noopener">Мир Квартир: двухуровневые квартиры, 6 июля 2026</a>; <a href="https://www.mirkvartir.ru/journal/reviews/2026/05/22/dlya-otdyha-sporta-i/" rel="nofollow noopener">квартиры с террасами, 22 мая 2026</a></li>
-  <li><a href="https://www.metrium.ru/news/detail/srednyaya-ploshchad-kvartiry-v-novostroykakh-moskvy-dostigla-maksimuma-za-5-let/" rel="nofollow noopener">metrium.ru: средняя площадь в новостройках, 20 января 2026</a></li>
-  <li><a href="https://realty.rbc.ru/news/66ac8bda9a79475bfe50c32c" rel="nofollow noopener">РБК: минимальная площадь квартир 28 и 44 м²</a></li>
-  <li><a href="https://realty.rbc.ru/news/6a4f51329a79470e7ed925a1" rel="nofollow noopener">РБК: мастер-блок, 9 июля 2024</a>; <a href="https://realty.rbc.ru/news/694956ac9a794761363aaae9" rel="nofollow noopener">пентхаусы Brusov и «Обыденский», 27 января 2026</a>; <a href="https://realty.rbc.ru/news/6a0e93689a794778bcf2c7fd" rel="nofollow noopener">«Крылатская 33», 27 мая 2026</a></li>
-  <li><a href="https://www.mk.ru/realestate/2025/08/22/prostor-i-privatnost-sem-osnovnykh-planirovochnykh-resheniy-kotorye-delayut-zhile-premialnym.html" rel="nofollow noopener">МК: планировочные решения премиума, 22 августа 2025</a>; <a href="https://www.mk.ru/realestate/2025/10/20/triumf-komforta-top5-sovremennykh-planirovok-spalen-v-premiumklasse.html" rel="nofollow noopener">спальни в премиуме, 20 октября 2025</a></li>
-  <li><a href="https://www.kommersant.ru/doc/8636522" rel="nofollow noopener">Коммерсантъ: персонал в квартире, 6 мая 2026</a>; <a href="https://www.kommersant.ru/doc/8209022" rel="nofollow noopener">объединение квартир, 14 ноября 2025</a></li>
-  <li><a href="https://www.novostroy-m.ru/analitika/vannye_s_oknom_2024" rel="nofollow noopener">novostroy-m.ru / «Метриум»: ванные с окном, 26 сентября 2024</a></li>
-  <li><a href="https://mperspektiva.ru/topics/izuchaem-aktualnye-tendentsii-organizatsii-sanuzlov-v-novostroykakh-2024/" rel="nofollow noopener">Московская перспектива: санузлы в новостройках, 21 марта 2024</a>; <a href="https://mperspektiva.ru/topics/sovremennye-trendy-v-organizatsii-prostranstv-zhilykh-domov-2024/" rel="nofollow noopener">колясочные и велокомнаты, 31 января 2024</a></li>
-  <li><a href="https://finance.mail.ru/article/pokupateli-premium-zhilya-v-moskve-pereshli-na-semejnye-formaty-69227423/" rel="nofollow noopener">Финансы Mail: семейные форматы в премиуме, 12 сентября 2026</a></li>
-  <li><a href="https://www.mirkvartir.ru/journal/news/2026/01/15/flats/" rel="nofollow noopener">Мир Квартир / STONE: компактные квартиры, 15 января 2026</a>; <a href="https://www.vedomosti.ru/press_releases/2025/12/23/stone-predvaritelnie-itogi-goda-na-rinke-novostroek-biznes-klassa-moskvi" rel="nofollow noopener">Ведомости / STONE: отделка в бизнесе, 23 декабря 2025</a></li>
-  <li><a href="https://www.ndv.ru/journal/reviews/dog-friendly-kak-lojalnaja-sreda-dlja-zhivotnyh-menjaet-chelovecheskoe-komjuniti-1401" rel="nofollow noopener">НДВ: dog-friendly в новостройках, 20 июня 2025</a>; <a href="https://news.rambler.ru/moscow_city/56682736-sobachya-zhizn-kak-provodyat-vremya-pitomtsy-v-premialnyh-novostroykah-moskvy/" rel="nofollow noopener">Рамблер / Мир Квартир: собаки в премиальных ЖК, 30 июня 2026</a></li>
-  <li><a href="https://www.mirkvartir.ru/journal/news/2026/01/20/ever/" rel="nofollow noopener">Мир Квартир: EVER, кладовые и малый транспорт, 20 января 2026</a></li>
-  <li><a href="https://www.cian.ru/stati-chto-takoe-master-spalnja-i-kak-ee-gramotno-obustroit-340771/" rel="nofollow noopener">ЦИАН: мастер-спальня, 24 июня 2025</a></li>
-  <li>Планы лотов: «Остров» — по векторным планам <a href="https://donstroy.moscow/objects/ostrov/" rel="nofollow noopener">Донстроя</a>, «Крылатская 33» — по планам застройщика, перерисованы для NOTA; «Зорге 9», «Хай Лайф», «Лё Дом» — карточки на novostroev.ru и ЦИАН. Фото домов — база NOTA.</li>
+  <li>Карточки и планы лотов: donstroy.moscow — «Остров»; novostroev.ru — «Крылатская 33», «Зорге 9», «Хай Лайф»; ЦИАН — «Лё Дом», объявление 333564417 — 3 октября 2026. Планы перерисованы NOTA</li>
+  <li>Ведомости / Sminex: опрос покупателей элитного жилья, 24 июля 2026 — <a href="https://www.vedomosti.ru/kp/money/article/2026/07/24/1216245-lichnoe-prostranstvo-kak-ustroena-idealnaya-kvartira-segodnya" rel="nofollow noopener">ссылка</a></li>
+  <li>РИА Недвижимость / NF Group: пентхаус 1 022 м² в «Доме спорта», 29 июля 2026 — <a href="https://realty.ria.ru/20260729/moskva-2107779128.html" rel="nofollow noopener">ссылка</a></li>
+  <li>Московская перспектива: самые большие и маленькие лоты элиты, 7 августа 2026 — <a href="https://mperspektiva.ru/topics/raznitsa-mezhdu-samym-bolshim-i-malenkim-predlozheniem-na-elitnom-rynke-moskvy-prevyshaet-1000-kvadr/" rel="nofollow noopener">ссылка</a></li>
+  <li>Московская перспектива / Whitewill: пентхаусы на целый этаж, 4 августа 2026 — <a href="https://mperspektiva.ru/topics/v-moskve-zakanchivayutsya-pentkhausy-zanimayushchie-tselyy-etazh/" rel="nofollow noopener">ссылка</a></li>
+  <li>Мир Квартир / Sminex: пентхаусы в продаже, 22 июля 2026 — <a href="https://www.mirkvartir.ru/journal/news/2026/07/22/na-elitnye-penthausy/" rel="nofollow noopener">ссылка</a></li>
+  <li>Мир Квартир / «Метриум»: премиум за 10 лет, 29 июля 2026 — <a href="https://www.mirkvartir.ru/journal/news/2026/07/29/ten-years/" rel="nofollow noopener">ссылка</a></li>
+  <li>Мир Квартир: двухуровневые квартиры, 6 июля 2026 — <a href="https://www.mirkvartir.ru/journal/news/2026/07/06/two-levels/" rel="nofollow noopener">ссылка</a>; квартиры с террасами, 22 мая 2026 — <a href="https://www.mirkvartir.ru/journal/reviews/2026/05/22/dlya-otdyha-sporta-i/" rel="nofollow noopener">ссылка</a></li>
+  <li>metrium.ru: средняя площадь в новостройках, 20 января 2026 — <a href="https://www.metrium.ru/news/detail/srednyaya-ploshchad-kvartiry-v-novostroykakh-moskvy-dostigla-maksimuma-za-5-let/" rel="nofollow noopener">ссылка</a></li>
+  <li>РБК: минимальная площадь квартир 28 и 44 м² — <a href="https://realty.rbc.ru/news/66ac8bda9a79475bfe50c32c" rel="nofollow noopener">ссылка</a></li>
+  <li>РБК: мастер-блок, 9 июля 2024 — <a href="https://realty.rbc.ru/news/6a4f51329a79470e7ed925a1" rel="nofollow noopener">ссылка</a>; пентхаусы Brusov и «Обыденский», 27 января 2026 — <a href="https://realty.rbc.ru/news/694956ac9a794761363aaae9" rel="nofollow noopener">ссылка</a>; «Крылатская 33», 27 мая 2026 — <a href="https://realty.rbc.ru/news/6a0e93689a794778bcf2c7fd" rel="nofollow noopener">ссылка</a></li>
+  <li>МК: планировочные решения премиума, 22 августа 2025 — <a href="https://www.mk.ru/realestate/2025/08/22/prostor-i-privatnost-sem-osnovnykh-planirovochnykh-resheniy-kotorye-delayut-zhile-premialnym.html" rel="nofollow noopener">ссылка</a>; спальни в премиуме, 20 октября 2025 — <a href="https://www.mk.ru/realestate/2025/10/20/triumf-komforta-top5-sovremennykh-planirovok-spalen-v-premiumklasse.html" rel="nofollow noopener">ссылка</a></li>
+  <li>Коммерсантъ: персонал в квартире, 6 мая 2026 — <a href="https://www.kommersant.ru/doc/8636522" rel="nofollow noopener">ссылка</a>; объединение квартир, 14 ноября 2025 — <a href="https://www.kommersant.ru/doc/8209022" rel="nofollow noopener">ссылка</a></li>
+  <li>novostroy-m.ru / «Метриум»: ванные с окном, 26 сентября 2024 — <a href="https://www.novostroy-m.ru/analitika/vannye_s_oknom_2024" rel="nofollow noopener">ссылка</a></li>
+  <li>Московская перспектива: санузлы в новостройках, 21 марта 2024 — <a href="https://mperspektiva.ru/topics/izuchaem-aktualnye-tendentsii-organizatsii-sanuzlov-v-novostroykakh-2024/" rel="nofollow noopener">ссылка</a>; колясочные и велокомнаты, 31 января 2024 — <a href="https://mperspektiva.ru/topics/sovremennye-trendy-v-organizatsii-prostranstv-zhilykh-domov-2024/" rel="nofollow noopener">ссылка</a></li>
+  <li>Финансы Mail: семейные форматы в премиуме, 12 сентября 2026 — <a href="https://finance.mail.ru/article/pokupateli-premium-zhilya-v-moskve-pereshli-na-semejnye-formaty-69227423/" rel="nofollow noopener">ссылка</a></li>
+  <li>Мир Квартир / STONE: компактные квартиры, 15 января 2026 — <a href="https://www.mirkvartir.ru/journal/news/2026/01/15/flats/" rel="nofollow noopener">ссылка</a>; Ведомости / STONE: отделка в бизнесе, 23 декабря 2025 — <a href="https://www.vedomosti.ru/press_releases/2025/12/23/stone-predvaritelnie-itogi-goda-na-rinke-novostroek-biznes-klassa-moskvi" rel="nofollow noopener">ссылка</a></li>
+  <li>НДВ: dog-friendly в новостройках, 20 июня 2025 — <a href="https://www.ndv.ru/journal/reviews/dog-friendly-kak-lojalnaja-sreda-dlja-zhivotnyh-menjaet-chelovecheskoe-komjuniti-1401" rel="nofollow noopener">ссылка</a>; Рамблер / Мир Квартир: собаки в премиальных ЖК, 30 июня 2026 — <a href="https://news.rambler.ru/moscow_city/56682736-sobachya-zhizn-kak-provodyat-vremya-pitomtsy-v-premialnyh-novostroykah-moskvy/" rel="nofollow noopener">ссылка</a></li>
+  <li>Мир Квартир: EVER, кладовые и малый транспорт, 20 января 2026 — <a href="https://www.mirkvartir.ru/journal/news/2026/01/20/ever/" rel="nofollow noopener">ссылка</a></li>
+  <li>ЦИАН: мастер-спальня, 24 июня 2025 — <a href="https://www.cian.ru/stati-chto-takoe-master-spalnja-i-kak-ee-gramotno-obustroit-340771/" rel="nofollow noopener">ссылка</a></li>
  </ul>
- <p class="hint">Разбор собран 3 октября 2026. Площади и цены лотов меняются каждую неделю — при следующей сверке обновим цифры и поставим новую дату.</p>
+ <p class="hint">Собрано 3 октября 2026. Цифры из пересказов СМИ приведены со ссылкой на пересказ; где первоисточник отличается, верим первоисточнику.</p>
 </div></section>
 
-<div class="modal" id="zoom" hidden>
- <div class="modal-bg" data-close></div>
- <div class="modal-in" role="dialog" aria-modal="true" aria-label="План крупно">
-  <button class="modal-x" type="button" data-close aria-label="Закрыть">×</button>
-  <img id="zoomImg" alt="">
-  <p class="hint" id="zoomCap"></p>
- </div>
-</div>
+<dialog class="zoom" id="zoom" aria-labelledby="zTitle">
+ <button type="button" class="zoom-x" id="zClose" aria-label="Закрыть">×</button>
+ <div class="zoom-img"><img id="zImg" alt=""></div>
+ <div class="zoom-txt"><div><h3 id="zTitle"></h3><p id="zText"></p></div><a href="podbor.html">Подобрать планировку под свою семью →</a></div>
+</dialog>
 </main>
 <footer>
  <div class="wrap foot">
@@ -558,250 +435,20 @@
 </footer>
 <script src="../../js/nota.js?v=dd52641e"></script>
 <script>
-/* план крупно: окно сайта .modal */
+/* план крупно */
 (function(){
-  var m=document.getElementById('zoom'),im=document.getElementById('zoomImg'),cap=document.getElementById('zoomCap');
-  function close(){m.hidden=true;document.body.style.overflow=''}
-  document.querySelectorAll('.plan .ph img').forEach(function(i){
-    i.addEventListener('click',function(){im.src=i.src;im.alt=i.alt;cap.textContent=i.alt;m.hidden=false;document.body.style.overflow='hidden'});
-  });
-  m.addEventListener('click',function(e){if(e.target.hasAttribute('data-close'))close()});
-  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!m.hidden)close()});
-})();
-/* подбор наоборот: логика из досье, элементы — сайтовые (ползунки .row, чипы .chip, списки .sel) */
-(function(){
-  var form=document.getElementById('kf'); if(!form) return;
-  var DATA=null, showAll=false;
-  var PRESETS={
-    solo:{adults:1,pairs:0,kidsSmall:0,kidsBig:0,elders:0,nanny:false,guests:'1',party:'1',wfh:'0',cook:'0',dog:'0',cat:false,stroller:false,bikes:1,sport:false},
-    pair:{adults:2,pairs:1,kidsSmall:0,kidsBig:0,elders:0,nanny:false,guests:'1',party:'1',wfh:'1',cook:'1',dog:'0',cat:false,stroller:false,bikes:0,sport:false},
-    baby:{adults:2,pairs:1,kidsSmall:1,kidsBig:0,elders:0,nanny:false,guests:'0',party:'0',wfh:'0',cook:'0',dog:'0',cat:false,stroller:true,bikes:0,sport:false},
-    family:{extra:['play'],adults:2,pairs:1,kidsSmall:0,kidsBig:2,elders:0,nanny:false,guests:'1',party:'1',wfh:'1',cook:'1',dog:'0',cat:true,stroller:false,bikes:4,sport:true},
-    gen3:{space:'2',adults:2,pairs:1,kidsSmall:1,kidsBig:1,elders:2,nanny:false,guests:'0',party:'1',wfh:'1',cook:'2',dog:'0',cat:false,stroller:true,bikes:2,sport:false},
-    twopairs:{adults:4,pairs:2,kidsSmall:0,kidsBig:0,elders:0,nanny:false,guests:'1',party:'1',wfh:'1',cook:'1',dog:'0',cat:false,stroller:false,bikes:0,sport:false},
-    active:{adults:2,pairs:1,kidsSmall:0,kidsBig:1,elders:0,nanny:false,guests:'1',party:'1',wfh:'1',cook:'1',dog:'2',cat:false,stroller:false,bikes:3,sport:true},
-    party:{space:'2',extra:['cinema','wine'],adults:2,pairs:1,kidsSmall:0,kidsBig:0,elders:0,nanny:false,guests:'2',party:'2',wfh:'0',cook:'1',dog:'1',cat:false,stroller:false,bikes:0,sport:false}
-  };
-  var PLANS=[
-    {id:'p-16',img:'img/zorge9-studio-16.jpg',a:16.4,t:'1',cap:'Микростудия 16,4 м²'},
-    {id:'p-28',img:'img/ostrov-028.svg',a:28.4,t:'1',cap:'Студия 28,4 м²'},
-    {id:'p-59',img:'img/krylatskaya-33-059.svg',a:59,t:'2',cap:'Евродвушка 59 м²'},
-    {id:'p-77',img:'img/krylatskaya-33-077.svg',a:77.2,t:'2',cap:'Классическая двушка 77,2 м²'},
-    {id:'p-109',img:'img/krylatskaya-33-109.svg',a:108.9,t:'3',cap:'Две мастер-спальни, 108,9 м²',two:true},
-    {id:'p-106',img:'img/ostrov-106.svg',a:105.8,t:'4+',cap:'Евро-4, 105,8 м²'},
-    {id:'p-144',img:'img/ostrov-144.svg',a:144.1,t:'4+',cap:'5 комнат, 144,1 м²'},
-    {id:'p-182',img:'img/ostrov-183.svg',a:182.8,t:'4+',cap:'Клубный корпус, 182,8 м²'},
-    {id:'p-233',img:'img/ostrov-233.svg',a:233.4,t:'4+',cap:'Пентхаус с игровой, 233,4 м²'},
-    {id:'p-262',img:'img/ostrov-262.svg',a:262.4,t:'4+',cap:'6 комнат, 262,4 м²'},
-    {id:'p-403',img:'img/ledom-6k-403.jpg',a:403,t:'4+',cap:'Резиденция 403 м²'}
-  ];
-  var RANGES=['adults','pairs','kidsSmall','kidsBig','elders','bikes'];
-  function $(id){return document.getElementById(id)}
-  function num(id){var v=parseInt($(id).value,10);return isNaN(v)?0:v}
-  function rad(n){var e=form.querySelector('[data-seg="'+n+'"] .chip[aria-pressed="true"]');return e?parseInt(e.dataset.v,10):0}
-  function flag(n){var e=form.querySelector('[data-flag="'+n+'"]');return !!e&&e.getAttribute('aria-pressed')==='true'}
-  function sel(n){var li=form.querySelector('.sel[data-name="'+n+'"] li[aria-selected="true"]');return li?li.dataset.v:''}
-  function fmt(x){return (Math.round(x*10)/10).toString().replace('.',',')}
-  function r5(x){return Math.round(x/5)*5}
-  function money(m){ if(m>=1000) return fmt(m/1000)+' млрд ₽'; return Math.round(m).toLocaleString('ru-RU')+' млн ₽'}
-  function presetOff(){document.querySelectorAll('#kpre .chip').forEach(function(x){x.setAttribute('aria-pressed','false')})}
-
-  function clamp(){
-    var a=num('adults'), pm=Math.floor(a/2), p=$('pairs');
-    p.max=pm; if(num('pairs')>pm) p.value=pm;
-    RANGES.forEach(function(id){var o=form.querySelector('output[for="'+id+'"]'); if(o) o.textContent=num(id)});
-  }
-
-  function calc(){
-    var A=num('adults'),P=num('pairs'),KS=num('kidsSmall'),KB=num('kidsBig'),E=num('elders'),N=flag('nanny');
-    var G=rad('guests'),PT=rad('party'),W=rad('wfh'),C=rad('cook'),D=rad('dog'),CAT=flag('cat'),ST=flag('stroller'),B=num('bikes'),SP=flag('sport');
-    var people=A+KS+KB+E+(N?1:0);
-    var rooms=[],house=[],facts=[];
-    var closed=0, bedrooms=0;
-    var SPACE=rad('space'); var KS_=[0.9,1,1.15][SPACE];
-    var EX={}; form.querySelectorAll('[data-extra][aria-pressed="true"]').forEach(function(e){EX[e.dataset.extra]=1});
-    function add(name,lo,hi,why,opt){
-      if(opt&&SPACE===0) return;            // компактно: необязательное не закладываем
-      if(SPACE===2) opt=false;              // просторно: закладываем всё
-      rooms.push({n:name,lo:Math.round(lo*KS_*10)/10,hi:Math.round(hi*(SPACE===2?1.25:KS_)*10)/10,w:why,o:!!opt})}
-    var singles=A-2*P;
-    var small=(A<=2&&KS+KB+E===0&&!N);
-    // главная спальня
-    if(small){ add('Спальня с гардеробной',15,20,'гардеробная 2–4 м² вместо шкафов'); add('Санузел',4,6,'ванна или душ, место под стиральную машину, если нет постирочной'); }
-    else { add('Мастер-спальня',16,20,'спальня родителей в глубине квартиры, без сквозного прохода'); add('Гардеробная при спальне',4,6,'',true); add('Ванная при спальне',5,7,'своя ванная родителей: утром не стоять в очереди с детьми'); }
-    closed++; bedrooms++;
-    var extraAdults=(P>=1?P-1:0)*1; // вторые пары
-    var singlesLeft=P>=1?singles:singles-1;
-    if(P===0&&A>=1){ singlesLeft=A-1; }
-    for(var i=0;i<extraAdults;i++){ add(i===0?'Вторая мастер-спальня':'Ещё одна мастер-спальня',15,18,'в другом крыле от первой — две пары не слышат друг друга'); add('Ванная при ней',4,5,'у каждой пары свой санузел'); closed++; bedrooms++; }
-    for(var j=0;j<singlesLeft;j++){ add('Спальня взрослого',12,15,'взрослому ребёнку или родственнику — своя дверь'); closed++; bedrooms++; }
-    for(var q=0;q<Math.ceil(singlesLeft/2);q++) add('Санузел для взрослых',4,5,singlesLeft-2*q>1?'один на двоих взрослых':'свой душ взрослого — меньше конфликтов по утрам');
-    if(E>0){ add(E===2?'Комната бабушки и дедушки':'Комната старшего',14,16,'ближе ко входу и кухне, без ступенек'); add('Санузел при ней',4,5,'душ без поддона, поручни, дверь наружу'); closed++; bedrooms++; facts.push('две зоны — старшие и молодые'); }
-    var kids=KS+KB;
-    if(KS>0){ var shared=Math.ceil(KS/2); for(var k=0;k<shared;k++){ add(KS-2*k>=2?'Детская на двоих малышей':'Детская',KS-2*k>=2?13:11,KS-2*k>=2?15:13,'до 6 лет можно вместе; к школе — по комнате'); closed++; bedrooms++; } }
-    for(var m=0;m<KB;m++){ add('Детская школьника',11,13,'своя комната, стол у окна'); closed++; bedrooms++; }
-    if(kids>0) add('Детская ванная',4,6,KS>0?'ванна, а не только душ: малыша купают':'один санузел на двух-трёх детей',kids===1&&KS===1&&!small);
-    if(N){ add('Комната няни или помощницы',10,12,'отдельно от спален семьи, ближе к кухне и детской'); add('Душ при ней',3,4,'свой санузел обязателен'); closed++; facts.push('комната персонала'); }
-    var studyN=W||(EX.study?1:0);
-    if(studyN===1&&!EX.lib){ add('Кабинет',10,12,'дверь, которая закрывается, и не в спальном крыле'); closed++; }
-    if(studyN===1&&EX.lib){ add('Кабинет-библиотека',16,20,'стол у окна, стеллажи на 6–8 м погонных, кресло для чтения'); closed++; }
-    if(studyN===2){ add(EX.lib?'Кабинет-библиотека на двоих':'Кабинет на двоих',EX.lib?19:13,EX.lib?24:15,'два рабочих места'+(EX.lib?', стеллажи по длинной стене':' или кабинет + ниша в другом конце')); closed++; }
-    if(!studyN&&EX.lib){ add('Библиотека',12,16,'стеллажи на 6–8 м погонных, кресло и свет для чтения; бывает проходной гостиной'); closed++; }
-    if(G===2||EX.guest){ add('Гостевая спальня',11,13,G===2?'гости раз в месяц — уже отдельная комната':'отдельная комната для гостей и родственников'); add('Душ при гостевой',3,4,'',true); closed++; }
-    if(EX.wardrobe){ add('Гардеробная-комната',6,10,'общая гардеробная с окном или вентиляцией, вместо шкафов по спальням'); }
-    if(EX.play){ add('Игровая',14,20,'рядом с детскими, пол без ковра, место для конструктора на полу'); closed++; }
-    if(EX.gym){ add('Домашний спортзал',12,18,'тренажёр, коврик, зеркало; рядом с санузлом, лучше над нежилым помещением'); closed++; }
-    if(EX.cinema){ add('Кинозал',16,24,'без окон или с блэкаут-шторами, акустическая отделка, 3–4 м от экрана'); closed++; }
-    if(EX.hobby){ add('Мастерская',8,12,'хобби, шитьё, инструменты; вытяжка и розетки на 220 и 380'); closed++; }
-    if(EX.wine){ add('Винная комната',3,6,'климат-шкаф или комната с постоянными 12–14 °C, без окна'); }
-    if(EX.spa){ add('Сауна или хаммам',5,8,'проектом: вентиляция, гидроизоляция и электрика согласовываются заранее'); add('Душ при спа',3,4,'рядом с сауной'); }
-    if(G===1&&!EX.guest){ if(W>0) facts.push('кабинет с диваном — он же гостевая'); else facts.push('гостям — диван в гостиной'); }
-    // кухня-гостиная
-    var kl=[20+3*(people-1),24+3*(people-1)];
-    if(PT===1){kl[0]+=4;kl[1]+=4} if(PT===2){kl[0]+=8;kl[1]+=10}
-    if(C===2){ add('Отдельная кухня',10,13,'запахи и шум остаются за дверью'); add('Гостиная-столовая',kl[0]-4,kl[1]-4,'стол на всех, кто живёт, + гости'); facts.push('кухня отдельно'); }
-    else if(C===1&&people>=4){ add('Кухня-гостиная с раздвижной перегородкой',kl[0],kl[1],'кухню можно закрыть, когда готовите'); facts.push('кухня закрывается'); }
-    else { add('Кухня-гостиная',kl[0],kl[1],PT===2?'остров и стол на 8–10 человек':'одна общая комната — главная в квартире'); }
-    var guestWC=(people>=3||PT>0||G===2);
-    if(guestWC) add('Гостевой санузел',2,3,'гости не ходят через спальни',people<3);
-    if(people>=4||D>0||kids>0) add('Постирочная',3,5,'стиральная и сушильная машины, сушилка не в гостиной',people<4&&kids===0);
-    else add('Ниша под стиральную машину',1,1.5,'в санузле или коридоре');
-    var hall=[4,6]; if(ST){hall[0]+=1.5;hall[1]+=2} if(D===2){hall[0]+=1;hall[1]+=1.5}
-    hall[0]+=0.3*people; hall[1]+=0.4*people;
-    add('Прихожая',hall[0],hall[1],[ST?'коляска стоит, не перегораживая проход':'',D>0?'место вытереть собаку и повесить поводок':'шкаф на верхнюю одежду всей семьи'].filter(Boolean).join('; '));
-    if(people>=3) add('Кладовая в квартире',2,4,'пылесос, чемоданы, сезонное',people<4);
-    // суммы
-    var lo=0,hi=0,reqLo=0;
-    rooms.forEach(function(r){lo+=r.lo;hi+=r.hi;if(!r.o)reqLo+=r.lo});
-    var CF=[[1.06,1.10],[1.08,1.14],[1.12,1.18]][SPACE];
-    var tLo=r5(lo*CF[0]),tHi=r5(hi*CF[1]),tMin=r5(reqLo*1.06);
-    // формат
-    var mr=closed+(C===2?1:1); // гостиная или кухня-гостиная = ещё одна комната
-    var tip=mr<=1?'1':(mr>=4?'4+':String(mr));
-    var studioOk=(A===1&&P===0&&kids===0&&E===0&&!N&&W===0&&G<2);
-    if(studioOk){ tip='1'; }
-    var fmtTxt;
-    var bedWord=bedrooms===1?'спальня':(bedrooms<5?'спальни':'спален');
-    if(studioOk) fmtTxt='Евродвушка: спальня + кухня-гостиная. Если спать в общей комнате — хватит студии 28–35 м²';
-    else fmtTxt=bedrooms+' '+bedWord+rooms.filter(function(x){return /^(Кабинет|Библиотека|Гостевая спальня|Комната няни|Игровая|Домашний спортзал|Кинозал|Мастерская)/.test(x.n)}).map(function(x){return ' + '+x.n.toLowerCase().replace('комната няни или помощницы','комната персонала').replace('гостевая спальня','гостевая').replace('домашний спортзал','спортзал')}).join('')+(C===2?', кухня отдельно':', кухня-гостиная')+(mr>=5?' — в объявлениях «многокомнатная», '+mr+' комнат':' — в объявлениях «'+mr+'-комнатная» или «евро-'+mr+'»');
-    // санузлы
-    var bl=rooms.filter(function(r){return /санузел|ванная|душ/i.test(r.n)}); var baths=bl.length, bReq=bl.filter(function(r){return !r.o}).length;
-    var bw=function(n){return n===1?'санузел':(n<5?'санузла':'санузлов')};
-    facts.unshift((bReq<baths?bReq+'–'+baths:baths)+' '+bw(baths));
-    if(P>=2||(P===1&&E>0)) facts.push('две мастер-спальни в разных крыльях');
-    // дом
-    if(ST||KS>0) house.push('Колясочная в лобби и путь от двери подъезда до лифта без ступенек');
-    if(kids>0) house.push('Школа и сад пешком — <a href="../../reytingi/shkoly-moskvy/">рейтинг школ NOTA</a>, минуты до школ есть в карточке каждого дома');
-    if(E>0) house.push('Лифт с уровня земли, поликлиника и аптека рядом, лавочки во дворе');
-    if(D>0) house.push('Лапомойка в лобби и площадка для выгула'+(D===2?'; для крупной собаки — полы без глянца и выход во двор без длинных коридоров':''));
-    if(CAT) house.push('Сетки на окна — уточнить у застройщика, можно ли их ставить на этом фасаде');
-    if(B>0||SP){ var kel=Math.max(2,Math.round(1+B*0.8+(SP?1.5:0))); house.push('Келлер около '+kel+' м² или места для малого транспорта в паркинге'+(B>=3?'; велокомната у входа с рампой':'')); }
-    if(PT===2) house.push('Лаунж или терраса на крыше для больших компаний, гостевой паркинг');
-    if(PT>0||G>0) house.push('Звукоизоляция между квартирами: спросить индекс в дБ, застройщики его обычно не публикуют');
-    if(W===2) house.push('Коворкинг в доме — второе рабочее место без лишних метров');
-    if(N) house.push('Отдельный вход в зону персонала есть только в больших квартирах; в остальных — двери с хорошей шумоизоляцией');
-    if(!house.length) house.push('Фитнес, коворкинг и мейлрум — дом добирает то, чего нет в квартире');
-    return {rooms:rooms,lo:tLo,hi:tHi,min:tMin,tip:tip,studio:studioOk,fmt:fmtTxt,facts:facts,house:house,bedrooms:bedrooms,two:(P>=2||(P===1&&E>0)||(singlesLeft>0&&P>=1))};
-  }
-
-  function render(){
-    clamp();
-    var sh=$('spaceHint'); if(sh) sh.textContent=['Минимальные размеры комнат, без гардеробных, кладовых и гостевого санузла.','Комнаты по нормальным размерам, необязательное — помечено.','Комнаты больше на 15–25 %, гардеробные, постирочная и кладовая — обязательно.'][rad('space')];
-    var r=calc();
-    $('rArea').textContent=r.lo+'–'+r.hi;
-    $('rFormat').textContent=r.fmt;
-    $('rMin').textContent='Если отказаться от помеченного «можно без» — от '+r.min+' м²';
-    $('rFacts').innerHTML=r.facts.map(function(f){return '<span>'+f+'</span>'}).join('');
-    $('rRooms').innerHTML=r.rooms.map(function(x){return '<tr'+(x.o?' class="opt"':'')+'><td data-label="Помещение">'+x.n+(x.o?' <span class="kopt">· можно без</span>':'')+'</td><td data-label="м²">'+fmt(x.lo)+'–'+fmt(x.hi)+'</td><td data-label="Зачем">'+x.w+'</td></tr>'}).join('')+'<tr><td data-label="Помещение">Коридоры и стены</td><td data-label="м²">+'+['6–10','8–14','12–18'][rad('space')]+' %</td><td data-label="Зачем">в хорошей планировке меньше, в резиденциях больше</td></tr>';
-    $('rHouse').innerHTML=r.house.map(function(h){return '<li>'+h+'</li>'}).join('');
-    var mid=(r.lo+r.hi)/2;
-    var cand=PLANS.filter(function(p){return p.t===r.tip||(r.two&&p.two)});
-    if(r.studio) cand=PLANS.filter(function(p){return p.t==='1'||p.id==='p-59'});
-    cand.sort(function(a,b){var ea=Math.abs(a.a-mid)-(r.two&&a.two?60:0),eb=Math.abs(b.a-mid)-(r.two&&b.two?60:0);return ea-eb});
-    $('rPlans').innerHTML=cand.slice(0,3).map(function(p){return '<a href="#'+p.id+'"><img src="'+p.img+'" alt="'+p.cap+'" loading="lazy"><span>'+p.cap+'</span></a>'}).join('')||'<p class="hint">Похожего плана в подборке ниже нет.</p>';
-    renderMatch(r);
-    window.__konf=r;
-  }
-
-  function renderMatch(r){
-    if(!DATA){$('mNote').textContent='Загружаем дома из базы…';return}
-    var budget=parseInt(sel('budget'),10)||0, kl=sel('klass');
-    var need=r.lo, needHi=r.hi;
-    var tips=r.studio?['студия','1','2']:[r.tip];
-    var rows=[];
-    DATA.l.forEach(function(x){
-      var s=x[0],t=x[1],a=x[2],b=x[3],c=x[4],h=DATA.h[s]; if(!h) return;
-      if(tips.indexOf(t)<0) return;
-      if(kl){ if(kl==='элит'){ if(h.c!=='элитный'&&h.c!=='делюкс') return } else if(h.c!==kl) return }
-      if(b<need*0.92||a>needHi*1.05) return;
-      var area=Math.max(a,need), est=c?c/a*area:null;
-      if(budget&&est&&est>budget) return;
-      rows.push({s:s,h:h,a:a,b:b,est:est,area:area});
-    });
-    rows.sort(function(x,y){if(x.est==null)return 1;if(y.est==null)return -1;return x.est-y.est});
-    var byClass={}; rows.forEach(function(x){byClass[x.h.c]=(byClass[x.h.c]||0)+1});
-    var parts=Object.keys(byClass).map(function(k){return k+' — '+byClass[k]});
-    var n=rows.length, w=(n%10===1&&n%100!==11)?'дом':((n%10>=2&&n%10<=4&&(n%100<10||n%100>=20))?'дома':'домов');
-    $('mTitle').textContent=n?('Где такие квартиры продаются сейчас: '+n+' '+w):'Таких квартир в базе сейчас нет';
-    $('mNote').textContent=n?('Формат «'+(r.studio?'студия, 1 или 2':r.tip)+'», площади пересекаются с '+r.lo+'–'+r.hi+' м². По классам: '+parts.join(', ')+'.'):'Попробуйте снять фильтр по бюджету или классу. Для больших семей часто выгоднее купить две соседние квартиры и объединить их — так делают 5–10 % покупателей премиума.';
-    var list=showAll?rows:rows.slice(0,8);
-    $('mRows').innerHTML=list.map(function(x){
-      var link=x.h.p?'../../doma/'+x.s+'/':'../../karta.html#h-'+x.s;
-      return '<tr><td data-label="Дом"><a href="'+link+'">'+x.h.n+'</a></td><td data-label="Класс">'+x.h.c+'</td><td data-label="Район">'+x.h.d+'</td><td data-label="Площади этого формата">'+fmt(x.a)+'–'+fmt(x.b)+' м²</td><td data-label="Оценка за нужные метры">'+(x.est?'≈ '+money(x.est)+' за '+Math.round(x.area)+' м²':'по запросу')+'</td></tr>'}).join('');
-    var more=$('mMore'); more.hidden=n<=8; more.textContent=showAll?'Свернуть':'Показать все '+n;
-    window.__konfRows=rows;
-  }
-
-  function summary(){
-    var r=window.__konf, rows=window.__konfRows||[];
-    var t='Расчёт планировки — NOTA\n';
-    t+='Кто живёт: взрослых '+num('adults')+' (пар '+num('pairs')+'), дети до 6 — '+num('kidsSmall')+', 6–17 — '+num('kidsBig')+', старшее поколение — '+num('elders')+(flag('nanny')?', няня':'')+'\n';
-    t+='Простор: '+['компактно','комфортно','просторно'][rad('space')]+'\n';
-    var ex=[].map.call(form.querySelectorAll('[data-extra][aria-pressed="true"]'),function(e){return e.textContent}); if(ex.length) t+='Ещё комнаты: '+ex.join(', ')+'\n';
-    t+='Нужно: '+r.lo+'–'+r.hi+' м² (минимум '+r.min+'), '+r.fmt+'\n';
-    t+=r.facts.join(' · ')+'\n\nПомещения:\n'+r.rooms.map(function(x){return '— '+x.n+': '+fmt(x.lo)+'–'+fmt(x.hi)+' м²'+(x.o?' (можно без)':'')}).join('\n');
-    t+='\n\nВ доме: '+r.house.map(function(h){return h.replace(/<[^>]+>/g,'')}).join('; ');
-    if(rows.length) t+='\n\nДома из базы NOTA: '+rows.slice(0,8).map(function(x){return x.h.n}).join(', ');
-    return t;
-  }
-
-  form.addEventListener('input',function(){presetOff();render()});
-  form.addEventListener('submit',function(e){e.preventDefault()});
-  form.addEventListener('click',function(e){
-    var c=e.target.closest('.chip'); if(!c||!form.contains(c)) return;
-    var grp=c.closest('[data-seg]');
-    if(grp){ grp.querySelectorAll('.chip').forEach(function(x){x.setAttribute('aria-pressed',x===c?'true':'false')}); }
-    else if(c.dataset.flag||c.dataset.extra){ c.setAttribute('aria-pressed',c.getAttribute('aria-pressed')==='true'?'false':'true'); }
-    presetOff(); render();
-  });
-  document.addEventListener('selchange',function(e){ if(form.contains(e.target)) renderMatch(window.__konf) });
-  document.querySelectorAll('#kpre .chip').forEach(function(btn){
-    btn.addEventListener('click',function(){
-      var p=PRESETS[btn.dataset.preset]; if(!p) return;
-      $('adults').value=p.adults; clamp();
-      form.querySelectorAll('[data-extra]').forEach(function(x){x.setAttribute('aria-pressed',(p.extra||[]).indexOf(x.dataset.extra)>=0?'true':'false')});
-      form.querySelectorAll('[data-seg="space"] .chip').forEach(function(x){x.setAttribute('aria-pressed',x.dataset.v===(p.space||'1')?'true':'false')});
-      Object.keys(p).forEach(function(k){ if(k==='extra'||k==='space') return;
-        var v=p[k], el=$(k);
-        if(el){ el.value=v; return }
-        var f=form.querySelector('[data-flag="'+k+'"]');
-        if(f){ f.setAttribute('aria-pressed',v?'true':'false'); return }
-        var g=form.querySelector('[data-seg="'+k+'"]');
-        if(g) g.querySelectorAll('.chip').forEach(function(x){x.setAttribute('aria-pressed',x.dataset.v===String(v)?'true':'false')});
-      });
-      document.querySelectorAll('#kpre .chip').forEach(function(x){x.setAttribute('aria-pressed',x===btn?'true':'false')});
-      showAll=false; render();
+  var d=document.getElementById('zoom'),im=document.getElementById('zImg'),t=document.getElementById('zTitle'),x=document.getElementById('zText');
+  document.querySelectorAll('.type [data-zoom]').forEach(function(b){
+    b.addEventListener('click',function(){
+      var card=b.closest('.type'),i=b.querySelector('img');
+      im.src=i.src; im.alt=i.alt;
+      t.textContent=card.querySelector('h3').textContent+' · '+card.querySelector('.area').textContent;
+      x.textContent=card.querySelector('.hint').textContent;
+      if(d.showModal) d.showModal(); else d.setAttribute('open','');
     });
   });
-  $('mMore').addEventListener('click',function(){showAll=!showAll;renderMatch(window.__konf)});
-  $('kCopy').addEventListener('click',function(){
-    var txt=summary(), ta=$('kText'), btn=$('kCopy');
-    function done(){btn.textContent='Скопировано';setTimeout(function(){btn.textContent='Скопировать расчёт'},2200)}
-    function fallback(){ta.value=txt;ta.classList.remove('vh');ta.style.cssText='display:block;width:100%;height:160px;margin-top:8px;font:inherit;font-size:14px';ta.removeAttribute('aria-hidden');ta.focus();ta.select();btn.textContent='Выделено — нажмите Ctrl+C'}
-    try{ navigator.clipboard.writeText(txt).then(done,fallback) }catch(e){ fallback() }
-  });
-  render();
-  fetch('loty.json').then(function(r){return r.json()}).then(function(d){DATA=d;renderMatch(window.__konf)}).catch(function(){$('mNote').textContent='Не удалось загрузить дома из базы. Расчёт помещений выше работает и без них.'});
+  document.getElementById('zClose').addEventListener('click',function(){d.close()});
+  d.addEventListener('click',function(e){if(e.target===d)d.close()});
 })();
 </script>
 </body>

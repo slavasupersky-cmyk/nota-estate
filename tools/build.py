@@ -113,7 +113,10 @@ def article_tables(s):
         t = re.sub(r'<tr[^>]*>[\s\S]*?</tr>', row, t)
         open_tag = re.match(r'<table[^>]*>', t).group(0)
         tag = re.sub(r'\s*class="t-cards"', '', open_tag)
-        if cards: tag = tag.replace('<table', '<table class="t-cards"', 1)
+        tag = re.sub(r'(class="[^"]*?)\s*\bt-cards\b', r'\1', tag)  # t-cards внутри своего class="…"
+        if cards:
+            if 'class="' in tag: tag = tag.replace('class="', 'class="t-cards ', 1)  # у таблицы свой класс — дописываем, а не второй атрибут
+            else: tag = tag.replace('<table', '<table class="t-cards"', 1)
         return tag + t[len(open_tag):]
     return re.sub(r'<table[^>]*>[\s\S]*?</table>', one, s)
 
@@ -447,7 +450,7 @@ if __name__ == '__main__':
         ps += sorted((ROOT / 'doma').glob('**/index.html'))
         ps += sorted((ROOT / 'razbory').glob('**/index.html'))
         ps += sorted((ROOT / 'reytingi').glob('**/index.html'))
-        ps += sorted((ROOT / 'test').glob('**/index.html'))
+        ps += sorted((ROOT / 'test').glob('**/*.html'))
         return ps
 
     before = {p: p.read_bytes() for p in all_pages()}

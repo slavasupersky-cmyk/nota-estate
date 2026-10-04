@@ -1,0 +1,173 @@
+/* Планировки: «Как бывает» (index.html) и «Подбор планировки» (podbor.html).
+   Основа — css/nota.css сайта. Здесь только то, чего в nota.css нет:
+   вкладки, шкала, карточки планировок, окно с планом, тёмный блок-переход, форма подбора,
+   тёмная карточка результата и полоска результата на телефоне. Цвета — токены nota.css, тёмный фон — как у .analytics. */
+
+/* вкладки «Как бывает / Подбор» — чипы сайта, текущая страница выделена как активный фильтр */
+.pl-tabs{margin:18px 0 0}
+.pl-tabs .chip[aria-current="page"]{border-color:var(--ink);color:var(--ink);font-weight:500}
+
+/* шкала площадей */
+.kscale{display:block;width:100%;min-width:640px;height:auto}
+.kscale .ax{stroke:var(--ink);stroke-width:1.2}
+.kscale .tick{stroke:var(--muted)}
+.kscale .tl{font:500 11px Onest,Arial,sans-serif;fill:var(--muted);text-anchor:middle}
+.kscale .dot{fill:var(--ink)}.kscale .dot.big{fill:var(--red)}
+.kscale .ld{stroke:var(--hair)}
+.kscale .v{font:800 15px Onest,Arial,sans-serif;fill:var(--ink)}
+.kscale .nm{font:400 11.5px Onest,Arial,sans-serif;fill:var(--ink-2)}
+
+/* карточки планировок */
+.types{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(22px,2.4vw,34px) clamp(14px,1.7vw,22px);margin-top:30px}
+@media(max-width:980px){.types{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:620px){.types{grid-template-columns:minmax(0,1fr)}}
+.type{display:flex;flex-direction:column;gap:10px;min-width:0;scroll-margin-top:96px}
+.type figure{margin:0;background:#fff;border:1px solid var(--line);aspect-ratio:4/3;max-width:100%;overflow:hidden;transition:border-color .2s}
+.type figure button{all:unset;display:block;width:100%;height:100%;cursor:zoom-in}
+.type figure button:focus-visible{outline:2px solid var(--red);outline-offset:-2px}
+.type figure img{width:100%;height:100%;object-fit:contain;display:block;padding:8px}
+.type figure:hover{border-color:var(--ink)}
+.type:target figure{border-color:var(--red);box-shadow:0 0 0 1px var(--red)}
+.type .meta{display:flex;gap:8px;flex-wrap:wrap;align-items:baseline}
+.type .area{font-size:28px;font-weight:800;letter-spacing:-.04em;line-height:1.1;font-variant-numeric:tabular-nums;margin-right:4px}
+.type .tag{color:var(--ink-2)}
+.type .tag.hl{border-color:var(--red);color:var(--red)}
+.type h3{margin:2px 0 0}
+.article main .type p{font-size:15px;line-height:1.55;color:var(--ink-2);margin:0}
+.type .hint{margin:0;font-size:12.5px}
+
+/* окно с планом */
+dialog.zoom{border:1px solid var(--line);padding:0;width:min(1100px,96vw);max-height:94vh;background:var(--surface);color:var(--ink);border-radius:0;overflow:auto;box-shadow:0 30px 80px rgba(16,19,23,.24)}
+dialog.zoom::backdrop{background:rgba(16,19,23,.55);backdrop-filter:blur(3px)}
+.zoom-img{background:#fff;border-bottom:1px solid var(--line);display:flex;justify-content:center}
+.zoom-img img{display:block;width:100%;height:auto;max-height:72vh;object-fit:contain;padding:12px}
+.zoom-txt{padding:16px 22px 20px;display:flex;flex-wrap:wrap;gap:10px 24px;align-items:baseline;justify-content:space-between}
+.zoom-txt h3{margin:0}
+.zoom-txt p{margin:6px 0 0;font-size:14.5px;line-height:1.55;color:var(--ink-2);max-width:72ch}
+.zoom-txt a{font-weight:600;font-size:15px;color:var(--ink);text-decoration-color:var(--red);text-underline-offset:3px}
+.zoom-x{position:sticky;top:0;float:right;margin:10px 10px -46px 0;z-index:1;width:36px;height:36px;border:0;background:var(--surface);color:var(--muted);font:400 26px/1 Onest,Arial,sans-serif;cursor:pointer}
+.zoom-x:hover{color:var(--ink)}
+
+/* тёмный блок-переход между страницами: основа .analytics, внутри — текст и список */
+.pl-cta .an-in{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:22px clamp(28px,4vw,60px);align-items:center}
+.pl-cta h2{max-width:22ch;margin-top:14px}
+.pl-cta .lede{margin-top:14px}
+.pl-cta .btns{justify-content:flex-start;margin-top:22px}
+.pl-cta .btns .btn{margin-top:0}
+.pl-cta ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.article main .pl-cta ul li{font-size:15px;line-height:1.5;color:rgba(255,255,255,.82);margin:0}
+.pl-cta ul li:before{content:"— ";color:var(--red)}
+@media(max-width:860px){.pl-cta .an-in{grid-template-columns:1fr}}
+
+/* сценарии */
+.scn h3{margin-bottom:4px}
+.article main .scn p{font-size:14.5px;line-height:1.5;color:var(--ink-2);margin-top:8px}
+.scn p b{color:var(--ink);font-weight:600}
+.article main .scn p.go{margin-top:14px}
+.scn .go a{font-weight:600;color:var(--ink);text-decoration-color:var(--red);text-underline-offset:3px}
+.scn{display:flex;flex-direction:column}
+.scn .go{margin-top:auto!important;padding-top:14px}
+
+/* ── Подбор ── */
+.presets{margin:0}
+.konf{margin-top:22px}
+.konf .calc-out{gap:14px}
+.kform{display:flex;flex-direction:column;gap:22px;min-width:0}
+.kform fieldset{border:0;border-top:1px solid var(--ink);margin:0;padding:12px 0 0;display:flex;flex-direction:column;gap:10px;min-width:0}
+.kform legend{float:left;width:100%;padding:0 0 2px;font-weight:600;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.kform .hint{margin:0;font-size:13px}
+.kform .row{display:flex;justify-content:space-between;align-items:center;gap:12px;min-height:40px;padding:0 0 8px;border-bottom:1px solid var(--line)}
+.kform .row label{flex:1 1 auto;min-width:0;font-weight:400;font-size:15px}
+.kform .seg-l{font-size:15px;margin-top:4px}
+/* степпер: минус, число, плюс */
+.step{display:flex;align-items:center;border:1px solid var(--hair);flex:none;background:var(--surface)}
+.step button{width:36px;height:36px;border:0;background:transparent;font:500 18px Onest,Arial,sans-serif;color:var(--ink);cursor:pointer}
+.step button:hover:not(:disabled){background:var(--paper-2)}
+.step button:disabled{color:var(--hair);cursor:default}
+.step input{width:38px;height:36px;border:0;border-left:1px solid var(--line);border-right:1px solid var(--line);text-align:center;font:600 16px Onest,Arial,sans-serif;color:var(--ink);background:transparent;-moz-appearance:textfield;font-variant-numeric:tabular-nums;border-radius:0}
+.step input::-webkit-outer-spin-button,.step input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+/* переключатель да/нет — квадрат как у согласия на сайте */
+.sw{appearance:none;-webkit-appearance:none;width:20px;height:20px;flex:none;margin:0;border:1px solid var(--hair);background:var(--surface);cursor:pointer;position:relative;border-radius:0}
+.sw:checked{background:var(--ink);border-color:var(--ink)}
+.sw:checked::after{content:"";position:absolute;left:6px;top:2px;width:5px;height:10px;border:solid var(--paper);border-width:0 2px 2px 0;transform:rotate(43deg)}
+.sw:focus-visible{outline:2px solid var(--red);outline-offset:3px}
+/* сегменты и доп. комнаты — чипы сайта на radio и checkbox */
+.seg,.kchips{display:flex;flex-wrap:wrap;gap:6px}
+.seg input,.kchips input{position:absolute;opacity:0;pointer-events:none}
+.seg label,.kchips label{font-size:13.5px;padding:8px 12px;border:1px solid var(--line);background:var(--surface);color:var(--muted);border-radius:2px;cursor:pointer;transition:.18s;line-height:1.2}
+.seg label:hover,.kchips label:hover{color:var(--ink)}
+.seg input:checked+label,.kchips input:checked+label{border-color:var(--ink);color:var(--ink);font-weight:500}
+.seg input:disabled+label{opacity:.4;cursor:default}
+.seg input:focus-visible+label,.kchips input:focus-visible+label{outline:2px solid var(--red);outline-offset:2px}
+.seg.big label{font-size:15px;padding:10px 16px}
+.kform select{appearance:none;-webkit-appearance:none;font:400 15px Onest,Arial,sans-serif;color:var(--ink);background:var(--surface) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%237C848C' stroke-width='1.5'/%3E%3C/svg%3E") right 12px center no-repeat;border:1px solid var(--line);border-radius:2px;padding:9px 34px 9px 12px;cursor:pointer;max-width:58%}
+.kform select:hover{border-color:var(--muted)}
+
+/* результат */
+.kres{min-width:0}
+.kres h3{margin-top:10px}
+.kcard{flex:none;position:sticky;top:90px;z-index:2;background:#101317;color:#fff;padding:clamp(20px,2.2vw,26px);box-shadow:0 0 0 clamp(18px,2.2vw,28px) var(--paper-2)}
+.kcard .ttl{color:rgba(255,255,255,.62)}
+.kbig{display:block;font-size:clamp(40px,4.6vw,58px);font-weight:800;letter-spacing:-.04em;line-height:1;margin-top:10px;font-variant-numeric:tabular-nums}
+.kbig small{font-size:.4em;font-weight:600;letter-spacing:-.01em}
+.kfmt{font-size:16.5px;font-weight:600;line-height:1.4;margin-top:12px;letter-spacing:-.015em}
+.kmin{font-size:13.5px;color:rgba(255,255,255,.66);margin-top:6px}
+.kfacts{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.kfacts span{font-size:12.5px;border:1px solid rgba(255,255,255,.28);padding:3px 9px;border-radius:2px;color:rgba(255,255,255,.88)}
+.kmarket{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;justify-content:space-between;margin-top:14px;padding-top:12px;border-top:1px solid rgba(255,255,255,.2);font-size:14px;color:rgba(255,255,255,.75)}
+.kmarket b{color:#fff}
+.kmarket a{color:#fff;font-weight:600;text-decoration-color:var(--red);text-underline-offset:3px}
+.ktab{font-size:14px}
+.ktab td{padding:8px 10px}
+.ktab td:first-child{font-weight:500}
+.ktab td:last-child{color:var(--ink-2)}
+.ktab td.n,.ktab th.n{white-space:nowrap}
+.ktab tr.opt td{color:var(--muted)}
+.ktab tr.opt td:first-child::after{content:" · можно без";font-weight:400;font-size:12px;color:var(--muted)}
+.ktab tr.sum td{border-bottom:0;border-top:1px solid var(--ink);font-weight:600;color:var(--ink)}
+.ktab tr.cor td{color:var(--ink-2)}
+.kres .klist{margin:0}
+.article main .kres .klist li{font-size:15px}
+.kplans{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.kplans button{all:unset;cursor:zoom-in;font-size:13px;line-height:1.35;color:var(--ink-2);display:flex;flex-direction:column;gap:6px;min-width:0}
+.kplans button:focus-visible{outline:2px solid var(--red);outline-offset:2px}
+.kplans img{width:100%;aspect-ratio:4/3;object-fit:contain;background:#fff;border:1px solid var(--line);padding:4px;max-width:100%;display:block}
+.kplans button:hover img{border-color:var(--ink)}
+.kshare{display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px;margin-top:22px}
+.kshare .hint{margin:0;max-width:60ch}
+.vh{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+
+/* полоска результата на телефоне */
+.kbar{position:fixed;left:0;right:0;bottom:0;z-index:50;background:#101317;color:#fff;display:none;align-items:center;justify-content:space-between;gap:12px;padding:10px 26px calc(10px + env(safe-area-inset-bottom,0px))}
+.kbar b{font-size:20px;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.kbar span{font-size:13px;color:rgba(255,255,255,.7);display:block}
+.kbar a{color:#fff;font-weight:600;font-size:14px;white-space:nowrap;text-decoration-color:var(--red);text-underline-offset:3px}
+
+@media(max-width:900px){
+ .kcard{position:static;box-shadow:none}
+}
+@media(max-width:860px){
+ .kbar.on{display:flex}
+}
+@media(max-width:600px){
+ .kplans{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .kshare .btn{width:100%;justify-content:center}
+ .kform select{max-width:62%}
+}
+
+/* телефон: ряды формы не переносятся (у .calc .row на сайте свой перенос для ползунков) */
+.konf .kform .row{flex-wrap:nowrap}
+.konf .kform .row label{flex:1 1 auto}
+.konf .kform .row input,.konf .kform .row .step{flex:0 0 auto;order:0}
+@media(max-width:600px){
+ /* таблица помещений: строка «помещение — метры», пояснение под ними */
+ .kres .ktab thead{display:none}
+ .kres .ktab tr{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:12px;padding:9px 12px;border-bottom:1px solid var(--line)}
+ .kres .ktab td{border:0;padding:0}
+ .kres .ktab td:nth-child(3){grid-column:1/-1;font-size:13px;line-height:1.45;color:var(--muted);margin-top:2px;font-weight:400}
+ .kres .ktab tr.sum{border-top:1px solid var(--ink)}
+ .kres .ktab tr.sum td{border-top:0}
+}
+
+/* телефон: вывод «Главное» — размером текста */
+@media(max-width:600px){.first .quote{font-size:17px}}
