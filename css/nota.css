@@ -1347,3 +1347,10 @@ section .two.rz-h,section.tight .two.rz-h:has(h2){align-items:start}
 .article .big .figcap{font-size:17px;line-height:1.5;color:var(--ink);max-width:44ch}
 @media(max-width:640px){.article .big .figcap{font-size:16px}}
 .article .rl{max-width:72ch}
+
+/* разборы: короткая подводка и список врезок — не в две колонки (слева пусто), а подзаголовок и врезки в ряд под ним (4 октября 2026) */
+.article .rl-intro{margin-top:42px;max-width:72ch;font-size:clamp(20px,2vw,24px);font-weight:700;letter-spacing:-.025em;line-height:1.2}
+.article .rl-row .rl h3{font-size:17px}
+.article .rl-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:26px 34px;margin-top:20px}
+.article .rl-row .rl{max-width:none}
+.article .rl-row + .quote{margin-top:42px}
