@@ -1323,7 +1323,7 @@ section .two.rz-h,section.tight .two.rz-h:has(h2){align-items:start}
 @media(max-width:640px){
  .article .two{grid-template-columns:minmax(0,1fr)}
  .article th{white-space:normal}
- .article .quote{margin-top:22px!important}
+ .article .two .quote{margin-top:22px!important}
  .article main .two>div>p:not(.hint):not(.quote):not(.lede):not(.ttl),.article main ul:not(.h-src) li{font-size:16px}
  .article .lead{font-size:17px}
  .article th,.article td{padding:10px 10px}
@@ -1348,9 +1348,20 @@ section .two.rz-h,section.tight .two.rz-h:has(h2){align-items:start}
 @media(max-width:640px){.article .big .figcap{font-size:16px}}
 .article .rl{max-width:72ch}
 
-/* разборы: короткая подводка и список врезок — не в две колонки (слева пусто), а подзаголовок и врезки в ряд под ним (4 октября 2026) */
-.article .rl-intro{margin-top:42px;max-width:72ch;font-size:clamp(20px,2vw,24px);font-weight:700;letter-spacing:-.025em;line-height:1.2}
-.article .rl-row .rl h3{font-size:17px}
-.article .rl-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:26px 34px;margin-top:20px}
-.article .rl-row .rl{max-width:none}
-.article .rl-row + .quote{margin-top:42px}
+/* разборы: у каждого выделенного блока одна роль (4 октября 2026)
+   h2 — тезис раздела · .lead — подводка · h3.rl-intro — подзаголовок группы внутри раздела
+   .rl — пункт перечня: линия сверху, без красного; в ряду .rl-row — номер 01, 02…
+   .hint — источники и оговорки, мелко и серым
+   .quote — вывод: курсив и красная черта; красная черта в тексте разбора — только у вывода */
+.article .rl-intro{margin-top:46px;max-width:72ch;font-size:clamp(20px,2vw,24px);font-weight:700;letter-spacing:-.025em;line-height:1.2}
+.article .rl-intro+.col{margin-top:12px}
+.article main .col>p:not(.hint):not(.quote){font-size:16.5px;color:var(--ink)}
+.article .wrap>.rl,.article .two .rl,.article .rl-row .rl{border-left:0;padding-left:0;border-top:1px solid var(--ink);padding-top:14px}
+.article .rl-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:30px 34px;margin-top:22px;counter-reset:rl}
+.article .rl-row .rl{max-width:none;counter-increment:rl}
+.article .rl-row .rl:before{content:counter(rl,decimal-leading-zero);display:block;font-weight:600;font-size:11px;letter-spacing:.06em;color:var(--red);font-variant-numeric:tabular-nums;margin-bottom:10px}
+.article .rl-row .rl h3{font-size:17px;line-height:1.3}
+.article .quote{font-style:italic;font-size:clamp(18px,1.55vw,20px);line-height:1.5;color:var(--ink);max-width:62ch;padding:2px 0 2px 22px}
+.article .wrap>.quote{margin-top:40px}
+.article .col>.quote{margin-top:28px}
+@media(max-width:640px){.article .wrap>.quote{margin-top:32px}.article .rl-intro{margin-top:38px}}
