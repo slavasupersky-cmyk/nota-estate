@@ -1366,3 +1366,7 @@ section .two.rz-h,section.tight .two.rz-h:has(h2){align-items:start}
 .article .wrap>.quote{margin-top:40px}
 .article .col>.quote{margin-top:28px}
 @media(max-width:640px){.article .wrap>.quote{margin-top:32px}.article .rl-intro{margin-top:38px}}
+
+/* «Разбор района» в разборах: карточки идут парами (район и район по домам) — по четыре в ряд, на средней ширине по две (4 октября 2026) */
+@media(min-width:861px){.arts.a4{grid-template-columns:repeat(4,minmax(0,1fr))}.arts.a4 .art h3{font-size:19px}}
+@media(min-width:861px) and (max-width:1100px){.arts.a4{grid-template-columns:repeat(2,minmax(0,1fr))}}
