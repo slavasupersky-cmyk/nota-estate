@@ -117,6 +117,8 @@ def article_tables(s):
         if cards:
             if 'class="' in tag: tag = tag.replace('class="', 'class="t-cards ', 1)  # у таблицы свой класс — дописываем, а не второй атрибут
             else: tag = tag.replace('<table', '<table class="t-cards"', 1)
+        tag = re.sub(r'class="([^"]*)"', lambda m: 'class="' + ' '.join(m.group(1).split()) + '"', tag)  # без лишних пробелов: они копились от сборки к сборке
+        tag = tag.replace(' class=""', '')
         return tag + t[len(open_tag):]
     return re.sub(r'<table[^>]*>[\s\S]*?</table>', one, s)
 
@@ -451,7 +453,7 @@ if __name__ == '__main__':
     def all_pages():
         ps = [ROOT / p for p in SITE_PAGES if (ROOT / p).exists()]
         ps += sorted((ROOT / 'doma').glob('**/index.html'))
-        ps += sorted((ROOT / 'razbory').glob('**/index.html'))
+        ps += sorted((ROOT / 'razbory').glob('**/*.html'))  # и вторые страницы разбора: razbory/planirovki/podbor.html
         ps += sorted((ROOT / 'reytingi').glob('**/index.html'))
         ps += sorted((ROOT / 'test').glob('**/*.html'))
         return ps

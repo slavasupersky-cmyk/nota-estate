@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<title>Подбор планировки: сколько комнат и метров нужно семье — NOTA</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light only">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../css/nota.css?v=61e6a565">
+<link rel="stylesheet" href="planirovki.css">
+<link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+<meta name="description" content="Подбор планировки по составу семьи: какие комнаты нужны и сколько в них метров, как такая квартира называется в объявлениях и в каких домах из базы NOTA она продаётся сейчас.">
+<meta property="og:title" content="Подбор планировки — разбор NOTA">
+<meta property="og:image" content="https://nota.expert/img/30-planirovki-og.jpg">
+<link rel="canonical" href="https://nota.expert/razbory/planirovki/podbor.html">
+<meta property="og:url" content="https://nota.expert/razbory/planirovki/podbor.html">
+<meta name="robots" content="noindex" data-preview>
+</head>
+<body class="inner article">
+<header class="top solid" id="top-bar">
+ <div class="top-in">
+  <a class="brand" href="../../index.html" aria-label="NOTA — на главную">
+   <svg class="mark" viewBox="12 5 96 103" fill="none" aria-hidden="true">
+    <path d="M 92.18 30.00 A 44 44 0 1 1 69.90 17.13" stroke="currentColor" stroke-width="8"/>
+    <path d="M 60 60 L 89.04 9.70" stroke="#CE2029" stroke-width="8"/>
+   </svg>
+   <span class="rule"></span>
+   <span class="lk">
+    <span class="wm">NOT<i>A</i></span>
+    <span class="brandtag">NB: NOT A CHOICE. THE CHOICE.</span>
+   </span>
+  </a>
+  <nav class="nav">
+      <a href="../../index.html" data-m="home">Главная</a>
+      <a href="../../podbor.html" data-m="podbor">Подбор</a>
+      <a href="../../karta.html" data-m="karta">Карта домов</a>
+      <a href="../../razbory.html" data-m="razbory" class="cur">Разборы</a>
+      <a href="../../reytingi.html" data-m="reytingi">Рейтинги</a>
+      <a href="../../metod.html" data-m="metod">Метод</a>
+      <a class="now" href="tel:+74950216039">+7 495 021-60-39</a>
+     </nav>
+   <button class="burger" id="burger" type="button" aria-label="Меню" aria-expanded="false"><span></span><span></span><span></span></button>
+ </div>
+</header>
+<main>
+<section class="first tight-b"><div class="wrap">
+ <p class="crumbs"><a href="../../razbory.html">Разборы</a> <span>/</span> <a href="index.html">Планировки</a> <span>/</span> Подбор</p>
+ <p class="ttl">Подбор планировки</p>
+ <h1>Сколько комнат и метров нужно вашей семье</h1>
+ <p class="lead">Отметьте, кто будет жить и как вы живёте. Покажем, какие комнаты нужны и сколько в них метров, как такая квартира называется в объявлениях и в каких домах из базы NOTA она продаётся сейчас.</p>
+ <p class="hint">Сначала хотите посмотреть примеры? <a href="index.html">Как бывает: 12 планировок от 16 до 403 м² и принципы, по которым их выбирать</a></p>
+ <nav class="chips pl-tabs" aria-label="Разделы"><a class="chip" href="index.html">Как бывает</a><a class="chip" href="podbor.html" aria-current="page">Подбор</a></nav>
+</div></section>
+
+<section class="tight"><div class="wrap">
+ <div class="chipgrp" style="margin-top:0"><span class="lb">Начать с похожей семьи</span>
+  <div class="chips presets" role="group" aria-label="Готовые составы семьи"><button class="chip" type="button" data-preset="solo" aria-pressed="false">Один</button><button class="chip" type="button" data-preset="pair" aria-pressed="false">Пара</button><button class="chip" type="button" data-preset="wfh" aria-pressed="false">Оба работают дома</button><button class="chip" type="button" data-preset="baby" aria-pressed="false">Пара и малыш</button><button class="chip" type="button" data-preset="family" aria-pressed="false">Семья, двое школьников</button><button class="chip" type="button" data-preset="nanny" aria-pressed="false">Двое малышей и няня</button><button class="chip" type="button" data-preset="gen3" aria-pressed="false">Три поколения</button><button class="chip" type="button" data-preset="twopairs" aria-pressed="false">Две пары</button><button class="chip" type="button" data-preset="active" aria-pressed="false">Собака и велосипеды</button><button class="chip" type="button" data-preset="party" aria-pressed="false">Друзья каждую неделю</button></div>
+ </div>
+
+ <div class="calc konf">
+  <form id="kf" class="kform calc-in" autocomplete="off" novalidate>
+      <fieldset>
+        <legend>Сколько простора</legend>
+        <div class="seg big"><input type="radio" name="space" id="s0" value="0"><label for="s0">компактно</label><input type="radio" name="space" id="s1" value="1" checked><label for="s1">комфортно</label><input type="radio" name="space" id="s2" value="2"><label for="s2">просторно</label></div>
+        <p class="hint" id="spaceHint">Комнаты обычного размера; без чего можно обойтись, помечено «можно без».</p>
+      </fieldset>
+
+      <fieldset>
+        <legend>Кто живёт</legend>
+        <div class="row"><label for="adults">Взрослые: вы, партнёр, взрослые дети</label><div class="step"><button type="button" data-d="-1" aria-label="Меньше взрослых">−</button><input id="adults" name="adults" type="number" inputmode="numeric" min="1" max="6" value="2"><button type="button" data-d="1" aria-label="Больше взрослых">+</button></div></div>
+        <div class="row"><label for="pairs">Из них пар, которые спят вместе</label><div class="step"><button type="button" data-d="-1" aria-label="Меньше пар">−</button><input id="pairs" name="pairs" type="number" inputmode="numeric" min="0" max="1" value="1"><button type="button" data-d="1" aria-label="Больше пар">+</button></div></div>
+        <div class="row"><label for="kidsSmall">Дети до 6 лет</label><div class="step"><button type="button" data-d="-1" aria-label="Меньше малышей">−</button><input id="kidsSmall" name="kidsSmall" type="number" inputmode="numeric" min="0" max="4" value="1"><button type="button" data-d="1" aria-label="Больше малышей">+</button></div></div>
+        <div class="row"><label for="kidsBig">Дети 6–17 лет</label><div class="step"><button type="button" data-d="-1" aria-label="Меньше школьников">−</button><input id="kidsBig" name="kidsBig" type="number" inputmode="numeric" min="0" max="4" value="0"><button type="button" data-d="1" aria-label="Больше школьников">+</button></div></div>
+        <div class="row"><label for="elders">Бабушки и дедушки</label><div class="step"><button type="button" data-d="-1" aria-label="Меньше старших">−</button><input id="elders" name="elders" type="number" inputmode="numeric" min="0" max="2" value="0"><button type="button" data-d="1" aria-label="Больше старших">+</button></div></div>
+        <div class="row"><label for="nanny">Няня или помощница живёт с вами</label><input id="nanny" name="nanny" type="checkbox" class="sw"></div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Как живёте</legend>
+        <div class="seg-l">Гости с ночёвкой</div>
+        <div class="seg"><input type="radio" name="guests" id="g0" value="0" checked><label for="g0">почти никогда</label><input type="radio" name="guests" id="g1" value="1"><label for="g1">пару раз в год</label><input type="radio" name="guests" id="g2" value="2"><label for="g2">каждый месяц</label></div>
+        <div class="seg-l">Друзья в гостях, ужины, вечеринки</div>
+        <div class="seg"><input type="radio" name="party" id="p0" value="0" checked><label for="p0">редко</label><input type="radio" name="party" id="p1" value="1"><label for="p1">раз в месяц</label><input type="radio" name="party" id="p2" value="2"><label for="p2">каждую неделю</label></div>
+        <div class="seg-l">Работают из дома</div>
+        <div class="seg"><input type="radio" name="wfh" id="w0" value="0" checked><label for="w0">никто</label><input type="radio" name="wfh" id="w1" value="1"><label for="w1">один</label><input type="radio" name="wfh" id="w2" value="2"><label for="w2">двое</label></div>
+        <div class="seg-l">Кухня</div>
+        <div class="seg"><input type="radio" name="cook" id="c0" value="0" checked><label for="c0">готовим редко</label><input type="radio" name="cook" id="c1" value="1"><label for="c1">каждый день</label><input type="radio" name="cook" id="c2" value="2"><label for="c2">много, с запахами</label></div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Ещё комнаты</legend>
+        <div class="kchips" role="group" aria-label="Дополнительные комнаты">
+          <input type="checkbox" name="extra" id="x_study" value="study"><label for="x_study">кабинет</label>
+          <input type="checkbox" name="extra" id="x_lib" value="lib"><label for="x_lib">библиотека</label>
+          <input type="checkbox" name="extra" id="x_guest" value="guest"><label for="x_guest">гостевая</label>
+          <input type="checkbox" name="extra" id="x_play" value="play"><label for="x_play">игровая</label>
+          <input type="checkbox" name="extra" id="x_wardrobe" value="wardrobe"><label for="x_wardrobe">гардеробная-комната</label>
+          <input type="checkbox" name="extra" id="x_gym" value="gym"><label for="x_gym">спортзал</label>
+          <input type="checkbox" name="extra" id="x_cinema" value="cinema"><label for="x_cinema">кинозал</label>
+          <input type="checkbox" name="extra" id="x_hobby" value="hobby"><label for="x_hobby">мастерская</label>
+          <input type="checkbox" name="extra" id="x_wine" value="wine"><label for="x_wine">винная комната</label>
+          <input type="checkbox" name="extra" id="x_spa" value="spa"><label for="x_spa">сауна или хаммам</label>
+        </div>
+        <p class="hint">Кабинет и библиотека вместе дают одну комнату — кабинет-библиотеку.</p>
+      </fieldset>
+
+      <fieldset>
+        <legend>Животные и вещи</legend>
+        <div class="seg-l">Собака</div>
+        <div class="seg"><input type="radio" name="dog" id="d0" value="0" checked><label for="d0">нет</label><input type="radio" name="dog" id="d1" value="1"><label for="d1">небольшая</label><input type="radio" name="dog" id="d2" value="2"><label for="d2">крупная</label></div>
+        <div class="row"><label for="cat">Кошка</label><input id="cat" name="cat" type="checkbox" class="sw"></div>
+        <div class="row"><label for="stroller">Коляска</label><input id="stroller" name="stroller" type="checkbox" class="sw" checked></div>
+        <div class="row"><label for="bikes">Велосипеды и самокаты</label><div class="step"><button type="button" data-d="-1" aria-label="Меньше велосипедов">−</button><input id="bikes" name="bikes" type="number" inputmode="numeric" min="0" max="8" value="0"><button type="button" data-d="1" aria-label="Больше велосипедов">+</button></div></div>
+        <div class="row"><label for="sport">Лыжи, сноуборд, сап, гольф</label><input id="sport" name="sport" type="checkbox" class="sw"></div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Бюджет и класс дома</legend>
+        <div class="row"><label for="budget">Бюджет до</label><select id="budget" name="budget"><option value="0">не важно</option><option value="30">30 млн ₽</option><option value="50">50 млн ₽</option><option value="80">80 млн ₽</option><option value="120">120 млн ₽</option><option value="200">200 млн ₽</option><option value="400">400 млн ₽</option><option value="1000">1 млрд ₽</option></select></div>
+        <div class="row"><label for="klass">Класс дома</label><select id="klass" name="klass"><option value="">любой</option><option value="бизнес">бизнес</option><option value="премиум">премиум</option><option value="элит">элитный и делюкс</option></select></div>
+        <p class="hint">Меняют только список домов. Комнаты и метры от них не зависят.</p>
+      </fieldset>
+    </form>
+
+  <div class="calc-out kres" id="res" aria-live="polite">
+   <div class="kcard" id="kcard">
+    <p class="ttl">Вам нужна квартира</p>
+    <div class="kbig"><span id="rArea">—</span><small> м²</small></div>
+    <div class="kfmt" id="rFormat">—</div>
+    <div class="kmin" id="rMin" hidden></div>
+    <div class="kfacts" id="rFacts"></div>
+    <div class="kmarket"><span id="rMarket">Загружаем дома из базы…</span><a href="#doma">Где продаются ↓</a></div>
+   </div>
+   <h3>Из чего складывается</h3>
+   <div class="tablewrap" style="margin-top:0"><table class="ktab"><thead><tr><th>Помещение</th><th class="n">м²</th><th>Зачем</th></tr></thead><tbody id="rRooms"></tbody></table></div>
+   <h3>Что проверить в доме</h3>
+   <ul id="rHouse" class="klist"></ul>
+   <h3>Похожие планировки</h3>
+   <div id="rPlans" class="kplans"></div>
+   <p class="hint" style="margin:0">Нажмите на план, чтобы открыть крупно. Все двенадцать — <a href="index.html#plany">на странице «Как бывает»</a>.</p>
+  </div>
+ </div>
+</div></section>
+
+<section class="method kmatch" id="doma"><div class="wrap">
+ <p class="ttl">База NOTA</p>
+ <h2 id="mTitle">Где такие квартиры продаются сейчас</h2>
+ <p class="hint" id="mNote"></p>
+ <div class="tablewrap" style="margin-top:22px"><table class="t-cards ktab" id="mTab"><thead><tr><th>Дом</th><th>Класс</th><th>Район</th><th class="n">Площади этого формата</th><th class="n">Оценка за нужные метры</th></tr></thead><tbody id="mRows"></tbody></table></div>
+ <div class="btns btns-c" style="margin-top:18px"><button type="button" id="mMore" class="btn btn-l" hidden>Показать все</button></div>
+ <div class="kshare">
+  <button type="button" id="kCopy" class="btn">Скопировать расчёт</button>
+  <p class="hint">и пришлите нам в <a href="https://t.me/nota_estate">Telegram @nota_estate</a> или по телефону <a href="tel:+74950216039">+7 495 021-60-39</a>. Соберём подборку из пяти домов под этот расчёт.</p>
+  <textarea id="kText" class="vh" readonly aria-hidden="true" tabindex="-1"></textarea>
+ </div>
+ <p class="hint">Расчёт — ориентир NOTA, а не норматив. Метры помещений взяты из рекомендаций архитекторов и девелоперов (РБК, МК, Коммерсантъ, Sminex) и наших правил: у каждого взрослого своя дверь, у каждой пары свой санузел. Комнатность — как в объявлениях: закрытые комнаты плюс гостиная или кухня-гостиная. Дома — база NOTA, срез 23 сентября 2026. Цена — оценка: цена метра самого дешёвого лота этого формата в доме, умноженная на нужную площадь; у конкретной квартиры будет другой.</p>
+</div></section>
+
+<section class="analytics pl-cta" style="padding:0"><div class="an-in">
+ <div>
+  <p class="ttl">Как бывает</p>
+  <h2>Двенадцать настоящих планировок от 16 до 403 м²</h2>
+  <p class="lede">Евродвушка и классическая двушка, две спальни в разных крыльях, пентхаус с игровой, резиденция с прачечной. Все перерисованы в одном стиле, с метрами каждой комнаты.</p>
+  <div class="btns"><a class="btn" href="index.html#plany">Смотреть планировки</a> <a class="btn btn-l" href="index.html#printsipy">Пять принципов хорошей планировки</a></div>
+ </div>
+ <ul>
+  <li>что продаётся по классам: доли студий и 4+ комнат</li>
+  <li>правило 28 и 44 м² и квартиры на этаж целиком</li>
+  <li>девять сценариев: малыш, три поколения, собака, гости</li>
+ </ul>
+</div></section>
+
+<div class="kbar" id="kbar" aria-hidden="true">
+ <div><b id="bArea">—</b><span id="bFmt"></span></div>
+ <a href="#res">К расчёту</a>
+</div>
+
+<dialog class="zoom" id="zoom" aria-labelledby="zTitle">
+ <button type="button" class="zoom-x" id="zClose" aria-label="Закрыть">×</button>
+ <div class="zoom-img"><img id="zImg" alt=""></div>
+ <div class="zoom-txt"><div><h3 id="zTitle"></h3><p id="zText"></p></div><a id="zLink" href="index.html">Подробнее на странице «Как бывает» →</a></div>
+</dialog>
+</main>
+<footer>
+ <div class="wrap foot">
+  <a class="brand" href="../../index.html">
+   <svg class="mark" viewBox="12 5 96 103" fill="none" aria-hidden="true">
+    <path d="M 90.57 28.35 A 44 44 0 1 1 72.13 17.70" stroke="currentColor" stroke-width="6.3"/>
+    <path d="M 60 60 L 89.04 9.70" stroke="#CE2029" stroke-width="6.3"/>
+   </svg>
+   <span class="rule"></span>
+   <span class="lk">
+    <span class="wm">NOT<i>A</i></span>
+    <span class="brandtag">NB: NOT A CHOICE. THE CHOICE.</span>
+   </span>
+  </a>
+  <div class="foot-r">
+   <div><a href="tel:+74950216039">+7 495 021-60-39</a> · <a href="https://t.me/nota_estate">Telegram</a> · <a href="#">MAX</a> · <a href="mailto:hello@nota.expert">hello@nota.expert</a></div>
+   <div class="foot-nav"><a href="../../index.html">Главная</a> · <a href="../../podbor.html">Подбор</a> · <a href="../../karta.html">Карта домов</a> · <a href="../../razbory.html">Разборы</a> · <a href="../../scenarii.html">Сценарии</a> · <a href="../../reytingi.html">Рейтинги</a> · <a href="../../metod.html">Метод</a></div>
+  </div>
+ </div>
+ <div class="wrap foot-legal">
+  <span>NOTA · ИНН 502019152710 · <a href="../../politika.html#operator">Реквизиты</a></span>
+  <span><a href="../../politika.html">Политика конфиденциальности</a> · <a href="../../soglasie.html">Согласие на обработку данных</a></span>
+ </div>
+</footer>
+<script src="../../js/nota.js?v=dd52641e"></script>
+<script src="konf-core.js"></script>
+<script src="podbor.js"></script>
+</body>
+</html>
