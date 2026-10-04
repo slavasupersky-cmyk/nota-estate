@@ -17,7 +17,11 @@
 .kv-more summary{font-size:16px}
 .kv-more details[open]{padding-bottom:18px}
 .kv-more details .chipgrp:first-of-type{margin-top:4px}
-.kv-card{flex:none;position:sticky;top:90px;z-index:2;padding:22px 24px 20px}
+.kv-calc .calc-out{align-self:stretch}
+.kv-card{flex:none;position:sticky;top:90px;padding:22px 24px 20px}
+/* под калькулятором: состав квартиры, что проверить, похожие планы — во всю ширину, карточка ничего не перекрывает */
+.kv-detail{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:28px 34px;margin-top:34px;align-items:start}
+.kv-d-side{display:flex;flex-direction:column;gap:26px}
 .kv-big{font-size:clamp(46px,5.4vw,66px);font-weight:800;letter-spacing:-.045em;line-height:1;margin-top:10px;font-variant-numeric:tabular-nums}
 .kv-big small{font-size:22px;font-weight:600;letter-spacing:-.02em}
 .kv-fmt{font-size:17px;font-weight:600;letter-spacing:-.02em;margin-top:12px;line-height:1.4}
@@ -96,7 +100,7 @@
 #kbar #bFmt{opacity:.75}
 
 @media(max-width:900px){
- .kv-calc,.kv-budget{grid-template-columns:1fr}
+ .kv-calc,.kv-budget,.kv-detail{grid-template-columns:1fr}
  .kv-card{position:static}
  .kv-call{grid-template-columns:1fr}
  .kv-call .btns{flex-wrap:wrap}

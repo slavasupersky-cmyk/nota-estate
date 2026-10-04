@@ -1,11 +1,14 @@
 /* Планировки: «Как бывает» (index.html) и «Подбор планировки» (podbor.html).
    Основа — css/nota.css сайта. Здесь только то, чего в nota.css нет:
-   вкладки, шкала, карточки планировок, окно с планом, тёмный блок-переход, форма подбора,
+   призыв заполнить подбор или позвонить, шкала, карточки планировок, окно с планом, тёмный блок-переход, форма подбора,
    тёмная карточка результата и полоска результата на телефоне. Цвета — токены nota.css, тёмный фон — как у .analytics. */
 
-/* вкладки «Как бывает / Подбор» — чипы сайта, текущая страница выделена как активный фильтр */
-.pl-tabs{margin:18px 0 0}
-.pl-tabs .chip[aria-current="page"]{border-color:var(--ink);color:var(--ink);font-weight:500}
+/* призыв в первом экране: заполнить подбор или заказать звонок — как .kv-call в css/podbor.css */
+.pl-call{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px 28px;align-items:center;margin-top:26px;padding:20px 24px;border:1px solid var(--line);background:var(--surface)}
+.pl-call-h{font-size:clamp(18px,1.7vw,21px);font-weight:800;letter-spacing:-.02em}
+.pl-call-s{font-size:14.5px;color:var(--ink-2);margin-top:6px;max-width:66ch}
+.pl-call .btns{margin-top:0;flex-wrap:nowrap}
+@media(max-width:900px){.pl-call{grid-template-columns:1fr}.pl-call .btns{flex-wrap:wrap}}
 
 /* шкала площадей */
 .kscale{display:block;width:100%;min-width:640px;height:auto}

@@ -61,7 +61,7 @@ def apply_shell(path):
     s2 = apply_numbers(s2, N)
     s2 = faq_ld(s2)
     s2 = seo(s2, rel)
-    s2 = bust(s2)
+    s2 = bust(s2, rel)
     if rel == 'metod.html' and ITOG_TABLE:
         s2 = re.sub(r'<!--itog-t-->[\s\S]*?<!--/itog-t-->', lambda m: '<!--itog-t-->\n' + ITOG_TABLE + '\n  <!--/itog-t-->', s2, count=1)
     if rel == APART_PAGE and APART_LIST:
@@ -394,10 +394,16 @@ def ver(rel):
         _VER[rel] = hashlib.md5(f.read_bytes()).hexdigest()[:8] if f.exists() else ''
     return _VER[rel]
 
-def bust(s):
+def bust(s, rel=''):
     def rep(m):
         v = ver(m.group(2))
         return m.group(1) + m.group(2) + ('?v=' + v if v else '') + '"'
+    # свои стили и скрипты страницы рядом с ней (razbory/planirovki/planirovki.css) — тоже с версией
+    d = rel.rsplit('/', 1)[0] + '/' if '/' in rel else ''
+    def loc(m):
+        v = ver(d + m.group(2))
+        return m.group(1) + m.group(2) + ('?v=' + v if v else '') + '"'
+    if d: s = re.sub(r'((?:src|href)=")([\w-]+\.(?:css|js))(?:\?v=[0-9a-f]*)?"', loc, s)
     return re.sub(r'((?:src|href)="(?:\.\./)*)((?:css/[\w-]+\.css|js/[\w-]+\.js|img/team/[\w-]+\.jpg))(?:\?v=[0-9a-f]*)?"', rep, s)
 
 def seo(s, rel):

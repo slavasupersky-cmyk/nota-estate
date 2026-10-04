@@ -294,11 +294,7 @@
     $('zLink').href = KAK + '#' + p.id;
     modal(plan, true);
   });
-  $('callme').addEventListener('click', function () {
-    var t = summaryShort(); var s = $('kvCallSum');
-    s.hidden = !t; s.textContent = t ? 'Уже отмечено: ' + t : '';
-    modal(call, true); var i = call.querySelector('input'); if (i) setTimeout(function () { i.focus(); }, 60);
-  });
+  $('callme').addEventListener('click', function () { openCall(); });
 
   /* ---------- текст расчёта для заявки ---------- */
   function summaryShort(noBudget) {
@@ -339,9 +335,15 @@
     ['kcard', 'byudzhet', 'vesa'].forEach(function (id) { io.observe($(id)); });
   }
 
+  function openCall() {
+    var t = summaryShort(); var s = $('kvCallSum');
+    s.hidden = !t; s.textContent = t ? 'Уже отмечено: ' + t : '';
+    modal(call, true); var i = call.querySelector('input'); if (i) setTimeout(function () { i.focus(); }, 60);
+  }
   var key = (location.hash || '').replace('#', '');
   if (!applyPreset(key)) applyPreset('baby');
-  window.addEventListener('hashchange', function () { applyPreset((location.hash || '').replace('#', '')); });
+  if (key === 'zvonok') openCall();
+  window.addEventListener('hashchange', function () { var k = (location.hash || '').replace('#', ''); if (k === 'zvonok') openCall(); else applyPreset(k); });
   fetch(LOTY).then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
     .then(function (d) { DATA = d; renderBudget(); })
     .catch(function () { $('kvAdvice').innerHTML = '<p class="kv-verdict">Не удалось загрузить цены из базы</p><p>Расчёт комнат и метров работает и без них. Позвоните нам — сверим бюджет голосом.</p>'; $('rMarket').textContent = 'Список домов не загрузился'; });
