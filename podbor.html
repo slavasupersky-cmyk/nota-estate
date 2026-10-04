@@ -9,15 +9,16 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/nota.css?v=cc3d4e02">
+<link rel="stylesheet" href="css/podbor.css?v=357f37ab">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
-<meta name="description" content="Подбор квартиры в новых домах Москвы от бизнес-класса и выше: анкета из семи критериев, пять домов под ваши веса и отдельный список тех, что не подошли, — с причиной.">
+<meta name="description" content="Подбор квартиры в новых домах Москвы: кто будет жить — какая квартира нужна — что помещается в бюджет и в каких домах нашей базы она продаётся. Можно не заполнять и рассказать по телефону.">
 <meta property="og:title" content="Подбор — NOTA">
 <meta property="og:image" content="https://nota.expert/img/01-hero-maket-og.jpg">
 <link rel="canonical" href="https://nota.expert/podbor.html">
 <meta property="og:url" content="https://nota.expert/podbor.html">
 <meta name="robots" content="noindex" data-preview>
 </head>
-<body class="inner">
+<body class="inner" data-loty="razbory/planirovki/loty.json" data-img="razbory/planirovki/img/" data-kak="razbory/planirovki/">
 <header class="top solid" id="top-bar">
  <div class="top-in">
   <a class="brand" href="index.html" aria-label="NOTA — на главную">
@@ -47,41 +48,174 @@
 <main>
 <section class="first tight-b"><div class="wrap">
  <p class="ttl">Подбор</p>
- <h1>Расскажите,<br>как вы хотите жить</h1>
- <p class="lead">Хорошая подборка начинается не с показов, а с разговора: кто будет жить в квартире, зачем она, на какой срок и что важнее — вид или тишина. Анкета ниже — короткая версия этого разговора. Точность не нужна: двигайте ползунки так, как чувствуете, остальное уточним голосом.</p>
+ <h1>Расскажите, как вы хотите жить</h1>
+ <p class="lead">Начинаем с людей, а не с комнат. Отметьте, кто будет жить и как, — покажем, какая квартира для этого нужна, сколько она стоит в домах нашей базы и что помещается в ваш бюджет. Точность не нужна: остальное уточним голосом.</p>
+ <div class="kv-call">
+  <div>
+   <p class="kv-call-h">Не хочется заполнять — расскажите голосом</p>
+   <p class="kv-call-s">Позвоним в удобное время, спросим про семью, бюджет и сроки и заполним анкету за вас. Или напишите в Telegram <b>@nota_estate</b>. Первый разговор бесплатный.</p>
+  </div>
+  <div class="btns"><a class="btn btn-l" href="tel:+74950216039">+7 495 021-60-39</a><button class="btn" type="button" id="callme">Позвоните мне</button></div>
+ </div>
 </div></section>
 
-<section class="tight first-content"><div class="wrap">
-  <div class="ank compact" id="anketa">
-   <div class="ank-l">
-    <p class="ttl" style="margin-bottom:16px">Что для вас весит больше</p>
-    <div id="sliders"></div>
-   </div>
-   <div class="ank-r">
-    <p class="ttl" style="margin-bottom:2px">Про задачу</p>
-    <div class="sel" data-name="scen"><button type="button" class="sel-btn">Это будет основной дом</button>
-     <ul class="sel-list"><li>Это будет основной дом</li><li>Вторая квартира, для города</li><li>Детям, на вырост</li><li>Родителям, поближе</li><li>Сдавать</li><li>Ещё не решили</li></ul></div>
-    <div class="bud" data-name="budget" data-value="Бюджет от 30 до 60 млн">
-     <div class="bud-h"><span class="bud-l">Бюджет, млн ₽</span><span class="bud-in"><input type="number" class="bud-a" min="15" step="1" value="30" inputmode="numeric" aria-label="Бюджет от, млн ₽"><i>—</i><input type="number" class="bud-b" min="15" step="1" value="60" placeholder="∞" inputmode="numeric" aria-label="Бюджет до, млн ₽; пусто — без ограничения"></span></div>
-     <div class="bud-r"><input type="range" class="r-a" min="0" max="22" step="1" value="3" aria-label="Бюджет от"><input type="range" class="r-b" min="0" max="22" step="1" value="9" aria-label="Бюджет до"></div>
-     <div class="bud-f"><span>от 15</span><button class="linkbtn bud-x" type="button">Пока не считали</button><span>без ограничения</span></div>
-    </div>
-    <div class="sel" data-name="gor"><button type="button" class="sel-btn">Владеть три года</button>
-     <ul class="sel-list"><li>Владеть три года</li><li>Лет пять-семь</li><li>Надолго, может, навсегда</li><li>Как получится</li></ul></div>
-    <div class="sel" data-name="srok"><button type="button" class="sel-btn">Хочу въехать сразу</button>
-     <ul class="sel-list"><li>Хочу въехать сразу</li><li>Готов подождать до двух лет</li><li>Не тороплюсь</li><li>Зависит от объекта</li></ul></div>
-   </div>
-   <div class="result">
-    <p class="ttl" style="margin-bottom:14px">Что для вас важно</p>
-    <div class="rank" id="rank"></div>
-    <p id="verdict" style="color:var(--ink-2)"></p>
-    <div class="res-row">
-     <label class="res-note"><span class="ttl">Что ещё важно</span><textarea id="anote" rows="2" placeholder="Своими словами: этаж, вид, школа рядом, срок въезда — всё, чего нет в ползунках"></textarea></label>
-     <button class="btn" type="button" id="ask">Соберите мне подборку</button>
-    </div>
+<section class="tight" id="kto"><div class="wrap">
+ <p class="ttl">Шаг 1 из 3 · Кто будет жить</p>
+ <h2>Сначала люди, потом метры</h2>
+ <div class="chipgrp" id="presets"><span class="lb">Начать с похожей семьи</span><div class="chips">
+  <button type="button" class="chip" data-preset="solo" aria-pressed="false">Один</button>
+  <button type="button" class="chip" data-preset="pair" aria-pressed="false">Пара</button>
+  <button type="button" class="chip" data-preset="wfh" aria-pressed="false">Оба работают дома</button>
+  <button type="button" class="chip" data-preset="baby" aria-pressed="false">Пара и малыш</button>
+  <button type="button" class="chip" data-preset="family" aria-pressed="false">Семья, двое школьников</button>
+  <button type="button" class="chip" data-preset="nanny" aria-pressed="false">Двое малышей и няня</button>
+  <button type="button" class="chip" data-preset="gen3" aria-pressed="false">Три поколения</button>
+  <button type="button" class="chip" data-preset="twopairs" aria-pressed="false">Две пары</button>
+  <button type="button" class="chip" data-preset="active" aria-pressed="false">Собака и велосипеды</button>
+  <button type="button" class="chip" data-preset="party" aria-pressed="false">Друзья каждую неделю</button>
+ </div></div>
+
+ <div class="calc kv-calc">
+  <div class="calc-in" id="kf">
+   <div class="row"><label for="adults">Взрослые</label><input type="range" id="adults" min="1" max="6" value="2"><output for="adults">2</output></div>
+   <div class="row"><label for="pairs">Из них пар</label><input type="range" id="pairs" min="0" max="1" value="1"><output for="pairs">1</output></div>
+   <div class="row"><label for="kidsSmall">Дети до 6 лет</label><input type="range" id="kidsSmall" min="0" max="4" value="1"><output for="kidsSmall">1</output></div>
+   <div class="row"><label for="kidsBig">Дети 6–17 лет</label><input type="range" id="kidsBig" min="0" max="4" value="0"><output for="kidsBig">0</output></div>
+   <div class="row"><label for="elders">Бабушки и дедушки</label><input type="range" id="elders" min="0" max="2" value="0"><output for="elders">0</output></div>
+   <div class="chipgrp" data-many><span class="lb">Ещё в доме</span><div class="chips">
+    <button type="button" class="chip" data-flag="nanny" aria-pressed="false">няня или помощница живёт с нами</button>
+   </div></div>
+   <div class="chipgrp" data-one="space"><span class="lb">Сколько простора</span><div class="chips">
+    <button type="button" class="chip" data-v="0" aria-pressed="false">компактно</button>
+    <button type="button" class="chip" data-v="1" aria-pressed="true">комфортно</button>
+    <button type="button" class="chip" data-v="2" aria-pressed="false">просторно</button>
+   </div></div>
+   <p class="hint kv-hint" id="spaceHint">Комнаты обычного размера; без чего можно обойтись, помечено «можно без».</p>
+
+   <div class="faq kv-more">
+    <details>
+     <summary>Как живёте: гости, работа, кухня</summary>
+     <div class="chipgrp" data-one="guests"><span class="lb">Гости с ночёвкой</span><div class="chips">
+      <button type="button" class="chip" data-v="0" aria-pressed="true">почти никогда</button><button type="button" class="chip" data-v="1" aria-pressed="false">пару раз в год</button><button type="button" class="chip" data-v="2" aria-pressed="false">каждый месяц</button>
+     </div></div>
+     <div class="chipgrp" data-one="party"><span class="lb">Друзья в гостях, ужины</span><div class="chips">
+      <button type="button" class="chip" data-v="0" aria-pressed="true">редко</button><button type="button" class="chip" data-v="1" aria-pressed="false">раз в месяц</button><button type="button" class="chip" data-v="2" aria-pressed="false">каждую неделю</button>
+     </div></div>
+     <div class="chipgrp" data-one="wfh"><span class="lb">Работают из дома</span><div class="chips">
+      <button type="button" class="chip" data-v="0" aria-pressed="true">никто</button><button type="button" class="chip" data-v="1" aria-pressed="false">один</button><button type="button" class="chip" data-v="2" aria-pressed="false">двое</button>
+     </div></div>
+     <div class="chipgrp" data-one="cook"><span class="lb">Кухня</span><div class="chips">
+      <button type="button" class="chip" data-v="0" aria-pressed="true">готовим редко</button><button type="button" class="chip" data-v="1" aria-pressed="false">каждый день</button><button type="button" class="chip" data-v="2" aria-pressed="false">много, с запахами</button>
+     </div></div>
+    </details>
+    <details>
+     <summary>Ещё комнаты: кабинет, гостевая, игровая</summary>
+     <div class="chipgrp" data-many><span class="lb">Можно выбрать несколько <em>кабинет и библиотека вместе — одна комната</em></span><div class="chips">
+      <button type="button" class="chip" data-extra="study" aria-pressed="false">кабинет</button>
+      <button type="button" class="chip" data-extra="lib" aria-pressed="false">библиотека</button>
+      <button type="button" class="chip" data-extra="guest" aria-pressed="false">гостевая</button>
+      <button type="button" class="chip" data-extra="play" aria-pressed="false">игровая</button>
+      <button type="button" class="chip" data-extra="wardrobe" aria-pressed="false">гардеробная-комната</button>
+      <button type="button" class="chip" data-extra="gym" aria-pressed="false">спортзал</button>
+      <button type="button" class="chip" data-extra="cinema" aria-pressed="false">кинозал</button>
+      <button type="button" class="chip" data-extra="hobby" aria-pressed="false">мастерская</button>
+      <button type="button" class="chip" data-extra="wine" aria-pressed="false">винная комната</button>
+      <button type="button" class="chip" data-extra="spa" aria-pressed="false">сауна или хаммам</button>
+     </div></div>
+    </details>
+    <details>
+     <summary>Животные и вещи</summary>
+     <div class="chipgrp" data-one="dog"><span class="lb">Собака</span><div class="chips">
+      <button type="button" class="chip" data-v="0" aria-pressed="true">нет</button><button type="button" class="chip" data-v="1" aria-pressed="false">небольшая</button><button type="button" class="chip" data-v="2" aria-pressed="false">крупная</button>
+     </div></div>
+     <div class="chipgrp" data-many><span class="lb">Ещё</span><div class="chips">
+      <button type="button" class="chip" data-flag="cat" aria-pressed="false">кошка</button>
+      <button type="button" class="chip" data-flag="stroller" aria-pressed="true">коляска</button>
+      <button type="button" class="chip" data-flag="sport" aria-pressed="false">лыжи, сноуборд, сап, гольф</button>
+     </div></div>
+     <div class="row"><label for="bikes">Велосипеды и самокаты</label><input type="range" id="bikes" min="0" max="8" value="0"><output for="bikes">0</output></div>
+    </details>
    </div>
   </div>
-  <p class="hint">После отправки анкета придёт к нам, а вам — подборка: пять домов под ваши веса и отдельный список тех, что не подошли, с причиной по каждому.</p>
+
+  <div class="calc-out" id="res" aria-live="polite">
+   <div class="analytics kv-card" id="kcard">
+    <p class="ttl">Вам нужна квартира</p>
+    <p class="kv-big"><span id="rArea">—</span><small> м²</small></p>
+    <p class="kv-fmt" id="rFormat">—</p>
+    <p class="kv-min" id="rMin" hidden></p>
+    <div class="kv-facts" id="rFacts"></div>
+    <p class="kv-mkt"><span id="rMarket">Загружаем дома из базы…</span> <a href="#byudzhet">Сверить с бюджетом ↓</a></p>
+   </div>
+   <div>
+    <p class="ttl">Из чего складывается</p>
+    <div class="tablewrap kv-tab"><table><thead><tr><th>Помещение</th><th>м²</th><th>Зачем</th></tr></thead><tbody id="rRooms"></tbody></table></div>
+   </div>
+   <div>
+    <p class="ttl">Что проверить в доме</p>
+    <ul class="kv-list" id="rHouse"></ul>
+   </div>
+   <div>
+    <p class="ttl">Похожие планировки</p>
+    <div class="kv-plans" id="rPlans"></div>
+    <p class="hint">Нажмите на план, чтобы открыть крупно. Все двенадцать с разбором — на странице <a href="razbory/planirovki/">«Как бывает»</a>.</p>
+   </div>
+  </div>
+ </div>
+</div></section>
+
+<section class="method" id="byudzhet"><div class="wrap">
+ <p class="ttl">Шаг 2 из 3 · Бюджет</p>
+ <h2 id="bTitle">Что помещается в ваш бюджет</h2>
+ <div class="kv-budget">
+  <div class="kv-bctl">
+   <div class="bud" data-name="budget" data-value="Бюджет от 30 до 60 млн">
+    <div class="bud-h"><span class="bud-l">Бюджет, млн ₽</span><span class="bud-in"><input type="number" class="bud-a" min="15" step="1" value="30" inputmode="numeric" aria-label="Бюджет от, млн ₽"><i>—</i><input type="number" class="bud-b" min="15" step="1" value="60" placeholder="∞" inputmode="numeric" aria-label="Бюджет до, млн ₽; пусто — без ограничения"></span></div>
+    <div class="bud-r"><input type="range" class="r-a" min="0" max="22" step="1" value="3" aria-label="Бюджет от"><input type="range" class="r-b" min="0" max="22" step="1" value="9" aria-label="Бюджет до"></div>
+    <div class="bud-f"><span>от 15</span><button class="linkbtn bud-x" type="button">Пока не считали</button><span>без ограничения</span></div>
+   </div>
+   <div class="sel" data-name="klass"><button type="button" class="sel-btn">Любой класс дома</button>
+    <ul class="sel-list"><li data-v="">Любой класс дома</li><li data-v="бизнес">Бизнес</li><li data-v="премиум">Премиум</li><li data-v="элит">Элитный и делюкс</li></ul></div>
+  </div>
+  <div class="kv-bout">
+   <div class="kv-scale" id="kvScale"></div>
+   <div class="kv-advice" id="kvAdvice"><p class="kv-verdict">Загружаем цены из базы…</p></div>
+  </div>
+ </div>
+ <div class="tablewrap kv-houses"><table><thead><tr><th>Дом</th><th>Класс</th><th>Район</th><th>Площади этого формата</th><th>Цена нужной квартиры</th></tr></thead><tbody id="mRows"></tbody></table></div>
+ <div class="btns btns-c"><button type="button" class="btn btn-l" id="mMore" hidden>Показать все</button></div>
+ <p class="hint" id="mNote">Цена нужной квартиры в доме: от цены метра самого доступного лота этого формата до цены метра самого дорогого, умноженных на нужную площадь, и не дороже самого дорогого лота. Когда задана вилка, сначала идут дома, где из неё можно потратить больше. Дома и цены — база NOTA, срез 23 сентября 2026; у конкретной квартиры цена будет другой.</p>
+</div></section>
+
+<section class="tight" id="vesa"><div class="wrap">
+ <p class="ttl">Шаг 3 из 3 · По желанию</p>
+ <h2>Что для вас весит больше</h2>
+ <p class="lead">Ползунки помогают выбрать между домами одного бюджета. Шаг можно пропустить и сразу отправить запрос: всё, что вы отметили выше, придёт к нам вместе с ним.</p>
+ <div class="ank compact" id="anketa">
+  <div class="ank-l">
+   <p class="ttl" style="margin-bottom:16px">Что для вас весит больше</p>
+   <div id="sliders"></div>
+  </div>
+  <div class="ank-r">
+   <p class="ttl" style="margin-bottom:2px">Про задачу</p>
+   <div class="sel" data-name="scen"><button type="button" class="sel-btn">Это будет основной дом</button>
+    <ul class="sel-list"><li>Это будет основной дом</li><li>Вторая квартира, для города</li><li>Детям, на вырост</li><li>Родителям, поближе</li><li>Сдавать</li><li>Ещё не решили</li></ul></div>
+   <div class="sel" data-name="gor"><button type="button" class="sel-btn">Владеть три года</button>
+    <ul class="sel-list"><li>Владеть три года</li><li>Лет пять-семь</li><li>Надолго, может, навсегда</li><li>Как получится</li></ul></div>
+   <div class="sel" data-name="srok"><button type="button" class="sel-btn">Хочу въехать сразу</button>
+    <ul class="sel-list"><li>Хочу въехать сразу</li><li>Готов подождать до двух лет</li><li>Не тороплюсь</li><li>Зависит от объекта</li></ul></div>
+  </div>
+  <div class="result">
+   <p class="ttl" style="margin-bottom:14px">Что для вас важно</p>
+   <div class="rank" id="rank"></div>
+   <p id="verdict" style="color:var(--ink-2)"></p>
+   <div class="res-row">
+    <label class="res-note"><span class="ttl">Что ещё важно</span><textarea id="anote" rows="2" placeholder="Своими словами: этаж, вид, школа рядом, срок въезда — всё, чего нет выше"></textarea></label>
+    <button class="btn" type="button" id="ask">Соберите мне подборку</button>
+   </div>
+  </div>
+ </div>
+ <p class="hint">После отправки запрос придёт к нам, а вам — подборка: пять домов под состав семьи, бюджет и веса и отдельный список тех, что не подошли, с причиной по каждому.</p>
 </div></section>
 
 <section class="method">
@@ -149,7 +283,7 @@
   <button class="modal-x" type="button" data-close aria-label="Закрыть">×</button>
   <p class="ttl">Подборка</p>
   <h3 id="mdl-h">Куда прислать подборку</h3>
-  <p style="margin-top:14px;color:var(--ink-2);font-size:15px">Соберём пять домов под ваши веса и по каждому напишем, что в нём сильное и на что смотреть на просмотре. Обычно в тот же день.</p>
+  <p style="margin-top:14px;color:var(--ink-2);font-size:15px">Соберём пять домов под состав семьи, бюджет и веса и по каждому напишем, что в нём сильное и на что смотреть на просмотре. Обычно в тот же день.</p>
   <p class="mdl-sum" id="mdl-sum"></p>
   <form novalidate>
    <input type="text" placeholder="Как вас зовут" autocomplete="name">
@@ -193,6 +327,42 @@
  </div>
 </section>
 </main>
+<div class="modal" id="kvPlan" hidden>
+ <div class="modal-bg" data-close></div>
+ <div class="modal-in kv-wide" role="dialog" aria-modal="true" aria-labelledby="zTitle">
+  <button class="modal-x" type="button" data-close aria-label="Закрыть">×</button>
+  <p class="ttl">Похожая планировка</p>
+  <h3 id="zTitle"></h3>
+  <div class="kv-zimg"><img id="zImg" alt=""></div>
+  <p class="kv-ztxt" id="zText"></p>
+  <div class="btns"><a class="btn btn-l" id="zLink" href="razbory/planirovki/">Подробнее на странице «Как бывает»</a></div>
+ </div>
+</div>
+
+<div class="modal" id="kvCall" hidden>
+ <div class="modal-bg" data-close></div>
+ <div class="modal-in" role="dialog" aria-modal="true" aria-labelledby="kvCall-h">
+  <button class="modal-x" type="button" data-close aria-label="Закрыть">×</button>
+  <p class="ttl">Первый разговор</p>
+  <h3 id="kvCall-h">Позвоним и заполним анкету за вас</h3>
+  <p style="margin-top:14px;color:var(--ink-2);font-size:15px">Спросим, кто будет жить, какой бюджет и когда нужен переезд. Потом пришлём подборку. Первый разговор бесплатный и ни к чему не обязывает.</p>
+  <p class="mdl-sum" id="kvCallSum" hidden></p>
+  <form novalidate>
+   <input type="text" name="name" placeholder="Как вас зовут" autocomplete="name">
+   <input type="text" placeholder="Телефон или ник в Telegram / MAX">
+   <input type="text" placeholder="Когда удобно говорить: например, будни после 19">
+   <label class="consent"><input type="checkbox"><span>Даю <a href="soglasie.html">согласие на обработку персональных данных</a>. Как мы их храним — в <a href="politika.html">политике конфиденциальности</a>.</span></label>
+   <div><button class="btn" type="button">Жду звонка</button></div>
+   <p class="note">Контакты никому не передаём и без предупреждения не звоним.</p>
+  </form>
+ </div>
+</div>
+
+<div class="pickbar" id="kbar" hidden>
+ <span><b id="bArea">—</b> <span id="bFmt"></span></span>
+ <a class="btn" href="#res">К расчёту</a>
+</div>
+
 <footer>
  <div class="wrap foot">
   <a class="brand" href="index.html">
@@ -217,5 +387,7 @@
  </div>
 </footer>
 <script src="js/nota.js?v=dd52641e"></script>
+<script src="js/konf-core.js?v=8f419d90"></script>
+<script src="js/podbor.js?v=7ee6476f"></script>
 </body>
 </html>

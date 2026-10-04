@@ -224,21 +224,30 @@
     var want = res.studio ? [1, 2] : [res.mr];
     var rows = [], seen = {}, overBudget = 0, cheapest = null, overSeen = {}, noPrice = {};
     (data.l || []).forEach(function (x) {
-      var slug = x[0], tip = x[1], a = x[2], b = x[3], c = x[4], e = x[5], h = data.h[slug];
+      var slug = x[0], tip = x[1], a = x[2], b = x[3], c = x[4], e = x[5], cmax = x[6], h = data.h[slug];
       if (!h) return;
       var rr = lotRooms(tip, e);
       var ok = want.some(function (w) { return w >= 4 ? (tip === '4+' || rr === w) : rr === w; });
       if (!ok) return;
       if (kl) { if (kl === 'элит') { if (h.c !== 'элитный' && h.c !== 'делюкс') return; } else if (h.c !== kl) return; }
       if (b < need * 0.92 || a > needHi * 1.05) return;
-      var area = Math.max(a, need), est = c ? c / a * area : null;
+      /* какую площадь этого формата здесь можно купить и за сколько:
+         от цены метра самого дешёвого лота × нужная площадь до цены метра самого дорогого × верх нужной площади (не дороже самого дорогого лота) */
+      var buyLo = Math.min(b, Math.max(a, need)), buyHi = Math.max(buyLo, Math.min(b, needHi));
+      var area = buyLo, est = null, estHi = null;
+      if (c) {
+        var ppmLo = c / a, ppmHi = cmax ? Math.max(cmax / b, ppmLo) : ppmLo;
+        est = ppmLo * buyLo;
+        estHi = Math.max(est, cmax ? Math.min(cmax, ppmHi * buyHi) : ppmLo * buyHi);
+      }
       if (budget && est == null) { noPrice[slug] = 1; return; }
       if (budget && est && est > budget) { if (!overSeen[slug]) { overSeen[slug] = 1; overBudget++; } if (cheapest === null || est < cheapest) cheapest = est; return; }
       var cur = seen[slug];
-      if (!cur) { cur = seen[slug] = { slug: slug, h: h, a: a, b: b, est: est, area: area, rooms: [rr] }; rows.push(cur); return; }
+      if (!cur) { cur = seen[slug] = { slug: slug, h: h, a: a, b: b, est: est, estHi: estHi, area: area, areaHi: buyHi, rooms: [rr] }; rows.push(cur); return; }
       cur.a = Math.min(cur.a, a); cur.b = Math.max(cur.b, b);
       if (cur.rooms.indexOf(rr) < 0) cur.rooms.push(rr);
       if (est != null && (cur.est == null || est < cur.est)) { cur.est = est; cur.area = area; }
+      if (estHi != null && (cur.estHi == null || estHi > cur.estHi)) { cur.estHi = estHi; cur.areaHi = buyHi; }
     });
     rows.sort(function (p, q) { if (p.est == null) return 1; if (q.est == null) return -1; return p.est - q.est; });
     overBudget = Object.keys(overSeen).filter(function (k) { return !seen[k]; }).length;
@@ -272,6 +281,57 @@
     }).sort(function (x, y) { return x.score - y.score; }).slice(0, n || 3).map(function (x) { return x.p; });
   }
 
-  var API = { DEF: DEF, EXTRAS: EXTRAS, normalize: normalize, calc: calc, match: match, plans: plans, PLANS: PLANS, lotRooms: lotRooms, plural: plural };
+
+  /* Рынок для нужной квартиры: оценки цены по домам базы (без фильтра бюджета).
+     Зоны вилки: red — дешевле самого доступного дома, yellow — до первой четверти (выбор узкий), green — дальше. */
+  function q(arr, p) { if (!arr.length) return null; return arr[Math.min(arr.length - 1, Math.max(0, Math.round(p * (arr.length - 1))))]; }
+  function market(res, data, klass) {
+    var m = match(res, data, { klass: klass || '' });
+    var priced = m.rows.filter(function (x) { return x.est != null; }).sort(function (a, b) { return a.est - b.est; });
+    var e = priced.map(function (x) { return x.est; });
+    return { rows: m.rows, priced: priced, n: m.rows.length, np: priced.length,
+      min: e.length ? e[0] : null, p25: q(e, 0.25), p50: q(e, 0.5), p75: q(e, 0.75), p90: q(e, 0.9), max: e.length ? e[e.length - 1] : null,
+      cheapest: priced[0] || null,
+      maxHi: priced.reduce(function (m, x) { return Math.max(m, x.estHi || x.est); }, 0),
+      priciest: priced.slice().sort(function (a, b) { return (b.estHi || b.est) - (a.estHi || a.est); })[0] || null };
+  }
+  function zone(mk, b, a) {
+    if (!mk.np) return 'none';
+    if (a != null && a > mk.maxHi) return 'above';
+    if (b == null) return 'open';
+    if (b < mk.min) return 'red';
+    if (b < mk.p25) return 'yellow';
+    return 'green';
+  }
+  /* сколько домов в вилке [a, b] и сколько дешевле её */
+  function fork(mk, a, b) {
+    var inF = [], below = [];
+    mk.priced.forEach(function (x) {
+      var hi = x.estHi != null ? x.estHi : x.est;
+      if (b != null && x.est > b) return;           // дороже вилки
+      if (a && hi < a) below.push(x); else inF.push(x);
+    });
+    /* сначала дорогие: по тому, сколько из вилки можно потратить в доме (верх цены, но не выше вилки), затем по нижней цене */
+    function key(x) { var hi = x.estHi != null ? x.estHi : x.est; return b != null ? Math.min(hi, b) : hi; }
+    function top(p, q) { return (key(q) - key(p)) || (q.est - p.est); }
+    inF.sort(top); below.sort(top);
+    return { inFork: inF, below: below };
+  }
+
+  /* дома, где хоть какой-то лот стоит в пределах вилки: для бюджета выше цен на нужную квартиру */
+  function budgetHouses(data, a, b, klass) {
+    var by = {}, out = [];
+    (data.l || []).forEach(function (x) {
+      var slug = x[0], h = data.h[slug], c = x[4], cmax = x[6] || x[4]; if (!h || !c) return;
+      if (klass) { if (klass === 'элит') { if (h.c !== 'элитный' && h.c !== 'делюкс') return; } else if (h.c !== klass) return; }
+      if (b != null && c > b) return; if (cmax < a) return;
+      var r = by[slug]; if (!r) { r = by[slug] = { slug: slug, h: h, a: x[2], b: x[3], pmin: c, pmax: cmax, tips: [] }; out.push(r); }
+      r.a = Math.min(r.a, x[2]); r.b = Math.max(r.b, x[3]); r.pmin = Math.min(r.pmin, c); r.pmax = Math.max(r.pmax, cmax);
+      var t = x[1] === 'студия' ? 'студии' : x[1] + (x[5] ? ' сп.' : ''); if (r.tips.indexOf(t) < 0) r.tips.push(t);
+    });
+    return out.sort(function (p, q) { return q.pmax - p.pmax; });
+  }
+
+  var API = { DEF: DEF, EXTRAS: EXTRAS, normalize: normalize, calc: calc, match: match, market: market, zone: zone, fork: fork, budgetHouses: budgetHouses, plans: plans, PLANS: PLANS, lotRooms: lotRooms, plural: plural };
   if (typeof module !== 'undefined' && module.exports) module.exports = API; else root.NotaKonf = API;
 })(this);

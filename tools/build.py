@@ -398,7 +398,7 @@ def bust(s):
     def rep(m):
         v = ver(m.group(2))
         return m.group(1) + m.group(2) + ('?v=' + v if v else '') + '"'
-    return re.sub(r'((?:src|href)="(?:\.\./)*)((?:css/nota\.css|js/nota\.js|img/team/[\w-]+\.jpg))(?:\?v=[0-9a-f]*)?"', rep, s)
+    return re.sub(r'((?:src|href)="(?:\.\./)*)((?:css/[\w-]+\.css|js/[\w-]+\.js|img/team/[\w-]+\.jpg))(?:\?v=[0-9a-f]*)?"', rep, s)
 
 def seo(s, rel):
     """Канонический адрес, og:url и полные адреса картинок превью — на постоянный домен.

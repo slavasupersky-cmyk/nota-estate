@@ -1,0 +1,108 @@
+/* Подбор: новые элементы страницы. Всё остальное — классы сайта из css/nota.css.
+   Собрано из токенов фирстиля; своих цветов нет, кроме трёх зон шкалы бюджета (новый элемент, см. ниже). */
+
+/* призыв позвонить вместо анкеты — новый элемент: рамка line, фон surface, как .cform без тени */
+.kv-call{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px 28px;align-items:center;margin-top:28px;padding:20px 24px;border:1px solid var(--line);background:var(--surface)}
+.kv-call-h{font-size:clamp(18px,1.7vw,21px);font-weight:800;letter-spacing:-.02em}
+.kv-call-s{font-size:14.5px;color:var(--ink-2);margin-top:6px;max-width:64ch}
+.kv-call .btns{margin-top:0;flex-wrap:nowrap}
+
+/* шаг 1: калькулятор квартиры */
+.kv-calc{grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);align-items:start}
+.kv-calc .calc-in .chipgrp{margin-top:18px}
+.kv-calc .chip:disabled{opacity:.4;cursor:not-allowed}
+.kv-calc .row input[type=range]:disabled{opacity:.35}
+.kv-hint{margin-top:8px}
+.kv-more{margin-top:22px}
+.kv-more summary{font-size:16px}
+.kv-more details[open]{padding-bottom:18px}
+.kv-more details .chipgrp:first-of-type{margin-top:4px}
+.kv-card{flex:none;position:sticky;top:90px;z-index:2;padding:22px 24px 20px}
+.kv-big{font-size:clamp(46px,5.4vw,66px);font-weight:800;letter-spacing:-.045em;line-height:1;margin-top:10px;font-variant-numeric:tabular-nums}
+.kv-big small{font-size:22px;font-weight:600;letter-spacing:-.02em}
+.kv-fmt{font-size:17px;font-weight:600;letter-spacing:-.02em;margin-top:12px;line-height:1.4}
+.kv-min{font-size:14px;color:rgba(255,255,255,.72);margin-top:4px}
+.kv-facts{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.kv-facts span{font-size:12.5px;border:1px solid rgba(255,255,255,.3);border-radius:2px;padding:3px 9px;color:rgba(255,255,255,.88)}
+.kv-mkt{margin-top:16px;padding-top:12px;border-top:1px solid rgba(255,255,255,.2);font-size:14px;color:rgba(255,255,255,.78);display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 14px}
+.kv-mkt b{color:#fff}
+.kv-mkt a{color:#fff;font-weight:600;text-decoration:underline;text-decoration-color:var(--red);text-underline-offset:3px}
+.kv-tab{margin-top:10px}
+.kv-tab table{font-size:14px;min-width:0;width:100%}
+.kv-tab td,.kv-tab th{padding:8px 10px}
+.kv-tab td:nth-child(2){white-space:nowrap;text-align:right;font-variant-numeric:tabular-nums}
+.kv-tab td:first-child{font-weight:600}
+.kv-tab td:last-child{color:var(--ink-2)}
+.kv-tab tr.opt td{color:var(--muted)}
+.kv-tab tr.opt td:first-child::after{content:" · можно без";font-weight:400;font-size:12px}
+.kv-tab tr.sum td{border-top:1px solid var(--ink);font-weight:600;color:var(--ink)}
+.kv-list{margin:10px 0 0;padding-left:18px;font-size:15px;color:var(--ink-2)}
+.kv-list li{margin-bottom:5px}
+.kv-plans{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:10px}
+.kv-plans button{all:unset;cursor:zoom-in;display:flex;flex-direction:column;gap:6px;font-size:13px;color:var(--ink-2);min-width:0}
+.kv-plans img{display:block;width:100%;max-width:100%;aspect-ratio:4/3;object-fit:contain;background:var(--surface);border:1px solid var(--line);padding:4px}
+.kv-plans button:hover img{border-color:var(--ink)}
+.kv-plans button:focus-visible{outline:2px solid var(--red);outline-offset:3px}
+
+/* шаг 2: бюджет */
+.kv-budget{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.6fr);gap:24px 34px;margin-top:28px;align-items:start}
+.kv-bctl{display:flex;flex-direction:column;gap:14px}
+.kv-bout{border:1px solid var(--line);background:var(--surface);padding:clamp(18px,2.2vw,26px)}
+.kv-houses{margin-top:28px}
+.kv-houses td:nth-child(4),.kv-houses td:nth-child(5),.kv-houses th:nth-child(4),.kv-houses th:nth-child(5){text-align:right;white-space:nowrap}
+.kv-houses tr.sep td{background:var(--paper-2);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.kv-houses tr.below td{color:var(--ink-2)}
+
+/* шкала бюджета — новый элемент.
+   Ось — логарифмическая, в млн ₽. Три зоны показывают, где по ценам нашей базы находится нужная квартира:
+   красная — дешевле самого доступного дома (не найдётся), жёлтая — до первой четверти домов (впритык),
+   салатовая — дальше (хороший выбор). Цвета зон — только здесь, текст на них не ставится. */
+.kv-bout{--z-red:#F2C3C5;--z-yel:#F4DC8C;--z-grn:#CDE7A2}
+.kv-scale{position:relative;padding-top:34px}
+.kv-bar{position:relative;height:12px;background:var(--line)}
+.kv-bar .z{position:absolute;top:0;bottom:0}
+.z-red{background:var(--z-red)} .z-yel{background:var(--z-yel)} .z-grn{background:var(--z-grn)}
+.z-top{background:repeating-linear-gradient(135deg,var(--line) 0 4px,var(--surface) 4px 7px)}
+.kv-fork{position:absolute;top:-12px;height:30px;border:2px solid var(--ink);border-bottom:0;pointer-events:none}
+.kv-fork.open{border-right:0}
+.kv-fork span{position:absolute;bottom:calc(100% + 4px);left:-2px;font-size:12px;font-weight:600;color:var(--ink);white-space:nowrap}
+.kv-fork.right span{left:auto;right:-2px}
+.kv-mark{position:absolute;top:-3px;bottom:-3px;width:2px;background:var(--ink-2)}
+.kv-ticks{position:relative;height:30px;font-size:12px;color:var(--ink-2);font-variant-numeric:tabular-nums}
+.kv-ticks span{position:absolute;top:6px;transform:translateX(-50%);white-space:nowrap}
+.kv-ticks span::before{content:"";position:absolute;left:50%;top:-6px;height:4px;width:1px;background:var(--hair)}
+.kv-ticks span.k{color:var(--ink-2);font-weight:600;top:16px}
+.kv-legend{display:flex;flex-wrap:wrap;gap:6px 16px;margin-top:4px;font-size:13px;color:var(--ink-2)}
+.kv-legend i{display:inline-block;width:12px;height:12px;margin-right:6px;vertical-align:-1px}
+.kv-advice{margin-top:18px;padding-top:16px;border-top:1px solid var(--line)}
+.kv-verdict{font-size:clamp(18px,1.7vw,21px);font-weight:800;letter-spacing:-.02em;display:flex;align-items:center;gap:10px}
+.kv-verdict i{flex:none;width:14px;height:14px}
+.kv-advice p+p{margin-top:8px}
+.kv-advice p:not(.kv-verdict){font-size:15px;color:var(--ink-2);max-width:66ch}
+.kv-advice .btns{justify-content:flex-start;margin-top:14px}
+.kv-advice .btns .btn{flex:0 1 auto;padding:11px 16px;font-size:14px}
+
+/* скрытые кнопки и строки: у .btn сайта свой display */
+.btn[hidden],.kv-min[hidden],.mdl-sum[hidden]{display:none}
+
+/* окно с планом */
+.modal-in.kv-wide{width:min(1000px,100%)}
+.kv-zimg{margin-top:14px;border:1px solid var(--line);background:var(--surface)}
+.kv-zimg img{display:block;width:100%;height:auto;max-height:68vh;object-fit:contain}
+.kv-ztxt{margin-top:12px;font-size:15px;color:var(--ink-2)}
+
+/* полоска результата на телефоне — .pickbar сайта */
+#kbar .btn{background:var(--paper);border-color:var(--paper);color:var(--ink)}
+#kbar #bFmt{opacity:.75}
+
+@media(max-width:900px){
+ .kv-calc,.kv-budget{grid-template-columns:1fr}
+ .kv-card{position:static}
+ .kv-call{grid-template-columns:1fr}
+ .kv-call .btns{flex-wrap:wrap}
+}
+@media(min-width:901px){#kbar{display:none!important}}
+@media(max-width:600px){
+ .kv-plans{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .kv-tab td:last-child,.kv-tab th:last-child{display:none}
+}
