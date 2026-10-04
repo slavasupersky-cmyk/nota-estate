@@ -162,7 +162,7 @@ def numbers(root, extra=None):
     """Цифры, которые меняются вместе с базой. Ключи для шаблонов:
     doma — домов на сайте; biz, prem, elit, dlx — по классам; spor — домов, которым источники дают разные классы;
     med_biz…med_dlx — медиана цены «от» за м² по классу (город, без Рублёвки и Сколкова); v_prodazhe — домов с предложением по комнатности;
-    kartochki — карточек домов; apart — домов с апартаментами (проверка 08); shkoly, shkoly_mark, shkoly_zam, pent, pent_base, pent_min, pent_max — из рейтингов (tools/reytingi.py)."""
+    kartochki — карточек домов; ryn_prim, ryn_oba, ryn_vtor, ryn_anons — кто продаёт (только застройщик, застройщик и собственники, только собственники, анонс); apart — домов с апартаментами (проверка 08); shkoly, shkoly_mark, shkoly_zam, pent, pent_base, pent_min, pent_max — из рейтингов (tools/reytingi.py)."""
     rd = lambda p: list(csv.DictReader(p.open(encoding='utf-8-sig'), delimiter=';')) if p.exists() else []
     rows = rd(root / 'data/doma.csv')
     cls = Counter(r['class'] for r in rows)
@@ -178,6 +178,9 @@ def numbers(root, extra=None):
         v = [_num(r['price_from_m2']) for r in city if r['class'] == c and _num(r['price_from_m2'])]
         n['med_' + k] = _m2(statistics.median(v)) if v else '—'
     n['kamin'] = len({r['slug'] for r in rd(root / 'data/kaminy.csv')})
+    # {ryn_prim}, {ryn_oba}, {ryn_vtor}, {ryn_anons} — кто продаёт (поле rynok): только застройщик / застройщик и собственники / только собственники / анонс
+    ryn = Counter(r.get('rynok', '') for r in rows)
+    n.update(ryn_prim=ryn['первичка'], ryn_oba=ryn['первичка и вторичка'], ryn_vtor=ryn['только вторичка'], ryn_anons=ryn['анонс'])
     n['apart'] = len({r['slug'] for r in rd(root / 'data/proverki.csv')
                       if r['check'] == '08' and 'апартамент' in (r['value'] or '').lower()})
     # {srez} — дата среза базы (когда data/doma.csv последний раз менялся)
