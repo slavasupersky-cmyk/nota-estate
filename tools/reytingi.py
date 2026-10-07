@@ -278,7 +278,7 @@ def shkoly(root):
    <div class="pk-sel"></div>
    <div class="pk-list"></div>
    <p class="hint pk-note">Пришлите этот список нам — ответим сегодня и пришлём, что продаётся в этих домах: планировки, цены и условия. Для покупателя подбор бесплатный.</p>
-   <div class="btns"><a class="btn" href="https://t.me/nota_estate" target="_blank" rel="noopener">Написать в Telegram</a> <button class="btn btn-l pk-copy" type="button">Скопировать список</button></div>
+   <div class="btns"><a class="btn" href="https://t.me/nota_estate?direct" target="_blank" rel="noopener">Написать в Telegram</a> <button class="btn btn-l pk-copy" type="button">Скопировать список</button></div>
   </div>
  </div>
  <p class="hint">Число слева — отметка NOTA от 0 до 100. Справа — сколько новых домов из нашей базы в 15 минутах пешком по улицам до ближайшего корпуса школы. Все маршруты — на карте <a href="{R}shkoly-marshruty.html">«До школы пешком»</a>.</p>
