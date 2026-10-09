@@ -61,6 +61,7 @@ def apply_shell(path):
     s2 = apply_numbers(s2, N)
     s2 = faq_ld(s2)
     s2 = seo(s2, rel)
+    s2 = metrika(s2, rel)
     s2 = bust(s2, rel)
     if rel == 'metod.html' and ITOG_TABLE:
         s2 = re.sub(r'<!--itog-t-->[\s\S]*?<!--/itog-t-->', lambda m: '<!--itog-t-->\n' + ITOG_TABLE + '\n  <!--/itog-t-->', s2, count=1)
@@ -393,6 +394,29 @@ def ver(rel):
         f = ROOT / rel
         _VER[rel] = hashlib.md5(f.read_bytes()).hexdigest()[:8] if f.exists() else ''
     return _VER[rel]
+
+# ---- Яндекс Метрика: номер счётчика — metrika_id в site.json; код в <head>, noscript — сразу после <body> ----
+MK_A, MK_B = '<!-- Yandex.Metrika counter -->', '<!-- /Yandex.Metrika counter -->'
+def metrika(s, rel):
+    s = re.sub(r'\n?<!-- Yandex\.Metrika counter -->[\s\S]*?<!-- /Yandex\.Metrika counter -->', '', s)
+    s = re.sub(r'\n?<!-- Yandex\.Metrika noscript -->[\s\S]*?<!-- /Yandex\.Metrika noscript -->', '', s)
+    mid = str(site.get('metrika_id', '')).strip()
+    if not mid or rel.startswith('test/') or 'http-equiv="refresh"' in s:
+        return s
+    js = (MK_A + '\n<script type="text/javascript">\n'
+          '    (function(m,e,t,r,i,k,a){\n'
+          '        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};\n'
+          '        m[i].l=1*new Date();\n'
+          '        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}\n'
+          '        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)\n'
+          "    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=" + mid + "', 'ym');\n\n"
+          "    ym(" + mid + ", 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:\"dataLayer\", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});\n"
+          '</script>\n' + MK_B)
+    ns = ('<!-- Yandex.Metrika noscript --><noscript><div><img src="https://mc.yandex.ru/watch/' + mid +
+          '" style="position:absolute; left:-9999px;" alt="" /></div></noscript><!-- /Yandex.Metrika noscript -->')
+    s = s.replace('</head>', js + '\n</head>', 1)
+    s = re.sub(r'(<body[^>]*>)', lambda m: m.group(1) + '\n' + ns, s, count=1)
+    return s
 
 def bust(s, rel=''):
     def rep(m):

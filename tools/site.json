@@ -1,5 +1,5 @@
 {
- "_comment": "Контакты и реквизиты — одно место на весь сайт. tg_write — «Написать в Telegram» (личные сообщения канала), tg_channel — «Читать в Telegram» (лента канала). max_url — заглушка, заменить на ссылку MAX. site_url — постоянный адрес сайта (канонические ссылки, карта сайта). yandex_verification / google_verification — коды подтверждения из Яндекс Вебмастера и Google Search Console (содержимое content= мета-тега). После правки: python3 tools/build.py",
+ "_comment": "Контакты и реквизиты — одно место на весь сайт. tg_write — «Написать в Telegram» (личные сообщения канала), tg_channel — «Читать в Telegram» (лента канала). max_url — заглушка, заменить на ссылку MAX. site_url — постоянный адрес сайта (канонические ссылки, карта сайта). metrika_id — номер счётчика Яндекс Метрики (код ставит сборка на все страницы, кроме test/). yandex_verification / google_verification — коды подтверждения из Яндекс Вебмастера и Google Search Console (содержимое content= мета-тега). После правки: python3 tools/build.py",
  "phone": "+7 495 021-60-39",
  "phone_href": "+74950216039",
  "tg": "nota_estate",
@@ -12,6 +12,7 @@
  "max_url": "#",
  "max_name": "NOTA",
  "site_url": "https://nota.expert",
+ "metrika_id": "113587172",
  "yandex_verification": "",
  "google_verification": "",
  "ogrnip": "326508100350881"
