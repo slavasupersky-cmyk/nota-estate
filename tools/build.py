@@ -516,6 +516,22 @@ def ld_article(s, rel):
     tag = '<script type="application/ld+json" id="ld-art">' + json.dumps(ld, ensure_ascii=False) + '</script>'
     return s.replace('</head>', tag + '\n</head>', 1)
 
+def ld_team(s):
+    """Команда из блока «Люди» на главной → Person: имя, должность, фото, чем занимается."""
+    out = []
+    for m in re.finditer(r'<div class="tm">([\s\S]*?)</p></div>', s):
+        b = m.group(1)
+        name, job = re.search(r'<h3>([\s\S]*?)</h3>', b), re.search(r'<span class="k">([\s\S]*?)</span>', b)
+        if not name: continue
+        p = {'@type': 'Person', 'name': _plain(name.group(1)), 'worksFor': {'@id': SITE_URL + '/#org'}}
+        if job: p['jobTitle'] = _plain(job.group(1))
+        img = re.search(r'<img src="([^"?]+)', b)
+        if img: p['image'] = SITE_URL + '/' + img.group(1).lstrip('/')
+        d = re.search(r'<p>([\s\S]*)$', b)
+        if d: p['description'] = _plain(re.sub(r'<!--[\s\S]*?-->', '', d.group(1)))
+        out.append(p)
+    return out
+
 def ld_org(s, rel):
     """Разметка компании на главной (RealEstateAgent + WebSite). Контакты — из site.json."""
     s = re.sub(r'\n?<script type="application/ld\+json" id="ld-org">[\s\S]*?</script>', '', s)
@@ -532,6 +548,8 @@ def ld_org(s, rel):
     if img: org['image'] = img
     if site.get('max_url', '#') not in ('', '#'): org['sameAs'].append(site['max_url'])
     if site.get('opening_hours'): org['openingHours'] = site['opening_hours']
+    team = ld_team(s)
+    if team: org['employee'] = team
     web = {'@type': 'WebSite', '@id': SITE_URL + '/#site', 'url': SITE_URL + '/', 'name': 'NOTA', 'inLanguage': 'ru',
            'publisher': {'@id': SITE_URL + '/#org'}}
     ld = {'@context': 'https://schema.org', '@graph': [org, web]}
