@@ -1,0 +1,16 @@
+# Разовый помощник: показывает id группы и тем, куда бот уже получил сообщения.
+# Запуск: вкладка Actions → «Узнать id группы» → Run workflow. Нужен только секрет TG_TOKEN.
+# Перед запуском напишите в нужной теме группы: /start@имя_бота
+name: Узнать id группы
+on: workflow_dispatch
+jobs:
+  ids:
+    runs-on: ubuntu-latest
+    steps:
+      - env:
+          TG_TOKEN: ${{ secrets.TG_TOKEN }}
+        run: |
+          curl -sS -f "https://api.telegram.org/bot${TG_TOKEN}/getUpdates" \
+          | jq -r '.result[] | (.message // .channel_post // .my_chat_member) | select(.chat) |
+              "группа: \(.chat.title // "-")   TG_CHAT=\(.chat.id)   тема TG_TOPIC=\(.message_thread_id // "нет (общий чат)")"' \
+          | sort -u

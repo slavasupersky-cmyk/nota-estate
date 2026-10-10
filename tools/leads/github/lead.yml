@@ -1,0 +1,26 @@
+# Заявка с сайта → группа «Заявки NOTA» в Telegram.
+# Будит его send.php на хостинге (repository_dispatch, тип lead). Текст заявки в журнал не печатается.
+# Секреты репозитория: TG_TOKEN (ключ бота), TG_CHAT (id группы), TG_TOPIC (id темы «Сайт», можно пусто).
+name: Заявка в Telegram
+on:
+  repository_dispatch:
+    types: [lead]
+jobs:
+  telegram:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Отправить в группу
+        env:
+          TG_TOKEN: ${{ secrets.TG_TOKEN }}
+          TG_CHAT: ${{ secrets.TG_CHAT }}
+          TG_TOPIC: ${{ secrets.TG_TOPIC }}
+          TEXT: ${{ github.event.client_payload.text }}
+        run: |
+          args=(-sS -f --retry 3 --retry-delay 5 -o /dev/null
+            --data-urlencode "chat_id=${TG_CHAT}"
+            --data-urlencode "text=${TEXT}"
+            -d disable_web_page_preview=true)
+          if [ -n "${TG_TOPIC}" ]; then args+=(--data-urlencode "message_thread_id=${TG_TOPIC}"); fi
+          curl "${args[@]}" "https://api.telegram.org/bot${TG_TOKEN}/sendMessage"
+          echo "Отправлено"

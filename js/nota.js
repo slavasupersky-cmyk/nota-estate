@@ -551,3 +551,55 @@
   c.addEventListener('change',set); set();
  });
 })();
+
+/* ---- отправка заявок: любая форма с галочкой согласия уходит в /send.php → файл на хостинге, почта hello@, Telegram ---- */
+(function(){
+ var T0=Date.now(), NAMES={source:'Откуда',house:'Дом',name:'Имя',contact:'Контакт',note:'Комментарий'};
+ function lbl(el){
+  var l=el.closest('label'), t='';
+  if(l){for(var n=l.firstChild;n;n=n.nextSibling){if(n.nodeType===3)t+=n.textContent} t=t.trim(); if(t) return t}
+  return (el.getAttribute('placeholder')||NAMES[el.name]||el.name||'Поле').replace(/[:…\s]+$/,'');
+ }
+ function link(sel,fb){var a=document.querySelector(sel);return a?a.getAttribute('href'):fb}
+ function msg(f,btn,cls,html){
+  var p=f.querySelector('.f-msg');
+  if(!p){p=document.createElement('p');var anchor=btn.parentNode!==f?btn.parentNode:btn;anchor.insertAdjacentElement('afterend',p)}
+  p.className='f-msg '+cls; p.innerHTML=html;
+ }
+ document.querySelectorAll('form').forEach(function(f){
+  var ok=f.querySelector('.consent input'), btn=f.querySelector('button.btn'); if(!ok||!btn) return;
+  var hp=document.createElement('input'); hp.type='text'; hp.name='website'; hp.tabIndex=-1; hp.autocomplete='off';
+  hp.setAttribute('aria-hidden','true'); hp.style.cssText='position:absolute;left:-9999px;width:1px;height:1px;opacity:0'; f.appendChild(hp);
+  var busy=false;
+  function send(e){
+   if(e) e.preventDefault(); if(busy||btn.disabled) return;
+   var was=f.querySelector('.f-msg'); if(was) was.remove();
+   var fields=[], contact=null;
+   f.querySelectorAll('input,textarea,select').forEach(function(el){
+    if(el===hp||/^(checkbox|radio|submit|button|range|number)$/.test(el.type)) return;
+    var v=(el.value||'').trim(), k=el.type==='hidden'?(NAMES[el.name]||el.name):lbl(el);
+    if(el.type!=='hidden'&&!contact&&/телефон|ник|contact/i.test(k+' '+(el.name||'')+' '+(el.placeholder||''))) contact=el;
+    if(v) fields.push([k,v]);
+   });
+   if(contact&&!contact.value.trim()){msg(f,btn,'err','Оставьте телефон или ник в Telegram — иначе нам некуда ответить.');contact.focus();return}
+   var box=f.closest('.modal-in')||f.closest('section')||document.body, h=box.querySelector('h3,h2'), s=box.querySelector('.mdl-sum:not([hidden])');
+   var body={fields:fields,form:h?h.textContent.trim():'',sum:s?s.textContent.trim():'',page:document.title,path:location.pathname+location.search,hp:hp.value,t:Date.now()-T0};
+   busy=true; var label=btn.textContent; btn.textContent='Отправляем…'; btn.disabled=true;
+   fetch('/send.php',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)})
+    .then(function(r){return r.json()})
+    .then(function(j){
+     if(!j||!j.ok) throw 0;
+     [].forEach.call(f.children,function(x){x.style.display='none'});
+     var d=document.createElement('div'); d.className='f-done'; d.setAttribute('role','status');
+     d.innerHTML='<p class="cform-h">Получили, спасибо</p><p>Ответит человек в течение дня — туда, куда вы указали.</p>';
+     f.appendChild(d);
+     try{window.ym&&ym(113587172,'reachGoal','lead')}catch(_){}
+    })
+    .catch(function(){
+     busy=false; btn.textContent=label; btn.disabled=!ok.checked;
+     msg(f,btn,'err','Не отправилось — простите. Напишите нам в <a href="'+link('a[href*="t.me/"]','https://t.me/nota_estate?direct')+'">Telegram</a> или позвоните: <a href="'+link('a[href^="tel:"]','tel:+79015446600')+'">+7 901 544-66-00</a>.');
+    });
+  }
+  btn.addEventListener('click',send); f.addEventListener('submit',send);
+ });
+})();
