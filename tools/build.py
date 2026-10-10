@@ -61,6 +61,8 @@ def apply_shell(path):
     s2 = apply_numbers(s2, N)
     s2 = faq_ld(s2)
     s2 = seo(s2, rel)
+    s2 = ld_org(s2, rel)
+    s2 = ld_article(s2, rel)
     s2 = metrika(s2, rel)
     s2 = bust(s2, rel)
     if rel == 'metod.html' and ITOG_TABLE:
@@ -460,6 +462,108 @@ def seo(s, rel):
         if site.get('google_verification'): add.append(f'<meta name="google-site-verification" content="{site["google_verification"]}">')
     return s.replace('</head>', '\n'.join(add) + '\n</head>', 1)
 
+
+# ---- разметка для поиска и нейросетей: компания на главной, статьи — в разборах и рейтингах, llms.txt ----
+import html as _html
+MONTHS = {'января': 1, 'февраля': 2, 'марта': 3, 'апреля': 4, 'мая': 5, 'июня': 6, 'июля': 7,
+          'августа': 8, 'сентября': 9, 'октября': 10, 'ноября': 11, 'декабря': 12}
+_DATE = r'(\d{1,2})\s+(' + '|'.join(MONTHS) + r')(?:\s+(\d{4}))?'
+
+def _meta(s, attr, name):
+    m = re.search(r'<meta ' + attr + r'="' + re.escape(name) + r'" content="([^"]*)"', s)
+    return _html.unescape(m.group(1)).strip() if m else ''
+
+def _plain(h):
+    return _html.unescape(_txt(re.sub(r'<br\s*/?>', ' ', h)))
+
+def page_title(s):
+    m = re.search(r'<title>([^<]*)</title>', s)
+    return re.sub(r'\s+—\s+NOTA$', '', _html.unescape(m.group(1)).strip()) if m else ''
+
+def page_dates(s):
+    """Даты из подписи над заголовком («Разбор · сверка 25 сентября 2026», «10 сентября 2026 · сверка 23 сентября»),
+    иначе из строки «Разбор собран …». Возвращает (первая, последняя) в ISO или (None, None)."""
+    m = re.search(r'<p class="ttl">([^<]*)</p>', s)
+    found = re.findall(_DATE, m.group(1)) if m else []
+    if not found:
+        m2 = re.search(r'(?:собран\w*|сверен\w*|сверка|обновл\w*)\s+' + _DATE, s)
+        found = [m2.groups()] if m2 else []
+    out, year = [], None
+    for d, mon, y in found:
+        year = int(y) if y else year
+        if year: out.append(f'{year:04d}-{MONTHS[mon]:02d}-{int(d):02d}')
+    return (min(out), max(out)) if out else (None, None)
+
+def _org_ref():
+    return {'@type': 'Organization', '@id': SITE_URL + '/#org', 'name': 'NOTA', 'url': SITE_URL + '/'}
+
+def ld_article(s, rel):
+    """Разметка Article у разборов и рейтингов: заголовок, описание, обложка, даты сверки, автор — NOTA."""
+    s = re.sub(r'\n?<script type="application/ld\+json" id="ld-art">[\s\S]*?</script>', '', s)
+    art = (is_article(rel) and (rel.endswith('/index.html') or rel.startswith('razbor-'))) or re.match(r'reytingi/[^/]+/index\.html$', rel)
+    h = re.search(r'<h1[^>]*>([\s\S]*?)</h1>', s)
+    if not art or not h or not SITE_URL: return s
+    url = page_url(rel)
+    ld = {'@context': 'https://schema.org', '@type': 'Article', 'headline': _plain(h.group(1))[:110],
+          'name': page_title(s), 'description': _meta(s, 'name', 'description'), 'url': url, 'mainEntityOfPage': url,
+          'inLanguage': 'ru', 'author': _org_ref(), 'publisher': _org_ref()}
+    img = _meta(s, 'property', 'og:image')
+    if img: ld['image'] = img
+    a, b = page_dates(s)
+    if a: ld['datePublished'], ld['dateModified'] = a, b
+    tag = '<script type="application/ld+json" id="ld-art">' + json.dumps(ld, ensure_ascii=False) + '</script>'
+    return s.replace('</head>', tag + '\n</head>', 1)
+
+def ld_org(s, rel):
+    """Разметка компании на главной (RealEstateAgent + WebSite). Контакты — из site.json."""
+    s = re.sub(r'\n?<script type="application/ld\+json" id="ld-org">[\s\S]*?</script>', '', s)
+    if rel != 'index.html' or not SITE_URL: return s
+    office = site.get('office', '')
+    org = {'@type': 'RealEstateAgent', '@id': SITE_URL + '/#org', 'name': 'NOTA', 'alternateName': 'NOTA Estate',
+           'url': SITE_URL + '/', 'description': _meta(s, 'name', 'description'),
+           'telephone': site.get('phone', ''), 'email': site.get('email', ''),
+           'address': {'@type': 'PostalAddress', 'streetAddress': re.sub(r'^Москва,\s*', '', office),
+                       'addressLocality': 'Москва', 'addressCountry': 'RU'},
+           'areaServed': {'@type': 'City', 'name': 'Москва'},
+           'logo': SITE_URL + '/favicon.svg', 'sameAs': [site['tg_channel']] if site.get('tg_channel') else []}
+    img = _meta(s, 'property', 'og:image')
+    if img: org['image'] = img
+    if site.get('max_url', '#') not in ('', '#'): org['sameAs'].append(site['max_url'])
+    if site.get('opening_hours'): org['openingHours'] = site['opening_hours']
+    web = {'@type': 'WebSite', '@id': SITE_URL + '/#site', 'url': SITE_URL + '/', 'name': 'NOTA', 'inLanguage': 'ru',
+           'publisher': {'@id': SITE_URL + '/#org'}}
+    ld = {'@context': 'https://schema.org', '@graph': [org, web]}
+    tag = '<script type="application/ld+json" id="ld-org">' + json.dumps(ld, ensure_ascii=False) + '</script>'
+    return s.replace('</head>', tag + '\n</head>', 1)
+
+def llms(pages):
+    """llms.txt в корне — короткая карта сайта для нейросетей (формат llmstxt.org). Пересобирается вместе с сайтом."""
+    rows = {'main': [], 'razbory': [], 'reytingi': [], 'doma': []}
+    main_order = ['index.html', 'metod.html', 'podbor.html', 'karta.html', 'razbory.html', 'reytingi.html']
+    home = ''
+    for p in pages:
+        rel = p.relative_to(ROOT).as_posix()
+        s = p.read_text()
+        if rel in NOINDEX_SITEMAP or rel.startswith('test/') or 'name="robots"' in s.replace(PREVIEW, ''): continue
+        line = f'- [{page_title(s)}]({page_url(rel)})' + (': ' + _meta(s, 'name', 'description') if _meta(s, 'name', 'description') else '')
+        if rel == 'index.html': home = _meta(s, 'name', 'description')
+        if rel in main_order: rows['main'].append((main_order.index(rel), line))
+        elif rel.startswith('razbor') and (rel.endswith('/index.html') or rel.startswith('razbor-')): rows['razbory'].append((rel, line))
+        elif rel.startswith('reytingi/'): rows['reytingi'].append((rel, line))
+        elif rel.startswith('doma/') and rel != 'doma/index.html': rows['doma'].append((rel, line))
+    out = ['# NOTA', '', '> ' + home, '',
+           'NOTA — агентство новостроек Москвы от бизнес-класса и выше. У каждого дома в базе — паспорт из проверок '
+           '(адрес, соседство, плотность, застройщик, документы, цена); разборы — с датой сверки и источниками.', '',
+           f'Контакты: телефон {site.get("phone", "")}, почта {site.get("email", "")}, Telegram {site.get("tg_channel", "")}, '
+           f'офис — {site.get("office", "")}.', '']
+    for key, title in (('main', 'Главное'), ('razbory', 'Разборы'), ('reytingi', 'Рейтинги'), ('doma', 'Паспорта домов')):
+        if rows[key]:
+            out += ['## ' + title, ''] + [l for _, l in sorted(rows[key])] + ['']
+    body = '\n'.join(out)
+    f = ROOT / 'llms.txt'
+    if not f.exists() or f.read_text() != body: f.write_text(body)
+    return sum(len(v) for v in rows.values())
+
 def sitemap(pages):
     """sitemap.xml и robots.txt в корне. Дата — последнее изменение файла страницы."""
     import datetime
@@ -510,3 +614,4 @@ if __name__ == '__main__':
     n = sum(1 for p in pages if before.get(p) != p.read_bytes())
     print(f'страницы: изменилось {n} из {len(pages)}')
     print(f'карта сайта: {sitemap(pages)} страниц · {SITE_URL}')
+    print(f'llms.txt: {llms(pages)} страниц')
