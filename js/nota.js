@@ -603,3 +603,16 @@
   btn.addEventListener('click',send); f.addEventListener('submit',send);
  });
 })();
+
+/* ---- цели Метрики на контакты: звонок, «Написать в Telegram», канал, почта. Заявки с форм — цель lead (выше) ---- */
+(function(){
+ document.addEventListener('click',function(e){
+  var a=e.target.closest&&e.target.closest('a[href]'); if(!a||!window.ym) return;
+  var h=a.getAttribute('href'), g=null;
+  if(/^tel:/.test(h)) g='tel';
+  else if(/^mailto:/.test(h)) g='email';
+  else if(/t\.me\//.test(h)) g=/[?&]direct/.test(h)?'telegram':'tg_channel';
+  else if(/max\.ru\//.test(h)) g='max';
+  if(g) try{ym(113587172,'reachGoal',g)}catch(_){}
+ },true);
+})();
