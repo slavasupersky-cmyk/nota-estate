@@ -441,7 +441,7 @@ def seo(s, rel):
     url = page_url(rel)
     s = re.sub(r'\s*<link rel="canonical"[^>]*>', '', s)
     s = re.sub(r'\s*<meta property="og:url"[^>]*>', '', s)
-    s = re.sub(r'\s*<meta name="(?:yandex|google-site)-verification"[^>]*>', '', s)
+    s = re.sub(r'\s*<meta name="(?:yandex-verification|google-site-verification|msvalidate\.01)"[^>]*>', '', s)
     s = s.replace('\n' + PREVIEW, '').replace(PREVIEW, '')
     def absimg(m):
         v = m.group(2)
@@ -461,6 +461,7 @@ def seo(s, rel):
     if rel == 'index.html':
         if site.get('yandex_verification'): add.append(f'<meta name="yandex-verification" content="{site["yandex_verification"]}">')
         if site.get('google_verification'): add.append(f'<meta name="google-site-verification" content="{site["google_verification"]}">')
+        if site.get('bing_verification'): add.append(f'<meta name="msvalidate.01" content="{site["bing_verification"]}">')
     return s.replace('</head>', '\n'.join(add) + '\n</head>', 1)
 
 
