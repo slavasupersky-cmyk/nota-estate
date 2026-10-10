@@ -4,6 +4,7 @@
 #   bash deploy/deploy.sh            проверка: покажет, что будет загружено (ничего не меняет)
 #   bash deploy/deploy.sh go         выложить
 #   bash deploy/deploy.sh go clean   выложить и удалить на хостинге файлы, которых больше нет в репозитории
+#   bash deploy/deploy.sh indexnow   разово сообщить Яндексу и Bing обо всех страницах (после выкладки это делается само)
 #
 # Как понимает, что изменилось: хранит у вас на Mac список файлов с «отпечатками» (хешами)
 # от прошлой выкладки (~/.cache/nota-deploy/manifest.txt) и грузит только то, что поменялось.
@@ -24,6 +25,22 @@ WORK="$HOME/.cache/nota-deploy"
 STAGE="$WORK/site"
 MANIFEST="$WORK/manifest.txt"
 MODE="${1:-check}"; CLEAN="${2:-}"
+
+# IndexNow: сразу сообщает Яндексу и Bing (а через Bing — ChatGPT и Copilot), какие страницы изменились.
+# Ключ публичный по устройству протокола: файл с ним лежит в корне сайта.
+INDEXNOW_KEY="a17e2079f3d0d4fe196711a96d266d73"
+indexnow() {  # на входе — список адресов, по одному в строке
+  local urls n body ep code
+  urls="$(grep -v '^$')"; [ -n "$urls" ] || return 0
+  n=$(echo "$urls" | wc -l | tr -d ' ')
+  body=$(echo "$urls" | python3 -c 'import sys,json; u=[l.strip() for l in sys.stdin if l.strip()][:10000]; print(json.dumps({"host":"nota.expert","key":sys.argv[1],"keyLocation":"https://nota.expert/"+sys.argv[1]+".txt","urlList":u}))' "$INDEXNOW_KEY")
+  for ep in https://yandex.com/indexnow https://api.indexnow.org/indexnow; do
+    code=$(curl -s -m 20 -o /dev/null -w '%{http_code}' -H 'Content-Type: application/json; charset=utf-8' --data "$body" "$ep")
+    echo "IndexNow $(echo "$ep" | cut -d/ -f3): $n стр., ответ $code (200/202 — принято)"
+  done
+}
+# адреса страниц сайта из списка файлов (без закрытых: клиентские nota-*, черновики, тесты)
+page_urls() { grep -E '\.html$' | grep -vE '^(nota-|scenarii|index-2026-|test/|img/|data/)' | sed -E 's#(^|/)index\.html$#\1#' | sed "s#^#$SITE_URL/#"; }
 
 command -v lftp >/dev/null || { echo "Нет lftp. Установите: brew install lftp"; exit 1; }
 grep -q "machine $FTP_HOST" ~/.netrc 2>/dev/null || { echo "Нет логина/пароля для $FTP_HOST в ~/.netrc"; exit 1; }
@@ -66,6 +83,10 @@ if [ "$N_GO" -gt 0 ]; then
   echo "$GONE" | head -10 | sed 's/^/  − /'
 fi
 
+if [ "$MODE" = "indexnow" ]; then
+  echo "Отправляю в IndexNow все страницы из карты сайта…"
+  grep -o '<loc>[^<]*' sitemap.xml | sed 's/<loc>//' | indexnow; exit 0
+fi
 if [ "$MODE" != "go" ]; then
   echo "— Это проверка, на сервере ничего не менялось. Выложить: bash deploy/deploy.sh go —"
   exit 0
@@ -98,6 +119,7 @@ if lftp -f "$CMDS" 2>&1 | grep -v "^$"; [ "${PIPESTATUS[0]}" -eq 0 ]; then
     { cat "$NEW"; grep -F -f <(echo "$GONE" | grep -v '^$' | sed 's/^/  /;s/$//') "$MANIFEST" 2>/dev/null || true; } | sort -u -k2 > "$MANIFEST.tmp" && mv "$MANIFEST.tmp" "$MANIFEST"
   fi
   echo "Готово. Проверка: $(curl -sI "$SITE_URL" | head -1)"
+  echo "$CHANGED" | page_urls | indexnow
 else
   echo "✗ Выкладка прервалась с ошибкой (см. выше). Пришлите вывод Claude или просто запустите ещё раз."
 fi

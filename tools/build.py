@@ -63,6 +63,7 @@ def apply_shell(path):
     s2 = seo(s2, rel)
     s2 = ld_org(s2, rel)
     s2 = ld_article(s2, rel)
+    s2 = ld_crumbs(s2, rel)
     s2 = metrika(s2, rel)
     s2 = bust(s2, rel)
     if rel == 'metod.html' and ITOG_TABLE:
@@ -534,6 +535,23 @@ def ld_org(s, rel):
            'publisher': {'@id': SITE_URL + '/#org'}}
     ld = {'@context': 'https://schema.org', '@graph': [org, web]}
     tag = '<script type="application/ld+json" id="ld-org">' + json.dumps(ld, ensure_ascii=False) + '</script>'
+    return s.replace('</head>', tag + '\n</head>', 1)
+
+def ld_crumbs(s, rel):
+    """«Хлебные крошки» BreadcrumbList из строки <p class="crumbs"> на странице: NOTA › раздел › страница."""
+    s = re.sub(r'\n?<script type="application/ld\+json" id="ld-crumbs">[\s\S]*?</script>', '', s)
+    m = re.search(r'<p class="crumbs">([\s\S]*?)</p>', s)
+    if not m or not SITE_URL: return s
+    from urllib.parse import urljoin
+    url = page_url(rel)
+    items = [('NOTA', SITE_URL + '/')]
+    for href, txt in re.findall(r'<a href="([^"]+)">([\s\S]*?)</a>', m.group(1)):
+        items.append((_plain(txt), urljoin(url, href)))
+    last = _plain(re.split(r'</span>', m.group(1))[-1])
+    if last: items.append((last, url))
+    ld = {'@context': 'https://schema.org', '@type': 'BreadcrumbList',
+          'itemListElement': [{'@type': 'ListItem', 'position': i + 1, 'name': n, 'item': u} for i, (n, u) in enumerate(items)]}
+    tag = '<script type="application/ld+json" id="ld-crumbs">' + json.dumps(ld, ensure_ascii=False) + '</script>'
     return s.replace('</head>', tag + '\n</head>', 1)
 
 def llms(pages):

@@ -328,6 +328,9 @@ def card(root, slug, cfg, r):
           'address': {'@type': 'PostalAddress', 'streetAddress': r['address'], 'addressLocality': 'Москва', 'addressRegion': r['district']},
           'geo': {'@type': 'GeoCoordinates', 'latitude': r['lat'], 'longitude': r['lon']}}
     if u: ld['numberOfAccommodationUnits'] = int(u)
+    # адрес страницы и обложка — относительные, build.py (seo) делает их полными
+    ld.update({'url': f'doma/{slug}/', 'description': desc})
+    if has_img: ld['image'] = f'img/doma/{slug}.jpg'
     ld_html = '<script type="application/ld+json">' + json.dumps(ld, ensure_ascii=False) + '</script>\n'
     body = f'''<section class="first tight-b"><div class="wrap">
  <p class="crumbs"><a href="{R}doma/">Дома</a> <span>/</span> {e(title)}</p>
