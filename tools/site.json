@@ -1,7 +1,7 @@
 {
  "_comment": "Контакты и реквизиты — одно место на весь сайт. tg_write — «Написать в Telegram» (личные сообщения канала), tg_channel — «Читать в Telegram» (лента канала). max_url — заглушка, заменить на ссылку MAX. site_url — постоянный адрес сайта (канонические ссылки, карта сайта). metrika_id — номер счётчика Яндекс Метрики (код ставит сборка на все страницы, кроме test/). yandex_verification / google_verification — коды подтверждения из Яндекс Вебмастера и Google Search Console (содержимое content= мета-тега). После правки: python3 tools/build.py",
- "phone": "+7 495 021-60-39",
- "phone_href": "+74950216039",
+ "phone": "+7 901 544-66-00",
+ "phone_href": "+79015446600",
  "tg": "nota_estate",
  "tg_write": "https://t.me/nota_estate?direct",
  "tg_channel": "https://t.me/nota_estate",
