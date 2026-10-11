@@ -14,6 +14,11 @@
 | `razbory.html`, `razbory/<slug>/` | Разборы: решения (первичка или вторичка, классы новостроек), дома, районы, отказы |
 | `razbor-zamoskvorechye.html` | разбор района Замоскворечье и Якиманка |
 | `razbor-ostozhenka.html` | разбор района Остоженка |
+| `razbor-presnya.html` | разбор района Пресня |
+| `razbor-dorogomilovo.html` | разбор района Дорогомилово |
+| `razbor-sretenka.html` | разбор района Сретенка и Цветной бульвар |
+| `razbor-chistye-prudy.html` | разбор района Чистые пруды |
+| `razbor-kitay-gorod.html` | разбор района Китай-город и Серебряники |
 | `razbor-hamovniki.html` | Разбор района — Хамовники |
 | `reytingi.html`, `reytingi/<slug>/` | Рейтинги (тёмная тема): школы Москвы, пентхаусы — страницы собирает `tools/reytingi.py` из `data/` |
 | `scenarii.html` | Тринадцать сценариев подбора |

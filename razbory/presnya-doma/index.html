@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<title>Пресня по домам — NOTA</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light only">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../css/nota.css?v=d4ab7003">
+<link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+<meta name="description" content="Пресня по домам: восемь домов продаёт застройщик — вход от 32,4 млн, медиана у застройщиков 1,38 млн за метр, на вторичке 1,12. Шесть домов только на вторичке, у Дома Наркомфина нет ни одного объявления. ЦИАН 10 октября 2026.">
+<meta property="og:title" content="Пресня по домам — NOTA">
+<meta property="og:image" content="https://nota.expert/img/38-presnya-doma-og.jpg">
+<style>
+.hd-card{display:grid;grid-template-columns:minmax(0,.44fr) minmax(0,.56fr);gap:clamp(22px,3.4vw,52px);padding:clamp(28px,3.4vw,46px) 0;border-top:1px solid var(--line);align-items:start}
+.hd-card:first-of-type{border-top:0}
+.hd-card h3{font-size:clamp(24px,2.6vw,34px);font-weight:800;letter-spacing:-.03em;line-height:1.08;margin-top:10px}
+.hd-k{font-size:12.5px;color:var(--muted);display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center}
+.tag{font-weight:600;font-size:10px;letter-spacing:.16em;text-transform:uppercase;border:1px solid var(--hair);padding:3px 8px;color:var(--ink-2)}
+.tag.red{color:var(--red);border-color:var(--red)}
+.hd-facts{list-style:none;margin:14px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:6px 8px}
+.hd-facts li{font-size:13px;color:var(--ink-2);background:var(--paper-2);padding:4px 9px}
+.hd-t{margin-top:18px}
+.hd-t table{min-width:0}
+.hd-t td:nth-child(2),.hd-t td:nth-child(3){white-space:nowrap}
+.hd-sub{font-size:14px;color:var(--muted);margin-top:12px}
+.hd-note{margin-top:16px;border-left:2px solid var(--red);padding-left:16px;font-size:15.5px;line-height:1.55;color:var(--ink)}
+.hd-note b{font-weight:600}
+.hd-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin-top:34px}
+.hd-cell{background:var(--paper);padding:0 0 26px;display:flex;flex-direction:column}
+.hd-cell .ph{border:none;margin-bottom:18px}
+.hd-cell>*:not(.ph){padding:0 22px}
+.hd-cell h3{margin-top:10px;font-size:21px;font-weight:700}
+.hd-addr{font-size:13.5px;color:var(--muted);margin-top:4px}
+.hd-cell .hd-facts{padding:0 22px}
+.hd-st{margin:16px 22px 0;padding:0 !important;display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line)}
+.hd-st div{background:var(--paper);padding:10px 12px}
+.hd-st dt{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.hd-st dd{margin:4px 0 0;font-size:15px;font-weight:600;letter-spacing:-.01em}
+.hd-st dd span{font-weight:400;color:var(--muted);font-size:13px}
+.hd-cell .hd-note{margin:16px 22px 0;font-size:14.5px}
+.hd-strip{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,2vw,24px);margin-top:30px}
+.hd-strip figure{margin:0}
+.hd-strip figcaption{font-size:13px;color:var(--muted);margin-top:8px}
+.hd-toc{display:flex;flex-wrap:wrap;gap:8px;margin-top:26px}
+.hd-toc a{font-size:13.5px;text-decoration:none;border:1px solid var(--hair);padding:7px 12px;color:var(--ink-2)}
+.hd-toc a:hover{border-color:var(--ink);color:var(--ink)}
+@media(max-width:1000px){.hd-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:760px){.hd-card{grid-template-columns:1fr}.hd-grid{grid-template-columns:1fr}.hd-strip{grid-template-columns:1fr}.hd-cell>*:not(.ph),.hd-cell .hd-facts{padding:0 16px}.hd-st,.hd-cell .hd-note{margin-left:16px;margin-right:16px}}
+.hd-cell.noimg{padding-top:22px}
+.hd-link{margin-top:14px;font-size:14px}
+.hd-link a{color:var(--red);text-decoration:none;border-bottom:1px solid currentColor}
+.hd-grid{background:transparent!important;gap:0!important;border:0!important}
+.hd-cell,.hd-grp{box-shadow:0 0 0 .5px var(--line),inset 0 0 0 .5px var(--line)}
+.hd-grp{grid-column:1/-1;background:var(--paper-2);padding:14px 22px;font-weight:600;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2)}
+</style>
+<link rel="canonical" href="https://nota.expert/razbory/presnya-doma/">
+<meta property="og:url" content="https://nota.expert/razbory/presnya-doma/">
+<meta name="robots" content="noindex" data-preview>
+<script type="application/ld+json" id="ld-art">{"@context": "https://schema.org", "@type": "Article", "headline": "Пресня по домам", "name": "Пресня по домам", "description": "Пресня по домам: восемь домов продаёт застройщик — вход от 32,4 млн, медиана у застройщиков 1,38 млн за метр, на вторичке 1,12. Шесть домов только на вторичке, у Дома Наркомфина нет ни одного объявления. ЦИАН 10 октября 2026.", "url": "https://nota.expert/razbory/presnya-doma/", "mainEntityOfPage": "https://nota.expert/razbory/presnya-doma/", "inLanguage": "ru", "author": {"@type": "Organization", "@id": "https://nota.expert/#org", "name": "NOTA", "url": "https://nota.expert/"}, "publisher": {"@type": "Organization", "@id": "https://nota.expert/#org", "name": "NOTA", "url": "https://nota.expert/"}, "image": "https://nota.expert/img/38-presnya-doma-og.jpg", "datePublished": "2026-10-10", "dateModified": "2026-10-10"}</script>
+<script type="application/ld+json" id="ld-crumbs">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "NOTA", "item": "https://nota.expert/"}, {"@type": "ListItem", "position": 2, "name": "Разборы", "item": "https://nota.expert/razbory.html"}, {"@type": "ListItem", "position": 3, "name": "Пресня", "item": "https://nota.expert/razbor-presnya.html"}, {"@type": "ListItem", "position": 4, "name": "По домам", "item": "https://nota.expert/razbory/presnya-doma/"}]}</script>
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=113587172', 'ym');
+
+    ym(113587172, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+</script>
+<!-- /Yandex.Metrika counter -->
+</head>
+<body class="inner article">
+<!-- Yandex.Metrika noscript --><noscript><div><img src="https://mc.yandex.ru/watch/113587172" style="position:absolute; left:-9999px;" alt="" /></div></noscript><!-- /Yandex.Metrika noscript -->
+<header class="top solid" id="top-bar">
+ <div class="top-in">
+  <a class="brand" href="../../index.html" aria-label="NOTA — на главную">
+   <svg class="mark" viewBox="12 5 96 103" fill="none" aria-hidden="true">
+    <path d="M 92.18 30.00 A 44 44 0 1 1 69.90 17.13" stroke="currentColor" stroke-width="8"/>
+    <path d="M 60 60 L 89.04 9.70" stroke="#CE2029" stroke-width="8"/>
+   </svg>
+   <span class="rule"></span>
+   <span class="lk">
+    <span class="wm">NOT<i>A</i></span>
+    <span class="brandtag">NB: NOT A CHOICE. THE CHOICE.</span>
+   </span>
+  </a>
+  <nav class="nav">
+      <a href="../../index.html" data-m="home">Главная</a>
+      <a href="../../podbor.html" data-m="podbor">Подбор</a>
+      <a href="../../karta.html" data-m="karta">Карта домов</a>
+      <a href="../../razbory.html" data-m="razbory" class="cur">Разборы</a>
+      <a href="../../reytingi.html" data-m="reytingi">Рейтинги</a>
+      <a href="../../metod.html" data-m="metod">Метод</a>
+      <a class="now" href="tel:+79015446600">+7 901 544-66-00</a>
+     </nav>
+   <button class="burger" id="burger" type="button" aria-label="Меню" aria-expanded="false"><span></span><span></span><span></span></button>
+ </div>
+</header>
+<main>
+<section class="first tight-b"><div class="wrap">
+ <p class="crumbs"><a href="../../razbory.html">Разборы</a> <span>/</span> <a href="../../razbor-presnya.html">Пресня</a> <span>/</span> По домам</p>
+ <p class="ttl">Разбор · сверка 10 октября 2026</p>
+ <h1>Пресня по домам</h1>
+ <p class="lead">На заметку: на Пресне сейчас больше новых квартир, чем в Дорогомилове, на Сретенке, Чистых прудах и в Китай-городе вместе: 863 лота у застройщиков из 1 347. Восемь домов продаёт застройщик, шесть готовых живут только на вторичке. Метр у застройщиков — от 1,05 млн в Republic до 2,80 млн в Доме Спорта.</p>
+ <div class="phwrap"><div class="ph has" data-ar="21x9"><img src="../../img/38-presnya-doma.jpg" alt="Девять белых бумажных макетов домов Пресни — от квартала у футбольного поля до тонких башен у Звенигородского шоссе, связанных красной нитью" loading="lazy"></div></div>
+</div></section>
+
+<section class="tight"><div class="wrap">
+ <div class="h-stats">
+  <div><b>8</b><span>домов продаёт застройщик — с ценой входа по каждому формату</span></div>
+  <div><b>6</b><span>готовых домов только на вторичке, 52 лота после склейки дублей</span></div>
+  <div><b>32,4 млн</b><span>самый низкий вход к застройщику — однокомнатная 27,4 м² в Republic</span></div>
+ </div>
+ <div class="hd-toc"><a href="#zastroyshchik">Продаёт застройщик</a><a href="#vtorichka">Только вторичка</a><a href="#vopros">Цена по запросу</a><a href="#cifry">Что видно по цифрам</a></div>
+ <p class="hint">Цены — цены предложения на ЦИАН 10 октября 2026, не сделок. Дубли одной квартиры у разных продавцов склеены. «В продаже, медиана» — сколько дней висят объявления дома; в скобках у медианы — самый дешёвый и самый дорогой метр. Заметки с прогулки по каждому дому добавим после обхода.</p>
+</div></section>
+
+<section id="zastroyshchik"><div class="wrap">
+ <p class="ttl">Первичка</p>
+ <h2>Продаёт застройщик</h2>
+ <p class="lead">Дома, где квартиру можно купить напрямую. Порядок — по трём кластерам: у зоопарка, Тишинка и кварталы у Звенигородского шоссе. В таблицах — самый дешёвый лот каждого формата: площадь и цена, с которых начинается вход. У евро-планировок комнатность на ЦИАН гуляет, поэтому смотрите и на площадь.</p>
+ <div style="margin-top:20px">
+ <article class="hd-card" id="dom-sporta">
+  <div class="ph has" data-ar="3x2"><img src="../../img/presnya/dom-sporta.jpg" alt="Дом Спорта" loading="lazy"></div>
+  <div>
+   <p class="hd-k"><span class="tag red">Продаёт застройщик</span> Зоопарк · Дружинниковская ул., 18</p>
+   <h3>Дом Спорта</h3>
+   <ul class="hd-facts"><li>Capital Group</li><li>срок I кв. 2029</li><li>10 этажей</li><li>92 квартиры</li><li>паркинг на 290 мест</li><li>архитектор Сергей Скуратов</li></ul>
+   <div class="tablewrap hd-t"><table>
+    <tr><th>Формат</th><th>Площадь</th><th>Вход</th></tr>
+    <tr><td data-label="Формат">1-комн.</td><td data-label="Площадь">от 46,2 м²</td><td data-label="Вход"><b>от 110,4 млн ₽</b></td></tr><tr><td data-label="Формат">2-комн.</td><td data-label="Площадь">от 62,8 м²</td><td data-label="Вход"><b>от 143,4 млн ₽</b></td></tr><tr><td data-label="Формат">3-комн.</td><td data-label="Площадь">от 103,2 м²</td><td data-label="Вход"><b>от 289,9 млн ₽</b></td></tr><tr><td data-label="Формат">4-комн.</td><td data-label="Площадь">от 124,4 м²</td><td data-label="Вход"><b>от 346,8 млн ₽</b></td></tr>
+   </table></div>
+   <p class="hd-sub">Метр: 2,28–3,17 млн, медиана 2,80 млн. 12 лотов у застройщика.</p>
+   <p class="hd-note"><b>На заметку:</b> Квартал Сергея Скуратова на месте стадиона «Красная Пресня»: футбольное поле остаётся в центре. Старт продаж — 12 лотов от однокомнатной 46,2 м² за 110,4 млн, медиана 2,80 млн за метр — самый дорогой новый метр Пресни. Машиномест 290 на 92 квартиры, больше трёх на каждую. В паспорте два минуса: четыре квартиры на этаже — для элиты много, и застройщик (проверка 06). Ключи — в I квартале 2029 года.</p>
+   <p class="hd-link"><a href="../../doma/dom-sporta/">Карточка дома в базе NOTA</a></p>
+   <!-- С прогулки: -->
+  </div>
+ </article>
+ <article class="hd-card" id="sky-view">
+  <div class="ph has" data-ar="3x2"><img src="../../img/presnya/sky-view.jpg" alt="Sky View" loading="lazy"></div>
+  <div>
+   <p class="hd-k"><span class="tag red">Продаёт застройщик</span> Зоопарк · Дружинниковская ул., 15А</p>
+   <h3>Sky View</h3>
+   <ul class="hd-facts"><li>Киноцентр</li><li>сдан в 2024</li><li>четыре башни до 23 этажей на общем стилобате</li><li>304 апартамента</li><li>паркинг на 371 место</li><li>«Цимайло Ляшенко и Партнёры»</li></ul>
+   <div class="tablewrap hd-t"><table>
+    <tr><th>Формат</th><th>Площадь</th><th>Вход</th></tr>
+    <tr><td data-label="Формат">2-комн.</td><td data-label="Площадь">от 83,6 м²</td><td data-label="Вход"><b>от 87,0 млн ₽</b></td></tr><tr><td data-label="Формат">3-комн.</td><td data-label="Площадь">от 125,2 м²</td><td data-label="Вход"><b>от 138,9 млн ₽</b></td></tr><tr><td data-label="Формат">4-комн.</td><td data-label="Площадь">от 265,7 м²</td><td data-label="Вход"><b>от 338 млн ₽</b></td></tr>
+   </table></div>
+   <p class="hd-sub">Метр: 1,04–1,73 млн, медиана 1,21 млн. 12 лотов у застройщика, 66 на вторичке (медиана 1,27 млн).</p>
+   <p class="hd-note"><b>На заметку:</b> Четыре башни у зоопарка, до Большого пруда 217 метров. Это апартаменты: регистрация временная, налог выше, чем у квартиры. У застройщика 12 лотов с медианой 1,21 млн за метр, у агентов и собственников — 66, медиана 1,27. Редкий случай, когда на вторичке не дешевле: сравнивать стоит каждый лот, а не медианы.</p>
+   <p class="hd-link"><a href="../../doma/sky-view/">Карточка дома в базе NOTA</a></p>
+   <!-- С прогулки: -->
+  </div>
+ </article>
+ <article class="hd-card" id="tishinskiy">
+  <div class="ph has" data-ar="3x2"><img src="../../img/presnya/tishinskiy.jpg" alt="Тишинский бульвар" loading="lazy"></div>
+  <div>
+   <p class="hd-k"><span class="tag red">Продаёт застройщик</span> Тишинка · Электрический пер., 1</p>
+   <h3>Тишинский бульвар</h3>
+   <ul class="hd-facts"><li>Sminex</li><li>срок III кв. 2027 – II кв. 2028</li><li>14 разных домов до 17 этажей</li><li>220 квартир</li><li>архитектура Сергей Чобан, SPEECH</li></ul>
+   <div class="tablewrap hd-t"><table>
+    <tr><th>Формат</th><th>Площадь</th><th>Вход</th></tr>
+    <tr><td data-label="Формат">1-комн.</td><td data-label="Площадь">от 46,0 м²</td><td data-label="Вход"><b>от 69,2 млн ₽</b></td></tr><tr><td data-label="Формат">2-комн.</td><td data-label="Площадь">от 76,0 м²</td><td data-label="Вход"><b>от 126,7 млн ₽</b></td></tr><tr><td data-label="Формат">3-комн.</td><td data-label="Площадь">от 96,0 м²</td><td data-label="Вход"><b>от 133,4 млн ₽</b></td></tr><tr><td data-label="Формат">4-комн.</td><td data-label="Площадь">от 153,0 м²</td><td data-label="Вход"><b>от 210,2 млн ₽</b></td></tr><tr><td data-label="Формат">5 и больше</td><td data-label="Площадь">от 180,0 м²</td><td data-label="Вход"><b>от 261,1 млн ₽</b></td></tr>
+   </table></div>
+   <p class="hd-sub">Метр: 1,24–3,04 млн, медиана 1,69 млн. 220 лотов у застройщика, 7 на вторичке (медиана 1,49 млн).</p>
+   <p class="hd-note"><b>На заметку:</b> Самый большой выбор на Тишинке: 220 лотов у Sminex, от однокомнатной 46 м² за 69,2 млн, медиана 1,69 млн за метр. Переуступки дешевле на 12 %: семь лотов с медианой 1,49. Четырнадцать разных домов сдаются с III квартала 2027 до II квартала 2028 года — сравнивать нужно корпус и срок, а не проект.</p>
+   <p class="hd-link"><a href="../../doma/tishinskiy-bulvar/">Карточка дома в базе NOTA</a></p>
+   <!-- С прогулки: -->
+  </div>
+ </article>
+ <article class="hd-card" id="klimashkina">
+  <div class="ph has" data-ar="3x2"><img src="../../img/presnya/klimashkina.jpg" alt="Климашкина 7/11" loading="lazy"></div>
+  <div>
+   <p class="hd-k"><span class="tag red">Продаёт застройщик</span> Тишинка · ул. Климашкина, 7/11</p>
+   <h3>Климашкина 7/11</h3>
+   <ul class="hd-facts"><li>MR Group</li><li>срок IV кв. 2028</li><li>9 этажей</li><li>46 квартир</li><li>паркинг на 55 мест</li><li>архитектор Сергей Чобан</li></ul>
+   <div class="tablewrap hd-t"><table>
+    <tr><th>Формат</th><th>Площадь</th><th>Вход</th></tr>
+    <tr><td data-label="Формат">1-комн.</td><td data-label="Площадь">от 50,2 м²</td><td data-label="Вход"><b>от 102,5 млн ₽</b></td></tr><tr><td data-label="Формат">2-комн.</td><td data-label="Площадь">от 154,6 м²</td><td data-label="Вход"><b>от 244,5 млн ₽</b></td></tr><tr><td data-label="Формат">3-комн.</td><td data-label="Площадь">от 156,1 м²</td><td data-label="Вход"><b>от 248,6 млн ₽</b></td></tr>
+   </table></div>
+   <p class="hd-sub">Метр: 1,58–2,55 млн, медиана 2,10 млн. 17 лотов у застройщика.</p>
+   <p class="hd-note"><b>На заметку:</b> Сорок шесть квартир Сергея Чобана, в дом встроен фрагмент стены здания Нирнзее 1905 года. У MR 17 лотов, медиана 2,10 млн за метр, однокомнатная — от 102,5 млн. Девять лотов из семнадцати висят дольше полугода: продажи идут медленно, есть о чём договариваться. Машиномест 55 — 1,2 на квартиру при норме элиты 2,0.</p>
+   <p class="hd-link"><a href="../../doma/klimashkina-7-11/">Карточка дома в базе NOTA</a></p>
+   <!-- С прогулки: -->
+  </div>
+ </article>
+ <article class="hd-card" id="republic">
+  <div class="ph has" data-ar="3x2"><img src="../../img/presnya/republic.jpg" alt="Republic" loading="lazy"></div>
+  <div>
+   <p class="hd-k"><span class="tag red">Продаёт застройщик</span> Тишинка · Пресненский Вал, вл. 21–27</p>
+   <h3>Republic</h3>
+   <ul class="hd-facts"><li>FORMA</li><li>часть корпусов сдана, остальные — IV кв. 2027</li><li>до 36 этажей</li><li>2 651 квартира</li><li>паркинг на 1 687 мест</li><li>четыре здания железнодорожных мастерских</li></ul>
+   <div class="tablewrap hd-t"><table>
+    <tr><th>Формат</th><th>Площадь</th><th>Вход</th></tr>
+    <tr><td data-label="Формат">1-комн.</td><td data-label="Площадь">от 27,4 м²</td><td data-label="Вход"><b>от 32,4 млн ₽</b></td></tr><tr><td data-label="Формат">2-комн.</td><td data-label="Площадь">от 65,7 м²</td><td data-label="Вход"><b>от 58,3 млн ₽</b></td></tr><tr><td data-label="Формат">3-комн.</td><td data-label="Площадь">от 87,8 м²</td><td data-label="Вход"><b>от 76,1 млн ₽</b></td></tr><tr><td data-label="Формат">4-комн.</td><td data-label="Площадь">от 116,6 м²</td><td data-label="Вход"><b>от 116,2 млн ₽</b></td></tr>
+   </table></div>
+   <p class="hd-sub">Метр: 843 тыс – 1,48 млн, медиана 1,05 млн. 164 лота у застройщика, 103 на вторичке (медиана 907 тыс).</p>
+   <p class="hd-note"><b>На заметку:</b> Самый дешёвый вход на Пресне: однокомнатная 27,4 м² у застройщика за 32,4 млн, студия на вторичке — от 28 млн. Медиана 1,05 млн за метр у FORMA и 907 тыс у собственников. Но здесь 2 651 квартира и 0,64 машиноместа на каждую: по нашему паспорту — без отметки, четыре минуса: окружение, метро, плотность, машина.</p>
+   <p class="hd-link"><a href="../../doma/republic/">Карточка дома в базе NOTA</a></p>
+   <!-- С прогулки: -->
+  </div>
+ </article>
+ <article class="hd-card" id="lucky">
+  <div class="ph has" data-ar="3x2"><img src="../../img/presnya/lucky.jpg" alt="Lucky" loading="lazy"></div>
+  <div>
+   <p class="hd-k"><span class="tag red">Продаёт застройщик</span> Лаки · 2-я Звенигородская ул.</p>
+   <h3>Lucky</h3>
+   <ul class="hd-facts"><li>Vesper</li><li>сдан</li><li>8 новых домов и 7 исторических зданий</li><li>654 квартиры</li><li>паркинг на 980 мест</li><li>архитектура «Меганом»</li></ul>
+   <div class="tablewrap hd-t"><table>
+    <tr><th>Формат</th><th>Площадь</th><th>Вход</th></tr>
+    <tr><td data-label="Формат">5 и больше</td><td data-label="Площадь">от 300,4 м²</td><td data-label="Вход"><b>от 510,7 млн ₽</b></td></tr>
+   </table></div>
+   <p class="hd-sub">Метр: 1,50–1,70 млн, медиана 1,60 млн. 2 лота у застройщика, 21 на вторичке (медиана 1,61 млн).</p>
+   <p class="hd-note"><b>На заметку:</b> Застройщик почти всё продал: на ЦИАН у него два больших лота, от 300,4 м² за 510,7 млн. Квартал живёт на вторичке — 21 объявление, медиана 1,61 млн за метр, однокомнатная от 63,9 млн. В паспорте — отметка с одним минусом: машиномест чуть меньше 1,5 на квартиру — нормы премиума. Школа № 2030 — в трёх минутах пешком.</p>
+   <p class="hd-link"><a href="../../doma/lucky/">Карточка дома в базе NOTA</a></p>
+   <!-- С прогулки: -->
+  </div>
+ </article>
+ <article class="hd-card" id="lifetime">
+  <div class="ph has" data-ar="3x2"><img src="../../img/presnya/lifetime.jpg" alt="Life Time" loading="lazy"></div>
+  <div>
+   <p class="hd-k"><span class="tag red">Продаёт застройщик</span> Лаки · ул. Сергея Макеева</p>
+   <h3>Life Time</h3>
+   <ul class="hd-facts"><li>Sminex</li><li>сдан в 2026</li><li>стеклянные башни до 24 этажей и виллы</li><li>сад над паркингом</li><li>«Цимайло Ляшенко и Партнёры»</li></ul>
+   <div class="tablewrap hd-t"><table>
+    <tr><th>Формат</th><th>Площадь</th><th>Вход</th></tr>
+    <tr><td data-label="Формат">1-комн.</td><td data-label="Площадь">от 56,0 м²</td><td data-label="Вход"><b>от 69,5 млн ₽</b></td></tr><tr><td data-label="Формат">2-комн.</td><td data-label="Площадь">от 105,0 м²</td><td data-label="Вход"><b>от 120,1 млн ₽</b></td></tr><tr><td data-label="Формат">3-комн.</td><td data-label="Площадь">от 120,0 м²</td><td data-label="Вход"><b>от 146 млн ₽</b></td></tr><tr><td data-label="Формат">4-комн.</td><td data-label="Площадь">от 149,0 м²</td><td data-label="Вход"><b>от 178,4 млн ₽</b></td></tr><tr><td data-label="Формат">5 и больше</td><td data-label="Площадь">от 226,0 м²</td><td data-label="Вход"><b>от 334 млн ₽</b></td></tr>
+   </table></div>
+   <p class="hd-sub">Метр: 1,12–2,15 млн, медиана 1,56 млн. 212 лотов у застройщика, 30 на вторичке (медиана 1,40 млн).</p>
+   <p class="hd-note"><b>На заметку:</b> Дом сдан летом 2026 года, но у Sminex ещё 212 лотов: однокомнатная — от 56 м² за 69,5 млн, медиана 1,56 млн за метр. Собственники и переуступки просят на 10 % меньше — 1,40. Стеклянные башни соседствуют с виллами: свет и вид сильно зависят от корпуса и стороны.</p>
+   <p class="hd-link"><a href="../../doma/layf-taym/">Карточка дома в базе NOTA</a></p>
+   <!-- С прогулки: -->
+  </div>
+ </article>
+ <article class="hd-card" id="nachalo">
+  <div class="ph has" data-ar="3x2"><img src="../../img/presnya/nachalo.jpg" alt="Начало" loading="lazy"></div>
+  <div>
+   <p class="hd-k"><span class="tag red">Продаёт застройщик</span> Лаки · ул. Сергея Макеева, 7</p>
+   <h3>Начало</h3>
+   <ul class="hd-facts"><li>Донстрой</li><li>срок II кв. 2029 – I кв. 2030</li><li>до 50 этажей</li><li>962 квартиры</li><li>паркинг на 897 мест</li><li>архитектура «Генпро»</li></ul>
+   <div class="tablewrap hd-t"><table>
+    <tr><th>Формат</th><th>Площадь</th><th>Вход</th></tr>
+    <tr><td data-label="Формат">студия</td><td data-label="Площадь">от 35,9 м²</td><td data-label="Вход"><b>от 38,9 млн ₽</b></td></tr><tr><td data-label="Формат">1-комн.</td><td data-label="Площадь">от 48,9 м²</td><td data-label="Вход"><b>от 54,4 млн ₽</b></td></tr><tr><td data-label="Формат">2-комн.</td><td data-label="Площадь">от 70,5 м²</td><td data-label="Вход"><b>от 79,5 млн ₽</b></td></tr><tr><td data-label="Формат">3-комн.</td><td data-label="Площадь">от 107,6 м²</td><td data-label="Вход"><b>от 106,6 млн ₽</b></td></tr><tr><td data-label="Формат">4-комн.</td><td data-label="Площадь">от 169,3 м²</td><td data-label="Вход"><b>от 178,3 млн ₽</b></td></tr><tr><td data-label="Формат">5 и больше</td><td data-label="Площадь">от 194,7 м²</td><td data-label="Вход"><b>от 195,3 млн ₽</b></td></tr>
+   </table></div>
+   <p class="hd-sub">Метр: 972 тыс – 1,89 млн, медиана 1,18 млн. 224 лота у застройщика.</p>
+   <p class="hd-note"><b>На заметку:</b> Старт продаж у Донстроя: 224 лота, от студии 35,9 м² за 38,9 млн, медиана 1,18 млн за метр. Это дешевле, чем на вторичке готовых Lucky (1,61) и Монэ (1,44) по соседству. Башни до 50 этажей и 962 квартиры, ключи — со II квартала 2029 до I квартала 2030 года: покупка сейчас — это три с лишним года ожидания.</p>
+   <p class="hd-link"><a href="../../doma/nachalo/">Карточка дома в базе NOTA</a></p>
+   <!-- С прогулки: -->
+  </div>
+ </article>
+ </div>
+</div></section>
+
+<section class="method" id="vtorichka"><div class="wrap">
+ <p class="ttl">Вторичка</p>
+ <h2>Только вторичка: шесть готовых домов</h2>
+ <p class="lead">Застройщик здесь уже всё продал — цену делают собственники и агенты. Группы — кластеры района: Тишинка и кварталы у Звенигородского шоссе. Три дома из шести — апартаменты или лофты, и метр там заметно ниже.</p>
+ <div class="hd-grid">
+  <div class="hd-grp">Тишинка</div>
+  <article class="hd-cell" id="fantastic">
+   <div class="ph has" data-ar="3x2"><img src="../../img/presnya/fantastic.jpg" alt="Fantastic House" loading="lazy"></div>
+   <p class="hd-k"><span class="tag">Вторичка</span> Тишинка</p>
+   <h3>Fantastic House</h3>
+   <p class="hd-addr">Малая Грузинская ул., 44</p>
+   <ul class="hd-facts"><li>Fibonacci Group</li><li>сдан в 2022</li><li>24 квартиры, из них 3 пентхауса</li><li>паркинг на 45 мест</li></ul>
+   <dl class="hd-st">
+      <div><dt>На вторичке</dt><dd>1 лот</dd></div>
+      <div><dt>Медиана метра</dt><dd>1,45 млн ₽/м²</dd></div>
+      <div><dt>Вход</dt><dd>от 350 млн ₽ <span>· 241 м²</span></dd></div>
+      <div><dt>В продаже, медиана</dt><dd>57 дн.</dd></div>
+   </dl>
+   <p class="hd-note"><b>На заметку:</b> На ЦИАН одно объявление — пентхаус 240,7 м² за 350 млн, 1,45 млн за метр. В доме 24 квартиры, собственники продают редко: если нравится дом, следить за ним нужно заранее.</p>
+   
+   <!-- С прогулки: -->
+  </article>
+  <article class="hd-cell" id="sinatra">
+   <div class="ph has" data-ar="3x2"><img src="../../img/presnya/sinatra.jpg" alt="Sinatra" loading="lazy"></div>
+   <p class="hd-k"><span class="tag">Вторичка</span> Тишинка</p>
+   <h3>Sinatra</h3>
+   <p class="hd-addr">Б. Тишинский пер., 38</p>
+   <ul class="hd-facts"><li>Glincom</li><li>сдан в 2021</li><li>7 этажей</li><li>70 апартаментов, из них 12 пентхаусов</li></ul>
+   <dl class="hd-st">
+      <div><dt>На вторичке</dt><dd>9 лотов</dd></div>
+      <div><dt>Медиана метра</dt><dd>918 тыс ₽/м² <span>(686 тыс – 1,39 млн)</span></dd></div>
+      <div><dt>Вход</dt><dd>от 31,0 млн ₽ <span>· 39–204 м²</span></dd></div>
+      <div><dt>В продаже, медиана</dt><dd>86 дн.</dd></div>
+   </dl>
+   <p class="hd-note"><b>На заметку:</b> Восемь объявлений из девяти — апартаменты. Медиана 918 тыс за метр — один из самых низких метров Пресни, однокомнатная — от 31 млн. Скидка здесь за статус: регистрация временная, налог выше.</p>
+   
+   <!-- С прогулки: -->
+  </article>
+  <article class="hd-cell" id="rassvet">
+   <div class="ph has" data-ar="3x2"><img src="../../img/presnya/rassvet.jpg" alt="Рассвет" loading="lazy"></div>
+   <p class="hd-k"><span class="tag">Вторичка</span> Тишинка</p>
+   <h3>Рассвет</h3>
+   <p class="hd-addr">Столярный пер., 3</p>
+   <ul class="hd-facts"><li>KR Properties</li><li>сдан</li><li>лофты на территории завода «Рассвет»</li><li>потолки до 6 м</li></ul>
+   <dl class="hd-st">
+      <div><dt>На вторичке</dt><dd>5 лотов</dd></div>
+      <div><dt>Медиана метра</dt><dd>852 тыс ₽/м² <span>(567 тыс – 1,66 млн)</span></dd></div>
+      <div><dt>Вход</dt><dd>от 65,0 млн ₽ <span>· 76–180 м²</span></dd></div>
+      <div><dt>В продаже, медиана</dt><dd>298 дн.</dd></div>
+   </dl>
+   <p class="hd-note"><b>На заметку:</b> Пять объявлений, все — апартаменты в лофтах. Метр — от 567 тыс до 1,66 млн, разброс втрое, медиана 852 тыс. Висят долго: медиана 298 дней, так что цена здесь — предмет торга.</p>
+   
+   <!-- С прогулки: -->
+  </article>
+  <div class="hd-grp">Лаки</div>
+  <article class="hd-cell" id="mone">
+   <div class="ph has" data-ar="3x2"><img src="../../img/presnya/mone.jpg" alt="Резиденция Монэ" loading="lazy"></div>
+   <p class="hd-k"><span class="tag">Вторичка</span> Лаки</p>
+   <h3>Резиденция Монэ</h3>
+   <p class="hd-addr">2-я Звенигородская ул., 11</p>
+   <ul class="hd-facts"><li>AB Development</li><li>сдан в 2016</li><li>18 этажей</li><li>164 квартиры и апартамента и 10 пентхаусов</li></ul>
+   <dl class="hd-st">
+      <div><dt>На вторичке</dt><dd>9 лотов</dd></div>
+      <div><dt>Медиана метра</dt><dd>1,44 млн ₽/м² <span>(1,02–1,64)</span></dd></div>
+      <div><dt>Вход</dt><dd>от 72,6 млн ₽ <span>· 68–207 м²</span></dd></div>
+      <div><dt>В продаже, медиана</dt><dd>87 дн.</dd></div>
+   </dl>
+   <p class="hd-note"><b>На заметку:</b> Девять объявлений с медианой 1,44 млн за метр, двухкомнатная — от 72,6 млн. Дом 2016 года стоит рядом с новым Началом, где застройщик просит 1,18 млн: готовый дом здесь дороже стройки.</p>
+   
+   <!-- С прогулки: -->
+  </article>
+  <article class="hd-cell" id="redside">
+   <div class="ph has" data-ar="3x2"><img src="../../img/presnya/redside.jpg" alt="RedSide" loading="lazy"></div>
+   <p class="hd-k"><span class="tag">Вторичка</span> Лаки</p>
+   <h3>RedSide</h3>
+   <p class="hd-addr">ул. Сергея Макеева, 9</p>
+   <ul class="hd-facts"><li>INSIGMA</li><li>сдан в 2017</li><li>8 корпусов, 7–21 этаж</li><li>954 квартиры</li></ul>
+   <dl class="hd-st">
+      <div><dt>На вторичке</dt><dd>21 лот</dd></div>
+      <div><dt>Медиана метра</dt><dd>1,22 млн ₽/м² <span>(753 тыс – 1,39 млн)</span></dd></div>
+      <div><dt>Вход</dt><dd>от 51,0 млн ₽ <span>· 48–242 м²</span></dd></div>
+      <div><dt>В продаже, медиана</dt><dd>93 дн.</dd></div>
+   </dl>
+   <p class="hd-note"><b>На заметку:</b> Самый большой выбор готовых квартир у Звенигородского шоссе: 21 объявление, медиана 1,22 млн за метр, однокомнатная — от 51 млн. Квартал на 954 квартиры, паркинг — 1,24 места на каждую.</p>
+   
+   <!-- С прогулки: -->
+  </article>
+  <article class="hd-cell" id="eleven">
+   <div class="ph has" data-ar="3x2"><img src="../../img/presnya/eleven.jpg" alt="Eleven" loading="lazy"></div>
+   <p class="hd-k"><span class="tag">Вторичка</span> Лаки</p>
+   <h3>Eleven</h3>
+   <p class="hd-addr">Звенигородское ш., 11</p>
+   <ul class="hd-facts"><li>РСТИ</li><li>сдан в 2022</li><li>две башни, 16 и 17 этажей</li><li>88 квартир и 2 пентхауса</li></ul>
+   <dl class="hd-st">
+      <div><dt>На вторичке</dt><dd>7 лотов</dd></div>
+      <div><dt>Медиана метра</dt><dd>1,28 млн ₽/м² <span>(1,04–1,43)</span></dd></div>
+      <div><dt>Вход</dt><dd>от 108 млн ₽ <span>· 76–191 м²</span></dd></div>
+      <div><dt>В продаже, медиана</dt><dd>18 дн.</dd></div>
+   </dl>
+   <p class="hd-note"><b>На заметку:</b> Семь объявлений, медиана 1,28 млн за метр, двухкомнатная — от 108 млн. Две башни на 90 квартир и 158 машиномест — почти два места на квартиру. Объявления свежие: медиана 18 дней.</p>
+   
+   <!-- С прогулки: -->
+  </article>
+ </div>
+</div></section>
+
+<section id="vopros"><div class="wrap">
+ <p class="ttl">Без витрины</p>
+ <h2>Где цену стоит спросить</h2>
+ <p class="lead">У этих домов витрина почти пустая: одно объявление или ни одного. Мы запрашиваем цены напрямую и обновим таблицу.</p>
+ <div class="tablewrap" style="margin-top:26px"><table class="t-cards"><tr><th>Дом</th><th>Застройщик</th><th>Что известно</th></tr><tr><td data-label="Дом"><b>Дом Наркомфина</b></td><td data-label="Застройщик">Лига Прав</td><td data-label="Что известно">46 квартир в памятнике конструктивизма 1928–1930 годов, реставрация завершена в 2020 году; на ЦИАН ни одного объявления</td></tr><tr><td data-label="Дом"><b>Fantastic House</b></td><td data-label="Застройщик">Fibonacci Group</td><td data-label="Что известно">24 квартиры, на витрине одно объявление — пентхаус за 350 млн</td></tr></table></div>
+</div></section>
+
+<section id="cifry"><div class="wrap">
+ <p class="ttl">Красная линия</p>
+ <h2>Что видно по цифрам</h2>
+ <div class="grid g3" style="margin-top:26px"><div><div class="num">Один дом — две цены</div><h3>Переуступка дешевле застройщика на 10–14 %</h3><p style="margin-top:10px;color:var(--ink-2);font-size:15px">Life Time: у Sminex медиана <b>1,56 млн ₽/м²</b>, у собственников и переуступок 1,40. Тишинский бульвар — 1,69 против 1,49, Republic — 1,05 млн против 907 тыс. Исключение — Sky View, апартаменты: на вторичке метр не ниже, 1,27 против 1,21.</p></div><div><div class="num">Кластер против кластера</div><h3>У застройщиков дороже у зоопарка, на вторичке — у Звенигородского шоссе</h3><p style="margin-top:10px;color:var(--ink-2);font-size:15px">Медианы у застройщиков: у зоопарка — <b>2,01 млн</b>, Тишинка — 1,48, кварталы у Звенигородского шоссе — 1,32. На вторичке порядок другой: Лаки — 1,37, зоопарк — 1,27, Тишинка — 909 тыс. Тишинку тянут вниз Republic и апартаменты Sinatra и Рассвета.</p></div><div><div class="num">Готовое против нового</div><h3>Сданный квартал дороже стройки через дорогу</h3><p style="margin-top:10px;color:var(--ink-2);font-size:15px">В Lucky на вторичке медиана <b>1,61 млн</b>, в Монэ — 1,44, а в Начале по соседству застройщик просит 1,18. За готовый дом, школу в трёх минутах и двор платят сейчас, за башню с ключами в 2029–2030 годах — меньше, но с ожиданием.</p></div></div>
+ <div class="btns" style="margin-top:34px"><a class="btn" href="../../podbor.html">Подобрать дом на Пресне</a> <a class="btn btn-l" href="../../razbor-presnya.html">Разбор района</a> <a class="btn btn-l" href="../../karta.html">Все дома на карте</a></div>
+</div></section>
+
+<section class="tight"><div class="wrap">
+ <p class="ttl">Источники</p>
+ <ul class="h-src">
+  <li>ЦИАН, поиск по жилым комплексам: выгрузка NOTA 10 октября 2026 — цены, площади, лоты застройщиков и вторичка</li>
+  <li>База NOTA: паспорт дома, девять проверок, стадия, сроки, паркинг — выгрузка 23 сентября 2026; карточки домов по ссылкам в тексте</li>
+  <li>Характеристики домов вне базы — сверка 10 октября 2026: novostroy-m.ru, карточки ЖК на ЦИАН, РБК Недвижимость, archi.ru, сайты застройщиков</li>
+  <li>Фотографии и визуализации — материалы застройщиков и архитектурных бюро</li>
+ </ul>
+ <p class="hint">Обложка сгенерирована для NOTA. Разбор собран 10 октября 2026. Цены на вторичке меняются каждую неделю — при следующей сверке обновим цифры и поставим новую дату.</p>
+</div></section>
+</main>
+<footer>
+ <div class="wrap foot">
+  <a class="brand" href="../../index.html">
+   <svg class="mark" viewBox="12 5 96 103" fill="none" aria-hidden="true">
+    <path d="M 90.57 28.35 A 44 44 0 1 1 72.13 17.70" stroke="currentColor" stroke-width="6.3"/>
+    <path d="M 60 60 L 89.04 9.70" stroke="#CE2029" stroke-width="6.3"/>
+   </svg>
+   <span class="rule"></span>
+   <span class="lk">
+    <span class="wm">NOT<i>A</i></span>
+    <span class="brandtag">NB: NOT A CHOICE. THE CHOICE.</span>
+   </span>
+  </a>
+  <div class="foot-r">
+   <div><a href="tel:+79015446600">+7 901 544-66-00</a> · <a href="https://t.me/nota_estate?direct">Telegram</a> · <a href="#">MAX</a> · <a href="mailto:hello@nota.expert">hello@nota.expert</a></div>
+   <div class="foot-nav"><a href="../../index.html">Главная</a> · <a href="../../podbor.html">Подбор</a> · <a href="../../karta.html">Карта домов</a> · <a href="../../razbory.html">Разборы</a> · <a href="../../scenarii.html">Сценарии</a> · <a href="../../reytingi.html">Рейтинги</a> · <a href="../../metod.html">Метод</a></div>
+  </div>
+ </div>
+ <div class="wrap foot-legal">
+  <span>NOTA · ИНН 502019152710 · <a href="../../politika.html#operator">Реквизиты</a></span>
+  <span><a href="../../politika.html">Политика конфиденциальности</a> · <a href="../../soglasie.html">Согласие на обработку данных</a></span>
+ </div>
+</footer>
+<script src="../../js/nota.js?v=4586f771"></script>
+</body>
+</html>

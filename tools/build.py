@@ -18,7 +18,7 @@ HEADER = (T / 'partials/header.html').read_text()
 FOOTER = (T / 'partials/footer.html').read_text()
 CONTACT = (T / 'partials/contact.html').read_text()
 
-SITE_PAGES = ['index.html', 'podbor.html', 'metod.html', 'karta.html', 'razbory.html', 'razbor-hamovniki.html', 'razbor-zamoskvorechye.html', 'razbor-ostozhenka.html', 'scenarii.html',
+SITE_PAGES = ['index.html', 'podbor.html', 'metod.html', 'karta.html', 'razbory.html', 'razbor-hamovniki.html', 'razbor-zamoskvorechye.html', 'razbor-ostozhenka.html', 'razbor-presnya.html', 'razbor-dorogomilovo.html', 'razbor-sretenka.html', 'razbor-chistye-prudy.html', 'razbor-kitay-gorod.html', 'scenarii.html',
               'reytingi.html', 'politika.html', 'soglasie.html']
 # старые адреса → новые (страница-переадресация, в сборку не входит)
 MOVED = {'nota-index.html': 'reytingi.html', 'index-2026-09.html': 'reytingi/shkoly-moskvy/',

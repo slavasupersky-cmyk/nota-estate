@@ -145,6 +145,7 @@ tr:last-child td{border-bottom:none}
 .split .ph{height:100%}
 .split .tablewrap{margin-top:0}
 @media(max-width:900px){.split{grid-template-columns:1fr;gap:24px}}
+@media(min-width:901px){.split>.ph{aspect-ratio:auto!important}}
 .steps{margin-top:34px}
 .steps .step{display:flex;gap:24px;padding:24px 0;border-bottom:1px solid var(--line)}
 .steps .step{align-items:flex-start;border-width:0 0 1px;border-style:solid;border-color:var(--line);background:none}  /* сильнее чужого .step-степпера (планировки) */
