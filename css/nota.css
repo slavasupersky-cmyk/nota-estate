@@ -1378,3 +1378,5 @@ section .two.rz-h,section.tight .two.rz-h:has(h2){align-items:start}
 .f-msg a{color:inherit;text-decoration:underline;text-underline-offset:3px}
 .f-done .cform-h{margin-bottom:8px}
 .f-done p:not(.cform-h){color:var(--ink-2);font-size:15px;line-height:1.55}
+/* ---- разборы районов: показываем первые N карточек, остальные — по кнопке (js/nota.js, data-cut) ---- */
+.arts.cut>.art:nth-child(n+9){display:none}

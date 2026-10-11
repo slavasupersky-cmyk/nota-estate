@@ -76,6 +76,9 @@ def apply_shell(path):
         s2 = re.sub(r'<!--karta-band-->[\s\S]*?<!--/karta-band-->', lambda m: '<!--karta-band-->' + KARTA_BAND + '<!--/karta-band-->', s2, count=1)
     if rel == 'index.html' and HOME_RAZBORY:
         s2 = re.sub(r'<!--home-razbory-->[\s\S]*?<!--/home-razbory-->', lambda m: '<!--home-razbory-->\n' + HOME_RAZBORY + '\n  <!--/home-razbory-->', s2, count=1)
+        # «Все разборы» ведёт сразу к районам, если на главной сейчас только разборы районов
+        to = 'razbory.html#rayony' if 'Разбор · ' not in HOME_RAZBORY else 'razbory.html'
+        s2 = re.sub(r'(<!--/home-razbory--></div>\s*<div class="btns"><a class="btn btn-l" href=")razbory\.html(?:#\w+)?(">Все разборы</a>)', lambda m: m.group(1) + to + m.group(2), s2, count=1)
     if rel == 'index.html' and HOME_TABLE:
         s2 = re.sub(r'<!--baza-t-->[\s\S]*?<!--/baza-t-->', lambda m: '<!--baza-t-->\n' + HOME_TABLE + '\n   <!--/baza-t-->', s2, count=1)
     if s2 != s:

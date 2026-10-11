@@ -616,3 +616,17 @@
   if(g) try{ym(113587172,'reachGoal',g)}catch(_){}
  },true);
 })();
+
+/* ---- длинный список карточек: <div class="arts" data-cut="8"> показывает первые 8, остальные — по кнопке ---- */
+(function(){
+ document.querySelectorAll('.arts[data-cut]').forEach(function(box){
+  var n=+box.getAttribute('data-cut')||8, all=box.querySelectorAll(':scope>.art'), rest=all.length-n;
+  if(rest<=0) return;
+  box.classList.add('cut');
+  var b=document.createElement('button'); b.type='button'; b.className='btn btn-l';
+  b.textContent='Ещё районы · '+(rest%2?rest:rest/2);
+  b.addEventListener('click',function(){box.classList.remove('cut'); b.remove();});
+  var row=box.nextElementSibling;
+  if(row&&row.classList.contains('btns')) row.insertBefore(b,row.firstChild); else box.after(b);
+ });
+})();
