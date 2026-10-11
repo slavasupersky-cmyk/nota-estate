@@ -24,3 +24,6 @@ RewriteRule ^ https://nota.expert%{REQUEST_URI} [R=301,L]
 <FilesMatch "\.(jpg|jpeg|png|webp|svg|ico)$">
   Header set Cache-Control "max-age=3600"
 </FilesMatch>
+
+# Манифест для телефона (иконка при добавлении сайта на экран)
+AddType application/manifest+json .webmanifest

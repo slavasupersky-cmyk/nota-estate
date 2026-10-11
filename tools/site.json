@@ -1,5 +1,5 @@
 {
- "_comment": "Контакты и реквизиты — одно место на весь сайт. tg_write — «Написать в Telegram» (личные сообщения канала), tg_channel — «Читать в Telegram» (лента канала). max_url — заглушка, заменить на ссылку MAX. site_url — постоянный адрес сайта (канонические ссылки, карта сайта). metrika_id — номер счётчика Яндекс Метрики (код ставит сборка на все страницы, кроме test/). yandex_verification / google_verification / bing_verification — коды подтверждения из Яндекс Вебмастера и Google Search Console (содержимое content= мета-тега). opening_hours — часы работы для разметки компании на главной (формат schema.org: Mo-Su 10:00-21:00), те же, что в Яндекс Бизнесе и Google. После правки: python3 tools/build.py",
+ "_comment": "Контакты и реквизиты — одно место на весь сайт. tg_write — «Написать в Telegram» (личные сообщения канала), tg_channel — «Читать в Telegram» (лента канала). max_url — заглушка, заменить на ссылку MAX. site_url — постоянный адрес сайта (канонические ссылки, карта сайта). metrika_id — номер счётчика Яндекс Метрики (код ставит сборка на все страницы, кроме test/). yandex_verification / google_verification / bing_verification — коды подтверждения из Яндекс Вебмастера и Google Search Console (содержимое content= мета-тега). opening_hours — часы работы для разметки компании на главной (формат schema.org: Mo-Su 10:00-21:00), те же, что в Яндекс Бизнесе и Google. После правки: python3 tools/build.py same_as — профили NOTA для разметки sameAs (поисковики и нейросети связывают по ним бренд): добавлять ссылку, как только появится профиль (Яндекс Карты, 2ГИС, VK, MAX, Дзен). Пока max_url — «#», кнопка MAX на сайте не выводится.",
  "phone": "+7 901 544-66-00",
  "phone_href": "+79015446600",
  "tg": "nota_estate",
@@ -17,5 +17,10 @@
  "google_verification": "guRna3iXPB4uzMeX2emz04uelRwfxS_IzwyPPHiO9o8",
  "ogrnip": "326508100350881",
  "opening_hours": "Mo-Su 10:00-21:00",
- "bing_verification": "43B58C371EE23E52EF47002B27F1959E"
+ "bing_verification": "43B58C371EE23E52EF47002B27F1959E",
+ "same_as": [
+  "https://t.me/nota_estate",
+  "https://www.instagram.com/nota.estate/",
+  "https://www.threads.com/@nota.estate"
+ ]
 }

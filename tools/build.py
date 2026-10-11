@@ -18,7 +18,7 @@ HEADER = (T / 'partials/header.html').read_text()
 FOOTER = (T / 'partials/footer.html').read_text()
 CONTACT = (T / 'partials/contact.html').read_text()
 
-SITE_PAGES = ['index.html', 'podbor.html', 'metod.html', 'karta.html', 'razbory.html', 'razbor-hamovniki.html', 'razbor-zamoskvorechye.html', 'razbor-ostozhenka.html', 'razbor-presnya.html', 'razbor-dorogomilovo.html', 'razbor-sretenka.html', 'razbor-chistye-prudy.html', 'razbor-kitay-gorod.html', 'scenarii.html',
+SITE_PAGES = ['index.html', 'podbor.html', 'metod.html', 'karta.html', 'razbory.html', 'razbor-hamovniki.html', 'razbor-zamoskvorechye.html', 'razbor-ostozhenka.html', 'razbor-presnya.html', 'razbor-dorogomilovo.html', 'razbor-sretenka.html', 'razbor-chistye-prudy.html', 'razbor-kitay-gorod.html', 'v-cifrah.html', 'scenarii.html',
               'reytingi.html', 'politika.html', 'soglasie.html']
 # старые адреса → новые (страница-переадресация, в сборку не входит)
 MOVED = {'nota-index.html': 'reytingi.html', 'index-2026-09.html': 'reytingi/shkoly-moskvy/',
@@ -40,6 +40,9 @@ def fill(tpl, rel, extra=None):
     for k in ('home', 'podbor', 'metod', 'karta', 'razbory', 'reytingi'):
         d['CUR_' + k] = ' class="cur"' if k == cur else ''
     d.update(extra or {})
+    if d.get('max_url', '#') in ('', '#'):  # нет ссылки на MAX — кнопку не выводим (подвал и блок контактов)
+        tpl = re.sub(r'<a href="\{max_url\}">MAX</a> · ', '', tpl)
+        tpl = re.sub(r'\n\s*<a href="\{max_url\}">.*?</a>', '', tpl)
     return re.sub(r'\{(\w+)\}', lambda m: d.get(m.group(1), m.group(0)), tpl)
 
 def apply_shell(path):
@@ -458,7 +461,24 @@ def seo(s, rel):
         s = s.replace('</head>', f'<meta property="og:image" content="{SITE_URL}/{img}">\n</head>', 1)
     # адреса внутри JSON-LD — полные
     s = re.sub(r'("(?:url|image)":\s*")(?!https?:)([^"]*)"', lambda m: m.group(1) + urljoin(SITE_URL + '/', m.group(2)) + '"', s)
+    # иконки для телефона и PWA-манифест (файлы в корне: apple-touch-icon.png, icon-192/512.png, favicon-32.png, site.webmanifest)
+    s = re.sub(r'\s*<link rel="(?:apple-touch-icon|manifest)"[^>]*>|\s*<link rel="icon" type="image/png"[^>]*>|\s*<meta name="theme-color"[^>]*>', '', s)
+    r = '../' * rel.count('/')
+    icons = (f'\n<link rel="icon" type="image/png" sizes="32x32" href="{r}favicon-32.png">\n<link rel="apple-touch-icon" href="{r}apple-touch-icon.png">'
+             f'\n<link rel="manifest" href="{r}site.webmanifest">\n<meta name="theme-color" content="#ffffff">')
+    s = re.sub(r'(<link rel="icon" type="image/svg\+xml"[^>]*>)', lambda m: m.group(1) + icons, s, count=1)
     add = [f'<link rel="canonical" href="{url}">', f'<meta property="og:url" content="{url}">']
+    # превью ссылок (Telegram, VK, WhatsApp): описание, тип, имя сайта, язык и большая карточка — если страница их не задала
+    s = re.sub(r'\s*<meta (?:property="og:(?:type|site_name|locale)"|name="twitter:card")[^>]*>', '', s)
+    if 'property="og:description"' not in s:
+        dm = re.search(r'<meta name="description" content="([^"]*)"', s)
+        if dm: add.append(f'<meta property="og:description" content="{dm.group(1)}">')
+    if 'property="og:title"' not in s:
+        tm = re.search(r'<title>([^<]*)</title>', s)
+        if tm: add.append(f'<meta property="og:title" content="{tm.group(1)}">')
+    add += ['<meta property="og:type" content="' + ('article' if is_article(rel) else 'website') + '">',
+            '<meta property="og:site_name" content="NOTA">', '<meta property="og:locale" content="ru_RU">',
+            '<meta name="twitter:card" content="summary_large_image">']
     if 'name="robots"' not in s:
         add.append(PREVIEW)
     if rel == 'index.html':
@@ -546,7 +566,7 @@ def ld_org(s, rel):
            'address': {'@type': 'PostalAddress', 'streetAddress': re.sub(r'^Москва,\s*', '', office),
                        'addressLocality': 'Москва', 'addressCountry': 'RU'},
            'areaServed': {'@type': 'City', 'name': 'Москва'},
-           'logo': SITE_URL + '/favicon.svg', 'sameAs': [site['tg_channel']] if site.get('tg_channel') else []}
+           'logo': SITE_URL + '/icon-512.png', 'sameAs': list(dict.fromkeys(([site['tg_channel']] if site.get('tg_channel') else []) + site.get('same_as', [])))}
     img = _meta(s, 'property', 'og:image')
     if img: org['image'] = img
     if site.get('max_url', '#') not in ('', '#'): org['sameAs'].append(site['max_url'])
@@ -579,7 +599,7 @@ def ld_crumbs(s, rel):
 def llms(pages):
     """llms.txt в корне — короткая карта сайта для нейросетей (формат llmstxt.org). Пересобирается вместе с сайтом."""
     rows = {'main': [], 'razbory': [], 'reytingi': [], 'doma': []}
-    main_order = ['index.html', 'metod.html', 'podbor.html', 'karta.html', 'razbory.html', 'reytingi.html']
+    main_order = ['index.html', 'metod.html', 'podbor.html', 'karta.html', 'razbory.html', 'reytingi.html', 'v-cifrah.html']
     home = ''
     for p in pages:
         rel = p.relative_to(ROOT).as_posix()

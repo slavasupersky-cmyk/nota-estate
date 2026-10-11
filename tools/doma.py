@@ -367,7 +367,8 @@ def card(root, slug, cfg, r):
  <p class="hint">Данные базы NOTA на {date_ru(r.get("updated")) or "сентябрь 2026"}. Если застройщик раскроет новые цифры, итог пересчитаем.</p>
 </div></section>
 '''
-    return HEAD.format(title=f'{title} ({dev}) — {CLASS_RU[cls].lower()}, {r["district"]}. Паспорт дома — NOTA', desc=e(desc), R=R, ld=ld_html) + body + TAIL.format(R=R), (title, CLASS_RU[cls], r['district'], vk, vt, u, r, dev)
+    dev_t = re.sub(r'\s*\(.*$', '', dev).strip() or dev  # в заголовке вкладки — застройщик без пояснений в скобках
+    return HEAD.format(title=f'{title} ({dev_t}) — {CLASS_RU[cls].lower()}, {r["district"]}. Паспорт дома — NOTA', desc=e(desc), R=R, ld=ld_html) + body + TAIL.format(R=R), (title, CLASS_RU[cls], r['district'], vk, vt, u, r, dev)
 
 def find(rows, slug, cfg):
     return next((x for x in rows if x['slug'] == slug), None) or next((x for x in rows if x['name'].startswith(cfg.get('match', '\0'))), None)
