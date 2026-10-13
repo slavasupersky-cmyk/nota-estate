@@ -30,7 +30,8 @@ PUBLIC = {
                    'price', 'why', 'zone', 'okrug', 'district', 'address', 'site', 'korpusov', 'lat', 'lon', 'geo_precision'],
     'kriterii.csv': None,
     'penthausy.csv': ['pent_id', 'slug', 'foto', 'zhk', 'developer', 'okrug', 'district', 'address', 'count', 'area_m2', 'floor', 'price_total', 'price_m2', 'features', 'status', 'source', 'checked'],
-    'oplata-skhemy.csv': ['scheme_id', 'dev_id', 'developer', 'slug', 'zhk', 'klass', 'tip', 'opisanie', 'stavka', 'srok', 'pv', 'vvod', 'skidka_100', 'ogranicheniya', 'source', 'deystvuet', 'checked'],
+    'oplata-skhemy.csv': ['scheme_id', 'dev_id', 'developer', 'slug', 'zhk', 'klass', 'tip', 'opisanie', 'stavka', 'srok', 'pv', 'vvod', 'skidka_100', 'ogranicheniya', 'source', 'deystvuet', 'checked', 'status', 'izmeneniya', 'kak_provereno'],
+    'oplata-raschet.csv': None,  # рейтинг «Цена способа оплаты» — схемы с обеими ценами и ставка в % годовых
     'oplata-banki.csv': None,
     'oplata-tipy.csv': None,
     'itog.csv': None,

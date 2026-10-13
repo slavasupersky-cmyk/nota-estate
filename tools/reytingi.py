@@ -3,6 +3,7 @@
                                архитектура) + data/marshruty.csv (минуты пешком до домов) + data/doma.csv
 - reytingi/penthausy-moskvy/ — пентхаусы в продаже: data/penthausy.csv
 - reytingi/doma-u-parka-i-vody/ — постоянный рейтинг: дома в 300 м от парка или воды (data/doma.csv: park_m, water_m из проверки 02)
+- reytingi/tsena-sposoba-oplaty/ — цена способа оплаты: data/oplata-skhemy.csv + data/oplata-raschet.csv (страница — в tools/oplata.py)
 Хаб reytingi.html — статичный, правится руками. Фильтры, счётчики и «Показать ещё» — общий модуль [data-rlist] в js/nota.js."""
 import csv, json, html, re, pathlib, statistics as st
 from collections import defaultdict, Counter
@@ -674,5 +675,8 @@ def build(root):
     if b: out.append(f'пентхаусы {b[1]}'); stats.update(b[2])
     c = park(root)
     if c: out.append(f'у парка и воды {c[1]}'); stats.update(c[2])
+    import oplata  # tools/oplata.py — «Цена способа оплаты»
+    d = oplata.tsena_oplaty(root)
+    if d: out.append(f'цена способа оплаты {d[1]}'); stats.update(d[2])
     print('рейтинги:', ', '.join(out) or 'нет данных')
     return stats
